@@ -1,0 +1,300 @@
+#__layout, #__nuxt {
+    height: 100%
+}
+
+#app {
+    transition: opacity .5s ease;
+    min-height: 100%;
+    display: flex;
+    flex-flow: column nowrap
+}
+
+#app > .gradient-buttons {
+    display: flex;
+    margin: 8px 9px 2px;
+    grid-column-gap: 9px;
+    -moz-column-gap: 9px;
+    column-gap: 9px;
+    grid-row-gap: 9px;
+    row-gap: 9px
+}
+
+#app > .gradient-buttons > .c-button {
+    width: 100%;
+    max-width: none;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    letter-spacing: 0
+}
+
+#app > .gradient-buttons > .c-button > .caption {
+    grid-column-gap: 6px;
+    -moz-column-gap: 6px;
+    column-gap: 6px;
+    justify-content: center
+}
+
+@media screen and (max-width: 400px) {
+    #app > .gradient-buttons > .c-button {
+        font-size: 11px
+    }
+}
+
+@media screen and (max-width: 345px) {
+    #app > .gradient-buttons > .c-button {
+        font-size: 10px
+    }
+}
+
+#app > .place-product-price {
+    height: 65px
+}
+
+#app > .footer-banner {
+    cursor: pointer
+}
+
+#app > .footer-banner.mobile {
+    padding: 0;
+    margin-bottom: 30px
+}
+
+#app > .download-browser {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .43922);
+    z-index: 999;
+    display: flex;
+    align-items: center
+}
+
+#app > .download-browser > div {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    position: relative;
+    margin: auto;
+    display: table
+}
+
+#app > .download-browser > div > .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 20px;
+    width: 20px
+}
+
+#app > .download-browser > div > .close:before {
+    content: "+";
+    transform: rotate(45deg);
+    font-size: 40px;
+    top: -20px;
+    position: absolute;
+    right: 1.5px
+}
+
+#app > .download-browser > div > .close:hover {
+    cursor: pointer;
+    color: #3f51b5
+}
+
+#app > .download-browser > div > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around
+}
+
+#app > .download-browser > div > div > div {
+    height: 115px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between
+}
+
+#app > .download-browser > div > div > div > img {
+    width: 200px
+}
+
+#app > .download-browser > div > div > div > a > button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: auto;
+    display: inline-flex;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 4px;
+    outline: none;
+    font-weight: 400;
+    color: #1a1a1a;
+    background-color: #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    transition: .2s;
+    background-color: #3f51b5;
+    border: 1px solid #3f51b5;
+    color: #fff;
+    height: 34px;
+    line-height: 34px;
+    padding: 0 16px;
+    font-size: 14px
+}
+
+#app > .download-browser > div > div > div > a > button:hover {
+    background-color: #4659c4
+}
+
+#app > .download-browser > div > div > div > a > button:active {
+    background-color: #3747a1
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #1a1a1a
+}
+
+body, html {
+    height: 100%;
+    width: 100%
+}
+
+body {
+    margin: 0;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    line-height: 1.5
+}
+
+h1, h2, h3, h4 {
+    font-weight: 500
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1368px;
+    box-sizing: border-box
+}
+
+.ta-justify {
+    text-align: justify
+}
+
+.ta-left {
+    text-align: left
+}
+
+.ta-center {
+    text-align: center
+}
+
+.ta-right {
+    text-align: right
+}
+
+.logo {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMzUyIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xMzEuMzg1IDYyLjQ4aC0xMC4zNzhsLTEuNTY2LTQuMzM4YS41My41MyAwIDAwLS41NTMtLjQyOGgtMTguNDU3YS41OTQuNTk0IDAgMDAtLjU0Ny40MjhsLTEuNTI3IDQuMzM5SDg3Ljk3MmwxNS4zODktNDIuODI0aDEyLjY0MmwxNS4zODIgNDIuODI0em00MC4zMDItNDIuODIzdjQyLjY5OGgtOS44MjVWMjkuNDI5aC0xNi4xODh2MzIuOTI2aC05Ljc2MlYxOS42NTdoMzUuNzc1em0yNy44NDMuMTI2YTE3Ljk3OCAxNy45NzggMCAwMTcuMjM2IDEuNDY1IDE5LjIwMiAxOS4yMDIgMCAwMTUuOTIxIDMuOTY4IDE4LjQ2MyAxOC40NjMgMCAwMTMuOTk4IDUuODk4IDE4LjA4NSAxOC4wODUgMCAwMTEuNDUzIDcuMjQ1IDE3LjYxNiAxNy42MTYgMCAwMS0xLjM1MiA2LjcxNiAxOS43NzkgMTkuNzc5IDAgMDEtMy42NzcgNS45MTcgMTguMDk4IDE4LjA5OCAwIDAxLTEzLjU1NCA1Ljk4NmgtMTAuODg4djUuNTAzaC05LjcxMlYxOS43ODNoMjAuNTc1em0tLjA2MyAyNy40MjNhOC45OCA4Ljk4IDAgMDA2LjI4Ni0yLjUxNSA4LjgwNCA4LjgwNCAwIDAwMS45MjQtMi44MSA4Ljg3NiA4Ljg3NiAwIDAwMC02LjkxOCA5LjUgOS41IDAgMDAtMS44ODYtMi44NDIgOC43OTggOC43OTggMCAwMC0yLjgxLTEuOTM3IDguNDg0IDguNDg0IDAgMDAtMy40NDUtLjcwNEgxODkuMzRhLjU5NC41OTQgMCAwMC0uNjYzLjQyLjU5LjU5IDAgMDAtLjAxLjI4NHYxNi40MTJjMCAuNDEuMjIuNjMuNjczLjYzbDEwLjEyNy0uMDJ6bTExMy4zMzEgMTUuMjc1VjE5Ljc4M2g5LjY5NHY1LjQ5NmgxMC44NzVhMTguMDkgMTguMDkgMCAwMTEzLjU1NCA1Ljk4NiAxOS43NzEgMTkuNzcxIDAgMDEzLjcyMSA1LjkyNCAxNy41ODYgMTcuNTg2IDAgMDExLjM0NSA2LjcyMiAxOC4wOTUgMTguMDk1IDAgMDEtMS40NjQgNy4yMzggMTguNzMzIDE4LjczMyAwIDAxLTMuOTk4IDUuODkyIDE5LjA0NiAxOS4wNDYgMCAwMS01LjkxNiAzLjk1NiAxNy45NSAxNy45NSAwIDAxLTcuMjI5IDEuNDcxbC0yMC41ODIuMDEzem0xMC4zNzktMjcuNDNjLS40NDYgMC0uNjczLjIwNy0uNjczLjYyOXYxNi40MTJhLjYzNS42MzUgMCAwMC40MDguNjM1LjYzLjYzIDAgMDAuMjY1LjAzOGgxMC4yMDNhOC40ODYgOC40ODYgMCAwMDMuNDQ1LS43MDQgOC42MDUgOC42MDUgMCAwMDIuODEtMS45MjQgOS4yNDMgOS4yNDMgMCAwMDEuODg2LTIuODM2IDguODIgOC44MiAwIDAwMC02LjkxOCA4LjY4MSA4LjY4MSAwIDAwLTEuOTI0LTIuODEgOC45NTEgOC45NTEgMCAwMC02LjI4Ni0yLjUxNmwtMTAuMTM0LS4wMDZ6bS04OS42MzEtNS40OTZhLjQzNy40MzcgMCAwMC0uNDczLjI5Mi40NDQuNDQ0IDAgMDAtLjAxOC4xOTh2NS45M2MwIC4zNjUuMTY0LjU0Ny40OTEuNTQ3aDE5Ljg0NnY5LjcxaC0xOS44NDZjLS4zMjcgMC0uNDkxLjE4OC0uNDkxLjU1M3Y1LjM3YS40MzcuNDM3IDAgMDAuNDkxLjQ5aDI0LjU0OHY5Ljc3M2gtMzQuODA4di00Mi43NmgzNC44MDh2OS44OTdoLTI0LjU0OHptNzMuOTQ2IDMyLjg2M2gtMTAuMzc4TDI4Ni42MDkgMzMuMjJhLjYyNS42MjUgMCAwMC0uNTgyLS4zOS42MzEuNjMxIDAgMDAtLjU4MS4zOWwtMTAuNDk4IDI5LjE5N2gtMTAuMzg1TDI3OS45NTIgMTkuNmgxMi4xNTFsMTUuMzg5IDQyLjgxN3pNMTAzLjg1MSA0Ny4xNjJhLjUxOS41MTkgMCAwMC4wNjMuNTQ3LjU3Ni41NzYgMCAwMC40ODQuMjQ2aDEwLjU2N2MuNTI4IDAgLjcxMS0uMjY0LjU0Ny0uNzkzbC01LjI0OS0xNC42NzdhLjYzMi42MzIgMCAwMC0uNjI4LS40MjcuNTI5LjUyOSAwIDAwLS41NTQuNDI3bC01LjIzIDE0LjY3N3oiIGZpbGw9IiMzRjUxQjUiLz48cGF0aCBkPSJNMzkuMDA3IDBDMTcuNDY0IDAgMCAxNy45MSAwIDQwczE3LjQ2NCA0MCAzOS4wMDcgNDBjMjEuNTQ0IDAgMzguOTc2LTE3LjkxIDM4Ljk3Ni00MFM2MC41NSAwIDM5LjAwNyAwem0yOC41NiAzNy45NzVINDYuMTkxYS41NzIuNTcyIDAgMDEtLjQ4NC0uMjM5LjUyMi41MjIgMCAwMS0uMDYzLS41NDdsNy43MzMtMjEuNjEzYS41MjguNTI4IDAgMDEuNTQ3LS40MjdoLjM2NGEyOS40NyAyOS40NyAwIDAxMTMuMjc3IDIyLjgyNnpNMTAuMzYgNDBjMC0xNi4yMTggMTIuODE4LTI5LjM2NyAyOC42MzUtMjkuMzY3IDEuNTk1LjAwNCAzLjE4Ny4xNDMgNC43NTguNDE2TDI0LjQxNiA2NS4yNkEyOS40ODMgMjkuNDgzIDAgMDExMC4zNzMgNDBoLS4wMTN6bTI4LjY0NyAyOS4zNmMtMS41NDYgMC0zLjA5LS4xMjgtNC42MTQtLjM4M2w2Ljk2NS0yMC4wMDRhLjYyOS42MjkgMCAwMS41NDctLjQyN2gyNC41MTdDNjIuODY0IDYwLjU5NCA1MS45MTkgNjkuMzYgMzkuMDA3IDY5LjM2eiIgZmlsbD0iI0ZGMDA4OSIvPjwvc3ZnPg==");
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: contain
+}
+
+.unselect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.marked > p:first-child {
+    margin-top: 0
+}
+
+.marked > p:last-child {
+    margin-bottom: 0
+}
+
+.flex-horizontal {
+    display: flex;
+    flex-flow: row
+}
+
+.flex-vertical {
+    display: flex;
+    flex-flow: column
+}
+
+.flex-horizontal-nowrap {
+    display: flex;
+    flex-flow: row nowrap
+}
+
+.flex-vertical-nowrap {
+    display: flex;
+    flex-flow: column nowrap
+}
+
+.flex-horizontal-wrap {
+    display: flex;
+    flex-flow: row wrap
+}
+
+.flex-vertical-wrap {
+    display: flex;
+    flex-flow: column wrap
+}
+
+a {
+    text-decoration: none
+}
+
+.loading-content {
+    background: #ebf0f9 !important;
+    pointer-events: none;
+    position: relative;
+    overflow: hidden;
+    color: transparent
+}
+
+.loading-content .icon {
+    display: none
+}
+
+.hover-bottom-line {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    position: relative;
+    -webkit-tap-highlight-color: transparent
+}
+
+.hover-bottom-line:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -3px;
+    background-color: #4960df;
+    transition: all .2s cubic-bezier(.4, 0, .2, 1)
+}
+
+.hover-bottom-line:hover:before {
+    width: 100%
+}
+
+.hover-bottom-line:active:before {
+    background-color: #32408f
+}
