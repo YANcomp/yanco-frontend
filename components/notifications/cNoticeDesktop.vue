@@ -32,8 +32,10 @@ const props = defineProps({
 
 const isClosing = ref(false)
 const isOpening = ref(true)
+let currentWidth = 0
 
 onMounted(() => {
+  currentWidth = window.outerWidth;
   let timeDuration = props.notice?.duration ? props.notice?.duration : props.defaultDuration
   setTimeout(() => {
     close()
@@ -81,8 +83,20 @@ function close() {
         <template v-else-if="isBasket || isFavorites || isCompare">
           <img src='https://pictures1.apteka-april.ru/products/326171/208/3019d88ae96777694aa8d824a798e59d.webp'
                width="100%" height="100%" alt=""/>
-          <span class="desc">
-            Товар добавлен <br> к вашим покупкам
+          <span class="desc" v-if="isBasket">
+            Товар добавлен <br v-if="currentWidth <= 425"> к вашим покупкам
+            <NuxtLink to="/">
+              Перейти в корзину
+            </NuxtLink>
+          </span>
+          <span class="desc" v-if="isFavorites">
+            Товар добавлен <br v-if="currentWidth <= 384"> к вашим покупкам
+            <NuxtLink to="/">
+              Перейти в корзину
+            </NuxtLink>
+          </span>
+          <span class="desc" v-if="isCompare">
+            Товар добавлен <br v-if="currentWidth <= 387"> к вашим покупкам
             <NuxtLink to="/">
               Перейти в корзину
             </NuxtLink>
