@@ -66,7 +66,7 @@ function disableTabAndEnter(t: any) {
 
 <template>
   <div :class='["c-notifications", {
-    mobile: props.isMobile,
+    mobile: isMobile,
     "without-mobile-footer": isHideMobileFooter,
     "disable-screen": isScreenDisabled,
     "has-button": hasButton

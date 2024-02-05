@@ -74,7 +74,7 @@ function close() {
           :class='["message", "flex-vertical-nowrap", {product: isBasket || isFavorites || isCompare || isCompareLimited}]'>
 
         <template v-if="isCompareLimited">
-          <span v-if="isCompareLimited" class="desc">
+          <span class="desc">
             У вас 6 товаров в сравнении
             <NuxtLink to="/">
               Перейти в сравнение
