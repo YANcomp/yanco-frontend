@@ -36,7 +36,7 @@ let currentWidth = 0
 
 onMounted(() => {
   currentWidth = window.outerWidth;
-  let timeDuration = props.notice?.duration ? props.notice?.duration : props.defaultDuration
+  let timeDuration = props.notice.duration ? props.notice.duration : props.defaultDuration
   setTimeout(() => {
     close()
   }, timeDuration)
@@ -47,7 +47,7 @@ function close() {
   isOpening.value = false
   setTimeout(() => {
     isClosing.value = false
-    emit("notice-close", props.notice?.ID)
+    emit("notice-close", props.notice.ID)
   }, 350)
 }
 </script>
@@ -75,8 +75,10 @@ function close() {
 
         <template v-if="isCompareLimited">
           <span v-if="isCompareLimited" class="desc">
-  <!--          compare TODO-->
-            compare
+            У вас 6 товаров в сравнении
+            <NuxtLink to="/">
+              Перейти в сравнение
+            </NuxtLink>
           </span>
         </template>
 
@@ -90,15 +92,15 @@ function close() {
             </NuxtLink>
           </span>
           <span class="desc" v-if="isFavorites">
-            Товар добавлен <br v-if="currentWidth <= 384"> к вашим покупкам
+            Товар добавлен <br v-if="currentWidth <= 384"> в избранное
             <NuxtLink to="/">
-              Перейти в корзину
+              Перейти в избранное
             </NuxtLink>
           </span>
           <span class="desc" v-if="isCompare">
-            Товар добавлен <br v-if="currentWidth <= 387"> к вашим покупкам
+            Товар добавлен <br v-if="currentWidth <= 387"> к сравнению
             <NuxtLink to="/">
-              Перейти в корзину
+              Перейти в сравнение
             </NuxtLink>
           </span>
         </template>

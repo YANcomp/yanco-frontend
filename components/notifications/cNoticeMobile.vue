@@ -6,8 +6,28 @@ const props = defineProps({
     type: Number
   },
   notice: {
-    type: Object
+    type: <any>Object
   },
+  isBasket: {
+    type: Boolean,
+    default: false
+  },
+  isFavorites: {
+    type: Boolean,
+    default: false
+  },
+  isCompare: {
+    type: Boolean,
+    default: false
+  },
+  isCompareLimited: {
+    type: Boolean,
+    default: false
+  },
+  isRequest: {
+    type: Boolean,
+    default: false
+  }
 })
 </script>
 

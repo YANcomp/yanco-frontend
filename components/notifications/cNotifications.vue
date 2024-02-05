@@ -19,8 +19,10 @@ const props = defineProps({
 const emit = defineEmits(["notice-close"])
 
 
-let internalItems: Array<any> = props.notifications
-
+const internalItems = ref(<any>[])
+watch(props.notifications, (val: any) => {
+  internalItems.value = val
+})
 const hasButton = computed(() => {
   return "basket" === route.name
 })
@@ -29,7 +31,7 @@ const isHideMobileFooter = computed(() => {
 })
 
 const isScreenDisabled = computed(() => {
-  return internalItems.some((elem) => {
+  return internalItems.value.some((elem: any) => {
     return elem.disableScreen
   })
 })
@@ -46,7 +48,7 @@ watch(isScreenDisabled, (val) => {
 })
 
 function closeNotice(id: number) {
-  internalItems = internalItems.map((elem) => {
+  internalItems.value = internalItems.value.map((elem: any) => {
     if (elem.ID === id) {
       elem.isClosed = true
       return elem
@@ -71,8 +73,8 @@ function disableTabAndEnter(t: any) {
   }]'>
     <div v-if="isScreenDisabled" class="overlay"/>
     <NotificationsCNotice
-        v-for="(item, index) in internalItems"
-        :key="index"
+        v-for="(item) in internalItems"
+        :key="item.ID"
         :is-mobile="isMobile"
         :notice="item"
         :params="params"
@@ -96,7 +98,7 @@ function disableTabAndEnter(t: any) {
   width: fit-content;
   display: flex;
   flex-flow: column;
-  align-items: end
+  align-items: flex-end
 }
 
 .c-notifications.mobile {
@@ -122,7 +124,7 @@ function disableTabAndEnter(t: any) {
   max-width: none;
   display: flex;
   justify-content: flex-end;
-  align-items: end
+  align-items: flex-end
 }
 
 .c-notifications.disable-screen > .overlay {

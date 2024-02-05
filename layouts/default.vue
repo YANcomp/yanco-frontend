@@ -7,23 +7,37 @@ if (Object.keys(appStore.params).length < 1) {
 
 const notifications = ref(<any>[]);
 
-const change = () => {
-  notifications.value[0] = {ID: 2, status: "basket"}
+const notBasket = () => {
+  notifications.value.push({ID: 1, status: "basket"})
+}
+const notFavorites = () => {
+  notifications.value.push({ID: 2, status: "favorites"})
+}
+const notCompare = () => {
+  notifications.value.push({ID: 3, status: "compare"})
+}
+const notCompareLimit = () => {
+  notifications.value.push({ID: 4, status: "compare-limited"})
 }
 
-function closeNotice() {
-  //TODO
-  console.log("closeNotice from layout")
+function closeNotice(id: number) {
+  notifications.value.splice(notifications.value.findIndex((item: any) => item.ID === id), 1)
 }
+
+
+// const clear = () => {
+//   notifications.value.splice(0)
+// }
 </script>
 
 <template>
   <div id="app">
     <UiCSpinner v-if="appStore.isLoading"/>
-
     <NotificationsCNotifications :notifications="notifications" v-on:notice-close="closeNotice"/>
-
-    <span @click="change">click in layout</span>
+    <span @click="notBasket">basket</span>
+    <span @click="notFavorites">favorites</span>
+    <span @click="notCompare">compare</span>
+    <span @click="notCompareLimit">compare-limit</span>
     <slot/>
   </div>
 </template>
