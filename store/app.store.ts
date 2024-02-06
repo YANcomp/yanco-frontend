@@ -4,22 +4,19 @@ export const useAppStore = defineStore('app', {
     state: () => ({
         isMobile: false,
         requestCounter: 0,
-        params: {},
-        isLoginAttempt: false,
-        fastOrder: undefined,
-        fastOrderPharmacyID: undefined,
-        breadcrumbs: undefined,
-        isOpenStoryModal: undefined,
-        isLoadingUserData: false
+        params: <any>{},
     }),
     actions: {
         async PARAMS_GET() {
             const { data: params } = await useFetch('http://localhost:3000/appParams.json')
             this.params = params
         },
+        async MOBILE_UPD(val:boolean) {
+            this.isMobile = val
+        },
     },
     getters: {
-        isLoading: function (state) {
+        getIsLoading: function (state) {
             return state.requestCounter > 0
         }
     }

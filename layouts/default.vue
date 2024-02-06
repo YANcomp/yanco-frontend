@@ -1,43 +1,107 @@
 <script setup lang="ts">
-
+//TODO STORE
 const appStore = useAppStore()
+const notificationsStore = useNotificationsStore()
+
+//TODO END STORE
+
+//TODO MIDDLEWARE
 if (Object.keys(appStore.params).length < 1) {
   await appStore.PARAMS_GET()
 }
+//TODO END MIDDLEWARE
 
-const notifications = ref(<any>[]);
+//TODO HOOKS
+const device = useDevice();
+appStore.MOBILE_UPD(device.isMobile)
+//TODO END HOOKS
+
+//TODO DATA
+const isScrolled = ref(false)
+//TODO END DATA
+
+//TODO COMPUTED
+const params = computed(() => {
+  return appStore.params
+})
+const isMobile = computed(() => {
+  return appStore.isMobile
+})
+const isLoading = computed(() => {
+  return appStore.getIsLoading
+})
+const notifications = computed(() => {
+  return notificationsStore.notifications ? notificationsStore.notifications : []
+})
+const notificationsCount = computed(() => {
+  return notifications ? notifications.value.length : 0
+})
+//TODO END COMPUTED
+
+//TODO MOUNTED
+onMounted(() => {
+  window.addEventListener("scroll", checkScroll)
+})
+//TODO END MOUNTED
 
 const notBasket = () => {
-  notifications.value.push({ID: 1, status: "basket"})
+  notificationsStore.NOTIFICATIONS_UPD({status: "basket"})
+  // notifications.value.push({ID: 1, status: "basket"})
 }
 const notFavorites = () => {
-  notifications.value.push({ID: 2, status: "favorites"})
+  notificationsStore.NOTIFICATIONS_UPD({status: "favorites"})
 }
 const notCompare = () => {
-  notifications.value.push({ID: 3, status: "compare"})
+  notificationsStore.NOTIFICATIONS_UPD({status: "compare"})
 }
 const notCompareLimit = () => {
-  notifications.value.push({ID: 4, status: "compare-limited"})
+  notificationsStore.NOTIFICATIONS_UPD({status: "compare-limited"})
+}
+
+//TODO METHODS
+function checkScroll() {
+  let height = window.innerHeight;
+  isScrolled.value = window.scrollY > height
+}
+
+function updateNotice(val: any) {
+  notificationsStore.NOTIFICATIONS_UPD(val)
 }
 
 function closeNotice(id: number) {
-  notifications.value.splice(notifications.value.findIndex((item: any) => item.ID === id), 1)
+  notificationsStore.NOTIFICATIONS_DEL(id)
 }
 
-
-// const clear = () => {
-//   notifications.value.splice(0)
-// }
+//TODO END METHODS
 </script>
 
 <template>
   <div id="app">
-    <UiCSpinner v-if="appStore.isLoading"/>
-    <NotificationsCNotifications :notifications="notifications" v-on:notice-close="closeNotice"/>
+    <UiCSpinner v-if="isLoading"/>
+    <NotificationsCNotifications :notifications="notifications" :is-mobile="isMobile" :params="params"
+                                 v-on:notice-close="closeNotice"/>
+    <!--    cBasketConflict-->
+    <HeaderCTopNavigationBar v-if="!isMobile" :params="params" v-on:notice-update="updateNotice"/>
+    <!--    cHeader-->
     <span @click="notBasket">basket</span>
     <span @click="notFavorites">favorites</span>
     <span @click="notCompare">compare</span>
     <span @click="notCompareLimit">compare-limit</span>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <!--    cOrderCarousel-->
+    <!--    cCatalogTypes-->
+    <!--    cStoryModal-->
+    <!--    cLoginOrRegistration-->
+    <!--    cQRPaymentModal-->
+    <!--    cBreadcrumbs-->
+    <!--    cCurtainProductInPharmacies-->
     <slot/>
+    <UiCUpButton v-if="isScrolled && !isMobile" :is-mobile="isMobile"/>
+    <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""
+         :src='isMobile ? params.footerBanners.mobile : params.footerBanners.desktop'/>
+    <!--    cChatBot-->
+    <PopupnotifCNotifications :params="params" :is-mobile="isMobile"/>
+    <!--    place-product-price-->
+    <FooterCFooter :is-mobile="isMobile" :params="params"/>
   </div>
 </template>

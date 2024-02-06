@@ -4,7 +4,6 @@ const props = defineProps({
     type: String,
     default: "s",
     validator(value: string) {
-      // The value must match one of these strings
       return ["s", "m", "l"].includes(value)
     }
   },
@@ -16,7 +15,6 @@ const props = defineProps({
     type: String,
     default: "fixed",
     validator(value: string) {
-      // The value must match one of these strings
       return ["fixed", "absolute", "relative"].includes(value)
     }
   },

@@ -1,8 +1,109 @@
 {
   "botURL": "https://chatbot-api.apteka-april.ru/api/v1",
-  "siteURL": "https://apteka-april.ru",
+  "cdnURL": {
+    "url": "https://pictures1.apteka-april.ru"
+  },
+  "siteURL": "https://yanco.ru",
+  "packageID": 235551,
   "avatarsURL": "https://pictures.apteka-april.ru/avatars",
-  "companyAge": 20,
+  "companyAge": 23,
+  "homeBrands": [
+    {
+      "ID": 742,
+      "name": "Solgar/ Солгар",
+      "slug": "solgar",
+      "image": "https://pictures1.apteka-april.ru/generic/home_brands/40299/solgar2.webp"
+    },
+    {
+      "ID": 1167,
+      "name": "Nature's Bounty/Нэйчес Баунти",
+      "slug": "nejches_baunti",
+      "image": "https://pictures1.apteka-april.ru/generic/home_brands/40298/nejches_baunti2.webp"
+    },
+    {
+      "ID": 9908,
+      "name": "Tetralab/Тетралаб",
+      "slug": "tetralab",
+      "image": "https://pictures1.apteka-april.ru/generic/home_brands/40300/tetralab2.webp"
+    },
+    {
+      "ID": 3352,
+      "name": "Allvit/Оллвит",
+      "slug": "allvit",
+      "image": "https://pictures1.apteka-april.ru/generic/home_brands/40295/allvit2.webp"
+    },
+    {
+      "ID": 114,
+      "name": "Vichy/ Виши",
+      "slug": "vichy",
+      "image": "https://pictures1.apteka-april.ru/generic/home_brands/40301/vichy2.webp"
+    },
+    {
+      "ID": 49,
+      "name": "La Roche Posay/ Ля Рош Позе",
+      "slug": "la_roche_posay",
+      "image": "https://pictures1.apteka-april.ru/generic/home_brands/40296/la_roche_posay2.webp"
+    },
+    {
+      "ID": 808,
+      "name": "Librederm/Либридерм",
+      "slug": "libriderm",
+      "image": "https://pictures1.apteka-april.ru/generic/home_brands/40297/libriderm2.webp"
+    }
+  ],
+  "aboutImages": {
+    "icons": [
+      {
+        "icon": "https://pictures1.apteka-april.ru/about/icons/1.png",
+        "name": "экономию"
+      },
+      {
+        "icon": "https://pictures1.apteka-april.ru/about/icons/2.png",
+        "name": "удобство"
+      },
+      {
+        "icon": "https://pictures1.apteka-april.ru/about/icons/3.png",
+        "name": "качество"
+      },
+      {
+        "icon": "https://pictures1.apteka-april.ru/about/icons/4.png",
+        "name": "инновации"
+      },
+      {
+        "icon": "https://pictures1.apteka-april.ru/about/icons/5.png",
+        "name": "мобильность"
+      },
+      {
+        "icon": "https://pictures1.apteka-april.ru/about/icons/6.png",
+        "name": "сервис"
+      },
+      {
+        "icon": "https://pictures1.apteka-april.ru/about/icons/7.png",
+        "name": "честность"
+      },
+      {
+        "icon": "https://pictures1.apteka-april.ru/about/icons/8.png",
+        "name": "прозрачность"
+      },
+      {
+        "icon": "https://pictures1.apteka-april.ru/about/icons/9.png",
+        "name": "заботу"
+      }
+    ],
+    "other": [
+      "https://pictures1.apteka-april.ru/about/1.webp",
+      "https://pictures1.apteka-april.ru/about/2.webp",
+      "https://pictures1.apteka-april.ru/about/3.webp",
+      "https://pictures1.apteka-april.ru/about/4.webp"
+    ],
+    "slider": [
+      "https://pictures1.apteka-april.ru/about/slider/new2/1.webp",
+      "https://pictures1.apteka-april.ru/about/slider/new2/2.webp",
+      "https://pictures1.apteka-april.ru/about/slider/new2/3.webp",
+      "https://pictures1.apteka-april.ru/about/slider/new2/4.webp",
+      "https://pictures1.apteka-april.ru/about/slider/new2/5.webp"
+    ]
+  },
   "citiesCount": 634,
   "deliveryNDS": 20,
   "loyalPrices": {
@@ -11,10 +112,12 @@
     "6": 588,
     "12": 996
   },
+  "ruStoreLink": "https://apps.rustore.ru/app/com.apteka.sklad",
+  "searchLimit": 300,
   "appstoreLink": "https://itunes.apple.com/ru/app/id1446878085",
-  "deliveryCost": 250,
-  "hotlinePhone": "8 800 200 90 01",
-  "regionsCount": 55,
+  "deliveryCost": 300,
+  "hotlinePhone": "+7 000 000 00 00",
+  "regionsCount": 70,
   "topCitiesIDs": [
     41,
     1,
@@ -29,30 +132,123 @@
     4,
     94599
   ],
-  "deliveryRules": {
-    "3657": {
-      "code": "free_ship",
-      "productAmount": 980
-    }
+  "videoAboutUs": [
+    "https://www.youtube.com/embed/kPl1AEJ3uaQ",
+    "https://youtube.com/embed/gCUsKZcb2sw",
+    "https://www.youtube.com/embed/MTe9qSNZt_w",
+    "https://www.youtube.com/embed/zkf3eBNwnbI",
+    "https://www.youtube.com/embed/Xofl1S4y3zs",
+    "https://www.youtube.com/embed/Ho0w0MaZ5qE",
+    "https://www.youtube.com/embed/OM9wpkJ2tyo",
+    "https://www.youtube.com/embed/o3YJu2aX5_0",
+    "https://www.youtube.com/embed/aaA4Dr29kJo",
+    "https://www.youtube.com/embed/2KeieYqTsWE",
+    "https://www.youtube.com/embed/l1JPVGk3Qqg",
+    "https://www.youtube.com/embed/fy_ni2rQ088",
+    "https://www.youtube.com/embed/nlTbHrn8mHY",
+    "https://www.youtube.com/embed/rmtZ0bMJ0MQ",
+    "https://www.youtube.com/embed/-uec9Mp5DX4",
+    "https://www.youtube.com/embed/6yzfjOlnG44",
+    "https://www.youtube.com/embed/BPL8yiGiQFo",
+    "https://www.youtube.com/embed/Yk1UC1zewI4",
+    "https://www.youtube.com/embed/wKv58hB0iEE",
+    "https://www.youtube.com/embed/oDL92ZknC0U",
+    "https://www.youtube.com/embed/83AFNb6-pOY",
+    "https://www.youtube.com/embed/xU0tCcxdubY",
+    "https://storage.obltv.ru/video/160622apteka.mp4",
+    "https://www.youtube.com/embed/Ww9FOqRwapM",
+    "https://www.youtube.com/embed/YmC9ItxsdeA",
+    "https://www.youtube.com/embed/Fl6zXJHhFbI",
+    "https://www.youtube.com/embed/lFYcsz8KcHg",
+    "https://www.youtube.com/embed/IrM5S8gV6MU",
+    "https://www.youtube.com/embed/JCKdv6MqZYE",
+    "https://www.youtube.com/embed/oB-3j0BMISE",
+    "https://www.youtube.com/embed/4H5l85dGEww",
+    "https://www.youtube.com/embed/eH0cvc_Blj8",
+    "https://www.youtube.com/embed/nEKl1Z-j638",
+    "https://www.youtube.com/embed/X1_xSutnY7M",
+    "https://www.youtube.com/embed/ehTFgsk0b2M",
+    "https://www.youtube.com/embed/UZ4v2_c2wsM",
+    "https://www.youtube.com/embed/_uuihRbp8Rg",
+    "https://www.youtube.com/embed/sCAln1VfjJg",
+    "https://www.youtube.com/embed/Yiak9XIRIr8",
+    "https://www.youtube.com/embed/xZubLdO_vhY",
+    "https://www.youtube.com/embed/4M-_ZhdM_Kw",
+    "https://www.youtube.com/embed/EckSKBWwwow",
+    "https://www.youtube.com/embed/unOUZY6IbBc",
+    "https://www.youtube.com/embed/1Sofxnd0RPM",
+    "https://www.youtube.com/embed/EeaGAY9dJSQ",
+    "https://www.youtube.com/embed/7fxCaM2oXrI",
+    "https://www.youtube.com/embed/K9TDyfCTS98",
+    "https://www.youtube.com/embed/CxfAwmvn7zo",
+    "https://www.youtube.com/embed/6EuJbdqo3Q0",
+    "https://www.youtube.com/embed/hKwRa_MfySg",
+    "https://www.youtube.com/embed/8O1poGVtjMY",
+    "https://www.youtube.com/embed/5CgsIIuCAW4",
+    "https://www.youtube.com/embed/nUWKXsAukzo",
+    "https://www.youtube.com/embed/g-9UK6iFCbI",
+    "https://www.youtube.com/embed/kBPJ2G5WiQU",
+    "https://www.youtube.com/embed/Fss6vouoiFM",
+    "https://www.youtube.com/embed/_5quTHhSWkQ",
+    "https://www.youtube.com/embed/Hn2HXvRAibo",
+    "https://www.youtube.com/embed/1iBsmuUlmN0",
+    "https://www.youtube.com/embed/yDDDb5msHto",
+    "https://www.youtube.com/embed/sslnANOG6S4"
+  ],
+  "deliveryRules": null,
+  "footerBanners": {
+    "mobile": "https://pictures1.apteka-april.ru/upload/40558/footer_banner_mobile.png",
+    "desktop": "https://pictures1.apteka-april.ru/upload/40557/footer_banner.png"
   },
+  "isNewYearMode": false,
+  "siteOwnerInfo": "© ООО «Семейная аптека «Апрель», 2024 г. Лицензия: Л042-01126-23/00284026, ОГРН: 1132309005817",
+  "appGalleryLink": "https://appgallery.huawei.ru/app/C106944689",
   "googlePlayLink": "https://play.google.com/store/apps/details?id=com.apteka.sklad",
   "noticeDuration": 7000,
   "orderDelayDays": 2,
   "deliveryPeriods": [
-    "08:00-10:00",
-    "10:00-12:00",
-    "12:00-14:00",
-    "14:00-16:00",
-    "16:00-18:00",
-    "18:00-20:00"
+    "08:00-11:00",
+    "10:00-13:00",
+    "12:00-15:00",
+    "14:00-17:00",
+    "16:00-19:00",
+    "17:00-20:00"
   ],
-  "pharmaciesCount": 2700,
+  "pharmaciesCount": 7500,
+  "yandexMapApiKey": "e219343b-11f0-4f6d-bdab-e1966df284d1",
   "chatGreetMessage": {
     "online": "Нужна помощь?",
     "offline": "Задать вопрос"
   },
   "deliveryDistance": 5000,
+  "freePeriodAddMsg": "Спасибо за регистрацию! Дарим доступ к клубным ценам на %s!",
+  "legalInformation": {
+    "sout": "https://docs.apteka-april.ru/sout.pdf",
+    "publicOffer": "https://docs.apteka-april.ru/public-offer.pdf",
+    "privacyPolicy": "https://docs.apteka-april.ru/personal-data-policy.pdf",
+    "personalDataProcessingPolicy": "https://docs.apteka-april.ru/personal-data-processing-policy.pdf"
+  },
   "maxDeliveryDates": 7,
+  "orderExpiringMsg": "Сегодня истекает срок хранения заказа %d! Не забудьте забрать его в аптеке Апрель %s.",
+  "pollSubQuestions": [
+    "Клубные» цены на какие товары Вы считаете завышенными?",
+    "Какие товары Вы бы добавили в наш ассортимент?",
+    "Укажите примеры, что именно Вам неудобно при оформлении заказа на сайте",
+    "Укажите с какими неудобствами при получении заказа Вы столкнулись"
+  ],
+  "vacanciesBanners": {
+    "0": {
+      "mobile": "https://pictures.apteka-april.ru/generic/vacancy/banner_mobile.webp",
+      "desktop": "https://pictures.apteka-april.ru/generic/vacancy/banner.webp"
+    },
+    "1": {
+      "mobile": "https://pictures.apteka-april.ru/generic/vacancy/banner2_mobile.webp",
+      "desktop": "https://pictures.apteka-april.ru/generic/vacancy/banner2.webp"
+    }
+  },
+  "maxCountFavorites": 104,
+  "periodExpiringMsg": "У вас заканчивается период! Продлить доступ к клубным ценам в приложении?",
+  "vacanciesVideoURL": "https://www.youtube.com/embed/n48Ns3h5Bs8",
   "basketItemMaxCount": 36,
   "botAvailableCities": [
     1,
@@ -891,6 +1087,7 @@
     175945,
     176146,
     176206,
+    176488,
     176606,
     176611,
     176626,
@@ -903,19 +1100,64 @@
     179210,
     180582
   ],
+  "deliveryTimePeriod": "ежедневно с 8:00 до 20:00",
+  "adPopularCategories": {
+    "530": {
+      "erid": "LjN8KRrpV",
+      "advertiser": "ООО «Семейная аптека Апрель», ИНН: 2309137766"
+    },
+    "531": {
+      "erid": "LjN8KCRdf",
+      "advertiser": "ООО «Бережная аптека «Апрель», ИНН: 2309136755"
+    },
+    "532": {
+      "erid": "LjN8KE6tV",
+      "advertiser": "АО «Акрихин», ИНН: 5031013320"
+    },
+    "533": {
+      "erid": "LjN8KXuZf",
+      "advertiser": "ООО «Бережная аптека «Апрель», ИНН: 2309136755"
+    },
+    "539": {
+      "erid": "LjN8KSvze",
+      "advertiser": "ООО «Семейная аптека Апрель», ИНН: 2309137766"
+    },
+    "540": {
+      "erid": "LjN8K2Qv6",
+      "advertiser": "ООО «Семейная аптека Апрель», ИНН: 2309137766"
+    },
+    "541": {
+      "erid": "LjN8K7ncz",
+      "advertiser": "ООО «Семейная аптека Апрель», ИНН: 2309137766"
+    },
+    "542": {
+      "erid": "LjN8KAoxN",
+      "advertiser": "ООО «Семейная аптека Апрель», ИНН: 2309137766"
+    }
+  },
+  "landlordsExampleUrl": "https://docs.apteka-april.ru/primer_zapolneniya_sait.pdf",
+  "stockWithCategories": [
+    "discounts_on_goods_for_children",
+    "mesyac_krasoty",
+    "mesyac_rasprodazh"
+  ],
+  "mobileAppDownloadLink": "https://pictures1.apteka-april.ru/generic/Аптека_Апрель_v2.4.2_apkpure.com.apk",
   "numberInstallationsMP": "500К",
   "carouselSwitchInterval": 8,
+  "yandexMapApiKeySuggest": "27cfa710-8cf4-429b-b5ca-8b9f426b7395",
+  "bannerPositionInCatalog": 4,
+  "basketOfferedProductsIDs": [
+    57,
+    326878
+  ],
   "popularSubscribePeriodID": 110,
   "advertisingLinksForSearch": [
     {
-      "link": "https://apteka-april.ru/product/239589-sorbipol_poroshok_banka_25g",
-      "name": "Сорбипол"
-    },
-    {
-      "link": "https://apteka-april.ru/product/237980-mirrollastin_0_01_flakon_s_raspylitelem_150ml",
-      "name": "Мирролластин"
+      "link": "https://apteka-april.ru/search/Больное%20горло",
+      "name": "Боль в горле"
     }
   ],
+  "deliveryMaxTimeOrderToday": "19:00",
   "productAdditionalBlockTime": 30,
   "orderOnlinePaymentDelayDays": 7
 }
