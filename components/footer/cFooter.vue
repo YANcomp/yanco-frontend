@@ -52,7 +52,7 @@ const hotlineLink = computed(()=>{
 </script>
 
 <template>
-  <component v-if="isMobile" :is="footerMobile"/>
+  <component v-if="isMobile" :is="footerMobile" :params="params" :hotlineLink="hotlineLink"/>
   <component v-else :is="footerDesktop" :params="params" :hotlineLink="hotlineLink"/>
 </template>
 
