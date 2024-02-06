@@ -102,6 +102,6 @@ function closeNotice(id: number) {
     <!--    cChatBot-->
     <PopupnotifCNotifications :params="params" :is-mobile="isMobile"/>
     <!--    place-product-price-->
-    <FooterCFooter :is-mobile="isMobile" :params="params"/>
+    <FooterCFooter :is-mobile="isMobile" :params="params" v-on:notice-update="updateNotice"/>
   </div>
 </template>
