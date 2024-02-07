@@ -128,18 +128,27 @@ function register() {
 function submit() {
   //TODO
 }
+
+
 </script>
 
 <template>
   <form ref="projectRef" class="c-login flex-vertical-nowrap" v-on:submit="(t)=>{t.preventDefault()}">
 
     <template v-if="currentStep === 1">
-      <UiCEdit v-model:model-value.trim="phone"></UiCEdit>
+      <UiCEdit :is-error="isErrorPhone || isBanned" :is-show-icon="true" type="tel" placeholder="Номер телефона"
+               inputmode="numeric" v-model:value="phone">
+
+      </UiCEdit>
+      <UiCButton :disabled="isLoading || noPhoneEntered" mode="primary" size="xl" @click="">
+        Продолжить
+        <UiCArrowSVG color="#fff" hover-color="#fff" size="s"/>
+      </UiCButton>
     </template>
   </form>
 </template>
 
-<style scoped>
+<style>
 .c-login {
   padding-bottom: 20px
 }
