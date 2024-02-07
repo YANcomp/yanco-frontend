@@ -132,8 +132,10 @@ function submit() {
 
 <template>
   <form ref="projectRef" class="c-login flex-vertical-nowrap" v-on:submit="(t)=>{t.preventDefault()}">
-    Login
-    <input>
+
+    <template v-if="currentStep === 1">
+      <UiCEdit v-model:model-value.trim="phone"></UiCEdit>
+    </template>
   </form>
 </template>
 
