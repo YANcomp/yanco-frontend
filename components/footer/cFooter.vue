@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-const footerMobile = resolveComponent('FooterCFooterMobile')
-const footerDesktop = resolveComponent('FooterCFooterDesktop')
+const footerMobile = resolveComponent('LazyFooterCFooterMobile')
+const footerDesktop = resolveComponent('LazyFooterCFooterDesktop')
 
 const props = defineProps({
   basketCount: {

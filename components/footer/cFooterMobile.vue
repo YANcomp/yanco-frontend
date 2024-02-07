@@ -59,7 +59,6 @@ watch(
 );
 
 onMounted(() => {
-  // TODO need BeforeDestroy -> window.addEventListener("resize", resize)
   resize()
 })
 
@@ -110,8 +109,7 @@ function openChatBot() {
 
 const emit = defineEmits(["open-login-or-registration"])
 function openLoginOrRegistration(val: string) {
-  // TODO CHECK EMIT AND OPEN MODAL
-  new RegExp(["account", "checkout", "login-or-registration"].join("|"), "i").test((route.name ? <string>route.name : "")) ? closeSideBar() : emit("open-login-or-registration", val)
+  new RegExp(["account", "checkout", "login-or-registration"].join("|"), "i").test((route.name ? <string>route.name : "")) ? closeSideBar() : useEvent("open-login-or-registration", val)
 }
 </script>
 

@@ -18,7 +18,7 @@ export default defineNuxtConfig({
                 {rel: "manifest", href: "/img/favicon/site.webmanifest"},
                 {rel: "mask-icon", href: "/img/favicon/safari-pinned-tab.svg", color:"#5bbad5"},
                 {rel: "shortcut icon", href: "/img/favicon/favicon.ico"},
-                {rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700"}
+                // {rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700"}
             ],
             style: [],
             script: [],
@@ -36,9 +36,17 @@ export default defineNuxtConfig({
     telemetry: false,
     modules: [
         '@pinia/nuxt',
-        '@nuxtjs/device'
+        '@nuxtjs/device',
+        '@nuxtjs/google-fonts',
     ],
     pinia: {
         storesDirs: ['./store/**'],
     },
+    googleFonts: {
+        families: {
+            Montserrat: [400,500,600,700],
+        },
+        preload: true,
+        subsets: 'cyrillic'
+    }
 })

@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+const notificationsMobile = resolveComponent('LazyNotificationsCNoticeMobile')
+const notificationsDesktop = resolveComponent('LazyNotificationsCNoticeDesktop')
+
 const emit = defineEmits(["notice-close"])
 
 const props = defineProps({
@@ -22,20 +25,20 @@ let isRequest = props.notice.status.includes("request")
 </script>
 
 <template>
-  <NotificationsCNoticeMobile v-if="isMobile" :notice="notice"
-                              :is-basket="isBasket"
-                              :is-favorites="isFavorites"
-                              :is-compare="isCompare"
-                              :is-compare-limited="isCompareLimited"
-                              :is-request="isRequest"
-                              :default-duration="Number(5000)"
-                              v-on:notice-close="(e)=>{emit('notice-close', e)}"/>
-  <NotificationsCNoticeDesktop v-else :notice="notice"
-                               :is-basket="isBasket"
-                               :is-favorites="isFavorites"
-                               :is-compare="isCompare"
-                               :is-compare-limited="isCompareLimited"
-                               :is-request="isRequest"
-                               :default-duration="Number(5000)"
-                               v-on:notice-close="(e)=>{emit('notice-close', e)}"/>
+  <component v-if="isMobile" :is="notificationsMobile" :notice="notice"
+             :is-basket="isBasket"
+             :is-favorites="isFavorites"
+             :is-compare="isCompare"
+             :is-compare-limited="isCompareLimited"
+             :is-request="isRequest"
+             :default-duration="Number(5000)"
+             v-on:notice-close="(e)=>{emit('notice-close', e)}"/>
+  <component v-else :is="notificationsDesktop" :notice="notice"
+             :is-basket="isBasket"
+             :is-favorites="isFavorites"
+             :is-compare="isCompare"
+             :is-compare-limited="isCompareLimited"
+             :is-request="isRequest"
+             :default-duration="Number(5000)"
+             v-on:notice-close="(e)=>{emit('notice-close', e)}"/>
 </template>

@@ -19,7 +19,7 @@ const props = defineProps({
 const emit = defineEmits(["notice-close"])
 
 
-const internalItems = ref(<any>[])
+const internalItems = ref(props.notifications)
 watch(props.notifications, (val: any) => {
   internalItems.value = val
 })

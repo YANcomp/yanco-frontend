@@ -18,6 +18,7 @@ appStore.MOBILE_UPD(device.isMobile)
 
 //TODO DATA
 const isScrolled = ref(false)
+const isPopupNotifications = ref(false)
 //TODO END DATA
 
 //TODO COMPUTED
@@ -41,6 +42,9 @@ const notificationsCount = computed(() => {
 //TODO MOUNTED
 onMounted(() => {
   window.addEventListener("scroll", checkScroll)
+
+  let time = (new Date).getTime();
+  isPopupNotifications.value = (time >= Number(localStorage.getItem("noticePrice"))) || (time >= Number(localStorage.getItem("noticeCookie")))
 })
 //TODO END MOUNTED
 
@@ -77,11 +81,16 @@ function closeNotice(id: number) {
 
 <template>
   <div id="app">
-    <UiCSpinner v-if="isLoading"/>
-    <NotificationsCNotifications :notifications="notifications" :is-mobile="isMobile" :params="params"
-                                 v-on:notice-close="closeNotice"/>
+    <LazyUiCSpinner v-if="isLoading"/>
+    <LazyNotificationsCNotifications v-if="notificationsCount > 0"
+                                     :notifications="notifications"
+                                     :is-mobile="isMobile"
+                                     :params="params"
+                                     v-on:notice-close="closeNotice"/>
     <!--    cBasketConflict-->
-    <HeaderCTopNavigationBar v-if="!isMobile" :params="params" v-on:notice-update="updateNotice"/>
+    <LazyHeaderCTopNavigationBar v-if="!isMobile"
+                                 :params="params"
+                                 v-on:notice-update="updateNotice"/>
     <!--    cHeader-->
     <span @click="notBasket">basket</span>
     <span @click="notFavorites">favorites</span>
@@ -91,17 +100,24 @@ function closeNotice(id: number) {
     <!--    cOrderCarousel-->
     <!--    cCatalogTypes-->
     <!--    cStoryModal-->
+    <AccountsCLoginOrRegistration :is-mobile="isMobile"/>
     <!--    cLoginOrRegistration-->
     <!--    cQRPaymentModal-->
     <!--    cBreadcrumbs-->
     <!--    cCurtainProductInPharmacies-->
     <slot/>
-    <UiCUpButton v-if="isScrolled && !isMobile" :is-mobile="isMobile"/>
+
+    <LazyUiCUpButton v-if="isScrolled && !isMobile" :is-mobile="isMobile"/>
+
     <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""
          :src='isMobile ? params.footerBanners.mobile : params.footerBanners.desktop'/>
     <!--    cChatBot-->
-    <PopupnotifCNotifications :params="params" :is-mobile="isMobile"/>
+    <LazyPopupnotifCNotifications v-if="isPopupNotifications"
+                                  :params="params"
+                                  :is-mobile="isMobile"/>
     <!--    place-product-price-->
-    <FooterCFooter :is-mobile="isMobile" :params="params" v-on:notice-update="updateNotice"/>
+    <FooterCFooter :is-mobile="isMobile"
+                   :params="params"
+                   v-on:notice-update="updateNotice"/>
   </div>
 </template>
