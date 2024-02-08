@@ -61,6 +61,9 @@ const notCompare = () => {
 const notCompareLimit = () => {
   notificationsStore.NOTIFICATIONS_UPD({status: "compare-limited"})
 }
+const openLogin = () => {
+  useEvent("open-login-or-registration", "login")
+}
 
 //TODO METHODS
 function checkScroll() {
@@ -96,6 +99,7 @@ function closeNotice(id: number) {
     <span @click="notFavorites">favorites</span>
     <span @click="notCompare">compare</span>
     <span @click="notCompareLimit">compare-limit</span>
+    <span @click="openLogin">open login</span>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <!--    cOrderCarousel-->
     <!--    cCatalogTypes-->
