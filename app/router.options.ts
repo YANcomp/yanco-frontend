@@ -5,7 +5,6 @@ export default <RouterConfig>{
     base: "/",
     linkActiveClass: "nuxt-link-active",
     linkExactActiveClass: "nuxt-link-exact-active",
-    // https://router.vuejs.org/api/interfaces/routeroptions.html#routes
     routes: (_routes) => [{
         path: "/about",
         component: () => import('~/components/vHome.vue').then(r => r.default || r),
