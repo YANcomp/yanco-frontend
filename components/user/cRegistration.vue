@@ -350,7 +350,7 @@ function submit() {
   opacity: 1
 }
 
-.code > .c-button:hover > .caption > .c-arrow-svg > div > span:last-of-type, .registered :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:last-of-type {
+.code :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:last-of-type, .registered :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:last-of-type {
   transform: translateX(4px)
 }
 

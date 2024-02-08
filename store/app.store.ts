@@ -12,7 +12,7 @@ export const useAppStore = defineStore('app', {
     }),
     actions: {
         async PARAMS_GET() {
-            const {data: params} = await useFetch('http://localhost:3000/appParams.json')
+            const {data: params} = await useNuxtApp().$api.appParams.get()
             this.params = params
         },
         async MOBILE_UPD(val: boolean) {

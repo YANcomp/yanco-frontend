@@ -5,10 +5,12 @@ const notificationsStore = useNotificationsStore()
 
 //TODO END STORE
 
+
 //TODO MIDDLEWARE
-if (Object.keys(appStore.params).length < 1) {
-  await appStore.PARAMS_GET()
-}
+
+// if (Object.keys(appStore.params).length < 1) {
+//   await appStore.PARAMS_GET()
+// }
 //TODO END MIDDLEWARE
 
 //TODO HOOKS
