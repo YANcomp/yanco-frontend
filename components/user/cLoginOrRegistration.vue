@@ -21,6 +21,7 @@ const props = defineProps({
 
 const route = useRoute()
 const appStore = useAppStore()
+const notificationsStore = useNotificationsStore()
 
 useListen("open-login-or-registration", (val: any) => {
   if (val === "recovery") {
@@ -40,7 +41,7 @@ const contentRef = ref(<any>{})
 
 const isClosed = ref(true)
 const isOpened = ref(false)
-const intervalID = ref(undefined)
+const intervalID = ref(<any>undefined)
 const isCodeSent = ref(false)
 const timeout = ref(0)
 const modeRef = ref("login")
@@ -203,8 +204,8 @@ function closeOverlay() {
 
 function phoneFocus() {
   if (!isClosed.value || props.isStatic) {
-    if (loginRef.value.projectRef) {
-      loginRef.value.projectRef.querySelector("input").focus()
+    if (loginRef.value) {
+      loginRef.value.cLoginRef.querySelector("input").focus()
     }
   }
 }
@@ -227,6 +228,57 @@ function openRecoveryForm() {
 
 function openRegisterForm() {
   changeTabIndex(1)
+}
+
+function submit(data: any) {
+  isCodeSent.value ? register(data) : getCode(data)
+}
+
+function register(data: any) {
+  //TODO
+  console.log(data)
+  isRegistered.value = true
+}
+
+function login(data: any, t: any) {
+  //TODO
+  console.log(data)
+  closeOverlay()
+}
+
+function getCode(data: any) {
+  //TODO
+  timeout.value = 60
+  startTimer()
+  isCodeSent.value = true
+  isInputCodeDisabled.value = false
+}
+
+function startTimer() {
+  intervalID.value = window.setInterval(() => {
+    timeout.value--
+    isTimeOver.value && clearInterval(intervalID.value)
+  }, 1e3)
+}
+
+function error(val: any) {
+  notificationsStore.NOTIFICATIONS_UPD({
+    title: "login" === route.params.mode ? "Ошибка авторизации" : "Ошибка регистрации",
+    desc: val,
+    status: "error"
+  })
+}
+
+function hideErrorPassword() {
+  errorPassword.value = ""
+}
+
+function hideErrorPhone() {
+  errorPhone.value = ""
+}
+
+function hideErrorCode() {
+  errorCode.value = ""
 }
 </script>
 
@@ -252,21 +304,37 @@ function openRegisterForm() {
             <template v-slot:caption>
               Войти
             </template>
-            <LazyAccountsCLogin v-if="tabIndex === 0" ref="loginRef" class="qw"
-                                :is-error-password="errorPassword.length > 0"
-                                :is-error-phone="errorPhone.length > 0"
-                                :is-error-code="errorCode.length > 0"
-                                :is-banned="isBanned"
-                                :is-mobile="isMobile"
-                                :is-loading="isLoading"
-                                :is-static="isStatic"/>
-            <!--            TODO EMITS UP-->
+            <LazyUserCLogin v-if="tabIndex === 0" ref="loginRef"
+                            :is-error-password="errorPassword.length > 0"
+                            :is-error-phone="errorPhone.length > 0"
+                            :is-error-code="errorCode.length > 0"
+                            :is-banned="isBanned"
+                            :is-mobile="isMobile"
+                            :is-loading="isLoading"
+                            :is-static="isStatic"
+                            v-on:error-password-hide="hideErrorPassword"
+                            v-on:error-phone-hide="hideErrorPhone"
+                            v-on:error="error"
+                            v-on:login="login"
+                            v-on:recovery-form-open="openRecoveryForm"
+                            v-on:register-form-open="openRegisterForm"/>
           </UiCTab>
           <UiCTab>
             <template v-slot:caption>
               Регистрация
             </template>
-            <div>321</div>
+            <LazyUserCRegistration v-if="tabIndex === 1" :error-password="errorPassword" :error-phone="errorPhone"
+                                   :error-code="errorCode" :is-code-sent="isCodeSent"
+                                   :is-input-code-disabled="isInputCodeDisabled" :is-loading="isLoading"
+                                   :is-mobile="isMobile" :is-registered="isRegistered" :is-time-over="isTimeOver"
+                                   :timeout="timeout"
+                                   v-on:submit="submit"
+                                   v-on:overlay-close="closeOverlay"
+                                   v-on:error="error"
+                                   v-on:code-get="getCode"
+                                   v-on:error-code-hide="hideErrorCode"
+                                   v-on:error-phone-hide="hideErrorPhone"
+                                   v-on:error-password-hide="hideErrorPassword"/>
           </UiCTab>
         </UiCTabs>
       </template>

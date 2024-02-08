@@ -144,18 +144,6 @@ const render = () => {
 
 <template>
   <render/>
-  <!--  <div :class='["c-tabs", { "not-stretch-tabs": isNotStretchTabs || isBorderFitContent }]'>-->
-  <!--    {{slots}}-->
-  <!--    <ul ref="tabs" class="tabs">-->
-
-  <!--    </ul>-->
-  <!--    <div ref="slider" class="slider">-->
-
-  <!--    </div>-->
-  <!--    <div v-if="!isNoBorder" ref="border" class="border">-->
-
-  <!--    </div>-->
-  <!--  </div>-->
 </template>
 
 <style>

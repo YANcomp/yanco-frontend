@@ -23,15 +23,16 @@ const props = defineProps({
     default: false
   }
 })
-const projectRef = ref<HTMLElement | null>(null)
+const cLoginRef = ref<HTMLElement | null>(null)
 
 defineExpose({
-  projectRef
+  cLoginRef
 })
 
 const isInvalidPassword = ref(false)
 const isRememberMe = ref(true)
 const password = ref("")
+const passwordRef = ref(<any>{})
 const phone = ref("")
 const isOpenMBTRememberMe = ref(false)
 const isOpenMBTRecovery = ref(false)
@@ -82,7 +83,13 @@ function startTimer() {
   }, 1e3)
 }
 
-function getLoginType(val: any) {
+function getLoginType() {
+  setTimeout(() => {
+    if (passwordRef.value.cEditRef) {
+      passwordRef.value.cEditRef.querySelector("input").focus()
+    }
+  }, 300)
+  currentStep.value = 2
   //TODO
   // var t = this;
   // V.a.me.getLoginType("7".concat(this.phone)).then((function (e) {
@@ -110,7 +117,12 @@ function getCode(val: any) {
 }
 
 function openCloseMobileBottomTooltip(val: any) {
-  //TODO this.$data[t] = !this.$data[t]
+  if (val === "isOpenMBTRememberMe") {
+    isOpenMBTRememberMe.value = !isOpenMBTRememberMe.value
+  }
+  if (val === "isOpenMBTRecovery") {
+    isOpenMBTRecovery.value = !isOpenMBTRecovery.value
+  }
 }
 
 function login(data: any) {
@@ -127,28 +139,108 @@ function register() {
 
 function submit() {
   //TODO
+  let t = Number("7".concat(phone.value)),
+      e = password.value;
+  login({
+    phone: t,
+    password: e,
+    isRememberMe: isRememberMe.value
+  })
 }
 
 
 </script>
 
 <template>
-  <form ref="projectRef" class="c-login flex-vertical-nowrap" v-on:submit="(t)=>{t.preventDefault()}">
-
+  <form ref="cLoginRef" class="c-login flex-vertical-nowrap" v-on:submit="(t)=>{t.preventDefault()}">
     <template v-if="currentStep === 1">
       <UiCEdit :is-error="isErrorPhone || isBanned" :is-show-icon="true" type="tel" placeholder="Номер телефона"
                inputmode="numeric" v-model:value="phone">
-
+        <template v-slot:status-text v-if="isErrorPhone || isBanned">
+          <span v-if="isBanned">
+            Пользователь заблокирован
+          </span>
+          <span v-else>
+            Номер телефона не найден. <br> Проверьте его ещё раз или
+            <span style="font-weight:500; cursor: pointer" @click="register">зарегистрируйтесь.</span>
+          </span>
+        </template>
       </UiCEdit>
-      <UiCButton :disabled="isLoading || noPhoneEntered" mode="primary" size="xl" @click="">
+      <UiCButton :disabled="isLoading || noPhoneEntered" mode="primary" size="xl" @click="getLoginType">
         Продолжить
         <UiCArrowSVG color="#fff" hover-color="#fff" size="s"/>
       </UiCButton>
     </template>
+    <template v-else-if="currentStep === 2">
+      <UiCEdit v-if='loginType === "password"' ref="passwordRef" :is-error="isErrorPassword" :is-password="true"
+               :is-show-icon="true" placeholder="Пароль" v-model:value.trim="password">
+        <template v-slot:status-text v-if="isErrorPassword">
+          <span>
+            Неверный пароль. <br>
+            Проверьте его ещё раз или
+            <span style="font-weight:500; cursor: pointer" @click="recovery">восстановите.</span>
+          </span>
+        </template>
+      </UiCEdit>
+      <div>
+        <div>
+          <UiCCheckbox size="s" v-model:checked="isRememberMe">
+            Запомнить меня
+          </UiCCheckbox>
+          <UiCTooltipIcon icon-color="#818CA9" icon-color-hover="#4960DF" icon-color-active="#32408F"
+                          position="top-center" mobile-bottom-tooltip-name="isOpenMBTRememberMe"
+                          @click="(t)=>{t.stopPropagation()}" v-on:show-mobile-tooltip="openCloseMobileBottomTooltip">
+            <template v-slot:icon>
+              <span class="icon info2"/>
+            </template>
+            <template v-slot:text>
+              При выборе опции «Запомнить меня» вы сможете получить доступ к учётной записи с помощью устройства и
+              используемого браузера без необходимости нового входа в систему. Рекомендуем этот вариант только если вы
+              уверены в надёжности устройства
+            </template>
+          </UiCTooltipIcon>
+        </div>
+        <div>
+          <span @click="recovery">Забыли пароль?</span>
+          <UiCTooltipIcon icon-color="#818CA9" icon-color-hover="#4960DF" icon-color-active="#32408F"
+                          position="top-center" mobile-bottom-tooltip-name="isOpenMBTRecovery"
+                          @click="(t)=>{t.stopPropagation()}" v-on:show-mobile-tooltip="openCloseMobileBottomTooltip">
+            <template v-slot:icon>
+              <span class="icon info2"/>
+            </template>
+            <template v-slot:text>
+              Мы отправим код подтверждения на ваш номер телефона. После этого вы сразу же сможете обновить пароль.
+            </template>
+          </UiCTooltipIcon>
+        </div>
+      </div>
+      <UiCButton :disabled="isLoading || noPasswordEntered || noPhoneEntered" mode="primary" size="xl" @click="submit">
+        Войти
+        <UiCArrowSVG color="#fff" hover-color="#fff" size="s"/>
+      </UiCButton>
+    </template>
+    <LazyUiCMobileBottomTooltip v-if="isOpenMBTRememberMe || isOpenMBTRecovery" :is-hide-footer="isStatic"
+                                :mobile-bottom-tooltip-name='isOpenMBTRememberMe ? "isOpenMBTRememberMe" : "isOpenMBTRecovery"'
+                                @close="openCloseMobileBottomTooltip">
+      <template v-slot:title>
+        {{ isOpenMBTRememberMe ? "Запомнить меня" : "Забыли пароль?" }}
+      </template>
+      <template v-slot:text>
+        <p v-if="isOpenMBTRememberMe">
+          При выборе опции «Запомнить меня» вы сможете получить доступ к учётной записи с помощью устройства и
+          используемого браузера без необходимости нового входа в систему. Рекомендуем этот вариант только если вы
+          уверены в надёжности устройства.
+        </p>
+        <p v-if="isOpenMBTRecovery">
+          Отправим код подтверждения на ваш номер телефона. После этого вы сможете обновить пароль в вашем личном
+          кабинете.
+        </p>
+      </template>
+    </LazyUiCMobileBottomTooltip>
   </form>
 </template>
 
-<style>
+<style scoped>
 .c-login {
   padding-bottom: 20px
 }
@@ -252,15 +344,15 @@ function submit() {
   -webkit-tap-highlight-color: transparent
 }
 
-.c-login > .c-button > .caption {
+.c-login :deep(.c-button) > .caption {
   justify-content: center
 }
 
-.c-login > .c-button:hover > .caption > .c-arrow-svg > div > span:first-of-type {
+.c-login :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:first-of-type {
   opacity: 1
 }
 
-.c-login > .c-button:hover > .caption > .c-arrow-svg > div > span:last-of-type {
+.c-login :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:last-of-type {
   transform: translateX(4px)
 }
 

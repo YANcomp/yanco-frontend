@@ -100,7 +100,7 @@ function closeNotice(id: number) {
     <!--    cOrderCarousel-->
     <!--    cCatalogTypes-->
     <!--    cStoryModal-->
-    <AccountsCLoginOrRegistration :is-mobile="isMobile"/>
+    <UserCLoginOrRegistration :is-mobile="isMobile"/>
     <!--    cLoginOrRegistration-->
     <!--    cQRPaymentModal-->
     <!--    cBreadcrumbs-->

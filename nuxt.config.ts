@@ -16,7 +16,7 @@ export default defineNuxtConfig({
                 {rel: "icon", sizes: "32x32", type: "image/png", href: "/img/favicon/favicon-32x32.png"},
                 {rel: "icon", sizes: "16x16", type: "image/png", href: "/img/favicon/favicon-16x16.png"},
                 {rel: "manifest", href: "/img/favicon/site.webmanifest"},
-                {rel: "mask-icon", href: "/img/favicon/safari-pinned-tab.svg", color:"#5bbad5"},
+                {rel: "mask-icon", href: "/img/favicon/safari-pinned-tab.svg", color: "#5bbad5"},
                 {rel: "shortcut icon", href: "/img/favicon/favicon.ico"},
                 // {rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700"}
             ],
@@ -44,7 +44,7 @@ export default defineNuxtConfig({
     },
     googleFonts: {
         families: {
-            Montserrat: [400,500,600,700],
+            Montserrat: [400, 500, 600, 700],
         },
         preload: true,
         subsets: 'cyrillic'

@@ -2,7 +2,7 @@
 // const valueComp:any = defineModel()
 
 const attrs = useAttrs()
-const emit = defineEmits(["update:value", "input", "change", "keydown"])
+const emit = defineEmits(["update:value", "update:code", "input", "change", "keydown", "focus"])
 
 const props = defineProps({
   cols: {
@@ -129,6 +129,12 @@ const props = defineProps({
   }
 })
 
+const cEditRef = ref<HTMLElement | null>(null)
+
+defineExpose({
+  cEditRef
+})
+
 const inputRef = ref(<any>{})
 const text = ref(props.value)
 const isShowPassword = ref(false)
@@ -149,9 +155,16 @@ watch(() => props.value, () => {
   }
 });
 
+onMounted(() => {
+  checkSlots()
+})
+onUpdated(() => {
+  checkSlots()
+})
+
 const iconTitle = computed(() => {
   // TODO
-  return isShowPassword.value ? "РЎРєСЂС‹С‚СЊ РїР°СЂРѕР»СЊ" : "РџРѕРєР°Р·Р°С‚СЊ РїР°СЂРѕР»СЊ"
+  return isShowPassword.value ? "Скрыть пароль" : "Показать пароль"
 })
 const isMultiline = computed(() => {
   return "multiline" === props.mode
@@ -163,7 +176,6 @@ const passwordMode = computed(() => {
   return isShowPassword.value ? "text" : "password"
 })
 const listeners = computed(() => {
-  // TODO
   return Object.assign({}, attrs, {
     input: input,
     change: change,
@@ -229,7 +241,7 @@ const singlelineBinds = computed(() => {
     },
   }
   if (!isPhone.value) {
-    t.value = props.value
+    //t.value = props.value
   }
   if (props.maxlength !== undefined) {
     t.maxlength = props.maxlength
@@ -242,19 +254,30 @@ function keyDown(key: any) {
   emit("keydown", key)
 }
 
+const slots = defineSlots()
+
+function checkSlots() {
+  hasStatusText.value = !!slots["status-text"]
+}
+
 function change(val: any) {
-  props.isLazy && emit("update:value", text.value), emit("change", val)
+  if (props.isLazy) {
+    emit("update:value", text.value)
+  }
+  emit("change", val)
 }
-function blur(val:any) {
+
+function blur(val: any) {
   isFocus.value = false
-  // emit("focus", t)
+  emit("focus", val)
 }
-function focus(val:any) {
+
+function focus(val: any) {
   isFocus.value = true
-  // emit("focus", t)
+  emit("focus", val)
 }
+
 function clear() {
-  //TODO
   emit("update:value", "")
   isPhone.value && (formattedPhone.value = "")
   emit("input", "")
@@ -265,7 +288,7 @@ function clear() {
 }
 
 function phoneFormatting(val: any) {
-  // TODO
+  //TODO
   let p = formattedPhone.value.replace(/\D/g, "")
 
   p.length > 10 && ["7", "8"].includes(p[0]) && (p = p.slice(1));
@@ -275,7 +298,16 @@ function phoneFormatting(val: any) {
 
 function input(val: any) {
   if (isPhone.value) return "deleteContentBackward" === val.inputType && formattedPhone.value.length < 1 ? emit("update:value", "") : (phoneFormatting("formattedPhone"), emit("input", val));
-  props.isLazy || emit("update:value", val.target.value), emit("input", val)
+  if (props.isConfirmationCode) {
+    var e = Number(val.target.dataset.id);
+    code.value[e] = code.value[e].replace(/\D/g, "");
+    var n: any = cEditRef.value;
+    code.value[e].length > 0 && e !== Object.keys(code.value).length && n.querySelector('input[data-id="'.concat(<any>(e + 1), '"]')).focus();
+    var o = Object.values(code.value).reduce((function (a, b) {
+      return a + b
+    }));
+    emit("update:code", o)
+  } else props.isLazy || emit("update:value", val.target.value), emit("input", val)
 }
 
 function showPassword() {
@@ -284,9 +316,8 @@ function showPassword() {
 </script>
 
 <template>
-  <div>
-    <label v-if="isMultiline" class="c-edit textarea">
-      <div>
+  <label ref="cEditRef" v-if="isMultiline" class="c-edit textarea">
+    <div>
           <span v-if="placeholder || required" :class='["placeholder", {
                     hide: isFocus || value.length > 0
                 }]'>
@@ -294,74 +325,67 @@ function showPassword() {
             <span v-if="required && !isHideRequired"
                   data-tooltip="РћР±СЏР·Р°С‚РµР»СЊРЅРѕ Рє Р·Р°РїРѕР»РЅРµРЅРёСЋ">*</span>
           </span>
-        <textarea v-if="isLazy" v-model="text" v-on="listeners" v-bind="multilineBinds"/>
-        <textarea v-else v-bind="multilineBinds" v-on="listeners"/>
-        <span v-if="isShowIcon"
-              :class="['icon', 'input-icon', {'input-error':isError, 'input-warning':isWarning, 'input-valid':isValid}]"/>
-        <span v-if="isClear" :class='["icon", "input-icon", { close: value.length > 0 }]'
-              :style='{ right: isError || isWarning || isValid ? "32px" : "10px" }' data-tooltip="РћС‡РёСЃС‚РёС‚СЊ"
-              @click="clear"/>
-      </div>
-      <div v-if="!isHideStatus" :class='["status-text", { show: hasStatusText, error: isError, warning: isWarning }]'>
-        <slot name="status-text"/>
-      </div>
-    </label>
-    <!--    TODO -->
-    <!--    <label v-else-if="isConfirmationCode" ref="c-edit" :class='["c-edit", "code", { reg: codeLength < 6 }]'>-->
-    <!--      <div>-->
-    <!--        <template v-for="(val, index) in codeLength">-->
-    <!--          <input v-if='"checkbox" === singlelineBinds.type' v-bind="singlelineBinds" v-on="listeners"-->
-    <!--                 v-model="code[index]" :key="index" :data-id="index"-->
-    <!--                 maxlength="1" pattern="\\d*" inputmode="numeric" type="checkbox"-->
-    <!--                 :checked="()=>{Array.isArray(code[index]) ? code[index] > -1 : code[index]}"/>-->
-    <!--          <input v-else-if='"radio" === singlelineBinds.type'/>-->
-    <!--          <input v-else v-model="code[index]" :key="index" :data-id="index" maxlength="1" pattern="\\d*"-->
-    <!--                 inputmode="numeric" :type="singlelineBinds.type" :value="code[index]" v-on:input="(e:any)=>{code[index] = e.target.value}"/>-->
-    <!--        </template>-->
-    <!--      </div>-->
-    <!--    </label>-->
-    <label v-else class="c-edit">
-      <div :class='{ "has-left-icon": iconName }'>
-        <span v-if="iconName" :class='["icon", iconName]' :style='{ left: "10px", backgroundColor: iconColor }'/>
-        <span v-if="placeholder || required"
-              :class='["placeholder", { hide: isFocus || value.length > 0|| formattedPhone.length > 0, phone: isPhone, "search-left": isSearchLeft }]'>
+      <textarea v-if="isLazy" v-model="text" v-on="listeners" v-bind="multilineBinds"/>
+      <textarea v-else v-bind="multilineBinds" v-on="listeners"/>
+      <span v-if="isShowIcon"
+            :class="['icon', 'input-icon', {'input-error':isError, 'input-warning':isWarning, 'input-valid':isValid}]"/>
+      <span v-if="isClear" :class='["icon", "input-icon", { close: value.length > 0 }]'
+            :style='{ right: isError || isWarning || isValid ? "32px" : "10px" }' data-tooltip="РћС‡РёСЃС‚РёС‚СЊ"
+            @click="clear"/>
+    </div>
+    <div v-if="!isHideStatus" :class='["status-text", { show: hasStatusText, error: isError, warning: isWarning }]'>
+      <slot name="status-text"/>
+    </div>
+  </label>
+  <label v-else-if="isConfirmationCode" ref="cEditRef" :class='["c-edit", "code", { reg: codeLength < 6 }]'>
+    <div>
+      <input v-for="i in parseInt(codeLength.toString())" v-model="code[i]" :key="i" :data-id="i" maxlength="1"
+             pattern="\d*"
+             inputmode="numeric"
+             :type="singlelineBinds.type"
+             v-bind="singlelineBinds"
+             v-on="listeners">
+    </div>
+  </label>
+  <label v-else class="c-edit" ref="cEditRef">
+    <div :class='{ "has-left-icon": iconName }'>
+      <span v-if="iconName" :class='["icon", iconName]' :style='{ left: "10px", backgroundColor: iconColor }'/>
+      <span v-if="placeholder || required"
+            :class='["placeholder", { hide: isFocus || value.length > 0|| formattedPhone.length > 0, phone: isPhone, "search-left": isSearchLeft }]'>
           {{ placeholder }}
           <span v-if="required && !isHideRequired">*</span>
         </span>
-        <input v-if="isLazy" v-model.lazy="text" v-bind="singlelineBinds" v-on="listeners"/>
-        <template v-else-if="isPhone">
-          <input v-if='"checkbox" === singlelineBinds.type' v-model="formattedPhone" :checked="formattedPhone"
-                 v-bind="singlelineBinds" v-on="listeners"/>
-          <input v-else v-model="formattedPhone" :type="singlelineBinds.type" v-bind="singlelineBinds"
-                 v-on="listeners"/>
-        </template>
-        <template v-else>
-          <input v-bind="singlelineBinds" v-on="listeners">
-        </template>
-        <span v-if="isPhone"
-              :class='["code-country", { show: isFocus || formattedPhone.length > 0, error: isError, warning: isWarning, disabled: disabled }]'>
+      <input v-if="isLazy" v-model.lazy="text" v-bind="singlelineBinds" v-on="listeners"/>
+      <template v-else-if="isPhone">
+        <input v-if='"checkbox" === singlelineBinds.type' v-model="formattedPhone" :checked="formattedPhone"
+               v-bind="singlelineBinds" v-on="listeners"/>
+        <input v-else v-model="formattedPhone" :type="singlelineBinds.type" v-bind="singlelineBinds"
+               v-on="listeners"/>
+      </template>
+      <template v-else>
+        <input v-bind="singlelineBinds" v-on="listeners">
+      </template>
+      <span v-if="isPhone"
+            :class='["code-country", { show: isFocus || formattedPhone.length > 0, error: isError, warning: isWarning, disabled: disabled }]'>
           +7
         </span>
-        <span v-if="isShowIcon"
-              :class="['icon', 'input-icon', {'input-error':isError, 'input-warning':isWarning, 'input-valid':isValid}]"/>
-        <span v-if="isClear" :class="['icon', 'input-icon', {close: value.length > 0}]"
-              :style="{right: isError || isWarning || isValid ? '32px' : '10px'}" @click="clear"
-              data-tooltip="Очистить"></span>
-        <span v-if="isPassword"
-              :class="['icon', {'eye-closed':!isShowPassword, 'eye-open':isShowPassword, show: value.length > 0}]"
-              :style="{right: isClear && (isError || isWarning || isValid) ? '60px' : isError || isWarning || isValid || isClear ? '40px' : '10px'}"
-              :data-tooltip="iconTitle"
-              @click="(e)=>{return e.preventDefault(), showPassword}"></span>
-      </div>
+      <span v-if="isShowIcon"
+            :class="['icon', 'input-icon', {'input-error':isError, 'input-warning':isWarning, 'input-valid':isValid}]"/>
+      <span v-if="isClear" :class="['icon', 'input-icon', {close: value.length > 0}]"
+            :style="{right: isError || isWarning || isValid ? '32px' : '10px'}" @click="clear"
+            data-tooltip="Очистить"></span>
+      <span v-if="isPassword"
+            :class="['icon', {'eye-closed':!isShowPassword, 'eye-open':isShowPassword, show: value.length > 0}]"
+            :style="{right: isClear && (isError || isWarning || isValid) ? '60px' : isError || isWarning || isValid || isClear ? '40px' : '10px'}"
+            :data-tooltip="iconTitle"
+            @click="(e)=>{return e.preventDefault(), showPassword()}"></span>
+    </div>
 
-      <div :class="['status-text', {show: hasStatusText, error: isError, warning: isWarning}]">
-        <slot name="status-text"/>
-      </div>
+    <div :class="['status-text', {show: hasStatusText, error: isError, warning: isWarning}]">
+      <slot name="status-text"/>
+    </div>
 
-    </label>
-    <!--    <input v-bind="singlelineBinds" v-on="listeners">-->
-  </div>
-
+  </label>
 </template>
 
 <style scoped>

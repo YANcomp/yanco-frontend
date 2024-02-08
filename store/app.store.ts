@@ -7,6 +7,8 @@ export const useAppStore = defineStore('app', {
         isLoginAttempt: false,
         requestCounter: 0,
         params: <any>{},
+        isHideMobileFooter: false,
+        hideMobileFooterCounter: 0,
     }),
     actions: {
         async PARAMS_GET() {
@@ -22,6 +24,10 @@ export const useAppStore = defineStore('app', {
         },
         async LOGIN_ATTEMPT_UPD(val: boolean) {
             this.isLoginAttempt = val
+        },
+        async HIDE_MOBILE_FOOTER(val: any) {
+            var e = Boolean(val ? Math.max(this.hideMobileFooterCounter + 1, 1) : Math.max(this.hideMobileFooterCounter - 1, 0));
+            e || (document.body.style.overflow = ""), this.isHideMobileFooter = e
         },
     },
     getters: {

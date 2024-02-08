@@ -81,7 +81,7 @@ function mouseUp() {
 }
 
 function touchMove(val: any) {
-  console.log(val)
+  // TODO console.log(val)
 }
 </script>
 
