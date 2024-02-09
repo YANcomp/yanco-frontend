@@ -1,6 +1,4 @@
 export default defineNuxtRouteMiddleware(async () => {
-    console.log("active global middleware")
-
     const appStore = useAppStore()
     if (Object.keys(appStore.params).length < 1) {
         await appStore.PARAMS_GET()

@@ -1,8 +1,21 @@
 class ApiAppModule {
-    private RESOURCE = 'http://localhost:3000/appParams.json';
+    private $opts: Parameters<typeof $fetch<unknown>> [1];
 
-    async get(): Promise<any> {
-        return useFetch(this.RESOURCE);
+    constructor(opts: Parameters<typeof $fetch<unknown>> [1]) {
+        this.$opts = opts;
+    }
+
+    async get() {
+        return useAsyncData(
+            'app',
+            () => $fetch(`/appParams.json`, {
+                ...this.$opts,
+                method: 'GET',
+                // params: {
+                //     search: search.value,
+                // }
+            })
+        );
     }
 }
 

@@ -7,10 +7,7 @@ const notificationsStore = useNotificationsStore()
 
 
 //TODO MIDDLEWARE
-
-// if (Object.keys(appStore.params).length < 1) {
-//   await appStore.PARAMS_GET()
-// }
+//....
 //TODO END MIDDLEWARE
 
 //TODO HOOKS

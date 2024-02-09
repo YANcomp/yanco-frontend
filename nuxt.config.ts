@@ -1,5 +1,14 @@
 export default defineNuxtConfig({
     ssr: true,
+    runtimeConfig: {
+        // Private keys are only available on the server
+        cookieKey: 'session',
+        cookie: { // CookieSerializeOptions from unjs/cookie-es
+            path: '/',
+            httpOnly: true,
+            sameSite: 'strict'
+        }
+    },
     app: {
         head: {
             title: "Yanco Beauty",
