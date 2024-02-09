@@ -1,4 +1,4 @@
-import ApiAppModule from "~/api/app";
+import ApiParamsModule from "~/api/app";
 
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -14,7 +14,56 @@ export default defineNuxtPlugin((nuxtApp) => {
 
     /** an object containing all repositories we need to expose */
     const factories = {
-        appParams: new ApiAppModule(opts),
+        params: new ApiParamsModule(opts),
+        // aboutImages: r,
+        // additionalSaleProducts: l,
+        // allvit: f,
+        // articles: v,
+        // articlesComment: V,
+        // babyFood: y,
+        // banners: _,
+        // basket: I,
+        // bindings: A,
+        // bloggers: C,
+        // brandAnalogs: S,
+        // cardProjects: w,
+        // catalog: O,
+        // charity: P,
+        // cities: D,
+        // companies: k,
+        // FAQ: T,
+        // favorites: E,
+        // landlords: x,
+        // me: M,
+        // metric: N.a,
+        // orders: B,
+        // orderStatuses: R,
+        // pages: j,
+        // partners: F,
+        // periods: U,
+        // pharmacies: G,
+        // polls: $,
+        // popularCategories: z,
+        // productCategories: H,
+        // productGroups: W,
+        // productOfDay: Q,
+        // productPropertyTypes: Y,
+        // products: Z,
+        // productSubtypes: K,
+        // productTypes: J,
+        // properties: X,
+        // regions: tt,
+        // restrictTypes: et,
+        // reviews: it,
+        // search: nt,
+        // sessions: ot,
+        // stories: st,
+        // subscribe: at,
+        // summary: summary,
+        // surveys: ct,
+        // users: lt,
+        // vacancies: ut,
+        // viewedProducts: pt
     };
 
     return {

@@ -1,4 +1,4 @@
-class ApiAppModule {
+class ApiParamsModule {
     private $opts: Parameters<typeof $fetch<unknown>> [1];
 
     constructor(opts: Parameters<typeof $fetch<unknown>> [1]) {
@@ -19,4 +19,4 @@ class ApiAppModule {
     }
 }
 
-export default ApiAppModule;
+export default ApiParamsModule;

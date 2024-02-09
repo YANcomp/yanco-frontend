@@ -12,7 +12,10 @@ export const useAppStore = defineStore('app', {
     }),
     actions: {
         async PARAMS_GET() {
-            const {data: params} = await useNuxtApp().$api.appParams.get()
+            const {data: params, error} = await useNuxtApp().$api.params.get()
+            // await useNuxtApp().$api.appParams.get().then((data)=>{
+            //     console.log(data)
+            // })
             this.params = params
         },
         async MOBILE_UPD(val: boolean) {
