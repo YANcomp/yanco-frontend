@@ -1,5 +1,4 @@
-import ApiParamsModule from "~/api/app";
-
+import ApiParamsModule from "~/api/params";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
