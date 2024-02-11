@@ -1,0 +1,53 @@
+{
+  "other": [
+    "https://pictures.apteka-april.ru/about/26/1.webp",
+    "https://pictures.apteka-april.ru/about/9/2.png",
+    "https://pictures.apteka-april.ru/about/10/3.png",
+    "https://pictures.apteka-april.ru/about/11/4.png"
+  ],
+  "slider": [
+    "https://pictures.apteka-april.ru/about/slider/12/1.webp",
+    "https://pictures.apteka-april.ru/about/slider/13/2.webp",
+    "https://pictures.apteka-april.ru/about/slider/14/3.webp",
+    "https://pictures.apteka-april.ru/about/slider/15/4.webp",
+    "https://pictures.apteka-april.ru/about/slider/16/5.webp"
+  ],
+  "icon": [
+    {
+      "name": "Экономию",
+      "url": "https://pictures.apteka-april.ru/about/icons/27/1.webp"
+    },
+    {
+      "name": "Удобство",
+      "url": "https://pictures.apteka-april.ru/about/icons/28/2.webp"
+    },
+    {
+      "name": "Качество",
+      "url": "https://pictures.apteka-april.ru/about/icons/29/3.webp"
+    },
+    {
+      "name": "Инновации",
+      "url": "https://pictures.apteka-april.ru/about/icons/30/4.webp"
+    },
+    {
+      "name": "Мобильность",
+      "url": "https://pictures.apteka-april.ru/about/icons/31/5.webp"
+    },
+    {
+      "name": "Сервис",
+      "url": "https://pictures.apteka-april.ru/about/icons/32/6.webp"
+    },
+    {
+      "name": "Честность",
+      "url": "https://pictures.apteka-april.ru/about/icons/33/7.webp"
+    },
+    {
+      "name": "Прозрачность",
+      "url": "https://pictures.apteka-april.ru/about/icons/34/8.webp"
+    },
+    {
+      "name": "Заботу",
+      "url": "https://pictures.apteka-april.ru/about/icons/35/9.webp"
+    }
+  ]
+}

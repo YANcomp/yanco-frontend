@@ -138,8 +138,8 @@ function openCloseOverlay() {
         // TODO t.$store.commit("app/".concat(r.APP.DIM_MOBILE_FOOTER), !1)
       } else {
         emit("change-padding-header-product")
-        let appElementById = document.getElementById("app") || <any>{}
-        appElementById.style.paddingRight = "0"
+        // let appElementById = document.getElementById("app") || <any>{}
+        // appElementById.style.paddingRight = "0"
         // TODO t.$store.commit("app/".concat(r.APP.HIDE_CHAT_BOT), !1)
       }
       emit("change-body-overflow")
@@ -161,8 +161,8 @@ function openCloseOverlay() {
       // TODO this.$store.commit("app/".concat(r.APP.DIM_MOBILE_FOOTER), !0)
     } else {
       emit("change-padding-header-product")
-      let appElementById = document.getElementById("app") || <any>{}
-      appElementById.style.paddingRight = "17px"
+      // let appElementById = document.getElementById("app") || <any>{}
+      // appElementById.style.paddingRight = "17px"
       // TODO this.$store.commit("app/".concat(r.APP.HIDE_CHAT_BOT), !0)
     }
     overlayRef.value.style.visibility = "visible"

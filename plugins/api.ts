@@ -1,10 +1,18 @@
 import ApiParamsModule from "~/api/params";
+import ApiAboutImagesModule from "~/api/aboutImages";
+import ApiAdditionalSaleProductsModule from "~/api/additionalSaleProducts";
+import ApiAllvitModule from "~/api/allvit";
+import ApiArticlesModule from "~/api/articles";
+import ApiArticlesCommentModule from "~/api/articlesComment";
+import ApiBabyFoodModule from "~/api/babyFood";
+import ApiBannersModule from "~/api/banners";
+import ApiBasketModule from "~/api/basket";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
 
     const opts: Parameters<typeof $fetch<unknown>> [1] = {
-        baseURL: "http://localhost:3000",
+        baseURL: "http://localhost:3000/api",
     }
 
     opts.headers = (opts.headers || {}) as Record<string, string>
@@ -14,14 +22,14 @@ export default defineNuxtPlugin((nuxtApp) => {
     /** an object containing all repositories we need to expose */
     const factories = {
         params: new ApiParamsModule(opts),
-        // aboutImages: r,
-        // additionalSaleProducts: l,
-        // allvit: f,
-        // articles: v,
-        // articlesComment: V,
-        // babyFood: y,
-        // banners: _,
-        // basket: I,
+        aboutImages: new ApiAboutImagesModule(opts),
+        additionalSaleProducts: new ApiAdditionalSaleProductsModule(opts),
+        allvit: new ApiAllvitModule(opts),
+        articles: new ApiArticlesModule(opts),
+        articlesComment: new ApiArticlesCommentModule(opts),
+        babyFood: new ApiBabyFoodModule(opts),
+        banners: new ApiBannersModule(opts),
+        basket: new ApiBasketModule(opts),
         // bindings: A,
         // bloggers: C,
         // brandAnalogs: S,

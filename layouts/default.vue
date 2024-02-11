@@ -49,7 +49,6 @@ onMounted(() => {
 
 const notBasket = () => {
   notificationsStore.NOTIFICATIONS_UPD({status: "basket"})
-  // notifications.value.push({ID: 1, status: "basket"})
 }
 const notFavorites = () => {
   notificationsStore.NOTIFICATIONS_UPD({status: "favorites"})
@@ -94,6 +93,7 @@ function closeNotice(id: number) {
                                  :params="params"
                                  v-on:notice-update="updateNotice"/>
     <!--    cHeader-->
+    <HeaderCHeader :is-mobile="isMobile"/>
     <span @click="notBasket">basket</span>
     <span @click="notFavorites">favorites</span>
     <span @click="notCompare">compare</span>
@@ -104,7 +104,6 @@ function closeNotice(id: number) {
     <!--    cCatalogTypes-->
     <!--    cStoryModal-->
     <UserCLoginOrRegistration :is-mobile="isMobile"/>
-    <!--    cLoginOrRegistration-->
     <!--    cQRPaymentModal-->
     <!--    cBreadcrumbs-->
     <!--    cCurtainProductInPharmacies-->
@@ -113,7 +112,7 @@ function closeNotice(id: number) {
     <LazyUiCUpButton v-if="isScrolled && !isMobile" :is-mobile="isMobile"/>
 
     <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""
-         :src='isMobile ? params.footerBanners.mobile : params.footerBanners.desktop'/>
+         :src='isMobile ? params?.footerBanners.mobile : params?.footerBanners.desktop'/>
     <!--    cChatBot-->
     <LazyPopupnotifCNotifications v-if="isPopupNotifications"
                                   :params="params"

@@ -107,9 +107,9 @@ function openChatBot() {
   //TODO openChatBot
 }
 
-const emit = defineEmits(["open-login-or-registration"])
+// const emit = defineEmits(["open-login-or-registration"])
 function openLoginOrRegistration(val: string) {
-  new RegExp(["account", "checkout", "login-or-registration"].join("|"), "i").test((route.name ? <string>route.name : "")) ? closeSideBar() : useEvent("open-login-or-registration", val)
+  new RegExp(["account", "checkout", "login-or-registration"].join("|"), "i").test(route.name ? <string>route.name : "") ? closeSideBar() : useEvent("open-login-or-registration", val)
 }
 </script>
 

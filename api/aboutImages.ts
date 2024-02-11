@@ -1,4 +1,4 @@
-class ApiParamsModule {
+class ApiAboutImagesModule {
     private $opts: Parameters<typeof $fetch<unknown>> [1];
 
     constructor(opts: Parameters<typeof $fetch<unknown>> [1]) {
@@ -8,7 +8,7 @@ class ApiParamsModule {
     async get() {
         return useAsyncData(
             'app',
-            () => $fetch(`params/params.json`, {
+            () => $fetch(`/about/about.json`, {
                 ...this.$opts,
                 method: 'GET',
             })
@@ -16,4 +16,4 @@ class ApiParamsModule {
     }
 }
 
-export default ApiParamsModule;
+export default ApiAboutImagesModule;

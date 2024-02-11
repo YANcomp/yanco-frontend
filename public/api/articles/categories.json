@@ -1,0 +1,24 @@
+[
+  {
+    "ID": 1,
+    "slug": "news",
+    "title": "Новости"
+  },
+  {
+    "ID": 2,
+    "slug": "blog",
+    "title": "Статьи"
+  },
+  {
+    "ID": 3,
+    "parentID": 2,
+    "slug": "mom-and-child",
+    "title": "Мама и дитя"
+  },
+  {
+    "ID": 4,
+    "parentID": 2,
+    "slug": "intresting-and-useful",
+    "title": "Интересное и полезное"
+  }
+]
