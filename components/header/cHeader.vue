@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+const emit = defineEmits([
+  "add-to-basket", "basket-item-update", "basket-store-update",
+  "search-result-clear", "comparison-products-get", "logout", "search"
+])
+
 const props = defineProps({
   isAllRankItems: {
     type: Boolean,
@@ -24,13 +29,15 @@ const props = defineProps({
     type: Array
   },
   basketCount: {
-    type: Number
+    type: Number,
+    default: 0
   },
   city: {
     type: Object
   },
   comparisonCount: {
-    type: Number
+    type: Number,
+    default: 0
   },
   comparisonProductIDs: {
     type: Array,
@@ -112,19 +119,130 @@ const props = defineProps({
 })
 
 const route = useRoute()
+const router = useRouter()
+const appStore = useAppStore()
 
 const isOpenSearchResult = ref(false)
 const startScrollY = ref(0)
 
+//HTML ref
 const headerRef = ref(<any>{})
 const topRef = ref(<any>{})
 
+//COMPUTED
 const isPageScrolled = computed(() => {
   return startScrollY.value > 0
 })
+const hasFavoritesItems = computed(() => {
+  return props.favoritesCount > 0
+})
+const catalog = computed(() => {
+  //TODO
+  // return this.$store.state.catalog.catalog
+})
+const hasBasketItems = computed(() => {
+  return props.basketCount > 0
+})
+const hasComparison = computed(() => {
+  return props.comparisonCount > 0
+})
+const productCategories = computed(() => {
+  //TODO
+  // var t, e;
+  // return null !== (e = null === (t = this.catalog) || void 0 === t ? void 0 : t.categories) && void 0 !== e ? e : []
+})
+const loyalCard = computed(() => {
+  //TODO
+  // return this.$store.getters["me/loyalCard"]
+})
+const isShowDiscountNotice = computed(() => {
+  return appStore.isShowDiscountNotice
+})
+
+//WATCH
+watch(
+    () => props.comparisonProductIDs,
+    () => {
+      getComparisonProducts()
+    },
+);
+watch(
+    () => props.isMobile,
+    (value) => {
+      if (value) {
+        addListeners()
+      } else {
+        document.removeEventListener("scroll", checkScroll)
+        document.removeEventListener("touchstart", touch)
+        document.removeEventListener("touchend", touch)
+        document.removeEventListener("mousemove", touch)
+        document.removeEventListener("mouseup", touch)
+      }
+    },
+);
+
+onMounted(() => {
+  if (props.isMobile) {
+    addListeners()
+  }
+})
+
+//METHODS
+function openBasket() {
+  if (route.name !== "basket") {
+    router.push({
+      name: "basket"
+    })
+  }
+}
+
+function addListeners() {
+  document.addEventListener("scroll", checkScroll)
+  document.addEventListener("touchstart", touch)
+  document.addEventListener("touchend", touch)
+  document.addEventListener("mousemove", touch)
+  document.addEventListener("mouseup", touch)
+}
+
+function touch() {
+  startScrollY.value = window.scrollY
+}
+
+function checkScroll() {
+  let header = headerRef.value
+  window.scrollY <= 50 || window.scrollY > startScrollY.value ? header.style.top = "-95px" : window.scrollY < 10 ? header.style.top = "0" : header.style.top = "-37px"
+}
 
 function openLoginModal() {
   new RegExp(["account", "checkout", "login-or-registration"].join("|"), "i").test(route.name ? <string>route.name : "") || useEvent("open-login-or-registration")
+}
+
+function addToBasket(val: any) {
+  emit("add-to-basket", val)
+}
+
+function updateBasketItem(val: any) {
+  emit("basket-item-update", val)
+}
+
+function updateBasketStore(val: any) {
+  emit("basket-store-update", val)
+}
+
+function clearSearchResult() {
+  emit("search-result-clear")
+}
+
+function openSearchResult(val: any) {
+  isOpenSearchResult.value = val
+}
+
+function getComparisonProducts() {
+  emit("comparison-products-get")
+}
+
+function logout() {
+  emit("logout")
 }
 
 function scrollToTop() {
@@ -134,19 +252,42 @@ function scrollToTop() {
     behavior: "smooth"
   })
 }
+
+function search(filter: any) {
+  emit("search", filter)
+}
 </script>
 
 <template>
   <header ref="headerRef"
           :class='["c-header", { "open-result": isOpenSearchResult, mobile: isMobile, fixed: isOpenSearchResult && isMobile, "page-scrolled": isPageScrolled }]'>
-    <!--   TODO ? cMobileAppLink-->
     <div class="container">
       <section ref="topRef" class="top">
         <NuxtLink to="/">
           <div class="logo" @click="scrollToTop"/>
         </NuxtLink>
+
         <div v-if="!isMobile">cCatalog</div>
-        <HeaderCSearch :is-mobile="isMobile"/>
+
+        <HeaderCSearch :advertising-links="props.params?.advertisingLinksForSearch"
+                       :cdn-url="props.params?.cdnURL.url"
+                       :loading-basket-product-i-ds="loadingBasketProductIDs"
+                       :updating-basket-product-i-ds="updatingBasketProductIDs"
+                       :basket-items="basketItems"
+                       :city="city"
+                       :is-mobile="isMobile"
+                       :is-authorized="isAuthorized"
+                       :search-result="searchResult"
+                       :route-params="routeParams"
+                       :has-loyal-card="hasLoyalCard"
+                       :is-page-scrolled="isPageScrolled"
+                       v-on:search-result-clear="clearSearchResult"
+                       v-on:search-result-open="openSearchResult"
+                       v-on:search="search"
+                       v-on:add-to-basket="addToBasket"
+                       v-on:basket-item-update="updateBasketItem"
+                       v-on:basket-store-update="updateBasketStore"/>
+
         <div v-if="!isMobile" class="menu-items">
           <div class="pharmacies">
             <NuxtLink :to="{name: 'pharmacies'}">
@@ -157,6 +298,7 @@ function scrollToTop() {
           <div v-show="!isAuthorized" class="login">
             <div class="login" @click="openLoginModal">
               <span class="icon user"/>
+              <UiCBadge v-if="!isAuthorized && isShowDiscountNotice" :count="1"/>
               <span>Войти</span>
             </div>
           </div>
@@ -165,29 +307,44 @@ function scrollToTop() {
               <span class="icon user"/>
               <span>Профиль</span>
             </NuxtLink>
-            <!--            cProfileMenu-->
+            <HeaderCProfileMenu class="profile-dropdown-menu" :me="me" :params="params" :route-name="routeName"/>
           </div>
           <div class="compare dropdown-menu">
             <NuxtLink :to="{name: 'compare'}">
               <span class="icon compare"/>
+              <UiCBadge v-if="hasComparison" :count="comparisonCount"/>
               <span>Сравнение</span>
             </NuxtLink>
-            <!--            cCompareMenu-->
+            <HeaderCCompareMenu v-if="hasComparison" class="compare-dropdown-menu" :params="params"
+                                :comparison-product-i-ds="comparisonProductIDs"
+                                :comparison-products="comparisonProducts"
+                                :product-categories="productCategories"/>
           </div>
           <div class="favorites dropdown-menu">
             <NuxtLink :to="{name: 'favorites'}">
               <span class="icon favorites"/>
+              <UiCBadge v-if="hasFavoritesItems" :count="favoritesCount"/>
               <span>Избранное</span>
             </NuxtLink>
-            <!--            cFavoritesMenu-->
+            <HeaderCFavoritesMenu v-if="hasFavoritesItems" class="favorites-dropdown-menu" :params="params"
+                                  :loading-basket-product-i-ds="loadingBasketProductIDs" :basket-items="basketItems"
+                                  :is-authorized="isAuthorized" :is-mobile="isMobile" v-on:add-to-basket="addToBasket"
+                                  v-on:basket-store-update="updateBasketStore"/>
           </div>
           <div class="basket dropdown-menu">
-            <!--            TODO openBasket @click-->
-            <div class="basket" @click="">
+            <div class="basket" @click="openBasket">
               <span class="icon basket"/>
+              <UiCBadge v-if="hasBasketItems" :count="basketCount"/>
               <span>Корзина</span>
             </div>
-            <!--            cBasketMenu-->
+            <HeaderCBasketMenu v-if="hasBasketItems" class="basket-dropdown-menu" :params="params" :city="city"
+                               :is-all-rank-items="isAllRankItems" :has-free-delivery="hasFreeDelivery"
+                               :is-allow-delivery="isAllowDelivery" :is-denied-delivery="isDeniedDelivery"
+                               :is-no-delivery-rules="isNoDeliveryRules" :basket-items="basketItems"
+                               :has-paid-period="hasPaidPeriod" :has-promo-code="hasPromoCode"
+                               :is-authorized="isAuthorized" :possible-prices="possiblePrices"
+                               :prepared-check-items="preparedCheckItems" :total-price="totalPrice"
+                               v-on:basket-item-update="updateBasketItem" v-on:basket-store-update="updateBasketStore"/>
           </div>
         </div>
       </section>
