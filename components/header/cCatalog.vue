@@ -125,7 +125,7 @@ function setTypeID(val: any) {
             </li>
           </ul>
         </div>
-        <div class="overlay" @click="openCloseCatalog"></div>
+        <div class="overlay" @click="openCloseCatalog"/>
       </div>
     </div>
   </div>
