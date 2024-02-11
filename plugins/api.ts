@@ -7,6 +7,7 @@ import ApiArticlesCommentModule from "~/api/articlesComment";
 import ApiBabyFoodModule from "~/api/babyFood";
 import ApiBannersModule from "~/api/banners";
 import ApiBasketModule from "~/api/basket";
+import ApiCatalogModule from "~/api/catalog";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -34,7 +35,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         // bloggers: C,
         // brandAnalogs: S,
         // cardProjects: w,
-        // catalog: O,
+        catalog: new ApiCatalogModule(opts),
         // charity: P,
         // cities: D,
         // companies: k,

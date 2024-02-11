@@ -267,7 +267,7 @@ function search(filter: any) {
           <div class="logo" @click="scrollToTop"/>
         </NuxtLink>
 
-        <div v-if="!isMobile">cCatalog</div>
+        <LazyHeaderCCatalog v-if="!isMobile"/>
 
         <HeaderCSearch :advertising-links="props.params?.advertisingLinksForSearch"
                        :cdn-url="props.params?.cdnURL.url"
@@ -298,7 +298,7 @@ function search(filter: any) {
           <div v-show="!isAuthorized" class="login">
             <div class="login" @click="openLoginModal">
               <span class="icon user"/>
-              <UiCBadge v-if="!isAuthorized && isShowDiscountNotice" :count="1"/>
+              <LazyUiCBadge v-if="!isAuthorized && isShowDiscountNotice" :count="1"/>
               <span>Войти</span>
             </div>
           </div>
@@ -307,44 +307,47 @@ function search(filter: any) {
               <span class="icon user"/>
               <span>Профиль</span>
             </NuxtLink>
-            <HeaderCProfileMenu class="profile-dropdown-menu" :me="me" :params="params" :route-name="routeName"/>
+            <LazyHeaderCProfileMenu v-if="isAuthorized" class="profile-dropdown-menu" :me="me" :params="params"
+                                    :route-name="routeName"/>
           </div>
           <div class="compare dropdown-menu">
             <NuxtLink :to="{name: 'compare'}">
               <span class="icon compare"/>
-              <UiCBadge v-if="hasComparison" :count="comparisonCount"/>
+              <LazyUiCBadge v-if="hasComparison" :count="comparisonCount"/>
               <span>Сравнение</span>
             </NuxtLink>
-            <HeaderCCompareMenu v-if="hasComparison" class="compare-dropdown-menu" :params="params"
-                                :comparison-product-i-ds="comparisonProductIDs"
-                                :comparison-products="comparisonProducts"
-                                :product-categories="productCategories"/>
+            <LazyHeaderCCompareMenu v-if="hasComparison" class="compare-dropdown-menu" :params="params"
+                                    :comparison-product-i-ds="comparisonProductIDs"
+                                    :comparison-products="comparisonProducts"
+                                    :product-categories="productCategories"/>
           </div>
           <div class="favorites dropdown-menu">
             <NuxtLink :to="{name: 'favorites'}">
               <span class="icon favorites"/>
-              <UiCBadge v-if="hasFavoritesItems" :count="favoritesCount"/>
+              <LazyUiCBadge v-if="hasFavoritesItems" :count="favoritesCount"/>
               <span>Избранное</span>
             </NuxtLink>
-            <HeaderCFavoritesMenu v-if="hasFavoritesItems" class="favorites-dropdown-menu" :params="params"
-                                  :loading-basket-product-i-ds="loadingBasketProductIDs" :basket-items="basketItems"
-                                  :is-authorized="isAuthorized" :is-mobile="isMobile" v-on:add-to-basket="addToBasket"
-                                  v-on:basket-store-update="updateBasketStore"/>
+            <LazyHeaderCFavoritesMenu v-if="hasFavoritesItems" class="favorites-dropdown-menu" :params="params"
+                                      :loading-basket-product-i-ds="loadingBasketProductIDs" :basket-items="basketItems"
+                                      :is-authorized="isAuthorized" :is-mobile="isMobile"
+                                      v-on:add-to-basket="addToBasket"
+                                      v-on:basket-store-update="updateBasketStore"/>
           </div>
           <div class="basket dropdown-menu">
             <div class="basket" @click="openBasket">
               <span class="icon basket"/>
-              <UiCBadge v-if="hasBasketItems" :count="basketCount"/>
+              <LazyUiCBadge v-if="hasBasketItems" :count="basketCount"/>
               <span>Корзина</span>
             </div>
-            <HeaderCBasketMenu v-if="hasBasketItems" class="basket-dropdown-menu" :params="params" :city="city"
-                               :is-all-rank-items="isAllRankItems" :has-free-delivery="hasFreeDelivery"
-                               :is-allow-delivery="isAllowDelivery" :is-denied-delivery="isDeniedDelivery"
-                               :is-no-delivery-rules="isNoDeliveryRules" :basket-items="basketItems"
-                               :has-paid-period="hasPaidPeriod" :has-promo-code="hasPromoCode"
-                               :is-authorized="isAuthorized" :possible-prices="possiblePrices"
-                               :prepared-check-items="preparedCheckItems" :total-price="totalPrice"
-                               v-on:basket-item-update="updateBasketItem" v-on:basket-store-update="updateBasketStore"/>
+            <LazyHeaderCBasketMenu v-if="hasBasketItems" class="basket-dropdown-menu" :params="params" :city="city"
+                                   :is-all-rank-items="isAllRankItems" :has-free-delivery="hasFreeDelivery"
+                                   :is-allow-delivery="isAllowDelivery" :is-denied-delivery="isDeniedDelivery"
+                                   :is-no-delivery-rules="isNoDeliveryRules" :basket-items="basketItems"
+                                   :has-paid-period="hasPaidPeriod" :has-promo-code="hasPromoCode"
+                                   :is-authorized="isAuthorized" :possible-prices="possiblePrices"
+                                   :prepared-check-items="preparedCheckItems" :total-price="totalPrice"
+                                   v-on:basket-item-update="updateBasketItem"
+                                   v-on:basket-store-update="updateBasketStore"/>
           </div>
         </div>
       </section>

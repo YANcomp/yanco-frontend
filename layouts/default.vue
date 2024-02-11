@@ -24,6 +24,7 @@ const isPopupNotifications = ref(false)
 const params = computed(() => {
   return appStore.params
 })
+
 const isMobile = computed(() => {
   return appStore.isMobile
 })
