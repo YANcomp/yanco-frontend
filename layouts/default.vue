@@ -6,6 +6,8 @@ const basketStore = useBasketStore()
 const favoritesStore = useFavoritesStore()
 const comparisonStore = useComparisonProductsStore()
 const meStore = useMeStore()
+const citiesStore = useCitiesStore()
+const regionsStore = useRegionsStore()
 const route = useRoute()
 const notificationsStore = useNotificationsStore()
 
@@ -48,8 +50,7 @@ const isAllRankItems = computed(() => {
   })
 })
 const city = computed(() => {
-  //TODO
-  return <any>{}
+  return citiesStore.currentCity
 })
 const isAllowDelivery = computed(() => {
   return basketItems.value.every((i: any) => {
@@ -276,9 +277,8 @@ function clearSearchResult() {
       </UiCButton>
     </div>
 
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <!--    cOrderCarousel-->
-    <!--    cCatalogTypes-->
+    <HeaderCCatalogTypes :city="city" :is-mobile="isMobile"/>
     <!--    cStoryModal-->
     <UserCLoginOrRegistration :is-mobile="isMobile"/>
     <!--    cQRPaymentModal-->

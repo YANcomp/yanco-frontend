@@ -1,6 +1,8 @@
 export default defineNuxtRouteMiddleware(async () => {
     const appStore = useAppStore()
     const catalogStore = useCatalogStore()
+    const citiesStore = useCitiesStore()
+    const regionsStore = useRegionsStore()
 
     if (Object.keys(appStore.params).length < 1) {
         await appStore.PARAMS_GET()
@@ -8,6 +10,10 @@ export default defineNuxtRouteMiddleware(async () => {
     if (Object.keys(catalogStore.catalog).length < 1) {
         await catalogStore.CATALOG_GET()
     }
-    // await t.store.dispatch('cities/CITIES_GET')
-    // await t.store.dispatch('regions/REGIONS_GET')
+    if (citiesStore.list === undefined) {
+        await citiesStore.CITIES_GET()
+    }
+    if (regionsStore.regions === undefined) {
+        await regionsStore.REGIONS_GET()
+    }
 })

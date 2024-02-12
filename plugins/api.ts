@@ -8,6 +8,8 @@ import ApiBabyFoodModule from "~/api/babyFood";
 import ApiBannersModule from "~/api/banners";
 import ApiBasketModule from "~/api/basket";
 import ApiCatalogModule from "~/api/catalog";
+import ApiCitiesModule from "~/api/cities";
+import ApiRegionsModule from "~/api/regions";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -37,7 +39,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         // cardProjects: w,
         catalog: new ApiCatalogModule(opts),
         // charity: P,
-        // cities: D,
+        cities: new ApiCitiesModule(opts),
         // companies: k,
         // FAQ: T,
         // favorites: E,
@@ -60,7 +62,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         // productSubtypes: K,
         // productTypes: J,
         // properties: X,
-        // regions: tt,
+        regions: new ApiRegionsModule(opts),
         // restrictTypes: et,
         // reviews: it,
         // search: nt,

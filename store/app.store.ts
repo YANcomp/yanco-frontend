@@ -16,7 +16,7 @@ export const useAppStore = defineStore('app', {
             if (error.value) {
                 return Promise.reject(error.value)
             } else {
-                this.params = params
+                this.params = params.value
             }
         },
         async MOBILE_UPD(val: boolean) {

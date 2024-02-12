@@ -1,0 +1,434 @@
+[
+  {
+    "ID": 1,
+    "name": "Адыгея Респ.",
+    "slug": "adygeya_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 4,
+    "name": "Алтай Респ.",
+    "slug": "altaj_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 22,
+    "name": "Алтайский край",
+    "slug": "altajskij_kraj",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 29,
+    "name": "Архангельская обл.",
+    "slug": "arhangelskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 30,
+    "name": "Астраханская обл.",
+    "slug": "astrahanskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 2,
+    "name": "Башкортостан Респ.",
+    "slug": "bashkortostan_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 31,
+    "name": "Белгородская обл.",
+    "slug": "belgorodskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 32,
+    "name": "Брянская обл.",
+    "slug": "bryanskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 33,
+    "name": "Владимирская обл.",
+    "slug": "vladimirskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 34,
+    "name": "Волгоградская обл.",
+    "slug": "volgogradskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 35,
+    "name": "Вологодская обл.",
+    "slug": "vologodskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 36,
+    "name": "Воронежская обл.",
+    "slug": "voronezhskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 5,
+    "name": "Дагестан Респ.",
+    "slug": "dagestan_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 93,
+    "name": "Донецкая Народная Респ.",
+    "slug": "doneckaya_narodnaya_resp",
+    "hasPharmacies": false
+  },
+  {
+    "ID": 37,
+    "name": "Ивановская обл.",
+    "slug": "ivanovskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 38,
+    "name": "Иркутская обл.",
+    "slug": "irkutskaya_obl",
+    "hasPharmacies": false
+  },
+  {
+    "ID": 7,
+    "name": "Кабардино-Балкарская Респ.",
+    "slug": "kabardinobalkarskaya_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 39,
+    "name": "Калининградская обл.",
+    "slug": "kaliningradskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 8,
+    "name": "Калмыкия Респ.",
+    "slug": "kalmykiya_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 40,
+    "name": "Калужская обл.",
+    "slug": "kaluzhskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 9,
+    "name": "Карачаево-Черкесская Респ.",
+    "slug": "karachaevocherkesskaya_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 10,
+    "name": "Карелия Респ.",
+    "slug": "kareliya_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 42,
+    "name": "Кемеровская обл.",
+    "slug": "kemerovskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 43,
+    "name": "Кировская обл.",
+    "slug": "kirovskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 11,
+    "name": "Коми Респ.",
+    "slug": "komi_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 44,
+    "name": "Костромская обл.",
+    "slug": "kostromskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 23,
+    "name": "Краснодарский край",
+    "slug": "krasnodarskij_kraj",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 24,
+    "name": "Красноярский край",
+    "slug": "krasnoyarskij_kraj",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 91,
+    "name": "Крым Респ.",
+    "slug": "krym_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 45,
+    "name": "Курганская обл.",
+    "slug": "kurganskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 46,
+    "name": "Курская обл.",
+    "slug": "kurskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 47,
+    "name": "Ленинградская обл.",
+    "slug": "leningradskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 48,
+    "name": "Липецкая обл.",
+    "slug": "lipeckaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 12,
+    "name": "Марий Эл Респ.",
+    "slug": "marij_el_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 13,
+    "name": "Мордовия Респ.",
+    "slug": "mordoviya_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 77,
+    "name": "Москва",
+    "slug": "moskva",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 50,
+    "name": "Московская обл.",
+    "slug": "moskovskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 51,
+    "name": "Мурманская обл.",
+    "slug": "murmanskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 52,
+    "name": "Нижегородская обл.",
+    "slug": "nizhegorodskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 53,
+    "name": "Новгородская обл.",
+    "slug": "novgorodskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 54,
+    "name": "Новосибирская обл.",
+    "slug": "novosibirskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 55,
+    "name": "Омская обл.",
+    "slug": "omskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 56,
+    "name": "Оренбургская обл.",
+    "slug": "orenburgskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 57,
+    "name": "Орловская обл.",
+    "slug": "orlovskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 58,
+    "name": "Пензенская обл.",
+    "slug": "penzenskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 59,
+    "name": "Пермский край",
+    "slug": "permskij_kraj",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 60,
+    "name": "Псковская обл.",
+    "slug": "pskovskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 61,
+    "name": "Ростовская обл.",
+    "slug": "rostovskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 62,
+    "name": "Рязанская обл.",
+    "slug": "ryazanskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 63,
+    "name": "Самарская обл.",
+    "slug": "samarskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 78,
+    "name": "Санкт-Петербург",
+    "slug": "sanktpeterburg",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 64,
+    "name": "Саратовская обл.",
+    "slug": "saratovskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 66,
+    "name": "Свердловская обл.",
+    "slug": "sverdlovskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 92,
+    "name": "Севастополь",
+    "slug": "sevastopol",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 15,
+    "name": "Северная Осетия - Алания Респ.",
+    "slug": "severnaya_osetiya__alaniya_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 67,
+    "name": "Смоленская обл.",
+    "slug": "smolenskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 26,
+    "name": "Ставропольский край",
+    "slug": "stavropolskij_kraj",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 68,
+    "name": "Тамбовская обл.",
+    "slug": "tambovskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 16,
+    "name": "Татарстан Респ.",
+    "slug": "tatarstan_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 69,
+    "name": "Тверская обл.",
+    "slug": "tverskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 70,
+    "name": "Томская обл.",
+    "slug": "tomskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 71,
+    "name": "Тульская обл.",
+    "slug": "tulskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 72,
+    "name": "Тюменская обл.",
+    "slug": "tyumenskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 18,
+    "name": "Удмуртская Респ.",
+    "slug": "udmurtskaya_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 73,
+    "name": "Ульяновская обл.",
+    "slug": "ulyanovskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 19,
+    "name": "Хакасия Респ.",
+    "slug": "hakasiya_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 86,
+    "name": "Ханты-Мансийский Автономный округ - Югра АО.",
+    "slug": "hantymansijskij_avtonomnyj_okrug__yugra_ao",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 74,
+    "name": "Челябинская обл.",
+    "slug": "chelyabinskaya_obl",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 20,
+    "name": "Чеченская Респ.",
+    "slug": "chechenskaya_resp",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 21,
+    "name": "Чувашская Республика",
+    "slug": "chuvashskaya_respublika",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 89,
+    "name": "Ямало-Ненецкий АО.",
+    "slug": "yamaloneneckij_ao",
+    "hasPharmacies": true
+  },
+  {
+    "ID": 76,
+    "name": "Ярославская обл.",
+    "slug": "yaroslavskaya_obl",
+    "hasPharmacies": true
+  }
+]

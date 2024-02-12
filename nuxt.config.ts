@@ -16,9 +16,9 @@ export default defineNuxtConfig({
                 {charset: "utf-8"},
                 {name: "viewport", content: "width=device-width, initial-scale=1, user-scalable=no"},
                 {"http-equiv": "Content-Type", content: "text/html; charset=UTF-8"},
-                {name: "msapplication-TileColor", content: "#2b5797"},
+                {name: "msapplication-TileColor", content: "#ffc40d"},
                 {name: "msapplication-config", content: "/img/favicon/browserconfig.xml"},
-                {name: "theme-color", content: "#000000"},
+                {name: "theme-color", content: "#ffffff"},
             ],
             link: [
                 {rel: "apple-touch-icon", sizes: "180x180", href: "/img/favicon/apple-touch-icon.png"},
