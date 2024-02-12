@@ -121,6 +121,7 @@ const props = defineProps({
 const route = useRoute()
 const router = useRouter()
 const appStore = useAppStore()
+const catalogStore = useCatalogStore()
 
 const isOpenSearchResult = ref(false)
 const startScrollY = ref(0)
@@ -137,8 +138,7 @@ const hasFavoritesItems = computed(() => {
   return props.favoritesCount > 0
 })
 const catalog = computed(() => {
-  //TODO
-  // return this.$store.state.catalog.catalog
+  return catalogStore.catalog
 })
 const hasBasketItems = computed(() => {
   return props.basketCount > 0
@@ -147,14 +147,9 @@ const hasComparison = computed(() => {
   return props.comparisonCount > 0
 })
 const productCategories = computed(() => {
-  //TODO
-  // var t, e;
-  // return null !== (e = null === (t = this.catalog) || void 0 === t ? void 0 : t.categories) && void 0 !== e ? e : []
+  return catalog.value.categories !== undefined ? catalog.value.categories : []
 })
-const loyalCard = computed(() => {
-  //TODO
-  // return this.$store.getters["me/loyalCard"]
-})
+
 const isShowDiscountNotice = computed(() => {
   return appStore.isShowDiscountNotice
 })

@@ -38,6 +38,7 @@ export const useBasketStore = defineStore('basket', {
             // return (null !== (n = null === (e = null === (t = s.check) || void 0 === t ? void 0 : t.order) || void 0 === e ? void 0 : e.items) && void 0 !== n ? n : []).reduce((function (t, e) {
             //     return t += e.price * e.count
             // }), 0)
+            return 1000
         },
         selectedItems: function (state) {
             return (state.items ? state.items : []).filter((item: any) => {

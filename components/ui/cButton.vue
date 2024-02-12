@@ -96,9 +96,9 @@ function touchMove(val: any) {
           @mousedown="mouseDown" @mouseup="mouseUp" @mouseout="mouseUp" v-on:click="click"
   >
     <span v-show="isLoading" class="icon spinner"/>
-    <span v-show="!isLoading" class="caption">
+    <div v-show="!isLoading" class="caption">
       <slot/>
-    </span>
+    </div>
   </button>
 </template>
 
@@ -147,7 +147,7 @@ function touchMove(val: any) {
   justify-content: space-evenly
 }
 
-.c-button > .caption > .icon {
+.c-button > .caption > :deep(.icon) {
   -webkit-mask-size: 100%;
   mask-size: 100%;
   background-color: #fff
@@ -184,7 +184,7 @@ function touchMove(val: any) {
   color: #3f51b5
 }
 
-.c-button.normal .icon {
+.c-button.normal :deep(.icon) {
   background-color: #3f51b5
 }
 
@@ -193,7 +193,7 @@ function touchMove(val: any) {
   color: #4960df
 }
 
-.c-button.normal:not(.mobile):hover .icon {
+.c-button.normal:not(.mobile):hover :deep(.icon) {
   background-color: #4960df
 }
 
@@ -208,7 +208,7 @@ function touchMove(val: any) {
   color: #fff
 }
 
-.c-button.orange .icon {
+.c-button.orange :deep(.icon) {
   background-color: #fff
 }
 
@@ -218,7 +218,7 @@ function touchMove(val: any) {
   color: #fff
 }
 
-.c-button.orange:not(.mobile):hover .icon {
+.c-button.orange:not(.mobile):hover :deep(.icon) {
   background-color: #fff
 }
 
@@ -429,7 +429,7 @@ function touchMove(val: any) {
   height: 38px
 }
 
-.c-button.mobile > .caption > .icon {
+.c-button.mobile > .caption > :deep(.icon) {
   -webkit-mask-size: 90%;
   mask-size: 90%
 }
@@ -449,5 +449,4 @@ function touchMove(val: any) {
 .c-button.mobile.active.disabled, .c-button.mobile.touch.disabled, .c-button.mobile:hover.disabled {
   font-size: 10px
 }
-
 </style>

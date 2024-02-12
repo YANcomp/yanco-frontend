@@ -16,7 +16,7 @@ export const useFavoritesStore = defineStore('favorites', {
     //TODO
     getters: {
         favoritesCount: function (state) {
-            return (state.items ? state.items : []).length
+            return state.items.length
         },
         inFavorites: function (state) {
             return (state.items ? state.items : []).reduce((function (result: any, item: any) {
