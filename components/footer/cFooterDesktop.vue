@@ -54,6 +54,24 @@ const props = defineProps({
               <li>
                 <NuxtLink to="/">О компании</NuxtLink>
               </li>
+              <li>
+                <NuxtLink to="/">Партнеры</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/">Сотрудничество</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/">Работа у нас</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/">СМИ о нас</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/">Блогерам</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/">Сотрудничество по кросс-акциям</NuxtLink>
+              </li>
             </ul>
           </li>
           <li>
@@ -61,6 +79,12 @@ const props = defineProps({
             <ul>
               <li>
                 <NuxtLink to="/">Программа лояльности</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/">Доставка</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/">Как сделать заказ</NuxtLink>
               </li>
             </ul>
           </li>
@@ -70,16 +94,18 @@ const props = defineProps({
               <li>
                 <NuxtLink to="/">Политика обработки персональных данных</NuxtLink>
               </li>
+              <li>
+                <NuxtLink to="/">Публичная оферта</NuxtLink>
+              </li>
             </ul>
           </li>
         </ul>
         <div class="media flex-vertical-nowrap">
-          <p class="torg">
-            <a href="https://torg.apteka-april.ru/" target="_blank">
-              <span class="icon auction"/>
-              <span class="text">Электронная торговая площадка ГК «Апрель»</span>
-            </a>
-          </p>
+          <div class="yandex-delivery-badge">
+            Доставляем с Яндекс Go
+            <img width="95px" height="30px" src="https://pictures.apteka-april.ru/generic/yandex_go_delivery.png"
+                 alt="Доставляем с Яндекс Go">
+          </div>
           <p class="download">Скачайте мобильное приложение</p>
           <ul class="apps flex-horizontal-nowrap">
             <li>
@@ -277,7 +303,7 @@ footer > .container > .columns > .menus > li > ul > li > a:active {
 
 footer > .container > .columns > .media {
   flex-basis: 285px;
-  justify-content: center
+  //justify-content: center
 }
 
 footer > .container > .columns > .media > p {

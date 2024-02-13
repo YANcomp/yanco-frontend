@@ -8,7 +8,9 @@ export const useFavoritesStore = defineStore('favorites', {
     actions: {
         async FAVORITES_GET(val: boolean) {
         },
-        async FAVORITES_UPD(val: boolean) {
+        async FAVORITES_UPD(favorites: any) {
+            //TODO
+            this.items = favorites
         },
         async FAVORITES_ADD(val: boolean) {
         },

@@ -25,7 +25,7 @@ const favoritesStore = useFavoritesStore()
 const router = useRouter()
 
 const preparedProducts = computed(() => {
-  return uPrepared(products, ["isLoyal", "isRank", "isInBasket", "route"])
+  return uPrepared(products.value, ["isLoyal", "isRank", "isInBasket", "route"])
 })
 const products = computed(() => {
   return favoritesStore.items ? favoritesStore.items : []
@@ -42,7 +42,7 @@ function openBasket(item: any) {
 }
 
 function image(p: any) {
-  return Object(uPrepareProduct)(...p, SIZE_XS, props.params?.cdnURL.url).images[0]
+  return Object(uPrepareProduct)(p, SIZE_XS, props.params?.cdnURL.url).images[0]
 }
 </script>
 
@@ -62,21 +62,25 @@ function image(p: any) {
               {{ product.name }}
             </span>
             <div v-if="product.price" class="price">
-              <div>
-                <template v-if="product.isLoyal">
+              <template v-if="product.isLoyal">
+                <div>
                   <span>По акции</span>
                   <span class="loyal">
                       {{ product.price.withCard + " ₽" }}
                     </span>
-                </template>
-                <template v-if="product.isRank">
+                </div>
+              </template>
+
+              <template v-if="product.isRank">
+                <div>
                   <span>Клубная цена</span>
                   <span>{{ product.price.withPeriod + " ₽" }}</span>
-                </template>
-                <div>
-                  <span>Цена</span>
-                  <span>{{ product.price.withoutCard + " ₽" }}</span>
                 </div>
+              </template>
+
+              <div>
+                <span>Цена</span>
+                <span>{{ product.price.withoutCard + " ₽" }}</span>
               </div>
             </div>
             <div v-show="!product.isInBasket && product.isAvailable"
@@ -146,15 +150,15 @@ function image(p: any) {
   width: 304px
 }
 
-.c-favorites-menu > div > div > a > .c-button > .caption {
+.c-favorites-menu > div > div > a > :deep(.c-button) > .caption {
   justify-content: center
 }
 
-.c-favorites-menu > div > div > a > .c-button:hover > .caption > .c-arrow-svg > div > span:first-of-type {
+.c-favorites-menu > div > div > a > :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:first-of-type {
   opacity: 1
 }
 
-.c-favorites-menu > div > div > a > .c-button:hover > .caption > .c-arrow-svg > div > span:last-of-type {
+.c-favorites-menu > div > div > a > :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:last-of-type {
   transform: translateX(4px)
 }
 
@@ -352,11 +356,11 @@ function image(p: any) {
   background-color: #ebf0f9
 }
 
-.c-favorites-menu > div > div > .products > a:hover > .icon {
+.c-favorites-menu > div > div > .products > :deep(a:hover) > .icon {
   opacity: 1
 }
 
-.c-favorites-menu > div > div > .products > a:hover > .name {
+.c-favorites-menu > div > div > .products > :deep(a:hover) > .name {
   color: #3f51b5
 }
 

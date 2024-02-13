@@ -49,7 +49,7 @@ const isAllRankItems = computed(() => {
     return product.price.withPeriod !== product.price.withoutCard && product.price.withPeriod !== product.price.withCard
   })
 })
-const city = computed(() => {
+const city: any = computed(() => {
   return citiesStore.currentCity
 })
 const isAllowDelivery = computed(() => {
@@ -230,6 +230,82 @@ function clearSearchResult() {
   searchResult.value = {}
 }
 
+function loadFavorites() {
+  return loadFromStoreOrLocalStorage("favorites", favoritesStore.FAVORITES_GET, favoritesStore.FAVORITES_UPD)
+}
+
+function loadFromStoreOrLocalStorage(nameStorage: any, getStorage: Function, updStorage: Function) {
+  if (city.value === undefined) return Promise.resolve()
+  let cityID = city?.value.ID
+  let fromStorage = JSON.parse(localStorage.getItem(nameStorage) ? <any>localStorage.getItem(nameStorage) : "[]")
+  if (!isAuthorized.value) {
+    if (fromStorage.length === 0) return updStorage(fromStorage)
+    let newStorage: any = {}
+    if (nameStorage === "basket") {
+      newStorage = fromStorage.reduce((result: any, item: any) => {
+        result[item.productID] = item
+        return result
+      }, {})
+    } else {
+      newStorage = fromStorage.reduce((result: any, item: any) => {
+        result[item.ID] = item
+        return result
+      }, {})
+    }
+    updStorage(Object.values(newStorage))
+    return Promise.resolve(newStorage)
+  }
+  // var o, r = this;
+  // if (void 0 === this.city) return Promise.resolve();
+  // var c = this.city.ID,
+  //     l = JSON.parse(null !== (o = localStorage.getItem(t)) && void 0 !== o ? o : "[]");
+  // if (!this.isAuthorized) {
+  //   if (0 === l.length) return this.$store.commit(n, l), Promise.resolve();
+  //   var d;
+  //
+  //   var h = Q.a.products.get("ID={".concat(Object.keys(d).join(), "}&cityID=").concat(c), ["ID", "price", "isInStock", "images", "allowDelivery", "allowOnlinePayment", "limitWithCard", "limitWithoutCard", "discountDescription", "isAvailable", "isWaitingArrive", "isRecipe", "discountTemplate", "deliveryAmount", "mightNeedID", "imagesSizeS", "imagesSizeXS", "isSiteSellRemains", "isOrderRcNoRc"]);
+  //   return h.then((function (t) {
+  //     var e, o = ni(t);
+  //     try {
+  //       for (o.s(); !(e = o.n()).done;) {
+  //         var p = e.value;
+  //         d[p.ID] = ii(ii({}, d[p.ID]), {}, {
+  //           images: p.images,
+  //           price: p.isInStock || void 0 === p.priceZakaz ? p.price : p.priceZakaz,
+  //           isInStock: p.isInStock,
+  //           isAvailable: p.isAvailable,
+  //           allowDelivery: p.allowDelivery,
+  //           allowOnlinePayment: p.allowOnlinePayment,
+  //           limitWithCard: p.limitWithCard,
+  //           limitWithoutCard: p.limitWithoutCard,
+  //           deliveryAmount: p.deliveryAmount,
+  //           discountTemplate: p.discountTemplate,
+  //           mightNeedID: p.mightNeedID,
+  //           imagesSizeS: p.imagesSizeS,
+  //           imagesSizeXS: p.imagesSizeXS,
+  //           isSiteSellRemains: p.isSiteSellRemains,
+  //           isWaitingArrive: p.isWaitingArrive,
+  //           isOrderRcNoRc: p.isOrderRcNoRc
+  //         })
+  //       }
+  //     } catch (t) {
+  //       o.e(t)
+  //     } finally {
+  //       o.f()
+  //     }
+  //     r.$store.commit(n, Object.values(d))
+  //   })), h
+  // }
+  // return this.$store.dispatch(e, c).then((function (i) {
+  //   "basket" === t && (null != i ? i : []).length > 0 && (null != l ? l : []).length > 0 ? r.$store.commit("basket/".concat(z.BASKET.CONFLICT), !0) : ((null != i ? i : []).length < 1 && (null != l ? l : []).length > 0 && ("basket" === t && r.checkBasketLimit(l), r.$store.dispatch(n, {
+  //     items: "basket" === t ? l : l.map((function (t) {
+  //       return t.ID
+  //     })),
+  //     cityID: c
+  //   })), "basket" === t && localStorage.removeItem(t))
+  // }))
+}
+
 //TODO END METHODS
 </script>
 
@@ -286,6 +362,7 @@ function clearSearchResult() {
     <!--    cCurtainProductInPharmacies-->
     <slot/>
 
+    <span @click="loadFavorites">load favorites</span>
     <LazyUiCUpButton v-if="isScrolled && !isMobile" :is-mobile="isMobile"/>
 
     <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""
