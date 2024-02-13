@@ -56,7 +56,7 @@ const preparedProductTypes = computed(() => {
 })
 
 onMounted(() => {
-  if (props.isMobile) {
+  if (!props.isMobile) {
     document.addEventListener("scroll", checkScroll)
     window.addEventListener("resize", resize)
     resize()

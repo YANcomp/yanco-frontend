@@ -62,13 +62,12 @@ onMounted(() => {
   resize()
 })
 
+const appStore = useAppStore()
 const isHide = computed(() => {
-  // TODO  return this.$store.state.app.isHideMobileFooter
-  return false
+  return appStore.isHideMobileFooter
 })
 const isDim = computed(() => {
-  // TODO  return this.$store.state.app.isDimMobileFooter
-  return false
+  return appStore.isDimMobileFooter
 })
 const preparedPhone = computed(() => {
   return "+7 ".concat(props.params.hotlinePhone.slice(2))
@@ -145,41 +144,41 @@ function openLoginOrRegistration(val: string) {
               </NuxtLink>
             </li>
             <li>
-              <!--              TODO ? cSelectCity-->
+              <CitiesCSelectCity :current-city="city" :is-mobile="true"/>
             </li>
           </ul>
           <ul>
             <li>
-              <NuxtLink to="/">
+              <NuxtLink :to='{name:"delivery"}'>
                 Доставка
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="/">
+              <NuxtLink :to='{name:"help"}'>
                 Как сделать заказ
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="/">
+              <NuxtLink :to='{ name: "ArticleList", params: { sectionName: "news" } }'>
                 Сотрудничество
               </NuxtLink>
             </li>
           </ul>
           <ul class="other">
             <li>
-              <NuxtLink to="/">
+              <a href="/">
                 Условия дистанционной продажи
-              </NuxtLink>
+              </a>
             </li>
             <li>
-              <NuxtLink to="/">
+              <a href="/">
                 Политика обработки персональных данных
-              </NuxtLink>
+              </a>
             </li>
             <li>
-              <NuxtLink to="/">
+              <a href="/">
                 Публичная оферта
-              </NuxtLink>
+              </a>
             </li>
           </ul>
           <div class="socials">

@@ -53,9 +53,13 @@ export default defineNuxtConfig({
     },
     googleFonts: {
         families: {
-            Montserrat: [400, 500, 600, 700],
+            Montserrat: [400, 500, 600, 700]
         },
+        prefetch: false,
+        preconnect: true,
         preload: true,
-        subsets: 'cyrillic'
+        download: true,
+        base64: false,
+        overwriting: true // this flag
     }
 })

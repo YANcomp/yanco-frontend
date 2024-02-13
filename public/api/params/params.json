@@ -3,7 +3,7 @@
   "cdnURL": {
     "url": "https://pictures1.apteka-april.ru"
   },
-  "siteURL": "https://yanco.ru",
+  "siteURL": "http://beauty.yanco.ru",
   "packageID": 235551,
   "avatarsURL": "https://pictures.apteka-april.ru/avatars",
   "companyAge": 23,
@@ -119,9 +119,9 @@
   "hotlinePhone": "+7 000 000 00 00",
   "regionsCount": 70,
   "topCitiesIDs": [
+    3,
     41,
     1,
-    51110,
     15005,
     168660,
     57974,

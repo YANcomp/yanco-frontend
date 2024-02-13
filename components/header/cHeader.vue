@@ -548,7 +548,7 @@ function search(filter: any) {
     position: relative;
     top: 0;
     transition: .2s;
-    padding: 7px 0 7px
+    padding: 11px 0 6px
   }
 
   .c-header > .container > .top > a {

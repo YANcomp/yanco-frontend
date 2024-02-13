@@ -46,13 +46,18 @@ const props = defineProps({
   }
 })
 
-const hotlineLink = computed(()=>{
+const hotlineLink = computed(() => {
   return uHotlineLink(props.params.hotlinePhone ? props.params.hotlinePhone : "")
 })
 </script>
 
 <template>
-  <component v-if="isMobile" :is="footerMobile" :params="params" :hotlineLink="hotlineLink"/>
+  <component v-if="isMobile" :basket-count="basketCount" :city="city" :comparison-count="comparisonCount"
+             :favorites-count="favoritesCount" :favorites-pharmacies-count="favoritesPharmaciesCount"
+             :has-loyal-card="hasLoyalCard" :is-authorized="isAuthorized"
+             :is-changed-basket-availability="isChangedBasketAvailability"
+             :is-changed-basket-price="isChangedBasketPrice" :me="me"
+             :is="footerMobile" :params="params" :hotlineLink="hotlineLink"/>
   <component v-else :is="footerDesktop" :params="params" :hotlineLink="hotlineLink"/>
 </template>
 

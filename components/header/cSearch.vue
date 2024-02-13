@@ -72,6 +72,7 @@ const isOpened = computed(() => {
         <button type="submit">
           <span class="icon search"/>
         </button>
+        <span v-if="isMobile" class="icon search-mobile"/>
       </div>
     </form>
   </div>

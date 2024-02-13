@@ -19,7 +19,7 @@ const props = defineProps({
     default: false
   },
   regionsStock: {
-    type: Object
+    type: <any>Object
   },
   isOpenSelector: {
     type: Boolean,
@@ -33,9 +33,12 @@ const isOpened = ref(false)
 const isMouseDownOverlay = ref(false)
 
 const buttonRef = ref(<any>undefined)
+const citiesRef = ref(<any>undefined)
+const overlayRef = ref(<any>undefined)
 
 const appStore = useAppStore()
 const citiesStore = useCitiesStore()
+const regionsStore = useRegionsStore()
 
 const cities = computed(() => {
   let citiesVar = citiesStore.list
@@ -46,19 +49,154 @@ const cities = computed(() => {
     return []
   }
 })
+const citiesInfo = computed(() => {
+  var t = uPluralize(params.value.citiesCount, ["город", "города", "городов"]),
+      e = uPluralize(params.value.regionsCount, ["регионе", "регионах", "регионах"]);
+  return "".concat(params.value.citiesCount, " ").concat(t, " в ").concat(params.value.regionsCount, " ").concat(e, " России. Найдите свой город.")
+})
 const isCityLoaded = computed(() => {
   return props.currentCity != undefined
+})
+const isNotResult = computed(() => {
+  return searchedCities.value.length < 1
+})
+const isSearched = computed(() => {
+  return cityName.value.length > 0
 })
 const params = computed(() => {
   return appStore.params
 })
+const regions = computed(() => {
+  return regionsStore.regions
+})
+const searchedCities = computed(() => {
+  return cities.value.reduce((e: any, n: any) => {
+    var o;
+    return 0 === n.name.toLocaleLowerCase().replace("ё", "е").indexOf(cityName.value.toLocaleLowerCase().replace("ё", "е")) && e.push({
+      ...n,
+      regionName: null === (o = regions.value.find((t: any) => {
+        return t.ID === n.regionID
+      })) || void 0 === o ? void 0 : o.name
+    }), e
+  }, [])
+})
+const topTenCities = computed(() => {
+  return params.value.topCitiesIDs.reduce((e: any, n: any) => {
+    let r = cities.value.find((t: any) => {
+      return t.ID === n
+    });
+    return void 0 !== r && e.push(r), e
+  }, [])
+})
+
+const regionsHasStock = computed(() => {
+  return regions.value.filter((e: any) => {
+    return void 0 !== props.regionsStock[e.ID]
+  })
+})
+
 
 watch(() => cities.value, () => {
   watchCities(cities.value)
 });
+watch(() => props.isOpenSelector, (val: any) => {
+  val && openCloseOverlay()
+});
+watch(() => isOpened.value, (val: any) => {
+  if (val) {
+    setTimeout(() => {
+      let input = citiesRef.value.querySelector("input");
+      if (input !== null) {
+        input.focus()
+      }
+    }, 200)
+  }
+});
+
+const emit = defineEmits(["region-select"])
+
+function changeCity(t: any) {
+  if (props.isRegions) {
+    emit("region-select", t)
+    closeOverlay()
+    clear()
+  } else {
+    citiesStore.CITIES_UPD(t).finally(() => {
+      closeOverlay()
+      clear()
+    })
+  }
+}
+
+function clear() {
+  cityName.value = ""
+}
+
+function closeOverlay() {
+  isClosed.value || openCloseOverlay()
+}
 
 function openCloseOverlay() {
-  //TODO
+  if (isOpened.value) {
+    isClosed.value = !isClosed.value
+    document.removeEventListener("keydown", esc)
+    document.removeEventListener("mousedown", mouseDown)
+    document.removeEventListener("mouseup", mouseUp)
+    setTimeout(() => {
+      isOpened.value = !isOpened.value
+      document.body.style.overflow = ""
+      if (props.isMobile) {
+        let e: any = document.querySelector(".c-footer-mobile")?.querySelector(".navigation");
+        e.style.overflow = "auto"
+        e.style.position = "absolute"
+      }
+      // let appID: any = document.getElementById("app")
+      // appID.style.paddingRight = "0"
+      overlayRef.value.style.visibility = "hidden"
+    }, 450)
+  } else {
+    isOpened.value = !isOpened.value
+    isClosed.value = !isClosed.value
+    setTimeout(() => {
+      document.addEventListener("keydown", esc)
+      document.addEventListener("mousedown", mouseDown)
+      document.addEventListener("mouseup", mouseUp)
+    }, 450)
+    document.body.style.overflow = "hidden"
+
+    if (props.isMobile) {
+      let e: any = document.querySelector(".c-footer-mobile")?.querySelector(".navigation");
+      e.style.overflow = "hidden"
+      e.style.position = "initial"
+    }
+    // let appID: any = document.getElementById("app")
+    // appID.style.paddingRight = "17px"
+    overlayRef.value.style.visibility = "visible"
+  }
+}
+
+function esc(t: any) {
+  "Escape" === t.code && closeOverlay()
+}
+
+function mouseDown(event: any) {
+  let refCities = citiesRef.value,
+      button = buttonRef.value,
+      target = event.target,
+      changeCity = document.querySelector(".change-city"),
+      arrayAllow = [refCities, button];
+
+  if (changeCity !== null) {
+    arrayAllow.push(changeCity)
+  }
+
+  isMouseDownOverlay.value = arrayAllow.every((function (item) {
+    return !item.contains(target)
+  }))
+}
+
+function mouseUp(t: any) {
+  isMouseDownOverlay.value && closeOverlay()
 }
 
 function watchCities(cityComputed: any) {
@@ -84,10 +222,55 @@ function watchCities(cityComputed: any) {
 
 <template>
   <div :class='["c-select-city", { mobile: isMobile }]'>
-    <button v-if="isCityLoaded" ref="buttonRef" :data-tooltip='(isRegions ? currentRegion : currentCity).name' @click="openCloseOverlay">
+    <button v-if="isCityLoaded" ref="buttonRef" :data-tooltip='(isRegions ? currentRegion : currentCity).name'
+            @click="openCloseOverlay">
       <span class="icon select-city"/>
       <span class="name">{{ (isRegions ? currentRegion : currentCity).name }}</span>
     </button>
+
+    <div v-if="isCityLoaded" ref="overlayRef" :class='{ opened: isOpened, closed: isClosed }'
+         :style='{ visibility: "hidden" }'>
+      <div ref="citiesRef" :class='{ opened: isOpened, closed: isClosed }'>
+        <div class="search">
+          <span class="icon arrow-left" @click="closeOverlay"/>
+          <div>
+            <input v-if="!isRegions" v-model.trim="cityName" placeholder="Найдите свой город" @blur="$forceUpdate()">
+            <span v-if="!isSearched" class="icon search"></span>
+            <span v-show="cityName.length > 0" class="icon clear close2" @click="clear"></span>
+            <span class="icon close2" @click="closeOverlay"></span>
+          </div>
+        </div>
+
+        <div :class='[{ cities: !isRegions, regions: isRegions }]'>
+          <div v-for="(itemCities,index) in isRegions ? regionsHasStock : isSearched ? searchedCities : topTenCities"
+               :key="index" :class='{ current: itemCities.ID === (isRegions ? currentRegion : currentCity).ID }'
+               @click="changeCity(itemCities)">
+            <span v-if="itemCities.ID === (isRegions ? currentRegion : currentCity).ID" class="icon select-city"/>
+
+            <span>
+              <template v-if="isSearched">
+                <div>{{ itemCities.name }}</div>
+                <span class="locality">{{
+                    "districtName" in itemCities ? itemCities.regionName + ", " + itemCities.districtName : itemCities.regionName
+                  }}</span>
+              </template>
+              <template v-else>
+                <span>
+                  {{ itemCities.name }}
+                  <span v-if="isRegions" class="count">{{ "(" + regionsStock[itemCities.ID] || 0 + ")" }}</span>
+                </span>
+              </template>
+            </span>
+            <span v-if="isNotResult">Город не найден</span>
+            <div v-if="isRegions && 0 === regionsHasStock.length" class="no-regions">
+              К сожалению, по Вашему запросу ничего не найдено
+              <span>Попробуйте изменить критерии поиска</span>
+            </div>
+          </div>
+          <div class="cities-info">{{ citiesInfo }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -95,6 +278,7 @@ function watchCities(cityComputed: any) {
 .c-select-city {
   height: 24px;
 }
+
 .c-select-city > button {
   display: flex;
   align-items: center;

@@ -8,6 +8,7 @@ export const useAppStore = defineStore('app', {
         requestCounter: 0,
         params: <any>{},
         isHideMobileFooter: false,
+        isDimMobileFooter: false,
         hideMobileFooterCounter: 0,
     }),
     actions: {
