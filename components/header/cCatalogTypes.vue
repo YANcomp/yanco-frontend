@@ -59,7 +59,7 @@ onMounted(() => {
   if (!props.isMobile) {
     document.addEventListener("scroll", checkScroll)
     window.addEventListener("resize", resize)
-    resize()
+    // resize()
   }
 })
 
