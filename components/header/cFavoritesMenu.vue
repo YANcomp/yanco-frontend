@@ -61,6 +61,7 @@ function image(p: any) {
             <span class="name">
               {{ product.name }}
             </span>
+            <span class="prescription"></span>
             <div v-if="product.price" class="price">
               <template v-if="product.isLoyal">
                 <div>

@@ -66,7 +66,7 @@ watch(
 )
 
 function image(product: any) {
-  return Object(uPrepareProduct)(...product, SIZE_XS, props.params?.cdnURL.url).images[0]
+  return Object(uPrepareProduct)(product, SIZE_XS, props.params?.cdnURL.url).images[0]
 }
 
 function remove(item: any) {
@@ -108,23 +108,26 @@ function addToBasketPoductMightNeed() {
                      height="100%"/>
               </div>
               <span class="name">{{ product.name }}</span>
+              <span class="prescription"></span>
               <div v-if="product.price" class="price">
-                <div>
-                  <template v-if="product.isLoyal">
+
+                <template v-if="product.isLoyal">
+                  <div>
                     <span>По акции</span>
-                    <span class="loyal">
-                      {{ product.price.withCard + " ₽" }}
-                    </span>
-                  </template>
-                  <template v-if="product.isRank">
+                    <span class="loyal">{{ product.price.withCard + " ₽" }}</span>
+                  </div>
+                </template>
+                <template v-if="product.isRank">
+                  <div>
                     <span>Клубная цена</span>
                     <span>{{ product.price.withPeriod + " ₽" }}</span>
-                  </template>
-                  <div>
-                    <span>Цена</span>
-                    <span>{{ product.price.withoutCard + " ₽" }}</span>
                   </div>
+                </template>
+                <div>
+                  <span>Цена</span>
+                  <span>{{ product.price.withoutCard + " ₽" }}</span>
                 </div>
+
               </div>
               <span v-if='"basket" !== route.name' class="icon item-remove" data-tooltip="Удалить из корзины"
                     @click.prevent="remove(product.ID)"/>
@@ -503,19 +506,19 @@ function addToBasketPoductMightNeed() {
   width: 100%
 }
 
-.c-basket-menu > div > div > .total > .buttons > a > .c-button > .caption {
+.c-basket-menu > div > div > .total > .buttons > a > :deep(.c-button) > .caption {
   justify-content: center
 }
 
-.c-basket-menu > div > div > .total > .buttons > a > .c-button > .caption > .c-arrow-svg > div > span:first-of-type {
+.c-basket-menu > div > div > .total > .buttons > a > :deep(.c-button) > .caption > .c-arrow-svg > div > span:first-of-type {
   margin-bottom: 1px
 }
 
-.c-basket-menu > div > div > .total > .buttons > a > .c-button:hover > .caption > .c-arrow-svg > div > span:first-of-type {
+.c-basket-menu > div > div > .total > .buttons > a > :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:first-of-type {
   opacity: 1
 }
 
-.c-basket-menu > div > div > .total > .buttons > a > .c-button:hover > .caption > .c-arrow-svg > div > span:last-of-type {
+.c-basket-menu > div > div > .total > .buttons > a > :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:last-of-type {
   transform: translateX(4px)
 }
 </style>

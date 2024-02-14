@@ -58,9 +58,7 @@ const isAllowDelivery = computed(() => {
   })
 })
 const isDeniedDelivery = computed(() => {
-  // return !(city.value ? city.value.allowDelivery : undefined)
-  //TODO
-  return false
+  return !(city.value ? city.value.allowDelivery : undefined)
 })
 const hasFreeDelivery = computed(() => {
   return amountForFreeShipping.value <= 0 && 0 === deliveryCost.value && void 0 !== params.value.deliveryRules
@@ -148,6 +146,7 @@ const preparedCheckItems = computed(() => {
 
 //TODO MOUNTED
 onMounted(() => {
+
   window.addEventListener("scroll", checkScroll)
 
   let time = (new Date).getTime();
@@ -155,21 +154,12 @@ onMounted(() => {
 })
 //TODO END MOUNTED
 
-const notBasket = () => {
-  notificationsStore.NOTIFICATIONS_UPD({status: "basket"})
-}
-const notFavorites = () => {
-  notificationsStore.NOTIFICATIONS_UPD({status: "favorites"})
-}
-const notCompare = () => {
-  notificationsStore.NOTIFICATIONS_UPD({status: "compare"})
-}
-const notCompareLimit = () => {
-  notificationsStore.NOTIFICATIONS_UPD({status: "compare-limited"})
-}
-const openLogin = () => {
-  useEvent("open-login-or-registration", "login")
-}
+watch(() => city.value, () => {
+  appStore.LOADING_UPD(true)
+  init().finally(() => {
+    appStore.LOADING_UPD(false)
+  })
+})
 
 //TODO METHODS
 function checkScroll() {
@@ -208,6 +198,7 @@ function updateBasketItem(item: any) {
 }
 
 function updateBasketStore(item: any) {
+  //TODO
   basketStore.BASKET_UPD(item)
 }
 
@@ -228,6 +219,19 @@ function search() {
 
 function clearSearchResult() {
   searchResult.value = {}
+}
+
+function init() {
+  return Promise.all([loadBasket(), loadFavorites()]).catch((t) => {
+    console.log(t)
+  })
+}
+
+function loadBasket() {
+  appStore.LOADING_BASKET(true)
+  return loadFromStoreOrLocalStorage("basket", basketStore.BASKET_GET, basketStore.BASKET_UPD).finally(() => {
+    appStore.LOADING_BASKET(false)
+  })
 }
 
 function loadFavorites() {
@@ -255,6 +259,8 @@ function loadFromStoreOrLocalStorage(nameStorage: any, getStorage: Function, upd
     updStorage(Object.values(newStorage))
     return Promise.resolve(newStorage)
   }
+  return Promise.resolve()
+  //TODO
   // var o, r = this;
   // if (void 0 === this.city) return Promise.resolve();
   // var c = this.city.ID,
@@ -311,7 +317,7 @@ function loadFromStoreOrLocalStorage(nameStorage: any, getStorage: Function, upd
 
 <template>
   <div id="app">
-    <LazyUiCSpinner v-if="isLoading"/>
+    <UiCSpinner v-if="isLoading"/>
     <LazyNotificationsCNotifications v-if="notificationsCount > 0"
                                      :notifications="notifications"
                                      :is-mobile="isMobile"
@@ -362,11 +368,10 @@ function loadFromStoreOrLocalStorage(nameStorage: any, getStorage: Function, upd
     <!--    cCurtainProductInPharmacies-->
     <slot/>
 
-    <span @click="loadFavorites">load favorites</span>
     <LazyUiCUpButton v-if="isScrolled && !isMobile" :is-mobile="isMobile"/>
 
-    <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""
-         :src='isMobile ? params?.footerBanners.mobile : params?.footerBanners.desktop'/>
+<!--    <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""-->
+<!--         :src='isMobile ? params?.footerBanners.mobile : params?.footerBanners.desktop'/>-->
     <!--    cChatBot-->
     <LazyPopupnotifCNotifications v-if="isPopupNotifications"
                                   :params="params"

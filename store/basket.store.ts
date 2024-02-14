@@ -8,11 +8,14 @@ export const useBasketStore = defineStore('basket', {
     }),
     //TODO
     actions: {
-        async BASKET_GET(val: boolean) {
+        async BASKET_GET() {
         },
-        async BASKET_UPD(val: boolean) {
+        async BASKET_UPD(basket:any) {
+            //TODO
+            this.items = basket
+            return Promise.resolve()
         },
-        async BASKET_ADD(val: boolean) {
+        async BASKET_ADD() {
         },
     },
     getters: {
