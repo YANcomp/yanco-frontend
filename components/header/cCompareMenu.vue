@@ -33,8 +33,8 @@ const preparedComparisonProducts = computed(() => {
       if (product.productIDs.includes(productComp.ID)) {
         resultProducts.push({
           ...productComp,
-          isLoyal: productComp.price !== undefined && productComp.price.withCard !== productComp.price.withoutCard,
-          isRank: productComp.price !== undefined && productComp.price.withCard !== productComp.price.withoutCard,
+          isLoyal: void 0 !== productComp.price && productComp.price.withCard !== productComp.price.withoutCard,
+          isRank: void 0 !== productComp.price && productComp.price.withPeriod !== productComp.price.withoutCard && productComp.price.withPeriod !== productComp.price.withCard,
           route: {
             name: "Product",
             params: {
@@ -45,17 +45,18 @@ const preparedComparisonProducts = computed(() => {
         })
       }
       return resultProducts
-    })
+    }, [])
 
     result.push({
       category: (category ? category : {}).name,
       products: products
     })
+    return result
   }, [])
 })
 
 function image(product: any) {
-  return Object(uPrepareProduct)(...product, SIZE_XS, props.params?.cdnURL.url).images[0]
+  return Object(uPrepareProduct)(product, SIZE_XS, props.params?.cdnURL.url).images[0]
 }
 
 function remove(item: any) {
@@ -81,8 +82,10 @@ function remove(item: any) {
         <div class="products">
           <div v-for="(category, index) in preparedComparisonProducts" :key="index">
             <span :data-tooltip="category.category">{{ category.category }}</span>
-            <NuxtLink v-for="(product) in category.products" :key="product.ID" :to="product.route"
+
+            <NuxtLink v-for="product in category.products" :key="product.ID" :to="product.route"
                       data-tooltip="Перейти на страницу товара">
+
               <div class="image">
                 <img :alt='product.images ? product.name : "Изображение отсутствует"' :src='image(product)'
                      :data-tooltip='product.images ? product.name : "Изображение отсутствует"' width="100%"
@@ -91,6 +94,7 @@ function remove(item: any) {
               <span class="name">
                 {{ product.name }}
               </span>
+              <span class="prescription"/>
               <div v-if="product.price" class="price">
                 <div>
                   <template v-if="product.isLoyal">
@@ -100,13 +104,15 @@ function remove(item: any) {
                     </span>
                   </template>
                   <template v-if="product.isRank">
-                    <span>Клубная цена</span>
-                    <span>{{ product.price.withPeriod + " ₽" }}</span>
+                    <div>
+                      <span>Клубная цена</span>
+                      <span>{{ product.price.withPeriod + " ₽" }}</span>
+                    </div>
                   </template>
-                  <div>
-                    <span>Цена</span>
-                    <span>{{ product.price.withoutCard + " ₽" }}</span>
-                  </div>
+                </div>
+                <div>
+                  <span>Цена</span>
+                  <span>{{ product.price.withoutCard + " ₽" }}</span>
                 </div>
               </div>
               <span class="icon item-remove" data-tooltip="Удалить из сравнения" @click.prevent="remove(product.ID)"/>
@@ -169,15 +175,15 @@ function remove(item: any) {
   width: 304px
 }
 
-.c-compare-menu > div > div > a > .c-button > .caption {
+.c-compare-menu > div > div > a > :deep(.c-button) > .caption {
   justify-content: center
 }
 
-.c-compare-menu > div > div > a > .c-button:hover > .caption > .c-arrow-svg > div > span:first-of-type {
+.c-compare-menu > div > div > a > :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:first-of-type {
   opacity: 1
 }
 
-.c-compare-menu > div > div > a > .c-button:hover > .caption > .c-arrow-svg > div > span:last-of-type {
+.c-compare-menu > div > div > a > :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:last-of-type {
   transform: translateX(4px)
 }
 

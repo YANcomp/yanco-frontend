@@ -57,7 +57,7 @@ const isBanned = ref(false)
 const isInputCodeDisabled = ref(false)
 
 const isShowDiscountNotice = computed(() => {
-  return appStore.params.isShowDiscountNotice
+  return appStore.isShowDiscountNotice
 })
 const advantagesTitle = computed(() => {
   return "login" === modeRef.value ? "После входа вы сможете:" : "После регистрации вы сможете:"
@@ -337,6 +337,42 @@ function hideErrorCode() {
                                    v-on:error-password-hide="hideErrorPassword"/>
           </UiCTab>
         </UiCTabs>
+        <div v-if='"login" === modeRef && (isOpened || isStatic && isShowInStatic) && "checkout" !== route.name'
+             class="banner"
+             :style='{ backgroundImage: "url(https://pictures.apteka-april.ru/generic/banner_qr/" + (isMobile ? "40340/banner_qr_mob.webp" : "40339/banner_qr_desk.webp") + ")" }'>
+          <span v-if="isShowDiscountNotice" class="icon warning-fill"/>
+        </div>
+        <div v-if="!isStatic" class="advantages">
+          <div>
+            <span>{{ advantagesTitle }}</span>
+            <NuxtLink class="hover-bottom-line" :to='{ name: "loyal" }'>О программе лояльности</NuxtLink>
+          </div>
+          <div>
+            <div>
+              <span class="icon advantages-card"></span>
+              <div>
+                Покупать по выгодным ценам
+                <br>с программой лояльности
+                <br>«Янко»
+              </div>
+            </div>
+            <div>
+              <span class="icon advantages-pharmacy"></span>
+              <div>
+                Сохранять избранные
+                <br>магазины, удобные
+                <br>по расположению
+              </div>
+            </div>
+            <div>
+              <span class="icon advantages-truck"></span>
+              <div>
+                Заказывать товары на дом,
+                <br>оплачивая их онлайн
+              </div>
+            </div>
+          </div>
+        </div>
       </template>
     </div>
   </div>

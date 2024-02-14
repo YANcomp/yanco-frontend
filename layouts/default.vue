@@ -136,7 +136,7 @@ const possiblePrices: any = computed(() => {
   return getPossiblePrices(basketItems.value)
 })
 const totalPrice = computed(() => {
-  return hasLoyalCard && hasPaidPeriod || hasPromoCode ? possiblePrices.withPeriod : hasLoyalCard ? possiblePrices.withCard : possiblePrices.withoutCard
+  return hasLoyalCard.value && hasPaidPeriod.value || hasPromoCode.value ? possiblePrices.value.withPeriod : hasLoyalCard.value ? possiblePrices.value.withCard : possiblePrices.value.withoutCard
 })
 const preparedCheckItems = computed(() => {
   return getPreparedCheckItems()
@@ -146,11 +146,14 @@ const preparedCheckItems = computed(() => {
 
 //TODO MOUNTED
 onMounted(() => {
+  appStore.DISCOUNT_NOTICE_UPD(JSON.parse(localStorage.getItem("isShowDiscountNotice") ? <any>localStorage.getItem("isShowDiscountNotice") : "true"))
 
   window.addEventListener("scroll", checkScroll)
 
   let time = (new Date).getTime();
   isPopupNotifications.value = (time >= Number(localStorage.getItem("noticePrice"))) || (time >= Number(localStorage.getItem("noticeCookie")))
+
+  comparisonStore.COMPARISON_PRODUCTS_GET()
 })
 //TODO END MOUNTED
 
@@ -180,8 +183,8 @@ function getPossiblePrices(basket: any) {
 }
 
 function getAmountForFreeShipping(basket: any) {
-  // TODO return uPossiblePrices(basket)
-  return 1000
+  //TODO
+  return uPossiblePrices(basket)
 }
 
 function getPreparedCheckItems() {
@@ -203,8 +206,41 @@ function updateBasketStore(item: any) {
 }
 
 function getComparisonProducts() {
-  //TODO
-  return []
+  let o = comparisonProductIDs.value.flatMap((p: any) => {
+    return p.productIDs
+  });
+  if (o.length > 0 && o.length !== comparisonProducts.value.length) {
+    //TODO API GET
+    let p = [{
+      "ID": 334932,
+      "categoryID": 277,
+      "slug": "allvit_koenzim_q10_100mg_kapsuly_30",
+      "name": "Gold'n Apotheka Коэнзим Q10 капсулы №30",
+      "price": {"withCard": 1393.0, "withPeriod": 1393.0, "withoutCard": 1990.0},
+      "images": ["86a404f180be07cc5d68d55a3c98bf54.webp"],
+      "isRecipe": false,
+      "imagesSizeXS": ["https://pictures.apteka-april.ru/products/334932/80/86a404f180be07cc5d68d55a3c98bf54.webp"],
+      "imagesSizeS": ["https://pictures.apteka-april.ru/products/334932/208/86a404f180be07cc5d68d55a3c98bf54.webp"]
+    }]
+    comparisonProducts.value = p ? <any>p : [];
+
+    let t = comparisonProducts.value.flatMap( (t:any)=> {
+          return t.ID
+        })
+
+    let e = comparisonProductIDs.value.reduce( (e:any, n:any)=> {
+          let o = <any>[];
+          return n.productIDs.forEach( (e:any)=> {
+            t.includes(e) && o.push(e)
+          }), o.length > 0 && e.push({
+            categoryID: n.categoryID,
+            productIDs: o
+          }), e
+        }, []);
+    comparisonStore.COMPARISON_PRODUCTS_UPD(e)
+  } else {
+    o.length < 1 && (comparisonProducts.value = [])
+  }
 }
 
 function logout() {
@@ -370,8 +406,8 @@ function loadFromStoreOrLocalStorage(nameStorage: any, getStorage: Function, upd
 
     <LazyUiCUpButton v-if="isScrolled && !isMobile" :is-mobile="isMobile"/>
 
-<!--    <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""-->
-<!--         :src='isMobile ? params?.footerBanners.mobile : params?.footerBanners.desktop'/>-->
+    <!--    <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""-->
+    <!--         :src='isMobile ? params?.footerBanners.mobile : params?.footerBanners.desktop'/>-->
     <!--    cChatBot-->
     <LazyPopupnotifCNotifications v-if="isPopupNotifications"
                                   :params="params"
