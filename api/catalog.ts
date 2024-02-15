@@ -8,7 +8,7 @@ class ApiCatalogModule {
     //TODO
     async get() {
         return useAsyncData(
-            'banners',
+            'catalog',
             () => $fetch(`catalog/catalog.json`, {
                 ...this.$opts,
                 method: 'GET',

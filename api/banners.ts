@@ -6,7 +6,7 @@ class ApiBannersModule {
     }
 
     //TODO
-    async get(params: any) {
+    async get(params?: any) {
         return useAsyncData(
             'banners',
             () => $fetch(`banners/banners.json`, {

@@ -1,16 +1,37 @@
 <script lang="ts" setup>
-const route = useRoute()
 const appStore = useAppStore()
+await appStore.BREADCRUMBS_UPD([])
+
+const route = useRoute()
 const citiesStore = useCitiesStore()
 
+
+const groupProducts = ref({})
+const groupProductsCount = ref({})
+const isFailedGettingViewedProducts = ref(false)
+const isFailedGettingSpecialOffers = ref(false)
+const isFailedGettingOurProducts = ref(false)
+const isLoadingOurProducts = ref(false)
+const isLoadingSpecialOffers = ref(false)
+const isLoadingViewedProducts = ref(false)
+const loadingBasketProductIDs = ref([])
+const loadingFavoritesProductIDs = ref([])
+const updatingBasketProductIDs = ref([])
+const isShowProductDay = ref(true)
+const placeholderItems = ref([{}, {}, {}, {}, {}, {}])
+const PREPARED_PRODUCTS_FIELDS = ref(["isInBasket", "isInFavorites"])
+
+const city = computed(() => {
+  return citiesStore.currentCity
+})
+const homeBrands = computed(() => {
+  return params.value.homeBrands ? params.value.homeBrands : []
+})
 const isMobile = computed(() => {
   return appStore.isMobile
 })
-const params = computed(() => {
-  return appStore.params
-})
-const city = computed(() => {
-  return citiesStore.currentCity
+const params:any = computed(() => {
+  return <any>appStore.params
 })
 
 useHead(() => ({
@@ -33,10 +54,32 @@ useSeoMeta({
       'Оформляйте интернет заказ на сайте с доставкой на дом, бронируйте и покупайте в ближайшем магазине. Телефон справочной: ' + params.value.hotlinePhone + "."
 })
 
+
 </script>
 
 <template>
   <main :class="['v-home', {mobile: isMobile}]">
+    <div v-if="homeBrands.length > 0" class="brands">
+      <LazyUiCSlider v-if="homeBrands.length > 0" arrow-size="s" :is-loaded="homeBrands.length > 0"
+                     :is-mobile="isMobile" :item-margin=38 :items-count="homeBrands.length">
+        <NuxtLink v-for="(item) in homeBrands" :key="item.ID" class="brand" :data-tooltip="item.name"
+                  :to='{ name: "Brand", params: { propertyID: item.ID, propertySlug: item.slug } }'>
+          <img :src='item.image' :alt='item.name'/>
+        </NuxtLink>
+      </LazyUiCSlider>
+    </div>
+
+    <div class="banners">
+      <CarouselCCarousel :city="city" :is-mobile="isMobile" :switch-interval="params.carouselSwitchInterval" :params="params"/>
+      <div v-if="!isMobile && isShowProductDay" class="product-of-day">
+        cProductCard
+      </div>
+    </div>
+
+    <div class="stories">
+      cSlider
+    </div>
+
     <CatalogCPopularCategories :city="city"/>
 
     <LazyUiCPharmacyChainAdvantages v-if="!isMobile" :pharmacies-count="7500" :regions-count="70"/>

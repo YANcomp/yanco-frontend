@@ -7,7 +7,7 @@ export const useAppStore = defineStore('app', {
         hideMobileFooterCounter: 0,
         params: <any>{},
         isLoginAttempt: false,
-        breadcrumbs: undefined,
+        breadcrumbs: [],
         isOpenStoryModal: undefined,
         isLoadingUserData: false,
         isHideMobileFooter: false,
@@ -38,6 +38,9 @@ export const useAppStore = defineStore('app', {
         },
         async MOBILE_UPD(val: boolean) {
             this.isMobile = val
+        },
+        async BREADCRUMBS_UPD(val: any) {
+            this.breadcrumbs = val
         },
         async DISCOUNT_NOTICE_UPD(val: boolean) {
             this.isShowDiscountNotice = val
