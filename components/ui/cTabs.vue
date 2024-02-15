@@ -42,6 +42,9 @@ onMounted(() => {
   }, 300)
 })
 
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", resize)
+})
 
 function resize() {
   setTimeout(() => {

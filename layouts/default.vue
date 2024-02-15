@@ -75,10 +75,14 @@ const basketCount = computed(() => {
   return basketStore.basketCount
 })
 const basketItems = computed(() => {
-  return basketStore.items !== undefined ? basketStore.items : []
+  return basketStore.items ? basketStore.items : []
 })
 const isBasketConflict = computed(() => {
   return basketStore.isBasketConflict
+})
+const favoritesItems = computed(() => {
+  return favoritesStore.items ? favoritesStore.items : []
+
 })
 const favoritesCount = computed(() => {
   return favoritesStore.favoritesCount
@@ -148,12 +152,17 @@ const preparedCheckItems = computed(() => {
 onMounted(() => {
   appStore.DISCOUNT_NOTICE_UPD(JSON.parse(localStorage.getItem("isShowDiscountNotice") ? <any>localStorage.getItem("isShowDiscountNotice") : "true"))
 
+  window.addEventListener("storage", changeLocalStorage)
   window.addEventListener("scroll", checkScroll)
 
   let time = (new Date).getTime();
   isPopupNotifications.value = (time >= Number(localStorage.getItem("noticePrice"))) || (time >= Number(localStorage.getItem("noticeCookie")))
 
   comparisonStore.COMPARISON_PRODUCTS_GET()
+})
+onDeactivated(() => {
+  window.removeEventListener("scroll", checkScroll)
+  window.removeEventListener("storage", changeLocalStorage)
 })
 //TODO END MOUNTED
 
@@ -205,6 +214,26 @@ function updateBasketStore(item: any) {
   basketStore.BASKET_UPD(item)
 }
 
+function changeLocalStorage(t: any) {
+  let mFavoritesItems = JSON.stringify(favoritesItems.value),
+      fBasketItems = JSON.stringify(basketItems.value),
+      vComparisonProductIDs = JSON.stringify(comparisonProductIDs.value),
+      VisBasketConflict = "" + isBasketConflict.value,
+      y = t.storageArea?.favorites ? t.storageArea?.favorites : "[]",
+      _ = t.storageArea?.basketLocalStore ? t.storageArea?.basketLocalStore : "[]",
+      I = t.storageArea?.comparisonProducts ? t.storageArea?.comparisonProducts : "[]",
+      A = t.storageArea?.token ? t.storageArea?.token : undefined,
+      C = t.storageArea?.isBasketConflict ? t.storageArea?.isBasketConflict : undefined
+
+  //TODO
+  // if (A !== storeToken)
+
+  "favorites" === t.key && mFavoritesItems !== y && favoritesStore.FAVORITES_UPD(JSON.parse(y))
+  "basketLocalStore" === t.key && fBasketItems !== _ && basketStore.BASKET_UPD(JSON.parse(_))
+  "comparisonProducts" === t.key && vComparisonProductIDs !== I && comparisonStore.COMPARISON_PRODUCTS_GET(JSON.parse(I))
+  // TODO "isBasketConflict" === t.key && undefined !== C && VisBasketConflict !== C && basketStore.CONFLICT(JSON.parse(C))
+}
+
 function getComparisonProducts() {
   let o = comparisonProductIDs.value.flatMap((p: any) => {
     return p.productIDs
@@ -224,19 +253,19 @@ function getComparisonProducts() {
     }]
     comparisonProducts.value = p ? <any>p : [];
 
-    let t = comparisonProducts.value.flatMap( (t:any)=> {
-          return t.ID
-        })
+    let t = comparisonProducts.value.flatMap((t: any) => {
+      return t.ID
+    })
 
-    let e = comparisonProductIDs.value.reduce( (e:any, n:any)=> {
-          let o = <any>[];
-          return n.productIDs.forEach( (e:any)=> {
-            t.includes(e) && o.push(e)
-          }), o.length > 0 && e.push({
-            categoryID: n.categoryID,
-            productIDs: o
-          }), e
-        }, []);
+    let e = comparisonProductIDs.value.reduce((e: any, n: any) => {
+      let o = <any>[];
+      return n.productIDs.forEach((e: any) => {
+        t.includes(e) && o.push(e)
+      }), o.length > 0 && e.push({
+        categoryID: n.categoryID,
+        productIDs: o
+      }), e
+    }, []);
     comparisonStore.COMPARISON_PRODUCTS_UPD(e)
   } else {
     o.length < 1 && (comparisonProducts.value = [])
@@ -414,9 +443,8 @@ function loadFromStoreOrLocalStorage(nameStorage: any, getStorage: Function, upd
                                   :is-mobile="isMobile"/>
     <!--    place-product-price-->
 
-    <!--    TODO favorites pharmacies count-->
     <FooterCFooter :is-mobile="isMobile" :basket-count="basketCount" :city="city" :comparison-count="comparisonCount"
-                   :favorites-count="favoritesCount" :favorites-pharmacies-count="0" :has-loyal-card="hasLoyalCard"
+                   :favorites-count="favoritesCount" :has-loyal-card="hasLoyalCard"
                    :is-authorized="isAuthorized" :is-changed-basket-availability="isChangedBasketAvailability"
                    :is-changed-basket-price="isChangedBasketPrice" :me="me"
                    :params="params"

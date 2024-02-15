@@ -10,10 +10,18 @@ export const useBasketStore = defineStore('basket', {
     actions: {
         async BASKET_GET() {
         },
-        async BASKET_UPD(basket:any) {
+        async BASKET_UPD(basket: any) {
             //TODO
             this.items = basket
             return Promise.resolve()
+        },
+        async mutt_BASKET_UPD(i: any) {
+            var b = (null != i ? i : []).map((t: any) => {
+                return t.isInStock || void 0 === t.priceZakaz || (t.price = t.priceZakaz), t
+            });
+            this.items = b
+            localStorage.setItem("basketLocalStore", JSON.stringify(b))
+            this.newItems = []
         },
         async BASKET_ADD() {
         },

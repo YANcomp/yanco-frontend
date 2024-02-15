@@ -10,6 +10,7 @@ import ApiBasketModule from "~/api/basket";
 import ApiCatalogModule from "~/api/catalog";
 import ApiCitiesModule from "~/api/cities";
 import ApiRegionsModule from "~/api/regions";
+import ApiPopularCategoriesModule from "~/api/popularCategories";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -53,7 +54,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         // periods: U,
         // pharmacies: G,
         // polls: $,
-        // popularCategories: z,
+        popularCategories: new ApiPopularCategoriesModule(opts),
         // productCategories: H,
         // productGroups: W,
         // productOfDay: Q,

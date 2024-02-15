@@ -1,12 +1,16 @@
 <script lang="ts" setup>
 const route = useRoute()
 const appStore = useAppStore()
+const citiesStore = useCitiesStore()
 
 const isMobile = computed(() => {
   return appStore.isMobile
 })
 const params = computed(() => {
   return appStore.params
+})
+const city = computed(() => {
+  return citiesStore.currentCity
 })
 
 useHead(() => ({
@@ -33,6 +37,7 @@ useSeoMeta({
 
 <template>
   <main :class="['v-home', {mobile: isMobile}]">
+    <CatalogCPopularCategories :city="city"/>
 
     <LazyUiCPharmacyChainAdvantages v-if="!isMobile" :pharmacies-count="7500" :regions-count="70"/>
   </main>

@@ -5,8 +5,11 @@ export const useComparisonProductsStore = defineStore('comparisonProducts', {
         list: [],
     }),
     actions: {
-        async COMPARISON_PRODUCTS_GET() {
-            this.list = JSON.parse(localStorage.getItem("comparisonProducts") !== undefined ? <any>localStorage.getItem("comparisonProducts") : "[]");
+        async COMPARISON_PRODUCTS_GET(list?:any) {
+            if (list) {
+                return this.list = list
+            }
+            this.list = JSON.parse(localStorage.getItem("comparisonProducts") !== null ? <any>localStorage.getItem("comparisonProducts") : "[]");
         },
         async COMPARISON_PRODUCTS_UPD(val: any) {
             if (val.length < 1) {

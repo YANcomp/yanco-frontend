@@ -4,19 +4,22 @@ const router = useRouter()
 
 const props = defineProps({
   basketCount: {
-    type: Number
+    type: Number,
+    default: 0
   },
   city: {
     type: <any>Object
   },
   comparisonCount: {
-    type: Number
+    type: Number,
+    default: 0
   },
   comparisonProductIDs: {
     type: Array
   },
   favoritesCount: {
-    type: Number
+    type: Number,
+    default: 0
   },
   favoritesPharmaciesCount: {
     type: Number
@@ -59,10 +62,26 @@ watch(
 );
 
 onMounted(() => {
+  window.addEventListener("resize", resize)
   resize()
 })
 
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", resize)
+})
+
 const appStore = useAppStore()
+
+const hasBasketItems = computed(() => {
+  return props.basketCount > 0
+})
+const hasComparison = computed(() => {
+  return props.comparisonCount > 0
+})
+const hasFavoritesItems = computed(() => {
+  return props.favoritesCount > 0
+})
+
 const isHide = computed(() => {
   return appStore.isHideMobileFooter
 })
@@ -106,7 +125,6 @@ function openChatBot() {
   //TODO openChatBot
 }
 
-// const emit = defineEmits(["open-login-or-registration"])
 function openLoginOrRegistration(val: string) {
   new RegExp(["account", "checkout", "login-or-registration"].join("|"), "i").test(route.name ? <string>route.name : "") ? closeSideBar() : useEvent("open-login-or-registration", val)
 }
@@ -137,7 +155,7 @@ function openLoginOrRegistration(val: string) {
               </UiCButton>
             </li>
             <li>
-              <NuxtLink to="/" class="image">
+              <NuxtLink :to='{ name: "loyal" }' class="image">
                 <span>Программа лояльности «Янко»</span>
                 <img src="https://pictures.apteka-april.ru/generic/programma-loyalnosti.png" width="100%" height="57px"
                      alt=""/>
@@ -156,6 +174,18 @@ function openLoginOrRegistration(val: string) {
             <li>
               <NuxtLink :to='{name:"help"}'>
                 Как сделать заказ
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink class="favorites" :to='{name:"favorites"}'>
+                Избранное
+                <span v-if="hasFavoritesItems" class="count">{{ "(" + favoritesCount + ")" }}</span>
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink class="compare" :to='{name:"compare"}'>
+                В сравнении
+                <span v-if="hasComparison" class="count">{{ "(" + comparisonCount + ")" }}</span>
               </NuxtLink>
             </li>
             <li>
@@ -222,33 +252,30 @@ function openLoginOrRegistration(val: string) {
             <span>Меню</span>
           </button>
         </li>
-        <li v-if="!hasLoyalCard">
-          <NuxtLink to="/">
+        <li>
+          <NuxtLink :to='{ name: "catalog" }'>
             <span class="icon catalog"/>
             <span>Каталог</span>
           </NuxtLink>
         </li>
         <li class="stock">
-          <NuxtLink to="/">
+          <NuxtLink :to='{ name: "Stock" }'>
             <span class="icon flame"/>
             <span class="icon flame-internal"/>
             <span>Акции</span>
           </NuxtLink>
         </li>
-        <li v-if="hasLoyalCard">
-          <!--          TODO hasLoyalCard staticClass: "barcode", -->
-        </li>
         <li>
-          <NuxtLink to="/">
+          <NuxtLink :to='{ name: "favorites" }'>
             <span class="icon heart-outline-bold"/>
-            <!--            TODO cBadge-->
+            <UiCBadge v-if="hasFavoritesItems" :count="favoritesCount"/>
             <span>Избранное</span>
           </NuxtLink>
         </li>
         <li>
           <div @click="openBasket">
             <span class="icon basket2"/>
-            <!--            TODO cBadge-->
+            <UiCBadge v-if="hasBasketItems" :count="basketCount"/>
             <span>Корзина</span>
           </div>
         </li>
@@ -395,7 +422,7 @@ function openLoginOrRegistration(val: string) {
   position: relative
 }
 
-.c-footer-mobile > div > .side-bar > .navigation > .socials:after, .c-footer-mobile > div > .side-bar > .navigation > ul:after {
+.c-footer-mobile > div > .side-bar > .navigation > ul:after {
   content: "";
   position: absolute;
   left: 0;
