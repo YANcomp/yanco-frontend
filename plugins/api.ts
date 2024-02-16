@@ -12,6 +12,7 @@ import ApiCitiesModule from "~/api/cities";
 import ApiRegionsModule from "~/api/regions";
 import ApiPopularCategoriesModule from "~/api/popularCategories";
 import ApiStoriesModule from "~/api/stories";
+import ApiProductGroupsModule from "~/api/productGroups";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -58,7 +59,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         // polls: $,
         popularCategories: new ApiPopularCategoriesModule(opts),
         // productCategories: H,
-        // productGroups: W,
+        productGroups: new ApiProductGroupsModule(opts),
         // productOfDay: Q,
         // productPropertyTypes: Y,
         // products: Z,

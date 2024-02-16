@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+
 const appStore = useAppStore()
 await appStore.BREADCRUMBS_UPD([])
 
 const route = useRoute()
 const citiesStore = useCitiesStore()
 const storiesStore = useStoriesStore()
+const productGroupsStore = useProductGroupsStore()
 const notificationsStore = useNotificationsStore()
 
 const groupProducts = ref({})
@@ -37,46 +39,60 @@ const params: any = computed(() => {
 const stories = computed(() => {
   return storiesStore.stories
 })
-const productGroups = computed(()=>{
-  return [{},{},{},{},{}]
-  // var t, e = this,
-  //     o = h.c.clone(null !== (t = this.$store.state.productGroups.groups) && void 0 !== t ? t : []);
-  // return o.reduce((function (t, o) {
-  //   var n, d = $($({}, o), {}, {
-  //     route: "product_of_month" === o.slug ? {
-  //       name: "CatalogType",
-  //       params: {
-  //         typeID: "400221",
-  //         typeSlug: "detskoe_pitanie"
-  //       }
-  //     } : "all_stock" === o.slug ? {
-  //       name: "Stock",
-  //       params: {
-  //         slug: "all_stock"
-  //       }
-  //     } : "site_discounts" === o.slug ? {
-  //       name: "Stock",
-  //       params: {
-  //         slug: "site_discounts"
-  //       }
-  //     } : "special_offer" === o.slug ? {
-  //       name: "Stock",
-  //       params: {
-  //         slug: "special_offer"
-  //       }
-  //     } : {
-  //       name: "PopularCategories",
-  //       params: {
-  //         popularCategory: null !== (n = o.slug) && void 0 !== n ? n : ""
-  //       }
-  //     },
-  //     name: "special_offer" === o.slug ? "Спецпредложения" : "product_of_month" === o.slug ? "Детское питание" : o.name
-  //   });
-  //   return [].concat(Object(r.a)(e.params.stockWithCategories || []), ["partner_cards"]).includes(o.slug) || t.push(d), t
-  // }), [])
+const productGroups = computed(() => {
+  let o = productGroupsStore.groups
+  return o.reduce((result: any, item: any) => {
+    let d = {
+      ...item,
+      route: "product_of_month" === item.slug ? {
+        name: "CatalogType",
+        params: {
+          typeID: "400221",
+          typeSlug: "detskoe_pitanie"
+        }
+      } : "all_stock" === item.slug ? {
+        name: "Stock",
+        params: {
+          slug: "all_stock"
+        }
+      } : "site_discounts" === item.slug ? {
+        name: "Stock",
+        params: {
+          slug: "site_discounts"
+        }
+      } : "special_offer" === item.slug ? {
+        name: "Stock",
+        params: {
+          slug: "special_offer"
+        }
+      } : {
+        name: "PopularCategories",
+        params: {
+          popularCategory: item.slug !== undefined ? item.slug : ""
+        }
+      },
+      name: "special_offer" === item.slug ? "Спецпредложения" : "product_of_month" === item.slug ? "Детское питание" : item.name
+    }
+    let i = [...params.value.stockWithCategories, "partner_cards"]
+    if (!i.includes(item.slug)) {
+      result.push(d)
+    }
+    return result
+  }, [])
 })
 
 onMounted(() => {
+  if (productGroups.value.length < 1) {
+    loadProductGroups().catch((e: any) => {
+      notificationsStore.NOTIFICATIONS_UPD({
+        title: "Произошла ошибка",
+        desc: e,
+        status: "error"
+      })
+      loadProductGroups()
+    })
+  }
+
   if (stories.value.length < 1) {
     loadStories().catch((e: any) => {
       notificationsStore.NOTIFICATIONS_UPD({
@@ -91,6 +107,10 @@ onMounted(() => {
 
 function loadStories() {
   return storiesStore.GET()
+}
+
+function loadProductGroups() {
+  return productGroupsStore.GET()
 }
 
 useHead(() => ({
@@ -127,7 +147,7 @@ useSeoMeta({
     </div>
 
     <div class="banners">
-      <CarouselCCarousel :city="city" :is-mobile="isMobile" :switch-interval="params.carouselSwitchInterval"
+      <CarouselCCarousel :city="city" :is-mobile="isMobile" :switch-interval="params?.carouselSwitchInterval"
                          :params="params"/>
       <div v-if="!isMobile && isShowProductDay" class="product-of-day">
         cProductCard
@@ -143,17 +163,36 @@ useSeoMeta({
         <p>Акции</p>
         <NuxtLink v-for="(item, index) in productGroups.length > 0 ? productGroups : [{}, {}, {}, {}, {}]" :key="index"
                   :class="{ empty: void 0 === item.ID }" :to="item.route || {}">
-          <div v-if='"all_stock" === item.slug'>
+          <template v-if='"all_stock" === item.slug'>
+            <div>
+              <span class="icon stock"/>
+              <span>Все акции</span>
+            </div>
+          </template>
+          <template v-else>
+            <span :class='["name", { "loading-content": void 0 === item.ID }]'>{{ item.name || "" }}</span>
+            <UiCArrowSVG v-if="productGroups.length > 0" :class='"all_stock" === item.slug ? "bottom-right" : ""'
+                         :hover-color='"all_stock" === item.slug ? "#ff0089" : "#4960DF"' size="s"/>
+          </template>
+        </NuxtLink>
+      </div>
+    </div>
+
+    <div v-if="isMobile" class="stock">
+      <NuxtLink v-for="(item, index) in productGroups.length > 0 ? productGroups : [{}, {}, {}, {}, {}]" :key="index"
+                :class="{ empty: void 0 === item.ID }" :to="item.route || {}">
+        <template v-if='"all_stock" === item.slug'>
+          <div>
             <span class="icon stock"/>
             <span>Все акции</span>
           </div>
-          <span v-else :class='["name", { "loading-content": void 0 === item.ID }]'>
-            {{ item.name || "" }}
-          </span>
-          <UiCArrowSVG v-if="productGroups.length > 0" :class='"all_stock" === item.slug ? "bottom-right" : ""'
-                       :hover-color='"all_stock" === item.slug ? "#ff0089" : "#4960DF"' size="s"/>
-        </NuxtLink>
-      </div>
+          <span class="icon arrow-bottom"/>
+        </template>
+        <template v-else>
+          <span :class='["name", { "loading-content": void 0 === item.ID }]'>{{ item.name || "" }}</span>
+          <span class="icon arrow-right2"/>
+        </template>
+      </NuxtLink>
     </div>
 
     <CatalogCPopularCategories :city="city"/>

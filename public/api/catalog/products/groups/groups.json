@@ -1,0 +1,27 @@
+[
+  {
+    "ID": 5,
+    "name": "Специальное предложение",
+    "slug": "special_offer"
+  },
+  {
+    "ID": 4,
+    "name": "Товар месяца",
+    "slug": "product_of_month"
+  },
+  {
+    "ID": 1,
+    "name": "Покупают сегодня",
+    "slug": "buy_today"
+  },
+  {
+    "ID": 3,
+    "name": "Скидки по картам партнёров",
+    "slug": "partner_cards"
+  },
+  {
+    "ID": 18,
+    "name": "Акции для сайта",
+    "slug": "site_discounts"
+  }
+]

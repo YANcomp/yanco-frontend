@@ -121,7 +121,7 @@ function setTypeID(val: any) {
         <div v-if="hasCurrentSubtype" class="categories scrollbar">
           <ul>
             <li v-for="(category, index) in currentSubtype.categories" :key="index">
-              <nuxt-link :to="category.route">{{ category.name }}</nuxt-link>
+              <NuxtLink :to="category.route">{{ category.name }}</NuxtLink>
             </li>
           </ul>
         </div>

@@ -448,7 +448,7 @@ function changeViewedStories() {
     <!--    cBreadcrumbs-->
     <!--    cCurtainProductInPharmacies-->
     <slot/>
-
+   
     <LazyUiCUpButton v-if="isScrolled && !isMobile" :is-mobile="isMobile"/>
 
     <!--    <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""-->

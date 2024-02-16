@@ -94,19 +94,19 @@ function reset() {
 }
 
 function movement() {
-  if (props.itemsCount > 2) {
-    if (isShowArrows.value && !isMovementWas.value && !props.isMobile) {
-      let items = itemsRef.value,
-          firstChild = items.firstChild,
-          lastChild = items.lastChild;
-      null !== lastChild && null !== firstChild && (items.removeChild(lastChild), items.insertBefore(lastChild, firstChild), isMovementWas.value = true)
-    }
-    if ((!isShowArrows.value || props.isMobile) && isMovementWas.value) {
-      let items = itemsRef.value,
-          firstChild = items.firstChild;
-      null !== firstChild && (items.removeChild(firstChild), items.appendChild(firstChild), isMovementWas.value = false)
-    }
-  }
+  // if (props.itemsCount > 2) {
+  //   if (isShowArrows.value && !isMovementWas.value && !props.isMobile) {
+  //     let items = itemsRef.value,
+  //         firstChild = items.querySelector(".c-story-card:first-child"),
+  //         lastChild = items.querySelector(".c-story-card:last-child");
+  //     null !== lastChild && null !== firstChild && (items.removeChild(lastChild), items.insertBefore(lastChild, firstChild), isMovementWas.value = true, console.log(items))
+  //   }
+  //   if ((!isShowArrows.value || props.isMobile) && isMovementWas.value) {
+  //     let items = itemsRef.value,
+  //         firstChild = items.firstChild;
+  //     null !== firstChild && (items.removeChild(firstChild), items.appendChild(firstChild), isMovementWas.value = false)
+  //   }
+  // }
 }
 
 function resize() {
@@ -145,8 +145,7 @@ function prev() {
   <div :class='["c-slider", { mobile: isMobile }]'>
     <LazyUiCArrowSVG v-if="!isMobile && isShowArrows" class="prev" :size="arrowSize" mode="circle" @click="prev"/>
     <div ref="carouselRef" class="carousel">
-      <div ref="itemsRef" class="list"
-           :style='{ "margin-left": isShowArrows && !isMobile && itemsCount > 2 ? "-" + itemWidth + "px" : 0 }'>
+      <div ref="itemsRef" class="list">
         <slot/>
       </div>
     </div>
