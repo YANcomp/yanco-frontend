@@ -4,7 +4,8 @@ await appStore.BREADCRUMBS_UPD([])
 
 const route = useRoute()
 const citiesStore = useCitiesStore()
-
+const storiesStore = useStoriesStore()
+const notificationsStore = useNotificationsStore()
 
 const groupProducts = ref({})
 const groupProductsCount = ref({})
@@ -30,9 +31,29 @@ const homeBrands = computed(() => {
 const isMobile = computed(() => {
   return appStore.isMobile
 })
-const params:any = computed(() => {
+const params: any = computed(() => {
   return <any>appStore.params
 })
+const stories = computed(() => {
+  return storiesStore.stories
+})
+
+onMounted(() => {
+  if (stories.value.length < 1) {
+    loadStories().catch((e: any) => {
+      notificationsStore.NOTIFICATIONS_UPD({
+        title: "Произошла ошибка",
+        desc: e,
+        status: "error"
+      })
+      loadStories()
+    })
+  }
+})
+
+function loadStories() {
+  return storiesStore.GET()
+}
 
 useHead(() => ({
   link: [
@@ -53,8 +74,6 @@ useSeoMeta({
   ogDescription: 'Удобный поиск, низкие цены и широкий ассортимент косметики в магазинах YBeauty. ' +
       'Оформляйте интернет заказ на сайте с доставкой на дом, бронируйте и покупайте в ближайшем магазине. Телефон справочной: ' + params.value.hotlinePhone + "."
 })
-
-
 </script>
 
 <template>
@@ -70,14 +89,18 @@ useSeoMeta({
     </div>
 
     <div class="banners">
-      <CarouselCCarousel :city="city" :is-mobile="isMobile" :switch-interval="params.carouselSwitchInterval" :params="params"/>
+      <CarouselCCarousel :city="city" :is-mobile="isMobile" :switch-interval="params.carouselSwitchInterval"
+                         :params="params"/>
       <div v-if="!isMobile && isShowProductDay" class="product-of-day">
         cProductCard
       </div>
     </div>
 
     <div class="stories">
-      cSlider
+      <UiCSlider :is-mobile="isMobile" :item-margin="20" :is-loaded="stories.length > 0" :items-count="stories.length">
+        <StoriesCStoryCard v-for="(item,index) in stories.length > 0 ? stories : placeholderItems" :key="index"
+                           :story="item"/>
+      </UiCSlider>
     </div>
 
     <CatalogCPopularCategories :city="city"/>

@@ -63,16 +63,48 @@ function getRoute(val: any) {
   }
 }
 
-function mouseDown(val: any) {
-  //TODO
+function mouseDown(key: any) {
+  if (!(startItemCount.value < capacity.value)) {
+    let e = key.changedTouches ? key.changedTouches[0] : key;
+    isMouseDowned.value = true
+    startLeft.value = e.pageX
+    currentLeft.value = startLeft.value
+    document.addEventListener("mouseup", mouseUp)
+    document.addEventListener("touchend", mouseUp)
+    document.addEventListener("mousemove", mouseMove)
+    document.addEventListener("touchmove", mouseMove)
+    document.body.style.userSelect = "none"
+  }
 }
 
-function mouseMove(val: any) {
-  //TODO
+function mouseMove(key: any) {
+  nextTick(() => {
+    let r, n = carouselRef.value,
+        o = key.target;
+    if (n.contains(o)) {
+      let c = null !== (r = slidesRef.value.children) && void 0 !== r ? r : [],
+          l = (key.changedTouches ? key.changedTouches[0] : key).pageX;
+      l != currentLeft.value && (isDragging.value = true, currentLeft.value = l), itemWidth.value = c[0].offsetWidth + 2 * itemMargins.value
+    }
+  })
 }
 
 function mouseUp() {
-  //TODO
+  let t, e, r = -left.value;
+  if (isDragging.value) {
+    let n = left.value > 0 && 0 === itemIndex.value,
+        o = (null !== (t = currentLeft.value) && void 0 !== t ? t : 0) < (null !== (e = startLeft.value) && void 0 !== e ? e : 0) && itemIndex.value + 1 === itemCount.value;
+    n || o || (itemIndex.value = Math.round(Math.abs(r) / itemWidth.value) > 0 ? Math.round(Math.abs(r) / itemWidth.value) : 0)
+  }
+  isMouseDowned.value = false
+  isDragging.value = false
+  currentLeft.value = null
+  startLeft.value = null
+  document.removeEventListener("mouseup", mouseUp)
+  document.removeEventListener("touchend", mouseUp)
+  document.removeEventListener("mousemove", mouseMove)
+  document.removeEventListener("touchmove", mouseMove)
+  document.body.style.userSelect = ""
 }
 
 function next() {
@@ -88,8 +120,9 @@ function setSwitchTimeout() {
 </script>
 
 <template>
-  <div class="c-carousel-mobile">
-    <div ref="carouselRef" :class='["carousel", { dragging: isDragging && isMouseDowned }]' v-on:mousedown="mouseDown"
+  <div :class='["c-carousel-mobile", { "loading-content": items.length <= 1 }]'>
+    <div v-if="currentItem" ref="carouselRef" :class='["carousel", { dragging: isDragging && isMouseDowned }]'
+         v-on:mousedown="mouseDown"
          v-on:touchstart="mouseDown">
       <div ref="slidesRef" class="slides" :style='{ left: left + "px" }'>
         <div v-for="(item, index) in items" :key="index">
@@ -97,7 +130,7 @@ function setSwitchTimeout() {
                :style='{ backgroundImage: "url(" + item.imageMobile + ")" }'
                v-on:dragstart="(t)=>{if (t.preventDefault(), t.target !== t.currentTarget) return null}"
                v-on:click="getRoute(item.targetAddress)"/>
-          <div v-else class="loading-content"/>
+          <div v-else class="image loading-content"/>
         </div>
       </div>
     </div>

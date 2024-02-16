@@ -11,6 +11,7 @@ import ApiCatalogModule from "~/api/catalog";
 import ApiCitiesModule from "~/api/cities";
 import ApiRegionsModule from "~/api/regions";
 import ApiPopularCategoriesModule from "~/api/popularCategories";
+import ApiStoriesModule from "~/api/stories";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -34,6 +35,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         babyFood: new ApiBabyFoodModule(opts),
         banners: new ApiBannersModule(opts),
         basket: new ApiBasketModule(opts),
+        stories: new ApiStoriesModule(opts),
         // bindings: A,
         // bloggers: C,
         // brandAnalogs: S,
@@ -68,7 +70,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         // reviews: it,
         // search: nt,
         // sessions: ot,
-        // stories: st,
         // subscribe: at,
         // summary: summary,
         // surveys: ct,

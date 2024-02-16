@@ -8,6 +8,7 @@ const comparisonStore = useComparisonProductsStore()
 const meStore = useMeStore()
 const citiesStore = useCitiesStore()
 const regionsStore = useRegionsStore()
+const storiesStore = useStoriesStore()
 const route = useRoute()
 const notificationsStore = useNotificationsStore()
 
@@ -145,7 +146,12 @@ const totalPrice = computed(() => {
 const preparedCheckItems = computed(() => {
   return getPreparedCheckItems()
 })
-
+const isOpenStoryModal = computed(() => {
+  return appStore.isOpenStoryModal
+})
+const stories = computed(() => {
+  return storiesStore.stories ? storiesStore.stories : []
+})
 //TODO END COMPUTED
 
 //TODO MOUNTED
@@ -159,6 +165,8 @@ onMounted(() => {
   isPopupNotifications.value = (time >= Number(localStorage.getItem("noticePrice"))) || (time >= Number(localStorage.getItem("noticeCookie")))
 
   comparisonStore.COMPARISON_PRODUCTS_GET()
+
+  changeViewedStories()
 })
 onDeactivated(() => {
   window.removeEventListener("scroll", checkScroll)
@@ -377,6 +385,11 @@ function loadFromStoreOrLocalStorage(nameStorage: any, getStorage: Function, upd
   // }))
 }
 
+function changeViewedStories() {
+  let t = JSON.parse(localStorage.getItem("viewedStoriesIDs") || "[]");
+  storiesStore.CHANGE_VIEWED_STORIES(t)
+}
+
 //TODO END METHODS
 </script>
 
@@ -426,7 +439,10 @@ function loadFromStoreOrLocalStorage(nameStorage: any, getStorage: Function, upd
 
     <!--    cOrderCarousel-->
     <HeaderCCatalogTypes :city="city" :is-mobile="isMobile"/>
-    <!--    cStoryModal-->
+
+    <StoriesCStoryModal :is-open-story-modal="isOpenStoryModal" :stories="stories" :params="params"
+                        v-on:viewed-stories-change="changeViewedStories"/>
+
     <UserCLoginOrRegistration :is-mobile="isMobile"/>
     <!--    cQRPaymentModal-->
     <!--    cBreadcrumbs-->

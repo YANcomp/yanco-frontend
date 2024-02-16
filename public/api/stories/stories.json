@@ -1,0 +1,338 @@
+[
+  {
+    "ID": 245,
+    "preview": "https://pictures.apteka-april.ru/stories/245/Image_cover.webp",
+    "title": "Электронная торговая площадка ГК «Апрель»",
+    "isActive": true,
+    "isActiveMobile": false,
+    "slides": [
+      {
+        "ID": 477,
+        "delay": 5000,
+        "caption": "Электронная торговая площадка ГК «Апрель»",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/477/image_1.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 478,
+        "delay": 5000,
+        "target": "https://torg.apteka-april.ru/",
+        "btnText": "Подробнее",
+        "content": "Приглашаем партнеров для сотрудничества на собственную электронную торговую площадку.",
+        "btnStyle": "primary",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/478/image_2.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 479,
+        "delay": 5000,
+        "target": "https://torg.apteka-april.ru/",
+        "btnText": "Подробнее",
+        "content": "Сервис предназначен для проведения торгов, осуществления сделок купли-продажи и размещения прочей информации в электронной форме.",
+        "btnStyle": "primary",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/479/image_3.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 480,
+        "delay": 5000,
+        "target": "https://torg.apteka-april.ru/",
+        "btnText": "Подробнее",
+        "content": "Электронная торговая площадка «Апрель» - это удобный, современный и надежный инструмент честного взаимодействия.",
+        "btnStyle": "primary",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/480/image_4.webp",
+        "isHideShadowBottom": false
+      }
+    ]
+  },
+  {
+    "ID": 253,
+    "preview": "https://pictures.apteka-april.ru/stories/253/Image_cover.webp",
+    "title": "Выгодный выбор в категории товара!",
+    "isActive": true,
+    "isActiveMobile": false,
+    "slides": [
+      {
+        "ID": 501,
+        "delay": 5000,
+        "content": "Выгодный выбор в категории товара!",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/501/image_1.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 502,
+        "delay": 5000,
+        "content": "1. Найдите интересующий вас товар.",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/502/image_2.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 503,
+        "delay": 5000,
+        "content": "2. Нажмите на «Выбрать в категории» на карточке товара.",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/503/image_3.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 504,
+        "delay": 5000,
+        "content": "3. Ознакомьтесь с выгодными аналогами или с другими товарами со схожими свойствами до покупки.",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/504/image_4.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 505,
+        "delay": 5000,
+        "target": "https://apteka-april.ru/catalog",
+        "btnText": "Перейти в каталог",
+        "content": "4. Оформляйте заказ недорогих и качественных аналогов в категории!",
+        "btnStyle": "primary",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/505/image_5.webp",
+        "isHideShadowBottom": false
+      }
+    ]
+  },
+  {
+    "ID": 259,
+    "preview": "https://pictures.apteka-april.ru/stories/259/1_1.webp",
+    "title": "Как лечиться в сезон простуд?",
+    "isActive": true,
+    "isActiveMobile": false,
+    "slides": [
+      {
+        "ID": 513,
+        "delay": 5000,
+        "target": "https://apteka-april.ru/blog/intresting-and-useful/427-kompleksnoe_lechenie_v_sezon_prostud_i_virusov_grippa",
+        "btnText": "ПОДРОБНЕЕ",
+        "caption": "Как лечиться в сезон простуд?",
+        "btnStyle": "primary",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/513/1_2.webp",
+        "isHideShadowBottom": false
+      }
+    ]
+  },
+  {
+    "ID": 247,
+    "preview": "https://pictures.apteka-april.ru/stories/247/Image_cover.webp",
+    "title": "Как оплатить заказ через СБП? ",
+    "isActive": true,
+    "isActiveMobile": false,
+    "slides": [
+      {
+        "ID": 487,
+        "delay": 5000,
+        "caption": "Как оплатить заказ через СБП?",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/487/image_1.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 488,
+        "delay": 5000,
+        "content": "1. При выборе способа оплаты заказа нажмите на «Оплата через СБП».",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/488/image_2.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 489,
+        "delay": 5000,
+        "content": "2. Выберите банковское приложение для оплаты или отсканируйте QR-код с помощью камеры смартфона.",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/489/image_3.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 490,
+        "delay": 5000,
+        "content": "3. Подтвердите оплату в приложении выбранного банка. ",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/490/image_4.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 491,
+        "delay": 5000,
+        "content": "Оплачивайте покупки быстро и безопасно с системой быстрых платежей!",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/491/image_5.webp",
+        "isHideShadowBottom": false
+      }
+    ]
+  },
+  {
+    "ID": 30,
+    "preview": "https://pictures.apteka-april.ru/stories/30/stories.webp",
+    "title": "Арендуем ваше\u003cbr\u003e\nпомещение на\u003cbr\u003e\nдлительный срок",
+    "isActive": true,
+    "isActiveMobile": false,
+    "slides": [
+      {
+        "ID": 101,
+        "delay": 5000,
+        "target": "https://apteka-april.ru/landlords",
+        "btnText": "подробнее",
+        "content": "Арендуем ваше помещение на длительный срок",
+        "btnStyle": "primary",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/101/stories1.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 102,
+        "delay": 5000,
+        "target": "https://apteka-april.ru/landlords",
+        "btnText": "подробнее",
+        "content": "Сеть «Апрель» открыта к предложениям по аренде помещений под новые аптеки на длительный срок.",
+        "btnStyle": "primary",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/102/2.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 103,
+        "delay": 5000,
+        "target": "https://apteka-april.ru/landlords",
+        "btnText": "подробнее",
+        "content": "Сотрудничество с нами гарантирует вам стабильность, взаимовыгодные условия и своевременные выплаты.",
+        "btnStyle": "primary",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/103/3.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 104,
+        "delay": 5000,
+        "target": "https://apteka-april.ru/landlords",
+        "btnText": "подробнее",
+        "caption": "\u003cp style=\"font-size: 20px;\"\u003eОбращайтесь по телефону:\u003cbr\u003e\n+7 (938) 111-51-11\u003c/p\u003e",
+        "btnStyle": "primary",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/104/13424.webp",
+        "contentFontSize": "20",
+        "isHideShadowBottom": false
+      }
+    ]
+  },
+  {
+    "ID": 27,
+    "preview": "https://pictures.apteka-april.ru/stories/27/Image_cover.webp",
+    "title": "Откажись от \u003cbr\u003e\nбумажных чеков \u003cbr\u003e\nс «Апрель»!",
+    "isActive": true,
+    "isActiveMobile": false,
+    "slides": [
+      {
+        "ID": 86,
+        "delay": 5000,
+        "caption": "Откажись от \u003cbr\u003e\nбумажных чеков \u003cbr\u003e\nс «Апрель»!",
+        "content": "Как отказаться от печати чеков и получать их на электронную почту?",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/86/image_1.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 87,
+        "delay": 5000,
+        "content": "Зайдите в Личном кабинете в раздел «Настойки»",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/87/image_2.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 88,
+        "delay": 5000,
+        "content": "Добавьте Email и подтвердите его",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/88/image_3.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 89,
+        "delay": 5000,
+        "content": "Поставьте галочку возле «Получать электронные чеки на Email»",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/89/image_4.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 90,
+        "delay": 5000,
+        "content": "Теперь вместо бумажных чеков на кассе вы будете получать электронные чеки на Email!",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/90/image_5.webp",
+        "isHideShadowBottom": false
+      }
+    ]
+  },
+  {
+    "ID": 97,
+    "preview": "https://pictures.apteka-april.ru/stories/97/Image_cover.webp",
+    "title": "Что такое подписка «Апрель»?",
+    "isActive": true,
+    "isActiveMobile": false,
+    "slides": [
+      {
+        "ID": 263,
+        "delay": 5000,
+        "caption": "Что такое подписка «Апрель»?",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/263/11111111111111111111.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 264,
+        "delay": 5000,
+        "target": "https://apteka-april.ru/account/subscription?utm_source=site\u0026utm_medium=stories",
+        "btnText": "ОФОРМИТЬ ПОДПИСКУ",
+        "content": "Постоянный доступ к клубным ценам",
+        "btnStyle": "crimson",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/264/2222222222.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 265,
+        "delay": 5000,
+        "target": "https://apteka-april.ru/account/subscription?utm_source=site\u0026utm_medium=stories",
+        "btnText": "ОФОРМИТЬ ПОДПИСКУ",
+        "content": "Больше не надо помнить о дате завершения периода",
+        "btnStyle": "crimson",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/265/imag3.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 266,
+        "delay": 5000,
+        "target": "https://apteka-april.ru/account/subscription?utm_source=site\u0026utm_medium=stories",
+        "btnText": "ОФОРМИТЬ ПОДПИСКУ",
+        "content": "Быстрая окупаемость. Оплаченные периоды по карте окупаются в среднем уже после 2-ой покупки",
+        "btnStyle": "crimson",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/266/imag4.webp",
+        "isHideShadowBottom": false
+      },
+      {
+        "ID": 267,
+        "delay": 5000,
+        "target": "https://apteka-april.ru/account/subscription?utm_source=site\u0026utm_medium=stories",
+        "btnText": "ОФОРМИТЬ ПОДПИСКУ",
+        "content": "Уникальные предложения для пользователей подписки",
+        "btnStyle": "crimson",
+        "textPosition": "bottom",
+        "backgroundImage": "https://pictures.apteka-april.ru/slides/267/imag5.webp",
+        "isHideShadowBottom": false
+      }
+    ]
+  }
+]

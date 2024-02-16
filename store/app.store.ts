@@ -8,7 +8,7 @@ export const useAppStore = defineStore('app', {
         params: <any>{},
         isLoginAttempt: false,
         breadcrumbs: [],
-        isOpenStoryModal: undefined,
+        isOpenStoryModal: <any>undefined,
         isLoadingUserData: false,
         isHideMobileFooter: false,
         isHideChatBot: false,
@@ -52,6 +52,9 @@ export const useAppStore = defineStore('app', {
         },
         async LOGIN_ATTEMPT_UPD(val: boolean) {
             this.isLoginAttempt = val
+        },
+        async OPEN_CLOSE_STORY_MODAL(val: boolean) {
+            this.isOpenStoryModal = val
         },
         async LOADING_BASKET(val: boolean) {
             this.isLoadingBasket = val
