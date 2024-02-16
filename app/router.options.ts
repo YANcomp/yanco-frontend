@@ -95,7 +95,7 @@ export default <RouterConfig>{
             },
             {
                 path: "/catalog",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                component: () => import('~/components/pages/vCatalog.vue').then(r => r.default || r),
                 name: "catalog"
             },
             {

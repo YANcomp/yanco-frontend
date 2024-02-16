@@ -171,9 +171,9 @@ useSeoMeta({
           </template>
           <template v-else>
             <span :class='["name", { "loading-content": void 0 === item.ID }]'>{{ item.name || "" }}</span>
-            <UiCArrowSVG v-if="productGroups.length > 0" :class='"all_stock" === item.slug ? "bottom-right" : ""'
-                         :hover-color='"all_stock" === item.slug ? "#ff0089" : "#4960DF"' size="s"/>
           </template>
+          <UiCArrowSVG v-if="productGroups.length > 0" :class='"all_stock" === item.slug ? "bottom-right" : ""'
+                       :hover-color='"all_stock" === item.slug ? "#ff0089" : "#4960DF"' size="s"/>
         </NuxtLink>
       </div>
     </div>
