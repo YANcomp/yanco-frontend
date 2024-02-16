@@ -37,6 +37,44 @@ const params: any = computed(() => {
 const stories = computed(() => {
   return storiesStore.stories
 })
+const productGroups = computed(()=>{
+  return [{},{},{},{},{}]
+  // var t, e = this,
+  //     o = h.c.clone(null !== (t = this.$store.state.productGroups.groups) && void 0 !== t ? t : []);
+  // return o.reduce((function (t, o) {
+  //   var n, d = $($({}, o), {}, {
+  //     route: "product_of_month" === o.slug ? {
+  //       name: "CatalogType",
+  //       params: {
+  //         typeID: "400221",
+  //         typeSlug: "detskoe_pitanie"
+  //       }
+  //     } : "all_stock" === o.slug ? {
+  //       name: "Stock",
+  //       params: {
+  //         slug: "all_stock"
+  //       }
+  //     } : "site_discounts" === o.slug ? {
+  //       name: "Stock",
+  //       params: {
+  //         slug: "site_discounts"
+  //       }
+  //     } : "special_offer" === o.slug ? {
+  //       name: "Stock",
+  //       params: {
+  //         slug: "special_offer"
+  //       }
+  //     } : {
+  //       name: "PopularCategories",
+  //       params: {
+  //         popularCategory: null !== (n = o.slug) && void 0 !== n ? n : ""
+  //       }
+  //     },
+  //     name: "special_offer" === o.slug ? "Спецпредложения" : "product_of_month" === o.slug ? "Детское питание" : o.name
+  //   });
+  //   return [].concat(Object(r.a)(e.params.stockWithCategories || []), ["partner_cards"]).includes(o.slug) || t.push(d), t
+  // }), [])
+})
 
 onMounted(() => {
   if (stories.value.length < 1) {
@@ -101,6 +139,21 @@ useSeoMeta({
         <StoriesCStoryCard v-for="(item,index) in stories.length > 0 ? stories : placeholderItems" :key="index"
                            :story="item"/>
       </UiCSlider>
+      <div v-if="!isMobile" class="stock">
+        <p>Акции</p>
+        <NuxtLink v-for="(item, index) in productGroups.length > 0 ? productGroups : [{}, {}, {}, {}, {}]" :key="index"
+                  :class="{ empty: void 0 === item.ID }" :to="item.route || {}">
+          <div v-if='"all_stock" === item.slug'>
+            <span class="icon stock"/>
+            <span>Все акции</span>
+          </div>
+          <span v-else :class='["name", { "loading-content": void 0 === item.ID }]'>
+            {{ item.name || "" }}
+          </span>
+          <UiCArrowSVG v-if="productGroups.length > 0" :class='"all_stock" === item.slug ? "bottom-right" : ""'
+                       :hover-color='"all_stock" === item.slug ? "#ff0089" : "#4960DF"' size="s"/>
+        </NuxtLink>
+      </div>
     </div>
 
     <CatalogCPopularCategories :city="city"/>
