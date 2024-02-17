@@ -53,6 +53,9 @@ const isAllRankItems = computed(() => {
 const city: any = computed(() => {
   return citiesStore.currentCity
 })
+const breadcrumbs = computed(() => {
+  return appStore.breadcrumbs
+})
 const isAllowDelivery = computed(() => {
   return basketItems.value.every((i: any) => {
     return i.allowDelivery
@@ -151,6 +154,10 @@ const isOpenStoryModal = computed(() => {
 })
 const stories = computed(() => {
   return storiesStore.stories ? storiesStore.stories : []
+})
+const isBreadcrumbs = computed(() => {
+  console.log(breadcrumbs.value)
+  return breadcrumbs.value.length > 0
 })
 //TODO END COMPUTED
 
@@ -445,10 +452,12 @@ function changeViewedStories() {
 
     <UserCLoginOrRegistration :is-mobile="isMobile"/>
     <!--    cQRPaymentModal-->
+
+    <BreadcrumbsCBreadcrumbs :class='{ mobile: isMobile }'/>
+    <slot/>
     <!--    cBreadcrumbs-->
     <!--    cCurtainProductInPharmacies-->
-    <slot/>
-   
+
     <LazyUiCUpButton v-if="isScrolled && !isMobile" :is-mobile="isMobile"/>
 
     <!--    <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""-->

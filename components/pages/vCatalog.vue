@@ -5,16 +5,30 @@ const catalogStore = useCatalogStore()
 const notificationsStore = useNotificationsStore()
 
 const isLocalLoading = ref(false)
-await appStore.LOADING_UPD(true)
-await appStore.BREADCRUMBS_UPD([
-  {
-    name: "Главная страница",
-    routeName: "index"
-  }, {
-    name: "Каталог товаров"
-  }
+
+await Promise.all([
+  appStore.LOADING_UPD(true),
+  appStore.BREADCRUMBS_UPD([
+    {
+      name: "Главная страница",
+      routeName: "index"
+    }, {
+      name: "Каталог товаров"
+    }
+  ]),
+  appStore.LOADING_UPD(false)
 ])
-await appStore.LOADING_UPD(false)
+
+// await appStore.LOADING_UPD(true)
+// await appStore.BREADCRUMBS_UPD([
+//   {
+//     name: "Главная страница",
+//     routeName: "index"
+//   }, {
+//     name: "Каталог товаров"
+//   }
+// ])
+// await appStore.LOADING_UPD(false)
 
 const dictionaryName = ref(<any>{
   "Лекарственные препараты и БАДы": "Лекарственные <br> препараты и БАДы",
@@ -94,6 +108,7 @@ useSeoMeta({
 
 <template>
   <div :class='["v-catalog", { mobile: isMobile }]'>
+    {{appStore.breadcrumbs}}
     <UiCSpinner v-if="isLoading" :is-mobile="isMobile" hideOverlay position="relative" size="m"/>
     <div v-if="!isLocalLoading" :class='["grid", { mobile: isMobile }]'>
       <CatalogCPopularCategoryCard v-for="(item, index) in categories" :key="index" :index="index" :category="item"
