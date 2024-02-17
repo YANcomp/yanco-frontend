@@ -1,5 +1,6 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 //TODO STORE
+
 const appStore = useAppStore()
 const catalogStore = useCatalogStore()
 const basketStore = useBasketStore()
@@ -13,7 +14,6 @@ const route = useRoute()
 const notificationsStore = useNotificationsStore()
 
 //TODO END STORE
-
 
 //TODO MIDDLEWARE
 //....
@@ -43,8 +43,11 @@ const isOpenBarcode = ref(false)
 const isFirstLoadNotCity = ref(false)
 const isNoDeliveryRules = ref(false)
 //TODO END DATA
-
+console.log(appStore.breadcrumbs)
 //TODO COMPUTED
+const breadcrumbs = computed(() => {
+  return appStore.breadcrumbs
+})
 const isAllRankItems = computed(() => {
   return basketItems.value.every((product: any) => {
     return product.price.withPeriod !== product.price.withoutCard && product.price.withPeriod !== product.price.withCard
@@ -52,9 +55,6 @@ const isAllRankItems = computed(() => {
 })
 const city: any = computed(() => {
   return citiesStore.currentCity
-})
-const breadcrumbs = computed(() => {
-  return appStore.breadcrumbs
 })
 const isAllowDelivery = computed(() => {
   return basketItems.value.every((i: any) => {
@@ -156,7 +156,6 @@ const stories = computed(() => {
   return storiesStore.stories ? storiesStore.stories : []
 })
 const isBreadcrumbs = computed(() => {
-  console.log(breadcrumbs.value)
   return breadcrumbs.value.length > 0
 })
 //TODO END COMPUTED
@@ -452,8 +451,8 @@ function changeViewedStories() {
 
     <UserCLoginOrRegistration :is-mobile="isMobile"/>
     <!--    cQRPaymentModal-->
-
-    <BreadcrumbsCBreadcrumbs :class='{ mobile: isMobile }'/>
+    {{ breadcrumbs }}
+    <BreadcrumbsCBreadcrumbs v-if="isBreadcrumbs" :breadcrumbs="breadcrumbs" :class='{ mobile: isMobile }'/>
     <slot/>
     <!--    cBreadcrumbs-->
     <!--    cCurtainProductInPharmacies-->

@@ -6,18 +6,33 @@ const notificationsStore = useNotificationsStore()
 
 const isLocalLoading = ref(false)
 
-await Promise.all([
-  appStore.LOADING_UPD(true),
-  appStore.BREADCRUMBS_UPD([
-    {
-      name: "Главная страница",
-      routeName: "index"
-    }, {
-      name: "Каталог товаров"
-    }
-  ]),
-  appStore.LOADING_UPD(false)
-])
+await useAsyncData('v-catalog', async () => {
+  return await Promise.all([
+    appStore.LOADING_UPD(true),
+    appStore.BREADCRUMBS_UPD([
+      {
+        name: "Главная страница",
+        routeName: "index"
+      }, {
+        name: "Каталог товаров"
+      }
+    ]),
+    appStore.LOADING_UPD(false)
+  ])
+})
+
+// await Promise.all([
+//   appStore.LOADING_UPD(true),
+//   appStore.BREADCRUMBS_UPD([
+//     {
+//       name: "Главная страница",
+//       routeName: "index"
+//     }, {
+//       name: "Каталог товаров"
+//     }
+//   ]),
+//   appStore.LOADING_UPD(false)
+// ])
 
 // await appStore.LOADING_UPD(true)
 // await appStore.BREADCRUMBS_UPD([
@@ -108,7 +123,7 @@ useSeoMeta({
 
 <template>
   <div :class='["v-catalog", { mobile: isMobile }]'>
-    {{appStore.breadcrumbs}}
+    {{ appStore.breadcrumbs }}
     <UiCSpinner v-if="isLoading" :is-mobile="isMobile" hideOverlay position="relative" size="m"/>
     <div v-if="!isLocalLoading" :class='["grid", { mobile: isMobile }]'>
       <CatalogCPopularCategoryCard v-for="(item, index) in categories" :key="index" :index="index" :category="item"

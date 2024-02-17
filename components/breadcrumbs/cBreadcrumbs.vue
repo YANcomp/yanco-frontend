@@ -1,24 +1,28 @@
 <script lang="ts" setup>
-const appStore = useAppStore()
-
-const breadcrumbs:any = computed(()=>{
-  return appStore.breadcrumbs
+const props = defineProps({
+  breadcrumbs: {
+    type: Array,
+    default: function () {
+      return []
+    }
+  }
 })
-// const preparedBreadcrumbs: any = computed(() => {
-//   return breadcrumbs
-// })
+
+const preparedBreadcrumbs: any = computed(() => {
+  return props.breadcrumbs
+})
 
 function routeTo(item: any) {
   return {
-    name: breadcrumbs.value[item]?.routeName,
-    params: breadcrumbs.value[item]?.params ? breadcrumbs.value[item].params : {}
+    name: preparedBreadcrumbs.value[item]?.routeName,
+    params: preparedBreadcrumbs.value[item]?.params ? preparedBreadcrumbs.value[item].params : {}
   }
 }
 </script>
 
 <template>
   <ol class="c-breadcrumbs container" itemscope itemtype="https://schema.org/BreadcrumbList">
-    <li v-for="(item,index) in breadcrumbs" :key="index" itemscope itemprop="itemListElement"
+    <li v-for="(item,index) in preparedBreadcrumbs" :key="index" itemscope itemprop="itemListElement"
         itemtype="https://schema.org/ListItem">
       <span class="icon arrow-forward"/>
       <template v-if="void 0 !== item.routeName">
