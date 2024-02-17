@@ -27,14 +27,15 @@ export const useAppStore = defineStore('app', {
         // isDimMobileFooter: false,
         // hideMobileFooterCounter: 0,
     }),
+
     actions: {
         async PARAMS_GET() {
-            const {data: params, error} = await useNuxtApp().$api.params.get()
-            if (error.value) {
-                return Promise.reject(error.value)
-            } else {
-                this.params = params.value
-            }
+            return await useNuxtApp().$api.params.get().then(res => {
+                this.params = res
+                return Promise.resolve(res)
+            }).catch(error => {
+                return Promise.reject(error)
+            })
         },
         async MOBILE_UPD(val: boolean) {
             this.isMobile = val
@@ -68,5 +69,14 @@ export const useAppStore = defineStore('app', {
         getIsLoading: function (state) {
             return state.requestCounter > 0
         }
-    }
+    },
+    hydrate(state, initialState) {
+        // in this case we can completely ignore the initial state since we
+        // want to read the value from the browser
+        // state.breadcrumbs = useLocalStorage('pinia/auth/login', 'bob')
+        initialState.breadcrumbs = state.breadcrumbs
+    },
 })
+if (import.meta.hot) {
+    import.meta.hot.accept(acceptHMRUpdate(useAppStore, import.meta.hot));
+}

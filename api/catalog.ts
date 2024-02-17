@@ -7,13 +7,10 @@ class ApiCatalogModule {
 
     //TODO
     async get() {
-        return useAsyncData(
-            'catalog',
-            () => $fetch(`catalog/catalog.json`, {
+        return await $fetch(`catalog/catalog.json`, {
                 ...this.$opts,
                 method: 'GET',
             })
-        );
     }
 }
 

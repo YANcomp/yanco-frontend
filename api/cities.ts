@@ -7,13 +7,10 @@ class ApiCitiesModule {
 
     //TODO
     async get() {
-        return useAsyncData(
-            'cities',
-            () => $fetch(`gis/cities.json`, {
-                ...this.$opts,
-                method: 'GET',
-            })
-        );
+        return await $fetch(`gis/cities.json`, {
+            ...this.$opts,
+            method: 'GET',
+        })
     }
 
 }

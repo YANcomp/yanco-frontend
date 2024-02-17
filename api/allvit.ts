@@ -7,13 +7,10 @@ class ApiAllvitModule {
 
     //TODO
     // async get() {
-    //     return useAsyncData(
-    //         'app',
-    //         () => $fetch(`params/params.json`, {
+    //     return $fetch(`params/params.json`, {
     //             ...this.$opts,
     //             method: 'GET',
     //         })
-    //     );
     // }
 }
 

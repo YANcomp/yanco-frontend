@@ -8,8 +8,8 @@ export const useBannersStore = defineStore('banners', {
     actions: {
         async GET(props?: any) {
             return await useNuxtApp().$api.banners.get().then(res => {
-                this.banners = res.data.value
-                return Promise.resolve(res.data.value)
+                this.banners = res
+                return Promise.resolve(res)
             }).catch(error => {
                 return Promise.reject(error)
             })

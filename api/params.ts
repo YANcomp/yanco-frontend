@@ -6,13 +6,10 @@ class ApiParamsModule {
     }
 
     async get() {
-        return useAsyncData(
-            'app',
-            () => $fetch(`params/params.json`, {
-                ...this.$opts,
-                method: 'GET',
-            })
-        );
+        return await $fetch(`params/params.json`, {
+            ...this.$opts,
+            method: 'GET',
+        })
     }
 }
 

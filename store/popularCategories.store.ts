@@ -8,14 +8,14 @@ export const usePopularCategoriesStore = defineStore('popularCategories', {
     actions: {
         async GET(props: any) {
             return useNuxtApp().$api.popularCategories.getCount().then((res) => {
-                this.categories = res.data.value ? <any>res.data.value : []
+                this.categories = res ? <any>res : []
             }).catch((error: any) => {
                 console.log(error)
             })
         },
         async GET_COUNT(props: any) {
             return useNuxtApp().$api.popularCategories.getCount().then((res) => {
-                this.count = (res.data.value ? <any>res.data.value : []).length
+                this.count = (res ? <any>res : []).length
             }).catch((error: any) => {
                 console.log(error)
             })

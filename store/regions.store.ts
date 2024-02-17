@@ -6,13 +6,12 @@ export const useRegionsStore = defineStore('regions', {
     }),
     actions: {
         async REGIONS_GET() {
-            const {data: regions, error} = await useNuxtApp().$api.regions.get()
-            if (error.value) {
-                return Promise.reject(error.value)
-            } else {
-                this.regions = regions.value
-                return Promise.resolve(regions.value)
-            }
+            return await useNuxtApp().$api.regions.get().then(res => {
+                this.regions = res
+                return Promise.resolve(res)
+            }).catch(error => {
+                return Promise.reject(error)
+            })
         },
     },
 })

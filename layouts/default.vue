@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 //TODO STORE
-
 const appStore = useAppStore()
 const catalogStore = useCatalogStore()
 const basketStore = useBasketStore()
@@ -43,7 +42,7 @@ const isOpenBarcode = ref(false)
 const isFirstLoadNotCity = ref(false)
 const isNoDeliveryRules = ref(false)
 //TODO END DATA
-console.log(appStore.breadcrumbs)
+
 //TODO COMPUTED
 const breadcrumbs = computed(() => {
   return appStore.breadcrumbs
@@ -451,10 +450,11 @@ function changeViewedStories() {
 
     <UserCLoginOrRegistration :is-mobile="isMobile"/>
     <!--    cQRPaymentModal-->
-    {{ breadcrumbs }}
-    <BreadcrumbsCBreadcrumbs v-if="isBreadcrumbs" :breadcrumbs="breadcrumbs" :class='{ mobile: isMobile }'/>
+
+    <LazyBreadcrumbsCBreadcrumbs v-if="isBreadcrumbs" :breadcrumbs="breadcrumbs" :class='{ mobile: isMobile }'/>
+
     <slot/>
-    <!--    cBreadcrumbs-->
+
     <!--    cCurtainProductInPharmacies-->
 
     <LazyUiCUpButton v-if="isScrolled && !isMobile" :is-mobile="isMobile"/>

@@ -7,13 +7,10 @@ class ApiRegionsModule {
 
     //TODO
     async get() {
-        return useAsyncData(
-            'regions',
-            () => $fetch(`gis/regions.json`, {
-                ...this.$opts,
-                method: 'GET',
-            })
-        );
+        return await $fetch(`gis/regions.json`, {
+            ...this.$opts,
+            method: 'GET',
+        })
     }
 
 }

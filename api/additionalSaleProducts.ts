@@ -8,13 +8,10 @@ class ApiAdditionalSaleProductsModule {
     async get(params: any) {
         // var e = "catalog/".concat(c.k, "@products/additional?cityID=").concat(t, "[:3]");
         let path = "catalog/products/additional.json"
-        return useAsyncData(
-            'app',
-            () => $fetch(path, {
-                ...this.$opts,
-                method: 'GET',
-            })
-        );
+        return await $fetch(path, {
+            ...this.$opts,
+            method: 'GET',
+        })
     }
 }
 

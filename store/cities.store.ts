@@ -12,13 +12,12 @@ export const useCitiesStore = defineStore('cities', {
             this.currentCity = val
         },
         async CITIES_GET() {
-            const {data: cities, error} = await useNuxtApp().$api.cities.get()
-            if (error.value) {
-                return Promise.reject(error.value)
-            } else {
-                this.list = cities.value
-                return Promise.resolve(cities.value)
-            }
+            return await useNuxtApp().$api.cities.get().then(res => {
+                this.list = res
+                return Promise.resolve(res)
+            }).catch(error => {
+                return Promise.reject(error)
+            })
         },
     },
 })

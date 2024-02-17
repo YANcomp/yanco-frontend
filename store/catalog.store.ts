@@ -1,4 +1,5 @@
 import {defineStore} from "pinia";
+
 export const useCatalogStore = defineStore('catalog', {
     state: () => ({
         catalog: <any>{},
@@ -9,7 +10,7 @@ export const useCatalogStore = defineStore('catalog', {
     actions: {
         async CATALOG_GET() {
             return await useNuxtApp().$api.catalog.get().then(res => {
-                const n: any = res.data.value
+                const n: any = res
                 var o, r = <any>{},
                     c = (null !== (o = null == n ? void 0 : n.types) && void 0 !== o ? o : []).reduce((t: any, e: any, o: any) => {
                         var c;
@@ -73,16 +74,16 @@ export const useCatalogStore = defineStore('catalog', {
                 this.categoryDirectory = r
                 this.catalogTree = c
 
-                return Promise.resolve(res.data)
+                return Promise.resolve(res)
             }).catch(error => {
                 return Promise.reject(error)
             })
         },
         async CATALOG_GET_TYPES() {
             return await useNuxtApp().$api.catalog.get().then(res => {
-                const resData: any = res.data.value
+                const resData: any = res
                 this.catalogTypes = resData.types
-                return Promise.resolve(res.data.value)
+                return Promise.resolve(res)
             }).catch(error => {
                 return Promise.reject(error)
             })

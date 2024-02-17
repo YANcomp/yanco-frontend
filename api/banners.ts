@@ -7,13 +7,11 @@ class ApiBannersModule {
 
     //TODO
     async get(params?: any) {
-        return useAsyncData(
-            'banners',
-            () => $fetch(`banners/banners.json`, {
-                ...this.$opts,
-                method: 'GET',
-            })
-        );
+        return await $fetch(`banners/banners.json`, {
+            ...this.$opts,
+            method: 'GET',
+        })
+
     }
 
     async getForCatalog(params: any) {

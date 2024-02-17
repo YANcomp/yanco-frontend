@@ -6,23 +6,17 @@ class ApiPopularCategoriesModule {
     }
 
     async get(props?: any) {
-        return useAsyncData(
-            'popularCategories',
-            () => $fetch(`catalog/categories/popular/popular.json`, {
-                ...this.$opts,
-                method: 'GET',
-            })
-        );
+        return await $fetch(`catalog/categories/popular/popular.json`, {
+            ...this.$opts,
+            method: 'GET',
+        })
     }
 
     async getCount(props?: any) {
-        return useAsyncData(
-            'popularCategories',
-            () => $fetch(`catalog/categories/popular/popular.json`, {
-                ...this.$opts,
-                method: 'GET',
-            })
-        );
+        return await $fetch(`catalog/categories/popular/popular.json`, {
+            ...this.$opts,
+            method: 'GET',
+        })
     }
 }
 

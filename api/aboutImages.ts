@@ -6,13 +6,10 @@ class ApiAboutImagesModule {
     }
 
     async get() {
-        return useAsyncData(
-            'app',
-            () => $fetch(`/about/about.json`, {
-                ...this.$opts,
-                method: 'GET',
-            })
-        );
+        return await $fetch(`/about/about.json`, {
+            ...this.$opts,
+            method: 'GET',
+        })
     }
 }
 

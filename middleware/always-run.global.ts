@@ -16,4 +16,5 @@ export default defineNuxtRouteMiddleware(async () => {
     if (regionsStore.regions === undefined) {
         await regionsStore.REGIONS_GET()
     }
+    // appStore.BREADCRUMBS_UPD()
 })
