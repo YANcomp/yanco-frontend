@@ -10,6 +10,7 @@ class ApiPopularCategoriesModule {
             ...this.$opts,
             method: 'GET',
         })
+
     }
 
     async getCount(props?: any) {
@@ -17,6 +18,7 @@ class ApiPopularCategoriesModule {
             ...this.$opts,
             method: 'GET',
         })
+
     }
 }
 

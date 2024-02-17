@@ -7,6 +7,7 @@ const props = defineProps({
 
 const appStore = useAppStore()
 const popularCategoriesStore = usePopularCategoriesStore()
+await popularCategoriesStore.GET({allowDelivery: false})
 await popularCategoriesStore.GET_COUNT({allowDelivery: false})
 
 const notificationsStore = useNotificationsStore()
