@@ -1,0 +1,1273 @@
+[
+  {
+    "ID": 205464,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 7,
+    "categoryID": 16,
+    "discountTemplate": "n+m",
+    "images": [
+      "205464zx.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/205464/208/205464zx.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/205464/80/205464zx.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Бережное очищение Салфетки влажные №100",
+    "price": {
+      "withCard": 143,
+      "withPeriod": 101,
+      "withoutCard": 143
+    },
+    "priceZakaz": {
+      "withCard": 143,
+      "withPeriod": 101,
+      "withoutCard": 143
+    },
+    "rating": 68,
+    "ratingText": {
+      "externalCard": "68%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "68% покупателей выбирают",
+      "internalCardHint": "68% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 2,
+    "slug": "salfetki_vlazhnye_osvezhayushchie_100sht",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      20,
+      30
+    ],
+    "typeIDs": [
+      398631
+    ]
+  },
+  {
+    "ID": 242670,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 46,
+    "categoryID": 374,
+    "discountTemplate": "n+m",
+    "images": [
+      "0d520f91fe91a81079864921f66139ad.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/242670/208/0d520f91fe91a81079864921f66139ad.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/242670/80/0d520f91fe91a81079864921f66139ad.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Трекрезан таблетки 200мг №10 Канонфарма Продакшн",
+    "price": {
+      "withCard": 720,
+      "withPeriod": 576,
+      "withoutCard": 720
+    },
+    "priceZakaz": {
+      "withCard": 720,
+      "withPeriod": 576,
+      "withoutCard": 720
+    },
+    "rating": 66,
+    "ratingText": {
+      "externalCard": "66%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "66% покупателей выбирают",
+      "internalCardHint": "66% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 18,
+    "slug": "trekrezan_tabletki_200mg_10",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      2557,
+      2558,
+      2566,
+      3872
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 297991,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "categoryID": 441,
+    "discountTemplate": "n+m",
+    "images": [
+      "297991.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/297991/208/297991.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/297991/80/297991.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Комплекс 5-гидрокситриптофана, Магния и витамина В6 таблетки №30",
+    "price": {
+      "withCard": 390,
+      "withPeriod": 307,
+      "withoutCard": 390
+    },
+    "priceZakaz": {
+      "withCard": 390,
+      "withPeriod": 307,
+      "withoutCard": 390
+    },
+    "rating": 53,
+    "ratingText": {
+      "externalCard": "53%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "53% покупателей выбирают",
+      "internalCardHint": "53% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 2,
+    "slug": "kompleks_5gidroksitriptofana_magniya_i_vitamina_v6_tabletki_30",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      2554,
+      2557,
+      2561
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 297161,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "categoryID": 441,
+    "discountTemplate": "n+m",
+    "images": [
+      "297161.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/297161/208/297161.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/297161/80/297161.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Комплекс 5-гидрокситриптофана и Витамина D3 таблетки №30",
+    "price": {
+      "withCard": 416,
+      "withPeriod": 328,
+      "withoutCard": 416
+    },
+    "priceZakaz": {
+      "withCard": 416,
+      "withPeriod": 328,
+      "withoutCard": 416
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 2,
+    "slug": "kompleks_5gidroksitriptofana_i_vitamina_d3_tabletki_30",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      2554,
+      2557,
+      2561
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 243000,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 13,
+    "categoryID": 227,
+    "discountTemplate": "n+m",
+    "images": [
+      "243000.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/243000/208/243000.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/243000/80/243000.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Лизоцим Премиум таблетки №30",
+    "price": {
+      "withCard": 218,
+      "withPeriod": 170,
+      "withoutCard": 218
+    },
+    "priceZakaz": {
+      "withCard": 218,
+      "withPeriod": 170,
+      "withoutCard": 218
+    },
+    "rating": 78,
+    "ratingText": {
+      "externalCard": "78%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "78% покупателей выбирают",
+      "internalCardHint": "78% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 26,
+    "slug": "lizocim_premium_tabletki_30",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      2557,
+      3872
+    ],
+    "typeIDs": [
+      396070,
+      396194,
+      398611,
+      398631
+    ]
+  },
+  {
+    "ID": 274163,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "categoryID": 413,
+    "discountTemplate": "n+m",
+    "images": [
+      "b9713904580ddee6a4cba38b02c1989c.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/274163/208/b9713904580ddee6a4cba38b02c1989c.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/274163/80/b9713904580ddee6a4cba38b02c1989c.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "ФосфолиПлюс капсулы №180",
+    "price": {
+      "withCard": 1288,
+      "withPeriod": 1088,
+      "withoutCard": 1288
+    },
+    "priceZakaz": {
+      "withCard": 1288,
+      "withPeriod": 1088,
+      "withoutCard": 1288
+    },
+    "rating": 82,
+    "ratingText": {
+      "externalCard": "82%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "82% покупателей выбирают",
+      "internalCardHint": "82% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 18,
+    "slug": "fosfoliplyus_kapsuly_180",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      2555
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 289413,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "categoryID": 16,
+    "discountTemplate": "n+m",
+    "images": [
+      "289413.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/289413/208/289413.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/289413/80/289413.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Аура Тропик Коктейль Салфектки влаж. освежающие 15шт",
+    "price": {
+      "withCard": 34,
+      "withPeriod": 27,
+      "withoutCard": 34
+    },
+    "priceZakaz": {
+      "withCard": 34,
+      "withPeriod": 27,
+      "withoutCard": 34
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "aura_aura_tropic_coctail_vlazhnye_salfetki_osvezhayushchie_15_sht_kotton_klab",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      20,
+      30
+    ],
+    "typeIDs": [
+      398631
+    ]
+  },
+  {
+    "ID": 240260,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 12,
+    "categoryID": 441,
+    "discountTemplate": "n+m",
+    "images": [
+      "240260z.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/240260/208/240260z.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/240260/80/240260z.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Пустырник форте Д3 с магнием и витамином В6 таблетки №30",
+    "price": {
+      "withCard": 199,
+      "withPeriod": 158,
+      "withoutCard": 199
+    },
+    "priceZakaz": {
+      "withCard": 199,
+      "withPeriod": 158,
+      "withoutCard": 199
+    },
+    "rating": 89,
+    "ratingText": {
+      "externalCard": "89%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 16,
+    "slug": "pustyrnik_forte_d3_tabletki_600mg_30",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      2554,
+      2557,
+      2561
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 265451,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "categoryID": 374,
+    "discountTemplate": "n+m",
+    "images": [
+      "265451das.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/265451/208/265451das.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/265451/80/265451das.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Трекрезан таблетки 200мг №10",
+    "price": {
+      "withCard": 939,
+      "withPeriod": 678,
+      "withoutCard": 939
+    },
+    "priceZakaz": {
+      "withCard": 939,
+      "withPeriod": 678,
+      "withoutCard": 939
+    },
+    "rating": 78,
+    "ratingText": {
+      "externalCard": "78%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "78% покупателей выбирают",
+      "internalCardHint": "78% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 8,
+    "slug": "trekrezan_tabletki_200mg_10",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      2557,
+      2558,
+      2566,
+      3872
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 218440,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "bonuses": 3,
+    "categoryID": 16,
+    "discountTemplate": "n+m",
+    "images": [
+      "218440z.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/218440/208/218440z.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/218440/80/218440z.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Салфетки влажные антибактериальные №15",
+    "price": {
+      "withCard": 51,
+      "withPeriod": 40,
+      "withoutCard": 51
+    },
+    "priceZakaz": {
+      "withCard": 51,
+      "withPeriod": 40,
+      "withoutCard": 51
+    },
+    "rating": 88,
+    "ratingText": {
+      "externalCard": "88%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "88% покупателей выбирают",
+      "internalCardHint": "88% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "salfetki_vlazhnye_antibakterialnye_15sht",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      20,
+      30
+    ],
+    "typeIDs": [
+      398631
+    ]
+  },
+  {
+    "ID": 239584,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 27,
+    "categoryID": 859,
+    "discountTemplate": "n+m",
+    "images": [
+      "de1915742f43a28a27db48e533ff4220.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/239584/208/de1915742f43a28a27db48e533ff4220.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/239584/80/de1915742f43a28a27db48e533ff4220.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Витамин Д3 2000МЕ капсулы №30",
+    "price": {
+      "withCard": 385,
+      "withPeriod": 307,
+      "withoutCard": 385
+    },
+    "priceZakaz": {
+      "withCard": 385,
+      "withPeriod": 307,
+      "withoutCard": 385
+    },
+    "rating": 89,
+    "ratingText": {
+      "externalCard": "89%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 22,
+    "slug": "vitamin_d3_2000me_kapsuly_30",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      2554
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 235536,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 12,
+    "categoryID": 354,
+    "discountTemplate": "n+m",
+    "images": [
+      "235536.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/235536/208/235536.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/235536/80/235536.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Морская вода и пантенол спрей флакон 50 мл",
+    "price": {
+      "withCard": 229,
+      "withPeriod": 180,
+      "withoutCard": 229
+    },
+    "priceZakaz": {
+      "withCard": 229,
+      "withPeriod": 180,
+      "withoutCard": 229
+    },
+    "rating": 57,
+    "ratingText": {
+      "externalCard": "57%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "57% покупателей выбирают",
+      "internalCardHint": "57% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 5,
+    "slug": "morskaya_voda_i_pantenol_sprej_50_ml",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      3872
+    ],
+    "typeIDs": [
+      396070,
+      396194,
+      398631
+    ]
+  },
+  {
+    "ID": 218441,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 5,
+    "categoryID": 377,
+    "discountTemplate": "n+m",
+    "images": [
+      "218441z.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/218441/208/218441z.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/218441/80/218441z.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Салфетки влажные детские 60шт.",
+    "price": {
+      "withCard": 127,
+      "withPeriod": 101,
+      "withoutCard": 127
+    },
+    "priceZakaz": {
+      "withCard": 127,
+      "withPeriod": 101,
+      "withoutCard": 127
+    },
+    "rating": 84,
+    "ratingText": {
+      "externalCard": "84%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "84% покупателей выбирают",
+      "internalCardHint": "84% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 4,
+    "slug": "salfetki_vlazhnye_detskie_60sht",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      70
+    ],
+    "typeIDs": [
+      400010
+    ]
+  },
+  {
+    "ID": 227313,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 10,
+    "categoryID": 354,
+    "discountTemplate": "n+m",
+    "images": [
+      "629f39fb7b8e00d841f4383b3427abf9.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/227313/208/629f39fb7b8e00d841f4383b3427abf9.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/227313/80/629f39fb7b8e00d841f4383b3427abf9.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Морская вода гиалуроновая кислота и эктоин спрей флакон 50мл",
+    "price": {
+      "withCard": 258,
+      "withPeriod": 204,
+      "withoutCard": 258
+    },
+    "priceZakaz": {
+      "withCard": 258,
+      "withPeriod": 204,
+      "withoutCard": 258
+    },
+    "rating": 54,
+    "ratingText": {
+      "externalCard": "54%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "54% покупателей выбирают",
+      "internalCardHint": "54% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 3,
+    "slug": "morskaya_voda_gialuronovaya_kislota_i_ektoin_sprej_50ml",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      3872
+    ],
+    "typeIDs": [
+      396070,
+      396194,
+      398631
+    ]
+  },
+  {
+    "ID": 242574,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 3,
+    "categoryID": 231,
+    "discountTemplate": "n+m",
+    "images": [
+      "95d8f1373f58454b537c14fa8883e8af.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/242574/208/95d8f1373f58454b537c14fa8883e8af.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/242574/80/95d8f1373f58454b537c14fa8883e8af.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Батончик-мюсли Орехи и Мёд с витамином С 35г",
+    "price": {
+      "withCard": 87,
+      "withPeriod": 66,
+      "withoutCard": 87
+    },
+    "priceZakaz": {
+      "withCard": 87,
+      "withPeriod": 66,
+      "withoutCard": 87
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 5,
+    "slug": "batonchikmyusli_orehi_i_myod_s_vitaminom_s_35g",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      69,
+      75
+    ],
+    "typeIDs": [
+      396070,
+      400217,
+      400221
+    ]
+  },
+  {
+    "ID": 227488,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 6,
+    "categoryID": 227,
+    "discountTemplate": "n+m",
+    "images": [
+      "227488w.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/227488/208/227488w.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/227488/80/227488w.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Спрей для полости рта Эвкалипт 50мл",
+    "price": {
+      "withCard": 158,
+      "withPeriod": 124,
+      "withoutCard": 158
+    },
+    "priceZakaz": {
+      "withCard": 158,
+      "withPeriod": 124,
+      "withoutCard": 158
+    },
+    "rating": 54,
+    "ratingText": {
+      "externalCard": "54%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "54% покупателей выбирают",
+      "internalCardHint": "54% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 1,
+    "slug": "sprej_dlya_polosti_rta_evkalipt_50ml",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      2557,
+      3872
+    ],
+    "typeIDs": [
+      396070,
+      396194,
+      398611,
+      398631
+    ]
+  },
+  {
+    "ID": 235537,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 14,
+    "categoryID": 354,
+    "discountTemplate": "n+m",
+    "images": [
+      "fac383e43491d74614526e8a982f9ea2.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/235537/208/fac383e43491d74614526e8a982f9ea2.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/235537/80/fac383e43491d74614526e8a982f9ea2.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "ЭвкаСол спрей флакон 50мл",
+    "price": {
+      "withCard": 229,
+      "withPeriod": 180,
+      "withoutCard": 229
+    },
+    "priceZakaz": {
+      "withCard": 229,
+      "withPeriod": 180,
+      "withoutCard": 229
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 3,
+    "slug": "evkasol_sprej_50ml",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      3872
+    ],
+    "typeIDs": [
+      396070,
+      396194,
+      398631
+    ]
+  },
+  {
+    "ID": 298025,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "categoryID": 265,
+    "discountTemplate": "n+m",
+    "images": [
+      "298025.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/298025/208/298025.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/298025/80/298025.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Масло зародышей пшеницы капсулы №100",
+    "price": {
+      "withCard": 147,
+      "withPeriod": 116,
+      "withoutCard": 147
+    },
+    "priceZakaz": {
+      "withCard": 147,
+      "withPeriod": 116,
+      "withoutCard": 147
+    },
+    "rating": 60,
+    "ratingText": {
+      "externalCard": "60%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "60% покупателей выбирают",
+      "internalCardHint": "60% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "maslo_zarodyshej_pshenicy_kapsuly_100",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      83
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 238404,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "categoryID": 16,
+    "discountTemplate": "n+m",
+    "images": [
+      "238404z.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/238404/208/238404z.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/238404/80/238404z.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Салфетки влажные для мебели с антистатическим эффектом №20",
+    "price": {
+      "withCard": 61,
+      "withPeriod": 48,
+      "withoutCard": 61
+    },
+    "priceZakaz": {
+      "withCard": 61,
+      "withPeriod": 48,
+      "withoutCard": 61
+    },
+    "rating": 71,
+    "ratingText": {
+      "externalCard": "71%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "71% покупателей выбирают",
+      "internalCardHint": "71% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "salfetki_vlazhnye_dlya_mebeli_s_antistaticheskim_effektom_20",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      20,
+      30
+    ],
+    "typeIDs": [
+      398631
+    ]
+  },
+  {
+    "ID": 242942,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "bonuses": 12,
+    "categoryID": 544,
+    "discountTemplate": "n+m",
+    "images": [
+      "a9fdbe80bfbc9079b227f209e835d49a.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/242942/208/a9fdbe80bfbc9079b227f209e835d49a.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/242942/80/a9fdbe80bfbc9079b227f209e835d49a.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Грин Хэлф Льняные пластинки с морской солью 30шт",
+    "price": {
+      "withCard": 193,
+      "withPeriod": 153,
+      "withoutCard": 193
+    },
+    "priceZakaz": {
+      "withCard": 193,
+      "withPeriod": 153,
+      "withoutCard": 193
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "grin_helf_lnyanye_plastinki_s_morskoj_solyu_30sht",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      75
+    ],
+    "typeIDs": [
+      400217
+    ]
+  },
+  {
+    "ID": 263145,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "bonuses": 4,
+    "categoryID": 463,
+    "discountTemplate": "n+m",
+    "images": [
+      "a783e5334fcccb3bd35d70da3c240198.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/263145/208/a783e5334fcccb3bd35d70da3c240198.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/263145/80/a783e5334fcccb3bd35d70da3c240198.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Дротаверин таблетки 40мг №30",
+    "price": {
+      "withCard": 114,
+      "withPeriod": 101,
+      "withoutCard": 114
+    },
+    "priceZakaz": {
+      "withCard": 114,
+      "withPeriod": 101,
+      "withoutCard": 114
+    },
+    "rating": 89,
+    "ratingText": {
+      "externalCard": "89%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "drotaverin_tabletki_40mg_30",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      2552
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 330739,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "categoryID": 440,
+    "discountTemplate": "n+m",
+    "images": [
+      "330739.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/330739/208/330739.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/330739/80/330739.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Диклофенак гель 5% 50г Озон",
+    "price": {
+      "withCard": 375,
+      "withPeriod": 300,
+      "withoutCard": 375
+    },
+    "priceZakaz": {
+      "withCard": 375,
+      "withPeriod": 300,
+      "withoutCard": 375
+    },
+    "rating": 83,
+    "ratingText": {
+      "externalCard": "83%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "83% покупателей выбирают",
+      "internalCardHint": "83% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "diklofenak_gel_5_50g",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      35,
+      2552,
+      2557
+    ],
+    "typeIDs": [
+      396070,
+      396194,
+      398611
+    ]
+  },
+  {
+    "ID": 325396,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "categoryID": 16,
+    "discountTemplate": "n+m",
+    "images": [
+      "325396.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/325396/208/325396.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/325396/80/325396.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Фрэшленд Салфетки влажные универсальные №100",
+    "price": {
+      "withCard": 143,
+      "withPeriod": 101,
+      "withoutCard": 143
+    },
+    "priceZakaz": {
+      "withCard": 143,
+      "withPeriod": 101,
+      "withoutCard": 143
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "freshlend_salfetki_vlazhnye_universalnye_100",
+    "sticker": "1+1",
+    "subtypeIDs": [
+      20,
+      30
+    ],
+    "typeIDs": [
+      398631
+    ]
+  }
+]

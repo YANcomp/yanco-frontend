@@ -40,6 +40,12 @@ const city = computed(() => {
 const catalog = computed(() => {
   return catalogStore.catalog
 })
+const specialOffers = computed(() => {
+  return productsStore.specialOffers
+})
+const ourProducts = computed(() => {
+  return productsStore.ourProduction
+})
 const productCategories = computed(() => {
   return catalog.value.categories
 })
@@ -119,6 +125,12 @@ onMounted(() => {
   if (Object.keys(productOfDay.value).length < 1 && city.value !== undefined) {
     loadProductOfDay()
   }
+  if (specialOffers.value.length < 1 && city.value !== undefined) {
+    loadSpecialOffers()
+  }
+  if (ourProducts.value.length < 1 && city.value !== undefined) {
+    loadOurProducts()
+  }
   if (productGroups.value.length < 1) {
     loadProductGroups().catch((e: any) => {
       notificationsStore.NOTIFICATIONS_UPD({
@@ -148,6 +160,16 @@ function loadStories() {
 
 function loadProductGroups() {
   return productGroupsStore.GET()
+}
+
+function loadSpecialOffers() {
+  //TODO
+  return productsStore.GET_SPECIAL_OFFERS()
+}
+
+function loadOurProducts() {
+  //TODO
+  return productsStore.GET_OUR_PRODUCTS()
 }
 
 function loadProductOfDay() {
@@ -254,6 +276,21 @@ useSeoMeta({
       </div>
     </div>
 
+    <ProductCProductsSlider title="Спецпредложения" :route='{ name: "Stock", params: { slug: "special_offer" } }'
+                            :basket-items="basketItems" :city="city" :favorites-items="favoritesItems"
+                            :has-loyal-card="hasLoyalCard" :is-authorized="isAuthorized" :is-mobile="isMobile"
+                            :loading-basket-product-i-ds="loadingBasketProductIDs"
+                            :loading-favorites-product-i-ds="loadingFavoritesProductIDs"
+                            :product-categories="productCategories" :product-subtypes="productSubtypes"
+                            :product-types="productTypes"
+                            :products="specialOffers.length > 0 ? preparedProducts(specialOffers, PREPARED_PRODUCTS_FIELDS) : placeholderItems"
+                            :updating-basket-product-i-ds="updatingBasketProductIDs"
+                            v-on:add-to-basket="addToBasket"
+                            v-on:add-to-favorites="addToFavorites"
+                            v-on:basket-item-update="updateBasketItem"
+                            v-on:basket-store-update="updateBasketStore"
+                            v-on:favorites-store-update="updateFavoritesStore"/>
+
     <div v-if="isMobile" class="stock">
       <NuxtLink v-for="(item, index) in productGroups.length > 0 ? productGroups : [{}, {}, {}, {}, {}]" :key="index"
                 :class="{ empty: void 0 === item.ID }" :to="item.route || {}">
@@ -272,6 +309,22 @@ useSeoMeta({
     </div>
 
     <CatalogCPopularCategories :city="city"/>
+
+    <ProductCProductsSlider title="Обратите внимание"
+                            :route='{ name: "PopularCategories", params: { popularCategory: "our_products" } }'
+                            :basket-items="basketItems" :city="city" :favorites-items="favoritesItems"
+                            :has-loyal-card="hasLoyalCard" :is-authorized="isAuthorized" :is-mobile="isMobile"
+                            :loading-basket-product-i-ds="loadingBasketProductIDs"
+                            :loading-favorites-product-i-ds="loadingFavoritesProductIDs"
+                            :product-categories="productCategories" :product-subtypes="productSubtypes"
+                            :product-types="productTypes"
+                            :products="ourProducts.length > 0 ? preparedProducts(ourProducts, PREPARED_PRODUCTS_FIELDS) : placeholderItems"
+                            :updating-basket-product-i-ds="updatingBasketProductIDs"
+                            v-on:add-to-basket="addToBasket"
+                            v-on:add-to-favorites="addToFavorites"
+                            v-on:basket-item-update="updateBasketItem"
+                            v-on:basket-store-update="updateBasketStore"
+                            v-on:favorites-store-update="updateFavoritesStore"/>
 
     <LazyUiCPharmacyChainAdvantages v-if="!isMobile" :pharmacies-count="7500" :regions-count="70"/>
   </main>

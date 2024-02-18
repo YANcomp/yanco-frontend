@@ -126,22 +126,33 @@ const image = computed(() => {
 const averageRating = computed(() => {
   return (props.product?.averageRating ? props.product.averageRating : 0).toFixed(1).replace(".", ",")
 })
-const productCategory = computed(() => {
+const productCategory: any = computed(() => {
   let t
   return null !== (t = props.productCategories.find((item: any) => {
     return item.ID === props.product?.categoryID
   })) && void 0 !== t ? t : {}
 })
-const categoryDirectory = computed(() => {
+const categoryDirectory: any = computed(() => {
   return catalogStore.categoryDirectory
 })
 const categoryRoute = computed(() => {
   return void 0 === props.product ? {} : {
-    name: "SelectInCategory",
-    params: {
-      productID: "".concat(props.product?.ID)
+    name: "CatalogCategory",
+    params: <any>{
+      typeID: "" + categoryDirectory.value[props.product.categoryID].typeID,
+      typeSlug: categoryDirectory.value[props.product.categoryID].typeSlug,
+      subtypeID: "" + categoryDirectory.value[props.product.categoryID].subtypeID,
+      subtypeSlug: categoryDirectory.value[props.product.categoryID].subtypeSlug,
+      categoryID: "" + props.product?.categoryID,
+      categorySlug: productCategory.value?.slug
     }
   }
+  // return void 0 === props.product ? {} : {
+  //   name: "SelectInCategory",
+  //   params: {
+  //     productID: "".concat(props.product?.ID)
+  //   }
+  // }
 })
 const isRecipe = computed(() => {
   return props.product?.isRecipe
@@ -186,6 +197,17 @@ const isInBasket = computed(() => {
 })
 const isRare = computed(() => {
   return !!props.product?.isRare
+})
+
+const catalogTypeColors = computed(() => {
+  return catalogStore.catalogColors
+})
+
+const categoryColors = computed(() => {
+  return props.product?.isAvailable ? catalogTypeColors.value[props.activeCatalogTypeID ? props.activeCatalogTypeID : props.product.typeIDs[0]] : {
+    background: "#d6d6e1",
+    color: "#ffffff"
+  }
 })
 
 //METHODS
@@ -399,13 +421,190 @@ function goToProduct() {
           </NuxtLink>
         </div>
         <div class="card-info">
+          <template v-if="isHorizontalMode && isMobile">
+            <div v-if="product.isAvailable" :class='["rating", { placeholder: !hasProduct }]'>
+              <nuxt-link v-if="!isRecipe" :to='{}'
+                         data-tooltip="Перейти к отзывам"
+                         @click="route(true)">
+                <span class="icon star"></span>
+                <span class="average">{{ averageRating }}</span>
+                <span class="review-count">({{ product.reviewsNumber || 0 }})</span>
+              </nuxt-link>
+            </div>
+          </template>
+          <template v-else>
+            <div :class='["rating", { placeholder: !hasProduct }]'>
+              <template v-if="hasProduct">
+                <nuxt-link v-if="!isRecipe" :to='{}'
+                           data-tooltip="Перейти к отзывам"
+                           @click="route()">
+                  <span class="icon star"></span>
+                  <span class="average">{{ averageRating }}</span>
+                  <span class="review-count">({{ product.reviewsNumber || 0 }})</span>
+                </nuxt-link>
+                <div
+                    :class='{ delivery: product.allowDelivery, "free-delivery": product.deliveryRuleID && isCityAllowDelivery, prescription: isRecipe, placeholder: !hasProduct }'>
+                  <template v-if="isRecipe">
+                    <span class="icon prescription" data-tooltip="Отпускается по рецепту"/>
+                  </template>
+                  <template v-else-if="product.deliveryRuleID && isCityAllowDelivery">
+                    <div class="free-ship"
+                         :data-tooltip='"Бесплатная доставка от " + (product.deliveryAmount ? product.deliveryAmount + " шт." : "980 ₽")'>
+                      <span class="icon free-ship"/>
+                      <span v-if="product.deliveryAmount" class="amount">{{ product.deliveryAmount || "" }}</span>
+                    </div>
+                  </template>
+                  <template v-else-if="product.allowDelivery">
+                    <span class="icon truck" data-tooltip="Доставим на дом"/>
+                  </template>
+                </div>
+              </template>
+            </div>
+          </template>
 
-          <NuxtLink v-if="hasProduct" class="name" :to="productRoute" v-bind="microdataBinds('url')">
-            <span :data-tooltip="product.name" v-bind="microdataBinds('name')">
-              {{ product.name }}
-            </span>
-          </NuxtLink>
+          <template v-if="!productCategory.name || isProductOfTheDay || isAdditional || isInCategory">
+            <div v-if="!isProductOfTheDay && !hasProduct && !isAdditional" class="category placeholder"/>
+          </template>
+          <template v-else>
+            <NuxtLink :to="categoryRoute" :class='["category", { hidden: isRare }]'
+                      :style='{ backgroundColor: categoryColors.background, color: categoryColors.color }'>
+              {{ productCategory.name }}
+            </NuxtLink>
+            <!--            <nuxt-link :to="categoryRoute" :class='["category", { hidden: isRare }]'>-->
+            <!--              <span class="text">Выбрать в категории</span>-->
+            <!--              <UiCArrowSVG color="#ffffff" hover-color="#ffffff" size="s"/>-->
+            <!--            </nuxt-link>-->
+          </template>
+
+          <template v-if="hasProduct">
+            <NuxtLink class="name" :to="productRoute" v-bind="microdataBinds('url')">
+              <span :data-tooltip="product.name" v-bind="microdataBinds('name')">
+                {{ product.name }}
+              </span>
+            </NuxtLink>
+          </template>
+          <template v-else>
+            <div class="name placeholder"/>
+          </template>
+
+          <div class="footer-card">
+            <div v-if="product.price !== undefined" class="prices">
+              <meta v-if="isLoyal && !noMicrodataNeeded" :content='"По акции " + product.price.withCard + " ₽"'
+                    itemprop="price"/>
+              <meta v-if="isRank && !noMicrodataNeeded" :content='"Клубная цена " + product.price.withPeriod + " ₽"'
+                    itemprop="price"/>
+              <div v-if="isLoyal" class="loyal">
+                <span>По акции</span>
+                <span>{{ product.price.withCard + " ₽" }}</span>
+              </div>
+              <div v-if="isRank">
+                <span>Клубная цена</span>
+                <span>{{ product.price.withPeriod + " ₽" }}</span>
+              </div>
+              <div>
+                <span>Цена</span>
+                <span>{{ "| " + product.price.withoutCard + " ₽" }}</span>
+              </div>
+            </div>
+            <div v-else-if="!hasProduct" class="prices placeholder"/>
+
+            <div v-if="!isHorizontalMode || !isMobile"
+                 :class='["button", { "no-price": void 0 === product.price, placeholder: !hasProduct }]'>
+              <template v-if="!product.isAvailable && hasProduct">
+                <UiCButton :size='isProductOfTheDay ? "l" : "m"' mode="disabled">
+                  {{ product.isWaitingArrive ? "Ожидается" : "Временно отсутствует" }}
+                </UiCButton>
+              </template>
+
+              <template v-if="product.isAvailable && isInBasket">
+                cBasketProduct
+              </template>
+              <template v-else-if="product.isAvailable && product.isInStock">
+                <UiCButton :size='isMobile ? "s" : isProductOfTheDay ? "l" : "m"' :is-loading="isBasketLoading"
+                           :mode='isProductOfTheDay ? "gradient" : isRare ? "dark-green" : "primary"'
+                           @click="addToBasket">
+                  <span v-if="!isBasketLoading && !isMobile || !isRare" class="icon add-basket"/>
+                  <span v-if="isRare" class="checkout">
+                    Оформить заказ
+                  </span>
+                  <span v-else>
+                    В корзину
+                  </span>
+                </UiCButton>
+              </template>
+              <template v-else-if="product.isAvailable && !isProductOfTheDay">
+                <UiCButton :size='isMobile ? "s" : "m"' :is-loading="isBasketLoading"
+                           :mode='isRare ? "dark-green" : "orange"' @click="addToBasket">
+                  <span v-if="!isBasketLoading" class="icon under-the-order"/>
+                  <span>Под заказ</span>
+                </UiCButton>
+              </template>
+
+              <span v-if="isForComparison" class="icon trash2" data-tooltip="Удалить из сравнения"
+                    @click="removeComparison"/>
+
+              <span
+                  v-else-if="!isProductOfTheDay && (product.isAvailable && !isMobile || !product.isAvailable && !isMobile || product.isAvailable && isMobile)"
+                  :class='["icon", "favorite", { mobile: isMobile, touch: isFavoriteTouch, active: isProductFavoriteActive, heart2: product.isInFavorites || !product.isInFavorites && isFavoritesLoading, "heart-outline2": !product.isInFavorites || product.isInFavorites && isFavoritesLoading }]'
+                  :data-tooltip='product.isInFavorites ? "Удалить из избранного" : "Добавить в избранное"'
+                  @click="addToFavorites" @mousedown="favoriteMouseDown" @mouseup="favoriteMouseUp"
+                  @mouseout="favoriteMouseOut" v-on:touchstart="favoriteTouchStart" v-on:touchend="favoriteTouchEnd"/>
+            </div>
+          </div>
         </div>
+
+        <template v-if="isMobile && isHorizontalMode">
+          <div :class='["button", { "no-price": void 0 === product.price, placeholder: !hasProduct }]'>
+            <div
+                :class='{ delivery: product.allowDelivery, "free-delivery": product.deliveryRuleID && isCityAllowDelivery, prescription: isRecipe }'>
+              <template v-if="isRecipe">
+                <span class="icon prescription" data-tooltip="Отпускается по рецепту"/>
+              </template>
+              <template v-else-if="product.deliveryRuleID && isCityAllowDelivery">
+                <div class="free-ship"
+                     :data-tooltip='"Бесплатная доставка от " + (product.deliveryAmount ? product.deliveryAmount + " шт." : "980 ₽")'>
+                  <span class="icon free-ship"/>
+                  <span v-if="product.deliveryAmount" class="amount">{{ product.deliveryAmount || "" }}</span>
+                </div>
+              </template>
+              <template v-else-if="product.allowDelivery">
+                <span class="icon truck" data-tooltip="Доставим на дом"/>
+              </template>
+            </div>
+            <template v-if="product.isAvailable && product.isInBasket">
+              cBasketProduct
+            </template>
+            <template v-else-if='isRare && product.isAvailable && product.isInStock'>
+              <UiCButton size="s" mode="dark-green" @click="goToProduct">
+                <span class="icon add-basket"/>
+              </UiCButton>
+            </template>
+            <template v-else-if='isRare && product.isAvailable'>
+              <UiCButton size="s" mode="dark-green" @click="goToProduct">
+                <span class="icon under-the-order"/>
+              </UiCButton>
+            </template>
+            <template v-else-if='product.isAvailable && product.isInStock'>
+              <UiCButton :size='isMobile ? "s" : isProductOfTheDay ? "l" : "m"' :is-loading="isBasketLoading"
+                         :mode='isProductOfTheDay ? "gradient" : "primary"' @click="addToBasket">
+                <span v-if="!isBasketLoading" class="icon add-basket"/>
+              </UiCButton>
+            </template>
+            <template v-else-if='product.isAvailable && !isProductOfTheDay'>
+              <UiCButton :size='isMobile ? "s" : "m"' :is-loading="isBasketLoading" mode="orange" @click="addToBasket">
+                <span v-if="!isBasketLoading" class="icon under-the-order"/>
+              </UiCButton>
+            </template>
+
+            <span v-if="isForComparison" class="icon trash2" @click="removeComparison"/>
+            <span
+                v-if='!isProductOfTheDay && (product.isAvailable && !isMobile || !product.isAvailable && !isMobile || product.isAvailable && isMobile)'
+                :class='["icon favorite", { mobile: isMobile, touch: isFavoriteTouch, active: isProductFavoriteActive, heart2: product.isInFavorites || !product.isInFavorites && isFavoritesLoading, "heart-outline2": !product.isInFavorites || product.isInFavorites && isFavoritesLoading }]'
+                :data-tooltip='product.isInFavorites ? "Удалить из избранного" : "Добавить в избранное"'
+                @click="addToFavorites" @mousedown="favoriteMouseDown" @mouseup="favoriteMouseUp"
+                @mouseout="favoriteMouseOut" v-on:touchstart="favoriteTouchStart" v-on:touchend="favoriteTouchEnd"/>
+          </div>
+        </template>
       </div>
     </div>
 
@@ -861,58 +1060,21 @@ function goToProduct() {
 }
 
 .c-product-card > div > .body-card > .card-info > .category {
-  color: #ff0089;
+  background-color: #7fa6ff;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12.19px;
+  height: 10px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  padding: 5px 10px;
+  max-width: 188px;
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
-  display: flex;
-  align-items: center
-}
-
-.c-product-card > div > .body-card > .card-info > .category > .text {
-  padding: 8px 5px 8px 8px;
-  display: block;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 18px;
-  background-color: #f7f8fc;
-  border-radius: 20px 0 0 20px
-}
-
-.c-product-card > div > .body-card > .card-info > .category > .c-arrow-svg {
-  background-color: #ff0089;
-  border-radius: 0 20px 20px 0;
-  width: 19px;
-  height: 34px
-}
-
-.c-product-card > div > .body-card > .card-info > .category > .c-arrow-svg .icon {
-  width: 19px;
-  height: 34px;
-  min-width: 19px
-}
-
-.c-product-card > div > .body-card > .card-info > .category > .c-arrow-svg .icon:first-of-type {
-  -webkit-mask-size: 60%;
-  mask-size: 60%
-}
-
-.c-product-card > div > .body-card > .card-info > .category > .c-arrow-svg .icon:last-of-type {
-  -webkit-mask-size: 45%;
-  mask-size: 45%;
-  margin-left: -24px
-}
-
-.c-product-card > div > .body-card > .card-info > .category:hover > .c-arrow-svg > div > span:first-of-type {
-  opacity: 1;
-  transform: translateX(-4px)
-}
-
-.c-product-card > div > .body-card > .card-info > .category:hover > .c-arrow-svg > div > span:last-of-type {
-  transform: translateX(2px)
+  overflow: hidden
 }
 
 .c-product-card > div > .body-card > .card-info > .category.placeholder {
@@ -966,6 +1128,35 @@ function goToProduct() {
 .c-product-card > div > .body-card > .card-info > .rating.placeholder {
   background: #ebf0f9;
   max-width: 90px
+}
+
+.c-product-card > div > .body-card > .card-info > .rating > a {
+  display: flex;
+  align-items: center
+}
+
+.c-product-card > div > .body-card > .card-info > .rating > a > span {
+  line-height: 15.07px;
+  font-size: 12px
+}
+
+.c-product-card > div > .body-card > .card-info > .rating > a > .star {
+  width: 13px;
+  height: 13px;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+  background-color: #ffcf24
+}
+
+.c-product-card > div > .body-card > .card-info > .rating > a > .average {
+  font-weight: 600;
+  color: #1a1a1a
+}
+
+.c-product-card > div > .body-card > .card-info > .rating > a > .review-count {
+  color: #818ca9;
+  margin-left: 3px;
+  font-weight: 500
 }
 
 .c-product-card > div > .body-card > .card-info > .name {
@@ -1230,6 +1421,11 @@ function goToProduct() {
   opacity: 1
 }
 
+.c-product-card.not-available > div > .body-card > .card-info > .category {
+  background-color: #d6d6e1;
+  color: #fff
+}
+
 .c-product-card.not-available > div > .body-card > .card-info > .category.placeholder {
   background: #ebf0f9
 }
@@ -1360,36 +1556,10 @@ function goToProduct() {
   max-width: 87px
 }
 
-.c-product-card.mobile > div > .body-card > .card-info > .category > .text {
-  padding: 10px 3px 11px 4px;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 15px
-}
-
-.c-product-card.mobile > div > .body-card > .card-info > .category > .c-arrow-svg {
-  background-color: #ff0089;
-  width: 18px;
-  height: 36px
-}
-
-.c-product-card.mobile > div > .body-card > .card-info > .category > .c-arrow-svg .icon {
-  width: 18px;
-  height: 36px;
-  min-width: 18px
-}
-
-.c-product-card.mobile > div > .body-card > .card-info > .category > .c-arrow-svg .icon:last-of-type {
-  margin-left: -22px
-}
-
-.c-product-card.mobile > div > .body-card > .card-info > .category:hover > .c-arrow-svg > div > span:first-of-type {
-  opacity: 0;
-  transform: none
-}
-
-.c-product-card.mobile > div > .body-card > .card-info > .category:hover > .c-arrow-svg > div > span:last-of-type {
-  transform: none
+.c-product-card.mobile > div > .body-card > .card-info > .category {
+  font-size: 9px;
+  max-width: 146px;
+  line-height: 10.97px
 }
 
 .c-product-card.mobile > div > .body-card > .card-info > .rating {
@@ -1507,11 +1677,7 @@ function goToProduct() {
   }
 
   .c-product-card.mobile > div > .body-card > .card-info > .category {
-    max-width: 140px
-  }
-
-  .c-product-card.mobile > div > .body-card > .card-info > .category > .text {
-    font-size: 10px
+    max-width: 120px
   }
 
   .c-product-card.mobile > div > .body-card > .card-info > .name {

@@ -1,0 +1,1056 @@
+[
+  {
+    "ID": 238743,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 13,
+    "categoryID": 287,
+    "images": [
+      "238743A.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/238743/208/238743A.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/238743/80/238743A.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Витамин С таблетки шипучие 900мг №20 Беларусь",
+    "price": {
+      "withCard": 378,
+      "withPeriod": 296,
+      "withoutCard": 378
+    },
+    "priceZakaz": {
+      "withCard": 378,
+      "withPeriod": 296,
+      "withoutCard": 378
+    },
+    "rating": 89,
+    "ratingText": {
+      "externalCard": "89%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 2,
+    "slug": "vitamin_s_tabletki_shipuchie_900mg_20",
+    "subtypeIDs": [
+      2554
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 296368,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "categoryID": 469,
+    "images": [
+      "296368.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/296368/208/296368.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/296368/80/296368.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Тетралаб L-Аргинин таблетки №60",
+    "price": {
+      "withCard": 864,
+      "withPeriod": 672,
+      "withoutCard": 864
+    },
+    "priceZakaz": {
+      "withCard": 864,
+      "withPeriod": 672,
+      "withoutCard": 864
+    },
+    "rating": 70,
+    "ratingText": {
+      "externalCard": "70%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "70% покупателей выбирают",
+      "internalCardHint": "70% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "tetralab_larginin_tab_60",
+    "subtypeIDs": [
+      2554,
+      2557,
+      2558
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 228149,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "bonuses": 53,
+    "categoryID": 435,
+    "images": [
+      "228149.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/228149/208/228149.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/228149/80/228149.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Глюкозамин с хондроитином MSM комплекс капсулы №60",
+    "price": {
+      "withCard": 1298,
+      "withPeriod": 998,
+      "withoutCard": 1298
+    },
+    "priceZakaz": {
+      "withCard": 1298,
+      "withPeriod": 998,
+      "withoutCard": 1298
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "glyukozamin_s_hondroitinom_msm_kompleks_kapsuly_1100mg_60",
+    "subtypeIDs": [
+      2590
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 324656,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "categoryID": 102,
+    "images": [
+      "324656.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/324656/208/324656.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/324656/80/324656.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Мишки Мульти+ пастилки жевательные 2г №30",
+    "price": {
+      "withCard": 450,
+      "withPeriod": 359,
+      "withoutCard": 450
+    },
+    "priceZakaz": {
+      "withCard": 450,
+      "withPeriod": 359,
+      "withoutCard": 450
+    },
+    "rating": 89,
+    "ratingText": {
+      "externalCard": "89%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 9,
+    "slug": "mishki_multi_pastilki_zhevatelnye_2g_30",
+    "subtypeIDs": [
+      2554
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 242635,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 49,
+    "categoryID": 435,
+    "discountTemplate": "n_percent_m_pack",
+    "images": [
+      "e6a47e3bbd9584770d3e21a52b206bc0.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/242635/208/e6a47e3bbd9584770d3e21a52b206bc0.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/242635/80/e6a47e3bbd9584770d3e21a52b206bc0.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Глюкозамин Ультра MSM 1500/300 порошок 2,5г №20",
+    "price": {
+      "withCard": 908,
+      "withPeriod": 719,
+      "withoutCard": 908
+    },
+    "priceZakaz": {
+      "withCard": 908,
+      "withPeriod": 719,
+      "withoutCard": 908
+    },
+    "rating": 88,
+    "ratingText": {
+      "externalCard": "88%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "88% покупателей выбирают",
+      "internalCardHint": "88% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 1,
+    "slug": "glyukozamin_ultra_msm_1500300_poroshok_2_5g_20",
+    "sticker": "-50% на 2-ю уп.",
+    "subtypeIDs": [
+      2590
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 234151,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 15,
+    "categoryID": 4,
+    "discountTemplate": "discount_size_percent",
+    "images": [
+      "4fd567855565e2d5da343c7bd8fd3f20.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/234151/208/4fd567855565e2d5da343c7bd8fd3f20.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/234151/80/4fd567855565e2d5da343c7bd8fd3f20.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "mightNeedID": 204209,
+    "name": "СанниБэби Элит Подгузники Макси размер 4 7-18кг Меджикал тьюбс №28",
+    "price": {
+      "withCard": 599,
+      "withPeriod": 599,
+      "withoutCard": 748
+    },
+    "priceZakaz": {
+      "withCard": 599,
+      "withPeriod": 599,
+      "withoutCard": 748
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 7,
+    "slug": "sannibebi_elit_podguzniki_maksi_718kg_medzhikal_tyubs_28",
+    "sticker": "-20%",
+    "subtypeIDs": [
+      70
+    ],
+    "typeIDs": [
+      400010
+    ]
+  },
+  {
+    "ID": 326299,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "categoryID": 446,
+    "images": [
+      "326299.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/326299/208/326299.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/326299/80/326299.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Комплекс для сна мелатонин 3мг таблетки №30",
+    "price": {
+      "withCard": 483,
+      "withPeriod": 359,
+      "withoutCard": 483
+    },
+    "priceZakaz": {
+      "withCard": 483,
+      "withPeriod": 359,
+      "withoutCard": 483
+    },
+    "rating": 89,
+    "ratingText": {
+      "externalCard": "89%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 10,
+    "slug": "kardio_plyus_kapsuly_30",
+    "subtypeIDs": [
+      2561
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 270395,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 4.75,
+    "categoryID": 233,
+    "images": [
+      "2cd5b5b6e972c48f8a5f16571f87a1e6.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/270395/208/2cd5b5b6e972c48f8a5f16571f87a1e6.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/270395/80/2cd5b5b6e972c48f8a5f16571f87a1e6.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Тонометр MED-63 механический со встроенным стетоскопом манжета M-L",
+    "price": {
+      "withCard": 1298,
+      "withPeriod": 1048,
+      "withoutCard": 1298
+    },
+    "priceZakaz": {
+      "withCard": 1298,
+      "withPeriod": 1048,
+      "withoutCard": 1298
+    },
+    "rating": 80,
+    "ratingText": {
+      "externalCard": "80%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "80% покупателей выбирают",
+      "internalCardHint": "80% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 4,
+    "slug": "tonometr_med63_mehanicheskij_so_vstroennym_stetoskopom_razmer_manzheta_ml",
+    "subtypeIDs": [
+      23
+    ],
+    "typeIDs": [
+      396198
+    ]
+  },
+  {
+    "ID": 334078,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "categoryID": 196,
+    "images": [
+      "334078.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/334078/208/334078.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/334078/80/334078.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Allvit Мультивитаминный комплекс для женщин таблетки №60",
+    "price": {
+      "withCard": 898,
+      "withPeriod": 718,
+      "withoutCard": 898
+    },
+    "priceZakaz": {
+      "withCard": 898,
+      "withPeriod": 718,
+      "withoutCard": 898
+    },
+    "rating": 72,
+    "ratingText": {
+      "externalCard": "72%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "72% покупателей выбирают",
+      "internalCardHint": "72% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 4,
+    "slug": "vitaminnomineralnyj_kompleks_dlya_zhenshchin_ot_a_do_zn_tabletki_30",
+    "subtypeIDs": [
+      2554
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 261808,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 38,
+    "categoryID": 859,
+    "images": [
+      "5cd60959e2b5b0182085904ff7b13adb.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/261808/208/5cd60959e2b5b0182085904ff7b13adb.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/261808/80/5cd60959e2b5b0182085904ff7b13adb.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Витамин Д3 2000МЕ капсулы №90",
+    "price": {
+      "withCard": 748,
+      "withPeriod": 588,
+      "withoutCard": 748
+    },
+    "priceZakaz": {
+      "withCard": 748,
+      "withPeriod": 588,
+      "withoutCard": 748
+    },
+    "rating": 77,
+    "ratingText": {
+      "externalCard": "77%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "77% покупателей выбирают",
+      "internalCardHint": "77% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 6,
+    "slug": "vitamin_d3_2000me_kapsuly_90",
+    "subtypeIDs": [
+      2554
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 331373,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "categoryID": 419,
+    "images": [
+      "fd91a62603700d0eccf2fa79afd34569.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/331373/208/fd91a62603700d0eccf2fa79afd34569.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/331373/80/fd91a62603700d0eccf2fa79afd34569.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Симетикон 80мг капсулы №30",
+    "price": {
+      "withCard": 391,
+      "withPeriod": 307,
+      "withoutCard": 391
+    },
+    "priceZakaz": {
+      "withCard": 391,
+      "withPeriod": 307,
+      "withoutCard": 391
+    },
+    "rating": 78,
+    "ratingText": {
+      "externalCard": "78%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "78% покупателей выбирают",
+      "internalCardHint": "78% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 2,
+    "slug": "simetikon_80mg_kapsuly_30",
+    "subtypeIDs": [
+      2555
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 325991,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 4.67,
+    "categoryID": 103,
+    "discountTemplate": "discount_size_percent",
+    "images": [
+      "325991.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/325991/208/325991.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/325991/80/325991.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Фанни Органикс Акнеофф Крем-сыворотка матирующая с цинком для проблемной кожи лица 30мл",
+    "price": {
+      "withCard": 400,
+      "withPeriod": 400,
+      "withoutCard": 615
+    },
+    "priceZakaz": {
+      "withCard": 400,
+      "withPeriod": 400,
+      "withoutCard": 615
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 3,
+    "slug": "fanni_organiks_akneoff_kremsyvorotka_matiruyushchaya_s_cinkom_dlya_problemnoj_kozhi_lica_30ml",
+    "sticker": "-35%",
+    "subtypeIDs": [
+      33
+    ],
+    "typeIDs": [
+      398611
+    ]
+  },
+  {
+    "ID": 261841,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 29,
+    "categoryID": 542,
+    "images": [
+      "380720f5ec62e7f18edc6a2cc9d4d07c.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/261841/208/380720f5ec62e7f18edc6a2cc9d4d07c.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/261841/80/380720f5ec62e7f18edc6a2cc9d4d07c.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Церадерм Крем увлажняющий для сухой кожи 125мл",
+    "price": {
+      "withCard": 513,
+      "withPeriod": 406,
+      "withoutCard": 513
+    },
+    "priceZakaz": {
+      "withCard": 513,
+      "withPeriod": 406,
+      "withoutCard": 513
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 2,
+    "slug": "ceraderm_krem_uvlazhnyayushchij_dlya_suhoj_kozhi_125ml",
+    "subtypeIDs": [
+      11,
+      32,
+      33,
+      35,
+      71,
+      82
+    ],
+    "typeIDs": [
+      398611,
+      400010
+    ]
+  },
+  {
+    "ID": 330876,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "categoryID": 355,
+    "images": [
+      "269f2727c0af90a2037a397ad3af82f2.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/330876/208/269f2727c0af90a2037a397ad3af82f2.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/330876/80/269f2727c0af90a2037a397ad3af82f2.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Хит Сорбент таблетки №60",
+    "price": {
+      "withCard": 398,
+      "withPeriod": 318,
+      "withoutCard": 398
+    },
+    "priceZakaz": {
+      "withCard": 398,
+      "withPeriod": 318,
+      "withoutCard": 398
+    },
+    "rating": 89,
+    "ratingText": {
+      "externalCard": "89%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 3,
+    "slug": "hit_sorbent_tabletki_60",
+    "subtypeIDs": [
+      2555
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 265291,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 4.9,
+    "bonuses": 72,
+    "categoryID": 361,
+    "discountTemplate": "n_percent_m_pack",
+    "images": [
+      "582e01c3c3d1c792b2936f0e20f2c445.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/265291/208/582e01c3c3d1c792b2936f0e20f2c445.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/265291/80/582e01c3c3d1c792b2936f0e20f2c445.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Веноприм 500мг таблетки  №60",
+    "price": {
+      "withCard": 998,
+      "withPeriod": 798,
+      "withoutCard": 998
+    },
+    "priceZakaz": {
+      "withCard": 998,
+      "withPeriod": 798,
+      "withoutCard": 998
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 10,
+    "slug": "venoprim_tabletki_500mg_60",
+    "sticker": "-50% на 2-ю уп.",
+    "subtypeIDs": [
+      2559
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 295151,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "categoryID": 420,
+    "discountTemplate": "discount_size_percent",
+    "images": [
+      "295151.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/295151/208/295151.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/295151/80/295151.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Тетралаб Пиколинат хрома 200мкг таблетки №90",
+    "price": {
+      "withCard": 552,
+      "withPeriod": 552,
+      "withoutCard": 788
+    },
+    "priceZakaz": {
+      "withCard": 552,
+      "withPeriod": 552,
+      "withoutCard": 788
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 2,
+    "slug": "tetralab_pikolinat_hroma_tab_90",
+    "sticker": "-30%",
+    "subtypeIDs": [
+      2570
+    ],
+    "typeIDs": [
+      396070,
+      400217
+    ]
+  },
+  {
+    "ID": 261842,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 33,
+    "categoryID": 546,
+    "discountTemplate": "discount_size_percent",
+    "images": [
+      "4ac586f59cd3e4f53c6e9d6d48a95347.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/261842/208/4ac586f59cd3e4f53c6e9d6d48a95347.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/261842/80/4ac586f59cd3e4f53c6e9d6d48a95347.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Мирратубекс гель 50мл",
+    "price": {
+      "withCard": 448,
+      "withPeriod": 448,
+      "withoutCard": 688
+    },
+    "priceZakaz": {
+      "withCard": 448,
+      "withPeriod": 448,
+      "withoutCard": 688
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 8,
+    "slug": "mirratubeks_gel_50ml",
+    "sticker": "-35%",
+    "subtypeIDs": [
+      4,
+      11,
+      2572
+    ],
+    "typeIDs": [
+      396070,
+      396194,
+      398611
+    ]
+  },
+  {
+    "ID": 330371,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "categoryID": 277,
+    "images": [
+      "330371.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/330371/208/330371.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/330371/80/330371.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Коэнзим Q10 плюс 30мг с пиперином капсулы №30",
+    "price": {
+      "withCard": 454,
+      "withPeriod": 357,
+      "withoutCard": 454
+    },
+    "priceZakaz": {
+      "withCard": 454,
+      "withPeriod": 357,
+      "withoutCard": 454
+    },
+    "rating": 55,
+    "ratingText": {
+      "externalCard": "55%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "55% покупателей выбирают",
+      "internalCardHint": "55% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "koenzim_q10_100mg_s_piperinom_kapsuly_30",
+    "subtypeIDs": [
+      2559
+    ],
+    "typeIDs": [
+      396070
+    ]
+  },
+  {
+    "ID": 291663,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "categoryID": 55,
+    "images": [
+      "b5d4e17cbc2c7782985ce55fc73f7852.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/291663/208/b5d4e17cbc2c7782985ce55fc73f7852.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/291663/80/b5d4e17cbc2c7782985ce55fc73f7852.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": true,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Манжета увеличенная универсальная на плечо 22-42см размер M-L",
+    "price": {
+      "withCard": 1148,
+      "withPeriod": 915,
+      "withoutCard": 1148
+    },
+    "priceZakaz": {
+      "withCard": 1148,
+      "withPeriod": 915,
+      "withoutCard": 1148
+    },
+    "rating": 89,
+    "ratingText": {
+      "externalCard": "89%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "manzheta_uvelichennaya_universalnaya_na_plecho_2242sm_razmer_ml",
+    "subtypeIDs": [
+      27
+    ],
+    "typeIDs": [
+      396198
+    ]
+  },
+  {
+    "ID": 334938,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "categoryID": 268,
+    "images": [
+      "7bd6cfece0f69f611aa679348fad0aa9.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/334938/208/7bd6cfece0f69f611aa679348fad0aa9.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/334938/80/7bd6cfece0f69f611aa679348fad0aa9.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Gold'n Apotheka Омега 3-6-9 капсулы №60",
+    "price": {
+      "withCard": 2490,
+      "withPeriod": 1788,
+      "withoutCard": 2490
+    },
+    "priceZakaz": {
+      "withCard": 2490,
+      "withPeriod": 1788,
+      "withoutCard": 2490
+    },
+    "rating": 50,
+    "ratingText": {
+      "externalCard": "50%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 0,
+    "slug": "allvit_omega_369_kapsuly_60",
+    "subtypeIDs": [
+      2554
+    ],
+    "typeIDs": [
+      396070
+    ]
+  }
+]

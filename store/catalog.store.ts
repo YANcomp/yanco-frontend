@@ -91,12 +91,12 @@ export const useCatalogStore = defineStore('catalog', {
     },
     getters: {
         catalogColors: function (state) {
-            return state.catalog ? undefined : state.catalog.types.reduce((result: any, item: any) => {
-                result[item.ID] = {
-                    color: item.color,
-                    background: item.background
-                }
-                return result
+            var t;
+            return null === (t = state.catalog) || void 0 === t ? void 0 : t.types.reduce((result: any, e: any) => {
+                return result[e.ID] = {
+                    color: e.color,
+                    background: e.background
+                }, result
             }, {})
         }
     }
