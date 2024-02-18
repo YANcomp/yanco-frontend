@@ -50,7 +50,7 @@ watch(() => props.city, () => {
 })
 
 onMounted(() => {
-  !isMobile.value && categories.value[0].name === undefined && props.city !== undefined && loadPopularCategories()
+  categories.value[0].name === undefined && props.city !== undefined && loadPopularCategories()
   resize()
   window.addEventListener("resize", resize)
 })
@@ -71,7 +71,6 @@ function error(notification: any) {
 }
 
 async function loadPopularCategories() {
-  console.log("load")
   return await popularCategoriesStore.GET(props.city).catch((e) => {
     isFailedGettingPopularCategories.value = true
     error(e)

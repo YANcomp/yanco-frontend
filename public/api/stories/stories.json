@@ -1,55 +1,5 @@
 [
   {
-    "ID": 245,
-    "preview": "https://pictures.apteka-april.ru/stories/245/Image_cover.webp",
-    "title": "Электронная торговая площадка ГК «Апрель»",
-    "isActive": true,
-    "isActiveMobile": false,
-    "slides": [
-      {
-        "ID": 477,
-        "delay": 5000,
-        "caption": "Электронная торговая площадка ГК «Апрель»",
-        "textPosition": "bottom",
-        "backgroundImage": "https://pictures.apteka-april.ru/slides/477/image_1.webp",
-        "isHideShadowBottom": false
-      },
-      {
-        "ID": 478,
-        "delay": 5000,
-        "target": "https://torg.apteka-april.ru/",
-        "btnText": "Подробнее",
-        "content": "Приглашаем партнеров для сотрудничества на собственную электронную торговую площадку.",
-        "btnStyle": "primary",
-        "textPosition": "bottom",
-        "backgroundImage": "https://pictures.apteka-april.ru/slides/478/image_2.webp",
-        "isHideShadowBottom": false
-      },
-      {
-        "ID": 479,
-        "delay": 5000,
-        "target": "https://torg.apteka-april.ru/",
-        "btnText": "Подробнее",
-        "content": "Сервис предназначен для проведения торгов, осуществления сделок купли-продажи и размещения прочей информации в электронной форме.",
-        "btnStyle": "primary",
-        "textPosition": "bottom",
-        "backgroundImage": "https://pictures.apteka-april.ru/slides/479/image_3.webp",
-        "isHideShadowBottom": false
-      },
-      {
-        "ID": 480,
-        "delay": 5000,
-        "target": "https://torg.apteka-april.ru/",
-        "btnText": "Подробнее",
-        "content": "Электронная торговая площадка «Апрель» - это удобный, современный и надежный инструмент честного взаимодействия.",
-        "btnStyle": "primary",
-        "textPosition": "bottom",
-        "backgroundImage": "https://pictures.apteka-april.ru/slides/480/image_4.webp",
-        "isHideShadowBottom": false
-      }
-    ]
-  },
-  {
     "ID": 253,
     "preview": "https://pictures.apteka-april.ru/stories/253/Image_cover.webp",
     "title": "Выгодный выбор в категории товара!",

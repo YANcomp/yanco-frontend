@@ -517,7 +517,11 @@ function goToProduct() {
               </template>
 
               <template v-if="product.isAvailable && isInBasket">
-                cBasketProduct
+                <BasketCBasketProduct :basket-items="basketItems" :has-loyal-card="hasLoyalCard"
+                                      :is-authorized="isAuthorized" :is-basket-updating="isBasketUpdating"
+                                      :product-i-d="product.ID" :size="size"
+                                      v-on:basket-item-update="updateBasketItem"
+                                      v-on:basket-store-update="updateBasketStore"/>
               </template>
               <template v-else-if="product.isAvailable && product.isInStock">
                 <UiCButton :size='isMobile ? "s" : isProductOfTheDay ? "l" : "m"' :is-loading="isBasketLoading"
@@ -572,7 +576,11 @@ function goToProduct() {
               </template>
             </div>
             <template v-if="product.isAvailable && product.isInBasket">
-              cBasketProduct
+              <BasketCBasketProduct :basket-items="basketItems" :has-loyal-card="hasLoyalCard"
+                                    :is-authorized="isAuthorized" :is-basket-updating="isBasketUpdating"
+                                    :product-i-d="product.ID" :size="size" is-vertical
+                                    v-on:basket-item-update="updateBasketItem"
+                                    v-on:basket-store-update="updateBasketStore"/>
             </template>
             <template v-else-if='isRare && product.isAvailable && product.isInStock'>
               <UiCButton size="s" mode="dark-green" @click="goToProduct">

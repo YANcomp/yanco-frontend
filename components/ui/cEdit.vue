@@ -363,7 +363,7 @@ function showPassword() {
                v-on="listeners"/>
       </template>
       <template v-else>
-        <input v-bind="singlelineBinds" v-on="listeners">
+        <input v-bind="singlelineBinds" v-model.trim="text" v-on="listeners">
       </template>
       <span v-if="isPhone"
             :class='["code-country", { show: isFocus || formattedPhone.length > 0, error: isError, warning: isWarning, disabled: disabled }]'>
@@ -381,7 +381,7 @@ function showPassword() {
             @click="(e)=>{return e.preventDefault(), showPassword()}"></span>
     </div>
 
-    <div :class="['status-text', {show: hasStatusText, error: isError, warning: isWarning}]">
+    <div v-if="!isHideStatus" :class="['status-text', {show: hasStatusText, error: isError, warning: isWarning}]">
       <slot name="status-text"/>
     </div>
 
