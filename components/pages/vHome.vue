@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 
 const appStore = useAppStore()
-await appStore.BREADCRUMBS_UPD([])
 
 const route = useRoute()
 const citiesStore = useCitiesStore()
 const storiesStore = useStoriesStore()
 const productGroupsStore = useProductGroupsStore()
+const productsStore = useProductsStore()
+const basketStore = useBasketStore()
+const favoritesStore = useFavoritesStore()
+const catalogStore = useCatalogStore()
 const notificationsStore = useNotificationsStore()
 
 const groupProducts = ref({})
@@ -24,14 +27,42 @@ const isShowProductDay = ref(true)
 const placeholderItems = ref([{}, {}, {}, {}, {}, {}])
 const PREPARED_PRODUCTS_FIELDS = ref(["isInBasket", "isInFavorites"])
 
+
+const basketItems = computed(() => {
+  return basketStore.items
+})
+const favoritesItems = computed(() => {
+  return favoritesStore.items
+})
 const city = computed(() => {
   return citiesStore.currentCity
 })
+const catalog = computed(() => {
+  return catalogStore.catalog
+})
+const productCategories = computed(() => {
+  return catalog.value.categories
+})
+const productSubtypes = computed(() => {
+  return catalog.value.subtypes
+})
+const productTypes = computed(() => {
+  return catalog.value.types
+})
+
 const homeBrands = computed(() => {
   return params.value.homeBrands ? params.value.homeBrands : []
 })
 const isMobile = computed(() => {
   return appStore.isMobile
+})
+const hasLoyalCard = computed(() => {
+  //TODO     return this.$store.getters["me/hasLoyalCard"]
+  return false
+})
+const isAuthorized = computed(() => {
+  //TODO     return this.$store.getters["sessions/isAuthorized"]
+  return false
 })
 const params: any = computed(() => {
   return <any>appStore.params
@@ -80,8 +111,14 @@ const productGroups = computed(() => {
     return result
   }, [])
 })
+const productOfDay = computed(() => {
+  return productsStore.productOfDay ? productsStore.productOfDay : {}
+})
 
 onMounted(() => {
+  if (Object.keys(productOfDay.value).length < 1 && city.value !== undefined) {
+    loadProductOfDay()
+  }
   if (productGroups.value.length < 1) {
     loadProductGroups().catch((e: any) => {
       notificationsStore.NOTIFICATIONS_UPD({
@@ -111,6 +148,33 @@ function loadStories() {
 
 function loadProductGroups() {
   return productGroupsStore.GET()
+}
+
+function loadProductOfDay() {
+  //TODO City props
+  return productsStore.GET_PRODUCT_OF_DAY()
+}
+
+const preparedProducts = uPrepared
+
+function addToBasket(...opts: any[]) {
+  //TODO
+}
+
+function addToFavorites() {
+  //TODO
+}
+
+function updateBasketItem(t: any) {
+  addToBasket(t, true)
+}
+
+function updateBasketStore(t: any) {
+  basketStore.BASKET_UPD(t)
+}
+
+function updateFavoritesStore(t: any) {
+  favoritesStore.FAVORITES_UPD(t)
 }
 
 useHead(() => ({
@@ -150,7 +214,19 @@ useSeoMeta({
       <CarouselCCarousel :city="city" :is-mobile="isMobile" :switch-interval="params?.carouselSwitchInterval"
                          :params="params"/>
       <div v-if="!isMobile && isShowProductDay" class="product-of-day">
-        cProductCard
+        <ProductCProductCard :product="preparedProducts([productOfDay], PREPARED_PRODUCTS_FIELDS)[0]"
+                             :basket-items="basketItems" :city="city" :favorites-items="favoritesItems"
+                             :has-loyal-card="hasLoyalCard" :is-authorized="isAuthorized"
+                             :is-basket-loading="loadingBasketProductIDs.includes(productOfDay.ID)"
+                             :is-basket-updating="updatingBasketProductIDs.includes(productOfDay.ID)"
+                             :is-favorites-loading="loadingFavoritesProductIDs.includes(productOfDay.ID)"
+                             :product-categories="productCategories" :product-subtypes="productSubtypes"
+                             :product-types="productTypes" is-product-of-the-day
+                             v-on:add-to-basket="addToBasket"
+                             v-on:add-to-favorites="addToFavorites"
+                             v-on:basket-item-update="updateBasketItem"
+                             v-on:basket-store-update="updateBasketStore"
+                             v-on:favorites-store-update="updateFavoritesStore"/>
       </div>
     </div>
 

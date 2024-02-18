@@ -7,7 +7,7 @@ const props = defineProps({
 
 const appStore = useAppStore()
 const popularCategoriesStore = usePopularCategoriesStore()
-await popularCategoriesStore.GET({allowDelivery: false})
+// await popularCategoriesStore.GET({allowDelivery: false})
 await popularCategoriesStore.GET_COUNT({allowDelivery: false})
 
 const notificationsStore = useNotificationsStore()
@@ -50,7 +50,7 @@ watch(() => props.city, () => {
 })
 
 onMounted(() => {
-  0 === categories.value.length && props.city !== undefined && loadPopularCategories()
+  !isMobile.value && categories.value[0].name === undefined && props.city !== undefined && loadPopularCategories()
   resize()
   window.addEventListener("resize", resize)
 })
@@ -70,8 +70,9 @@ function error(notification: any) {
   })
 }
 
-function loadPopularCategories() {
-  return popularCategoriesStore.GET(props.city).catch((e) => {
+async function loadPopularCategories() {
+  console.log("load")
+  return await popularCategoriesStore.GET(props.city).catch((e) => {
     isFailedGettingPopularCategories.value = true
     error(e)
   })

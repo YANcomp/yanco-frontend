@@ -1,0 +1,57 @@
+[
+  {
+    "ID": 242680,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 4.96,
+    "bonuses": 26,
+    "categoryID": 374,
+    "images": [
+      "809ea813be06714e6d9afbac5d13b4ef.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/242680/208/809ea813be06714e6d9afbac5d13b4ef.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/242680/80/809ea813be06714e6d9afbac5d13b4ef.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Умифеновир капсулы 100мг №20",
+    "price": {
+      "withCard": 492,
+      "withPeriod": 411,
+      "withoutCard": 492
+    },
+    "priceZakaz": {
+      "withCard": 492,
+      "withPeriod": 411,
+      "withoutCard": 492
+    },
+    "rating": 73,
+    "ratingText": {
+      "externalCard": "73%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "73% покупателей выбирают",
+      "internalCardHint": "73% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 26,
+    "slug": "umifenovir_kapsuly_100mg_20",
+    "subtypeIDs": [
+      2557,
+      2558,
+      2566,
+      3872
+    ],
+    "typeIDs": [
+      396070
+    ]
+  }
+]
