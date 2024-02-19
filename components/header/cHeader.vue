@@ -287,7 +287,7 @@ function search(filter: any) {
           <div class="pharmacies">
             <NuxtLink :to="{name: 'pharmacies'}">
               <span class="icon logo-header-menu"/>
-              <span>Адреса магазинов</span>
+              <span>Адреса</span>
             </NuxtLink>
           </div>
           <div v-show="!isAuthorized" class="login">

@@ -1,0 +1,57 @@
+[
+  {
+    "ID": 59344,
+    "typeIDs": [
+      396070,
+      398611
+    ],
+    "subtypeIDs": [
+      11,
+      82,
+      2572
+    ],
+    "categoryID": 465,
+    "slug": "dekspantenolverteks_maz_5_30g",
+    "name": "Декспантенол Вертекс мазь 5% 30г",
+    "rating": 80,
+    "price": {
+      "withCard": 302.0,
+      "withPeriod": 241.0,
+      "withoutCard": 302.0
+    },
+    "priceZakaz": {
+      "withCard": 302.0,
+      "withPeriod": 241.0,
+      "withoutCard": 302.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "images": [
+      "fea062bde30d88819fd5c6ef81fb26cb.webp"
+    ],
+    "reviewsNumber": 9,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 22,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": true,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/59344/80/fea062bde30d88819fd5c6ef81fb26cb.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/59344/208/fea062bde30d88819fd5c6ef81fb26cb.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "80%",
+      "internalCard": "80% покупателей выбирают",
+      "internalCardHint": "80% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  }
+]

@@ -15,6 +15,7 @@ import ApiStoriesModule from "~/api/stories";
 import ApiProductGroupsModule from "~/api/productGroups";
 import ApiProductOfDayModule from "~/api/productOfDay";
 import ApiProductsModule from "~/api/products";
+import ApiFavoritesModule from "~/api/favorites";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -48,7 +49,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         cities: new ApiCitiesModule(opts),
         // companies: k,
         // FAQ: T,
-        // favorites: E,
+        favorites: new ApiFavoritesModule(opts),
         // landlords: x,
         // me: M,
         // metric: N.a,

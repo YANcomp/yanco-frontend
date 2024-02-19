@@ -241,7 +241,7 @@ function changeLocalStorage(t: any) {
   //TODO
   // if (A !== storeToken)
 
-  "favorites" === t.key && mFavoritesItems !== y && favoritesStore.FAVORITES_UPD(JSON.parse(y))
+  "favorites" === t.key && mFavoritesItems !== y && favoritesStore.COMMIT_FAVORITES_UPD(JSON.parse(y))
   "basketLocalStore" === t.key && fBasketItems !== _ && basketStore.BASKET_UPD(JSON.parse(_))
   "comparisonProducts" === t.key && vComparisonProductIDs !== I && comparisonStore.COMPARISON_PRODUCTS_GET(JSON.parse(I))
   // TODO "isBasketConflict" === t.key && undefined !== C && VisBasketConflict !== C && basketStore.CONFLICT(JSON.parse(C))
@@ -313,7 +313,7 @@ function loadBasket() {
 }
 
 function loadFavorites() {
-  return loadFromStoreOrLocalStorage("favorites", favoritesStore.FAVORITES_GET, favoritesStore.FAVORITES_UPD)
+  return loadFromStoreOrLocalStorage("favorites", favoritesStore.FAVORITES_GET, favoritesStore.COMMIT_FAVORITES_UPD)
 }
 
 function loadFromStoreOrLocalStorage(nameStorage: any, getStorage: Function, updStorage: Function) {
@@ -338,7 +338,7 @@ function loadFromStoreOrLocalStorage(nameStorage: any, getStorage: Function, upd
     return Promise.resolve(newStorage)
   }
   return Promise.resolve()
-  //TODO
+  // TODO
   // var o, r = this;
   // if (void 0 === this.city) return Promise.resolve();
   // var c = this.city.ID,
@@ -459,8 +459,8 @@ function changeViewedStories() {
 
     <LazyUiCUpButton v-if="isScrolled && !isMobile" :is-mobile="isMobile"/>
 
-    <!--    <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""-->
-    <!--         :src='isMobile ? params?.footerBanners.mobile : params?.footerBanners.desktop'/>-->
+    <img :class='["footer-banner", "container", { mobile: isMobile }]' width="100%" height="100%" alt=""
+         :src='isMobile ? params?.footerBanners.mobile : params?.footerBanners.desktop'/>
     <!--    cChatBot-->
     <LazyPopupnotifCNotifications v-if="isPopupNotifications"
                                   :params="params"

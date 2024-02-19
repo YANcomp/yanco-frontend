@@ -196,7 +196,7 @@ function updateBasketStore(t: any) {
 }
 
 function updateFavoritesStore(t: any) {
-  favoritesStore.FAVORITES_UPD(t)
+  favoritesStore.COMMIT_FAVORITES_UPD(t)
 }
 
 useHead(() => ({

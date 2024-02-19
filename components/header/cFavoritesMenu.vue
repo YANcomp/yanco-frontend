@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-
 const props = defineProps({
   basketItems: {
-    type: Array
+    type: <any>Array
   },
   isAuthorized: {
     type: Boolean
@@ -11,7 +10,7 @@ const props = defineProps({
     type: Boolean
   },
   loadingBasketProductIDs: {
-    type: Array,
+    type: <any>Array,
     default: function () {
       return []
     }
@@ -21,6 +20,9 @@ const props = defineProps({
   }
 })
 
+const emit = defineEmits(["add-to-basket", "basket-store-update"])
+
+const notificationsStore = useNotificationsStore()
 const favoritesStore = useFavoritesStore()
 const router = useRouter()
 
@@ -31,8 +33,50 @@ const products = computed(() => {
   return favoritesStore.items ? favoritesStore.items : []
 })
 
+
 function addToBasket(item: any) {
-  //TODO
+  if (!props.loadingBasketProductIDs.includes(item.ID))
+    if (props.isAuthorized) {
+      let e = {
+        productID: item.ID,
+        count: 1,
+        isSelected: true
+      };
+      emit("add-to-basket", e)
+    } else {
+      let n = props.basketItems.length > 0 ? [...props.basketItems] : [];
+      n.push({
+        productID: item.ID,
+        productSlug: item.slug,
+        images: item.images,
+        name: item.name,
+        price: item.price,
+        count: 1,
+        isRemoved: false,
+        isInStock: item.isInStock,
+        allowDelivery: item.allowDelivery,
+        allowOnlinePayment: item.allowOnlinePayment,
+        discountID: item.discountID,
+        isWithdrawn: item.isWithdrawn,
+        limitWithCard: item.limitWithCard,
+        limitWithoutCard: item.limitWithoutCard,
+        deliveryDaysMax: item.deliveryDaysMax,
+        isRecipe: item.isRecipe,
+        isAvailable: item.isAvailable,
+        deliveryAmount: item.deliveryAmount,
+        discountTemplate: item.discountTemplate,
+        mightNeedID: item.mightNeedID,
+        imagesSizeXS: item.imagesSizeXS,
+        imagesSizeS: item.imagesSizeS,
+        isSelected: !0,
+        isSiteSellRemains: item.isSiteSellRemains,
+        isWaitingArrive: item.isWaitingArrive,
+        isOrderRcNoRc: item.isOrderRcNoRc
+      }), void 0 !== item.bonuses && void 0 === item.sticker && (n[n.length - 1].bonuses = item.bonuses), void 0 !== item.sticker && (n[n.length - 1].sticker = item.sticker), void 0 !== item.deliveryRuleID && (n[n.length - 1].deliveryRuleID = item.deliveryRuleID), props.isMobile || notificationsStore.NOTIFICATIONS_UPD({
+        status: "basket",
+        image: image(item)
+      }), localStorage.setItem("basket", JSON.stringify(n)), emit("basket-store-update", n)
+    }
 }
 
 function openBasket(item: any) {

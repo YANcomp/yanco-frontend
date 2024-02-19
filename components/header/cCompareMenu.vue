@@ -23,7 +23,9 @@ const props = defineProps({
   }
 })
 
-const preparedComparisonProducts = computed(() => {
+const comparisonProductsStore = useComparisonProductsStore()
+
+const preparedComparisonProducts: any = computed(() => {
   return props.comparisonProductIDs.reduce((result: any, product: any) => {
     let category: any = props.productCategories.find((value: any) => {
       return value.ID === product.categoryID
@@ -60,18 +62,18 @@ function image(product: any) {
 }
 
 function remove(item: any) {
-  //TODO
-  // var e, n = $.c.clone(this.comparisonProductIDs),
-  //     o = null !== (e = this.comparisonProductIDs.find((function (p) {
-  //       return p.productIDs.includes(t)
-  //     }))) && void 0 !== e ? e : {};
-  // n = 1 === o.productIDs.length ? this.comparisonProductIDs.filter((function (p) {
-  //   return p.categoryID !== o.categoryID
-  // })) : n.filter((function (p) {
-  //   return p.categoryID === o.categoryID && (p.productIDs = p.productIDs.filter((function (e) {
-  //     return e !== t
-  //   }))), p
-  // })), this.$store.dispatch("comparisonProducts/".concat(z.COMPARISON_PRODUCTS.UPD), n)
+  console.log(item)
+  let n = [...props.comparisonProductIDs],
+      o: any = props.comparisonProductIDs.find((p: any) => {
+        return p.productIDs.includes(item)
+      });
+  n = 1 === o.productIDs.length ? props.comparisonProductIDs.filter((p: any) => {
+    return p.categoryID !== o.categoryID
+  }) : n.filter((p: any) => {
+    return p.categoryID === o.categoryID && (p.productIDs = p.productIDs.filter((e: any) => {
+      return e !== item
+    })), p
+  }), comparisonProductsStore.COMPARISON_PRODUCTS_UPD(n)
 }
 </script>
 

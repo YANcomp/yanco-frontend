@@ -86,7 +86,7 @@ export default <RouterConfig>{
         },
         {
             path: "/basket",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/pages/vBasket.vue').then(r => r.default || r),
             name: "basket"
         },
         {

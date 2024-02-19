@@ -209,7 +209,7 @@ function updateBasketStore(t: any) {
 }
 
 function updateFavoritesStore(t: any) {
-  favoritesStore.FAVORITES_UPD(t)
+  favoritesStore.COMMIT_FAVORITES_UPD(t)
 }
 
 
@@ -266,6 +266,18 @@ useSeoMeta({
           Добавляйте товары в избранное с помощью
           <span class="icon favorite heart-beat"/>
         </p>
+        <div>
+          <template v-if="!isMobile">
+            <UiCButton @click="goToCatalog">
+              <UiCArrowSVG class="prev" color="#3f51b5" hover-color="#4960df" size="s"/>
+              Перейти в каталог
+            </UiCButton>
+            <UiCButton mode="primary" size="xl" @click="goToHome">
+              Перейти на главную
+              <UiCArrowSVG color="#fff" hover-color="#fff" size="s"/>
+            </UiCButton>
+          </template>
+        </div>
       </div>
     </template>
   </main>

@@ -13,7 +13,7 @@ const props = defineProps({
     type: Boolean
   },
   basketItems: {
-    type: Array
+    type: <any>Array
   },
   hasPaidPeriod: {
     type: Boolean
@@ -69,24 +69,24 @@ function image(product: any) {
   return Object(uPrepareProduct)(product, SIZE_XS, props.params?.cdnURL.url).images[0]
 }
 
+const emit = defineEmits(["basket-item-update", "basket-store-update"])
+
 function remove(item: any) {
-  //TODO
-  // var e;
-  // if (this.isAuthorized) {
-  //   this.isLoading = !0;
-  //   var n = null !== (e = this.basketItems.find((function (i) {
-  //     return i.productID === t
-  //   }))) && void 0 !== e ? e : {};
-  //   this.$emit("basket-item-update", {
-  //     productID: n.productID,
-  //     count: n.count,
-  //     isRemoved: !0
-  //   })
-  // } else localStorage.setItem("basket", JSON.stringify(this.basketItems.filter((function (i) {
-  //   return i.productID !== t
-  // })))), this.$emit("basket-store-update", this.basketItems.filter((function (i) {
-  //   return i.productID !== t
-  // })))
+  if (props.isAuthorized) {
+    isLoading.value = true;
+    let n = props.basketItems.find((i: any) => {
+      return i.productID === item
+    });
+    emit("basket-item-update", {
+      productID: n.productID,
+      count: n.count,
+      isRemoved: true
+    })
+  } else localStorage.setItem("basket", JSON.stringify(props.basketItems.filter((i: any) => {
+    return i.productID !== item
+  }))), emit("basket-store-update", props.basketItems.filter((i: any) => {
+    return i.productID !== item
+  }))
 }
 
 function addToBasketPoductMightNeed() {
@@ -130,7 +130,7 @@ function addToBasketPoductMightNeed() {
 
               </div>
               <span v-if='"basket" !== route.name' class="icon item-remove" data-tooltip="Удалить из корзины"
-                    @click.prevent="remove(product.ID)"/>
+                    @click.prevent="remove(product.productID)"/>
               <span class="count">{{ product.count + " шт." }}</span>
             </NuxtLink>
             <!--            TODO -->
