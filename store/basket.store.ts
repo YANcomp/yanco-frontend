@@ -23,7 +23,8 @@ export const useBasketStore = defineStore('basket', {
             localStorage.setItem("basketLocalStore", JSON.stringify(b))
             this.newItems = []
         },
-        async BASKET_ADD() {
+        async BASKET_ADD(val:any) {
+            //TODO
         },
     },
     getters: {

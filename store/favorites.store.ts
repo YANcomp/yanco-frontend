@@ -13,7 +13,8 @@ export const useFavoritesStore = defineStore('favorites', {
             this.items = favorites
             return Promise.resolve()
         },
-        async FAVORITES_ADD(val: boolean) {
+        async FAVORITES_ADD(params:any) {
+            // TODO
         },
     },
     //TODO

@@ -131,7 +131,7 @@ export default <RouterConfig>{
         },
         {
             path: "/favorites",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/pages/vFavorites.vue').then(r => r.default || r),
             name: "favorites"
         },
         {
