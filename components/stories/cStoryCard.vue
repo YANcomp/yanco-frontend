@@ -8,7 +8,6 @@ const appStore = useAppStore()
 const storiesStore = useStoriesStore()
 
 const isTouch = ref(false)
-const isOpenedAdTooltip = ref(false)
 
 const isMobile = computed(() => {
   return appStore.isMobile
@@ -30,7 +29,7 @@ function touchEnd() {
 
 function openStory() {
   appStore.OPEN_CLOSE_STORY_MODAL(true)
-  storiesStore.CHANGE_CURRENT_STORY_ID(props.story.ID)
+  storiesStore.COMMIT_CHANGE_CURRENT_STORY_ID(props.story.ID)
 }
 </script>
 

@@ -16,6 +16,9 @@ import ApiProductGroupsModule from "~/api/productGroups";
 import ApiProductOfDayModule from "~/api/productOfDay";
 import ApiProductsModule from "~/api/products";
 import ApiFavoritesModule from "~/api/favorites";
+import ApiSessionsModule from "~/api/sessions";
+import ApiMeModule from "~/api/me";
+import ApiSearchModule from "~/api/search";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -51,7 +54,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         // FAQ: T,
         favorites: new ApiFavoritesModule(opts),
         // landlords: x,
-        // me: M,
+        me: new ApiMeModule(opts),
         // metric: N.a,
         // orders: B,
         // orderStatuses: R,
@@ -72,8 +75,8 @@ export default defineNuxtPlugin((nuxtApp) => {
         regions: new ApiRegionsModule(opts),
         // restrictTypes: et,
         // reviews: it,
-        // search: nt,
-        // sessions: ot,
+        search: new ApiSearchModule(opts),
+        sessions: new ApiSessionsModule(opts),
         // subscribe: at,
         // summary: summary,
         // surveys: ct,

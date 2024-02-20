@@ -119,7 +119,7 @@ export const useFavoritesStore = defineStore('favorites', {
             localStorage.setItem("favorites", JSON.stringify(items))
             this.newItems = []
         },
-        async COMMIT_FAVORITES_DEL(params: any) {
+        async COMMIT_FAVORITES_DEL() {
             this.items = []
             localStorage.removeItem("favorites")
         },

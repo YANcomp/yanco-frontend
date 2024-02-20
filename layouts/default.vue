@@ -5,6 +5,7 @@ const catalogStore = useCatalogStore()
 const basketStore = useBasketStore()
 const favoritesStore = useFavoritesStore()
 const comparisonStore = useComparisonProductsStore()
+const sessionsStore = useSessionsStore()
 const meStore = useMeStore()
 const citiesStore = useCitiesStore()
 const regionsStore = useRegionsStore()
@@ -36,8 +37,8 @@ const operatorStatus = ref(undefined)
 const isBasketItemsChanged = ref(false)
 const orderStatuses = ref({})
 const orders = ref([])
-const loadingBasketProductIDs = ref([])
-const updatingBasketProductIDs = ref([])
+const loadingBasketProductIDs = ref(<any>[])
+const updatingBasketProductIDs = ref(<any>[])
 const isOpenBarcode = ref(false)
 const isFirstLoadNotCity = ref(false)
 const isNoDeliveryRules = ref(false)
@@ -55,6 +56,9 @@ const isAllRankItems = computed(() => {
 const city: any = computed(() => {
   return citiesStore.currentCity
 })
+const check: any = computed(() => {
+  return basketStore.check
+})
 const isAllowDelivery = computed(() => {
   return basketItems.value.every((i: any) => {
     return i.allowDelivery
@@ -70,9 +74,8 @@ const amountForFreeShipping = computed(() => {
   return getAmountForFreeShipping(basketItems.value)
 })
 const deliveryCost = computed(() => {
-  return 0
-  //TODO
-  // return null !== (n = null !== (e = null === (t = this.check.order) || void 0 === t ? void 0 : t.deliveryCost) && void 0 !== e ? e : this.params.deliveryCost) && void 0 !== n ? n : 0
+  let n = check.order?.deliveryCost ? check.order.deliveryCost : params.value.deliveryCost
+  return n ? n : 0
 })
 const basketCount = computed(() => {
   return basketStore.basketCount
@@ -85,7 +88,6 @@ const isBasketConflict = computed(() => {
 })
 const favoritesItems = computed(() => {
   return favoritesStore.items ? favoritesStore.items : []
-
 })
 const favoritesCount = computed(() => {
   return favoritesStore.favoritesCount
@@ -94,8 +96,7 @@ const params = computed(() => {
   return appStore.params
 })
 const isAuthorized = computed(() => {
-  //TODO             return this.$store.getters["sessions/isAuthorized"]
-  return false
+  return sessionsStore.isAuthorized
 })
 const me = computed(() => {
   return meStore.getMe
@@ -200,22 +201,29 @@ function closeNotice(id: number) {
   notificationsStore.NOTIFICATIONS_DEL(id)
 }
 
-function getPossiblePrices(basket: any) {
-  return uPossiblePrices(basket)
-}
+const getAmountForFreeShipping = uAmountForFreeShipping
+const getPossiblePrices = uPossiblePrices
+const getPreparedCheckItems = uPreparedCheckItems
 
-function getAmountForFreeShipping(basket: any) {
-  //TODO
-  return uPossiblePrices(basket)
-}
-
-function getPreparedCheckItems() {
-  return uPreparedCheckItems([], [])
-}
-
-function addToBasket(t: any, e: any) {
-  return
-  // TODO return uPreparedCheckItems
+function addToBasket(item: any, e: any) {
+  let cityID = city.value.ID
+  if (cityID) {
+    if (e) {
+      updatingBasketProductIDs.value.push(item.productID)
+    } else {
+      loadingBasketProductIDs.value.push(item.productID)
+    }
+    basketStore.BASKET_ADD({
+      item: item,
+      cityID: cityID,
+      isUpdate: e
+    }).catch((error: any) => {
+      error(error)
+    }).finally(() => {
+      loadingBasketProductIDs.value = []
+      e && (updatingBasketProductIDs.value = [])
+    })
+  }
 }
 
 function updateBasketItem(item: any) {
@@ -223,8 +231,7 @@ function updateBasketItem(item: any) {
 }
 
 function updateBasketStore(item: any) {
-  //TODO
-  basketStore.BASKET_UPD(item)
+  basketStore.COMMIT_BASKET_UPD(item)
 }
 
 function changeLocalStorage(t: any) {
@@ -242,9 +249,9 @@ function changeLocalStorage(t: any) {
   // if (A !== storeToken)
 
   "favorites" === t.key && mFavoritesItems !== y && favoritesStore.COMMIT_FAVORITES_UPD(JSON.parse(y))
-  "basketLocalStore" === t.key && fBasketItems !== _ && basketStore.BASKET_UPD(JSON.parse(_))
+  "basketLocalStore" === t.key && fBasketItems !== _ && basketStore.COMMIT_BASKET_UPD(JSON.parse(_))
   "comparisonProducts" === t.key && vComparisonProductIDs !== I && comparisonStore.COMPARISON_PRODUCTS_GET(JSON.parse(I))
-  // TODO "isBasketConflict" === t.key && undefined !== C && VisBasketConflict !== C && basketStore.CONFLICT(JSON.parse(C))
+  "isBasketConflict" === t.key && undefined !== C && VisBasketConflict !== C && basketStore.COMMIT_BASKET_CONFLICT(JSON.parse(C))
 }
 
 function getComparisonProducts() {
@@ -286,13 +293,25 @@ function getComparisonProducts() {
 }
 
 function logout() {
-  //TODO
-  return
+  sessionsStore.SESSIONS_DEL().then(() => {
+    basketStore.COMMIT_BASKET_DEL()
+    favoritesStore.COMMIT_FAVORITES_DEL()
+    meStore.COMMIT_ME_GET({})
+    //TODO t.$store.commit("bindings/".concat(z.BINDINGS.GET), void 0)
+  }).catch((error: any) => {
+    error(error)
+  })
 }
 
-function search() {
-  //TODO
-  return
+function search(filter: any) {
+  let e = uAllowFiltersProduct.filter((s) => {
+    return !["typeIDs", "subtypeIDs"].includes(s)
+  })
+  useNuxtApp().$api.search.get(filter, e).then((res: any) => {
+    searchResult.value = null != res ? res : {}
+  }).catch((error: any) => {
+    console.log(error)
+  })
 }
 
 function clearSearchResult() {
@@ -307,7 +326,7 @@ function init() {
 
 function loadBasket() {
   appStore.LOADING_BASKET(true)
-  return loadFromStoreOrLocalStorage("basket", basketStore.BASKET_GET, basketStore.BASKET_UPD).finally(() => {
+  return loadFromStoreOrLocalStorage("basket", basketStore.BASKET_GET, basketStore.COMMIT_BASKET_UPD).finally(() => {
     appStore.LOADING_BASKET(false)
   })
 }
@@ -392,7 +411,15 @@ function loadFromStoreOrLocalStorage(nameStorage: any, getStorage: Function, upd
 
 function changeViewedStories() {
   let t = JSON.parse(localStorage.getItem("viewedStoriesIDs") || "[]");
-  storiesStore.CHANGE_VIEWED_STORIES(t)
+  storiesStore.COMMIT_CHANGE_VIEWED_STORIES(t)
+}
+
+function error(error: any) {
+  notificationsStore.NOTIFICATIONS_UPD({
+    title: "Произошла ошибка",
+    desc: error,
+    status: "error"
+  })
 }
 
 //TODO END METHODS

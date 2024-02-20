@@ -1,0 +1,12 @@
+{
+  "order": {
+    "deliveryCost": 300,
+    "items": [
+      {
+        "productID": 334318,
+        "price": 358,
+        "count": 1
+      }
+    ]
+  }
+}

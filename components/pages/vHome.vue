@@ -8,6 +8,8 @@ const storiesStore = useStoriesStore()
 const productGroupsStore = useProductGroupsStore()
 const productsStore = useProductsStore()
 const basketStore = useBasketStore()
+const sessionsStore = useSessionsStore()
+const meStore = useMeStore()
 const favoritesStore = useFavoritesStore()
 const catalogStore = useCatalogStore()
 const notificationsStore = useNotificationsStore()
@@ -20,9 +22,9 @@ const isFailedGettingOurProducts = ref(false)
 const isLoadingOurProducts = ref(false)
 const isLoadingSpecialOffers = ref(false)
 const isLoadingViewedProducts = ref(false)
-const loadingBasketProductIDs = ref([])
-const loadingFavoritesProductIDs = ref([])
-const updatingBasketProductIDs = ref([])
+const loadingBasketProductIDs = ref(<any>[])
+const loadingFavoritesProductIDs = ref(<any>[])
+const updatingBasketProductIDs = ref(<any>[])
 const isShowProductDay = ref(true)
 const placeholderItems = ref([{}, {}, {}, {}, {}, {}])
 const PREPARED_PRODUCTS_FIELDS = ref(["isInBasket", "isInFavorites"])
@@ -63,12 +65,11 @@ const isMobile = computed(() => {
   return appStore.isMobile
 })
 const hasLoyalCard = computed(() => {
-  //TODO     return this.$store.getters["me/hasLoyalCard"]
-  return false
+  return meStore.hasLoyalCard
+
 })
 const isAuthorized = computed(() => {
-  //TODO     return this.$store.getters["sessions/isAuthorized"]
-  return false
+  return sessionsStore.isAuthorized
 })
 const params: any = computed(() => {
   return <any>appStore.params
@@ -179,12 +180,40 @@ function loadProductOfDay() {
 
 const preparedProducts = uPrepared
 
-function addToBasket(...opts: any[]) {
-  //TODO
+function addToBasket(item: any, e: any) {
+  let cityID = city.value.ID
+  if (cityID) {
+    if (e) {
+      updatingBasketProductIDs.value.push(item.productID)
+    } else {
+      loadingBasketProductIDs.value.push(item.productID)
+    }
+    basketStore.BASKET_ADD({
+      item: item,
+      cityID: cityID,
+      isUpdate: e
+    }).catch((error: any) => {
+      error(error)
+    }).finally(() => {
+      loadingBasketProductIDs.value = []
+      e && (updatingBasketProductIDs.value = [])
+    })
+  }
 }
 
-function addToFavorites() {
-  //TODO
+function addToFavorites(item: any) {
+  let cityID = city.value.ID
+  if (cityID) {
+    loadingFavoritesProductIDs.value.push(item)
+    favoritesStore.FAVORITES_ADD({
+      itemID: item,
+      cityID: cityID
+    }).catch((error: any) => {
+      error(error)
+    }).finally(() => {
+      loadingFavoritesProductIDs.value = []
+    })
+  }
 }
 
 function updateBasketItem(t: any) {
@@ -192,7 +221,7 @@ function updateBasketItem(t: any) {
 }
 
 function updateBasketStore(t: any) {
-  basketStore.BASKET_UPD(t)
+  basketStore.COMMIT_BASKET_UPD(t)
 }
 
 function updateFavoritesStore(t: any) {

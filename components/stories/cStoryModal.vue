@@ -99,7 +99,7 @@ watch(
 
 watch(() => isOpened.value, (value) => {
   value || (appStore.OPEN_CLOSE_STORY_MODAL(false),
-      storiesStore.CHANGE_CURRENT_STORY_ID(undefined))
+      storiesStore.COMMIT_CHANGE_CURRENT_STORY_ID(undefined))
 })
 
 watch(() => props.isOpenStoryModal, (value) => {
@@ -187,7 +187,7 @@ function openStory() {
 
 function openNextStory() {
   if (isOpenNextStory.value && !isPause.value) {
-    storiesStore.CHANGE_CURRENT_STORY_ID(props.stories[indexCurrentStory.value + 1].ID)
+    storiesStore.COMMIT_CHANGE_CURRENT_STORY_ID(props.stories[indexCurrentStory.value + 1].ID)
     currentSlideIndex.value = -1
     setSwitchTimeout()
   }

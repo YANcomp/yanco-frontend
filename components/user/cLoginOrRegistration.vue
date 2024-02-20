@@ -21,6 +21,7 @@ const props = defineProps({
 
 const route = useRoute()
 const appStore = useAppStore()
+const sessionsStore = useSessionsStore()
 const notificationsStore = useNotificationsStore()
 
 useListen("open-login-or-registration", (val: any) => {
@@ -66,8 +67,7 @@ const caption = computed(() => {
   return isRecovery.value ? "Восстановление пароля" : "login" === modeRef.value ? "Авторизация" : "Регистрация"
 })
 const isAuthorized = computed(() => {
-  // TODO return this.$store.getters["sessions/isAuthorized"]
-  return false
+  return sessionsStore.isAuthorized
 })
 const isLoginAttempt = computed(() => {
   return appStore.isLoginAttempt

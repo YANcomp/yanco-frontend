@@ -1,4 +1,4 @@
-export default function (t:any, e:any) {
+export default function (t?:any, e?:any) {
     //TODO
     return {}
 }

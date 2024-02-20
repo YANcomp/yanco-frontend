@@ -6,44 +6,37 @@ class ApiBasketModule {
     }
 
     //TODO
-    async get() {
-        return useAsyncData(
-            'basket',
-            () => $fetch(`params/params.json`, {
-                ...this.$opts,
-                method: 'GET',
-            })
-        );
+    async get(cityID?: any) {
+        //"basket?cityID=".concat(cityID)
+        return $fetch(`basket/basket.json`, {
+            ...this.$opts,
+            method: 'GET',
+        })
     }
 
-    async upd() {
-        return useAsyncData(
-            'basket',
-            () => $fetch(`params/params.json`, {
-                ...this.$opts,
-                method: 'PATCH',
-            })
-        );
+    async upd(items: any, cityID: any) {
+        //"basket?cityID=".concat(cityID)
+        return $fetch(`basket/basket.json`, {
+            ...this.$opts,
+            method: 'PATCH',
+        })
     }
 
-    async newCheck() {
-        return useAsyncData(
-            'basket',
-            () => $fetch(`params/params.json`, {
-                ...this.$opts,
-                method: 'POST',
-            })
-        );
+    async newCheck(items: any) {
+        //TODO return o.a.post("basket/processing", items)
+        return $fetch(`basket/processing.json`, {
+            ...this.$opts,
+            method: 'POST',
+        })
+
     }
 
-    async replacement() {
-        return useAsyncData(
-            'basket',
-            () => $fetch(`params/params.json`, {
-                ...this.$opts,
-                method: 'POST',
-            })
-        );
+    async replacement(items: any) {
+        //TODO return o.a.post("basket/replacements", b)
+        return $fetch(`basket/replacements.json`, {
+            ...this.$opts,
+            method: 'POST',
+        })
     }
 }
 

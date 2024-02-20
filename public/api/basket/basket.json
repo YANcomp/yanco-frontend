@@ -1,0 +1,56 @@
+[
+  {
+    "productID": 334318,
+    "productSlug": "dekspantenol_plyus_krem_dlya_lica_i_tela_50ml",
+    "name": "Декспантенол плюс крем для лица и тела 50мл",
+    "isDietarySupplement": false,
+    "images": [
+      "8d7e76f3205f246fb9e843b6dbc6f3b0.webp"
+    ],
+    "price": {
+      "withCard": 358.0,
+      "withPeriod": 238.0,
+      "withoutCard": 358.0
+    },
+    "priceZakaz": {
+      "withCard": 358.0,
+      "withPeriod": 238.0,
+      "withoutCard": 358.0
+    },
+    "isInStock": true,
+    "groups": [
+      "bepanten-derma",
+      "our_products_all",
+      "product_of_month"
+    ],
+    "count": 1,
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "sticker": "-50% на 2-ю уп.",
+    "stickerMobile": "-50% на 2-ю уп.",
+    "isWithdrawn": false,
+    "websiteBasket": "Положите в корзину 2 уп., чтобы воспользоваться акцией",
+    "productAmount": 2,
+    "isSiteSellRemains": false,
+    "deliveryDaysMax": 11,
+    "discountTemplate": "n_percent_m_pack",
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/334318/80/8d7e76f3205f246fb9e843b6dbc6f3b0.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/334318/208/8d7e76f3205f246fb9e843b6dbc6f3b0.webp"
+    ],
+    "imagesSizeM": [
+      "https://pictures.apteka-april.ru/products/334318/390/8d7e76f3205f246fb9e843b6dbc6f3b0.webp"
+    ],
+    "imagesSizeL": [
+      "https://pictures.apteka-april.ru/products/334318/800/8d7e76f3205f246fb9e843b6dbc6f3b0.webp"
+    ],
+    "isSelected": false,
+    "isOrderRcNoRc": true
+  }
+]

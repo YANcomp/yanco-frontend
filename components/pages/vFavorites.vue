@@ -205,7 +205,7 @@ function updateBasketItem(t: any) {
 }
 
 function updateBasketStore(t: any) {
-  basketStore.BASKET_UPD(t)
+  basketStore.COMMIT_BASKET_UPD(t)
 }
 
 function updateFavoritesStore(t: any) {

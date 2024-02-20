@@ -1,0 +1,205 @@
+{
+  "products": [
+    {
+      "ID": 204340,
+      "categoryID": 377,
+      "slug": "salfetki_vlazhnye_detskie_100sht",
+      "name": "СанниБэби Салфетки влажные детские №100",
+      "rating": 74,
+      "price": {
+        "withCard": 193.0,
+        "withPeriod": 153.0,
+        "withoutCard": 193.0
+      },
+      "priceZakaz": {
+        "withCard": 193.0,
+        "withPeriod": 153.0,
+        "withoutCard": 193.0
+      },
+      "limitWithoutCard": 36,
+      "limitWithCard": 36,
+      "isInStock": true,
+      "images": [
+        "204340qwe.webp"
+      ],
+      "reviewsNumber": 12,
+      "allowDelivery": true,
+      "allowOnlinePayment": true,
+      "averageRating": 5,
+      "bonuses": 11,
+      "isAvailable": true,
+      "isSiteSellRemains": false,
+      "isWaitingArrive": false,
+      "isRecipe": false,
+      "imagesSizeXS": [
+        "https://pictures.apteka-april.ru/products/204340/80/204340qwe.webp"
+      ],
+      "imagesSizeS": [
+        "https://pictures.apteka-april.ru/products/204340/208/204340qwe.webp"
+      ],
+      "ratingText": {
+        "extraHint": "(являются статистическими данными)",
+        "externalCard": "74%",
+        "internalCard": "74% покупателей выбирают",
+        "internalCardHint": "74% покупателей выбирают данный товар"
+      },
+      "isRare": false,
+      "isOrderRcNoRc": false
+    },
+    {
+      "ID": 238504,
+      "categoryID": 224,
+      "slug": "salfetki_bumazhnye_v_korobke_assorti_vesnakotyspacvetymakarons_100sht",
+      "name": "Салфетки бумажные в коробе ассорти: Пончики/Авокадо/Италия/Макаронс 100шт",
+      "rating": 64,
+      "price": {
+        "withCard": 153.0,
+        "withPeriod": 122.0,
+        "withoutCard": 153.0
+      },
+      "priceZakaz": {
+        "withCard": 153.0,
+        "withPeriod": 122.0,
+        "withoutCard": 153.0
+      },
+      "limitWithoutCard": 36,
+      "limitWithCard": 36,
+      "isInStock": true,
+      "images": [
+        "454e32cdeecb6a0358be6fd930c8f330.webp"
+      ],
+      "reviewsNumber": 0,
+      "allowDelivery": true,
+      "allowOnlinePayment": true,
+      "averageRating": 0,
+      "bonuses": 6,
+      "isAvailable": true,
+      "isSiteSellRemains": false,
+      "isWaitingArrive": false,
+      "isRecipe": false,
+      "imagesSizeXS": [
+        "https://pictures.apteka-april.ru/products/238504/80/454e32cdeecb6a0358be6fd930c8f330.webp"
+      ],
+      "imagesSizeS": [
+        "https://pictures.apteka-april.ru/products/238504/208/454e32cdeecb6a0358be6fd930c8f330.webp"
+      ],
+      "ratingText": {
+        "extraHint": "(являются статистическими данными)",
+        "externalCard": "64%",
+        "internalCard": "64% покупателей выбирают",
+        "internalCardHint": "64% покупателей выбирают данный товар"
+      },
+      "isRare": false,
+      "isOrderRcNoRc": false
+    },
+    {
+      "ID": 242236,
+      "categoryID": 16,
+      "slug": "salfetki_vlazhnye_antibakterialnye_s_klapanom_72sht",
+      "name": "Салфетки влажные антибактериальные с клапаном №72",
+      "rating": 83,
+      "price": {
+        "withCard": 184.0,
+        "withPeriod": 143.0,
+        "withoutCard": 184.0
+      },
+      "priceZakaz": {
+        "withCard": 184.0,
+        "withPeriod": 143.0,
+        "withoutCard": 184.0
+      },
+      "limitWithoutCard": 36,
+      "limitWithCard": 36,
+      "isInStock": true,
+      "images": [
+        "242236m.webp"
+      ],
+      "reviewsNumber": 1,
+      "allowDelivery": true,
+      "allowOnlinePayment": true,
+      "averageRating": 5,
+      "bonuses": 10,
+      "isAvailable": true,
+      "isSiteSellRemains": false,
+      "isWaitingArrive": false,
+      "isRecipe": false,
+      "imagesSizeXS": [
+        "https://pictures.apteka-april.ru/products/242236/80/242236m.webp"
+      ],
+      "imagesSizeS": [
+        "https://pictures.apteka-april.ru/products/242236/208/242236m.webp"
+      ],
+      "ratingText": {
+        "extraHint": "(являются статистическими данными)",
+        "externalCard": "83%",
+        "internalCard": "83% покупателей выбирают",
+        "internalCardHint": "83% покупателей выбирают данный товар"
+      },
+      "isRare": false,
+      "isOrderRcNoRc": false
+    },
+    {
+      "ID": 11852,
+      "categoryID": 144,
+      "slug": "salfetki_marlevye_sterilnye_16h14sm_10sht",
+      "name": "Салфетки марлевые стерильные 16х14см 10шт.",
+      "rating": 89,
+      "price": {
+        "withCard": 42.0,
+        "withPeriod": 33.0,
+        "withoutCard": 42.0
+      },
+      "priceZakaz": {
+        "withCard": 42.0,
+        "withPeriod": 33.0,
+        "withoutCard": 42.0
+      },
+      "limitWithoutCard": 36,
+      "limitWithCard": 36,
+      "isInStock": true,
+      "images": [
+        "5ef54788093058716171a3931be25cb8.webp"
+      ],
+      "reviewsNumber": 1,
+      "allowDelivery": true,
+      "allowOnlinePayment": true,
+      "averageRating": 5,
+      "bonuses": 1,
+      "isAvailable": true,
+      "isSiteSellRemains": false,
+      "isWaitingArrive": false,
+      "isRecipe": false,
+      "imagesSizeXS": [
+        "https://pictures.apteka-april.ru/products/11852/80/5ef54788093058716171a3931be25cb8.webp"
+      ],
+      "imagesSizeS": [
+        "https://pictures.apteka-april.ru/products/11852/208/5ef54788093058716171a3931be25cb8.webp"
+      ],
+      "ratingText": {
+        "extraHint": "(являются статистическими данными)",
+        "externalCard": "89%",
+        "internalCard": "89% покупателей выбирают",
+        "internalCardHint": "89% покупателей выбирают данный товар"
+      },
+      "isRare": false,
+      "isOrderRcNoRc": false
+    }
+  ],
+  "properties": [
+    {
+      "ID": 16,
+      "slug": "salfetki_vlazhnye",
+      "name": "Салфетки влажные",
+      "type": "category",
+      "Score": 43.63494
+    },
+    {
+      "ID": 285,
+      "slug": "salfetki_dlya_inekcij",
+      "name": "Салфетки для инъекций",
+      "type": "category",
+      "Score": 41.57089
+    }
+  ],
+  "isAnalogs": false
+}

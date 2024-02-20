@@ -1,0 +1,22 @@
+{
+  "ID": 8909250,
+  "phone": 79100001704,
+  "isEmailConfirmed": false,
+  "loyalCard": {
+    "cardID": 35980894,
+    "barcode": 4471998,
+    "limit_reached": false,
+    "sales_sum_limit_reached": false,
+    "receipts_per_day_limit_reached": false,
+    "receipts_per_month_limit_reached": false,
+    "limit_reached_message": "",
+    "limit_max_price": 0
+  },
+  "isSubscribeAgree": true,
+  "isSubscribePeriod": false,
+  "isElectronicCheckAgree": false,
+  "lastElectronicCheckAdTime": "2024-02-19T23:57:54.025497Z",
+  "isLastPaymentOnline": false,
+  "isMailExpire": true,
+  "loyalCardStatus": "active"
+}

@@ -6,6 +6,13 @@ class ApiProductsModule {
     }
 
     //TODO
+    async get(props: any, select: any) {
+        return await $fetch(`catalog/products/specialOffers.json`, {
+            ...this.$opts,
+            method: 'GET',
+        })
+    }
+
     async get_special_offers() {
         return await $fetch(`catalog/products/specialOffers.json`, {
             ...this.$opts,
