@@ -17,10 +17,10 @@ const props = defineProps({
     }
   },
   basketItems: {
-    type: Array
+    type: <any>Array
   },
   city: {
-    type: Object
+    type: <any>Object
   },
   isMobile: {
     type: Boolean,
@@ -51,28 +51,566 @@ const props = defineProps({
 })
 
 const formSearchRef = ref(<any>{})
+const historyRef = ref(<any>{})
 const searchRef = ref(<any>{})
 const searchFieldRef = ref(<any>{})
+const resultRef = ref(<any>{})
 
-const requestText = ref(<any>undefined)
+const isFocus = ref(false)
+const isSearched = ref(false)
+const limit = ref(4)
+const maxLength = ref(200)
+const requestText = ref(<any>"")
+const oldRequestText = ref(<any>undefined)
+const timeoutID = ref(<any>undefined)
+const isNotFound = ref(false)
+const categoryHistory = ref(<any>[])
+const isLoading = ref(false)
+const recognition = ref({})
+const recognizedSpeech = ref("")
+const isSpeaching = ref(false)
+const itemIndex = ref(<any>undefined)
+const isSearchPause = ref(false)
+const internalSearchResult = ref(<any>{})
 
-const isOpened = computed(() => {
-  //TODO
-  // return this.isSearched || this.isFocus && this.isMobile
-  return false
+const meStore = useMeStore()
+const catalogStore = useCatalogStore()
+const appStore = useAppStore()
+const route = useRoute()
+const router = useRouter()
+const emit = defineEmits(["search-result-clear", "search-result-open", "basket-store-update", "add-to-basket", "basket-item-update", "search"])
+
+const me = computed(() => {
+  return meStore.getMe
 })
+const categoryDirectory = computed(() => {
+  return catalogStore.categoryDirectory
+})
+const catalog = computed(() => {
+  return catalogStore.catalog
+})
+const isEmptyString = computed(() => {
+  return requestText.value.length < 1
+})
+const isOpened = computed(() => {
+  return isSearched.value || isFocus.value && props.isMobile
+})
+const placeholder = computed(() => {
+  return isFocus.value ? "Введите название или симптом" : "Я ищу..."
+})
+const preparedProducts = computed(() => {
+  return uPrepared(internalSearchResult.value.products, ["isLoyal", "isRank", "isInBasket", "route"])
+})
+const preparedProperties = computed(() => {
+  let e, n, o, c, l, d = this,
+      h = <any>[],
+      m = {
+        brand: {
+          page: "Бренд",
+          routeName: "Brand"
+        },
+        deystvuyushchee_veshchestvo: {
+          page: "Действующее веществ",
+          routeName: "ActiveSubstance"
+        },
+        proizvoditel: {
+          page: "Производитель",
+          routeName: "Manufacturer"
+        }
+      },
+      f = [...internalSearchResult.value.properties]
+  console.log(f)
+  // try {
+  //   var v = function () {
+  //     var t = function (t) {
+  //       for (var i = 1; i < arguments.length; i++) {
+  //         var source = null != arguments[i] ? arguments[i] : {};
+  //         i % 2 ? Gt(Object(source), !0).forEach((function (e) {
+  //           Object(r.a)(t, e, source[e])
+  //         })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(source)) : Gt(Object(source)).forEach((function (e) {
+  //           Object.defineProperty(t, e, Object.getOwnPropertyDescriptor(source, e))
+  //         }))
+  //       }
+  //       return t
+  //     }({}, l.value);
+  //     if (!["type", "subtype", "category"].includes(t.type) && void 0 === m[t.type]) return "continue";
+  //     if (["type", "subtype", "category"].includes(t.type)) {
+  //       if ("type" === t.type && (t.page = "Каталог", t.route = {
+  //         name: "CatalogType",
+  //         params: {
+  //           typeID: "".concat(t.ID),
+  //           typeSlug: t.slug
+  //         }
+  //       }), "subtype" === t.type) {
+  //         var f = null === (e = d.catalog) || void 0 === e ? void 0 : e.subtypes.find((function (e) {
+  //               return e.ID === t.ID
+  //             })),
+  //             v = null === (n = d.catalog) || void 0 === n ? void 0 : n.types.find((function (t) {
+  //               return t.ID === (null == f ? void 0 : f.typeIDs[0])
+  //             }));
+  //         t.page = "".concat(v.name, " / ").concat(null == f ? void 0 : f.name), t.route = {
+  //           name: "CatalogSubtype",
+  //           params: {
+  //             typeID: "".concat(null == f ? void 0 : f.typeIDs[0]),
+  //             typeSlug: v.slug,
+  //             subtypeID: "".concat(t.ID),
+  //             subtypeSlug: t.slug
+  //           }
+  //         }
+  //       }
+  //       if ("category" === t.type) {
+  //         var V = null === (o = d.catalog) || void 0 === o ? void 0 : o.categories.find((function (e) {
+  //               return e.ID === t.ID
+  //             })),
+  //             y = null === (c = d.catalog) || void 0 === c ? void 0 : c.subtypes.find((function (t) {
+  //               return t.ID === V.subtypeIDs[0]
+  //             }));
+  //         t.page = "".concat(y.name, " / ").concat(V.name), t.route = {
+  //           name: "CatalogCategory",
+  //           params: {
+  //             typeID: "".concat(d.categoryDirectory[t.ID].typeID),
+  //             typeSlug: d.categoryDirectory[t.ID].typeSlug,
+  //             subtypeID: "".concat(d.categoryDirectory[t.ID].subtypeID),
+  //             subtypeSlug: d.categoryDirectory[t.ID].subtypeSlug,
+  //             categoryID: "".concat(t.ID),
+  //             categorySlug: t.slug
+  //           }
+  //         }
+  //       }
+  //     } else t.page = m[t.type].page, t.route = {
+  //       name: m[t.type].routeName,
+  //       params: {
+  //         propertyID: "".concat(t.ID),
+  //         propertySlug: t.slug
+  //       }
+  //     };
+  //     h.push(t)
+  //   };
+  //   for (f.s(); !(l = f.n()).done;) v()
+  // } catch (t) {
+  //   f.e(t)
+  // } finally {
+  //   f.f()
+  // }
+  return h
+})
+
+const filteredCategoryHistory = computed(() => {
+  return void 0 === requestText.value || requestText.value.length < 1 ? categoryHistory.value : categoryHistory.value.filter((e: any) => {
+    return e.title.toLowerCase().includes(requestText.value.toLowerCase())
+  })
+})
+
+watch(() => isOpened.value, (value) => {
+  if (props.isMobile)
+    if (value) {
+      appStore.HIDE_MOBILE_FOOTER(true)
+      //TODO this.$store.commit("app/".concat(z.APP.HIDE_CHAT_BOT), !0)
+      let e: any = document.querySelector(".product-prices-fixed");
+      null !== e && (e.style.display = "none")
+      document.body.style.overflow = "hidden"
+    } else {
+      //TODO this.$store.commit("app/".concat(z.APP.HIDE_CHAT_BOT), !1)
+      appStore.HIDE_MOBILE_FOOTER(false)
+      let n: any = document.querySelector(".product-prices-fixed");
+      null !== n && (n.style.display = "flex")
+      document.body.style.overflow = ""
+    }
+})
+watch(() => isSearched.value, () => {
+  isSearchPause.value && !props.isMobile || resizeHeight()
+})
+watch(() => filteredCategoryHistory.value, () => {
+  isSearchPause.value || nextTick(() => {
+    resizeHeight()
+  })
+})
+watch(() => props.searchResult, (value: any) => {
+  isLoading.value = false
+  resizeHeight()
+  setTimeout(() => {
+    internalSearchResult.value = null != value ? value : {}
+  }, 200)
+  if (!isEmptyString) {
+    value.products?.length < 1 && value.properties?.length < 1 ? isNotFound.value = true : isNotFound.value = false
+    openSearchResult()
+  }
+})
+watch(() => requestText.value, (value, oldValue) => {
+  oldRequestText.value = oldValue
+  if (!isSearchPause.value) {
+    if (undefined !== value) {
+      requestText.value = value.slice(0, maxLength.value)
+    }
+    if (isEmptyString.value) {
+      !props.isMobile && categoryHistory.value.length < 1 && closeSearchResult()
+      itemIndex.value = undefined
+      window.clearTimeout(timeoutID.value)
+      void setTimeout(() => {
+        emit("search-result-clear")
+      }, 150)
+    }
+    return throttle(searchProducts, 700)
+  }
+})
+watch(() => route, (value) => {
+  setTimeout(() => {
+    "Search" === value.name || void 0 === requestText.value || isSearchPause.value || (requestText.value = void 0, emit("search-result-clear")), props.isMobile && emit("search-result-open", false), window.clearTimeout(timeoutID.value), closeSearchResult(), isSearchPause.value = false
+  }, 200)
+})
+
+// onBeforeRouteUpdate(() => {
+//   resultRef.value.style.maxHeight = "0"
+// })
+
+onMounted(() => {
+  //window.addEventListener("resize", resizeHeight)
+  //searchRef.value.addEventListener("paste", pasteText);
+
+
+  // let o = window.localStorage.getItem("metric");
+  // if (null !== o) {
+  //   let r = JSON.parse(o),
+  //       c = r.type,
+  //       l = r.searchText,
+  //       d = r.productID,
+  //       h = r.isFastSearch;
+  //   d === Number(route.params.productID) && metric(c, l, d, h), window.localStorage.removeItem("metric")
+  // }
+})
+
+
+function newTabOrNewWindow(t: any, e: any, n: any, o: any) {
+  window.localStorage.setItem("metric", JSON.stringify({
+    type: t,
+    searchText: e,
+    productID: n,
+    isFastSearch: o
+  }))
+}
+
+function metric(t?: any, e?: any, n?: any, o?: any) {
+  if (oldRequestText.value !== requestText.value && e || "search" !== t) {
+    let data = <any>{
+      cityID: props.city?.ID,
+      type: t,
+      searchText: e,
+      productID: n,
+      isFastSearch: o
+    };
+    props.isAuthorized && (data.userID = me.value.ID)
+    //TODO ??? Ut.a.metric(data).then((function () {
+    "search" === t && (oldRequestText.value = e)
+    // }))
+  }
+}
+
+function prepareCategoryRoute(t: any) {
+  return {
+    name: "SelectInCategory",
+    params: {
+      productID: "".concat(t)
+    }
+  }
+}
+
+function image(item: any) {
+  return uPrepareProduct(item, SIZE_XS, props.cdnUrl).images[0]
+}
+
+function listenStart(t: any) {
+  var e = searchFieldRef.value;
+  //TODO ??? try {
+  //   if (this.isSpeaching) return this.recognition.abort(), this.isSpeaching = !1, void (e.placeholder = this.placeholder);
+  //   t.preventDefault(), e.placeholder = "Говорите...", this.recognizedSpeech = "", this.isSpeaching = !0, this.recognition.start(), this.isMobile || this.playSound(H.p)
+  // } catch (t) {
+  // this.recognition.abort()
+  isSpeaching.value = false
+  e.placeholder = placeholder.value
+  // }
+}
+
+function transcriptHandler(t: any) {
+  var e = searchFieldRef.value,
+      n = parseTranscript(t);
+  recognizedSpeech.value = n
+  e.focus()
+  //TODO ??? t.results[0].isFinal && (this.isSpeaching = !1, e.placeholder = this.placeholder, this.requestText = this.recognizedSpeech, this.isMobile || this.playSound(H.s))
+}
+
+function parseTranscript(t: any) {
+  return Array.from(t.results).map((t: any) => {
+    return t[0]
+  }).map((t) => {
+    return t.transcript
+  }).join("")
+}
+
+function playSound(s: any) {
+  // TODO var audio = new Audio;
+  // audio.preload = "auto", audio.src = s, audio.play()
+}
+
+function deleteCategory(t: any, i: any) {
+  if (1 === categoryHistory.value.length) {
+    historyRef.value.style.maxHeight = "0"
+    setTimeout(() => {
+      localStorage.removeItem("categoryHistory")
+      categoryHistory.value = []
+    }, 300)
+  } else {
+    t.delete = true
+    setTimeout(() => {
+      categoryHistory.value = categoryHistory.value.findIndex((e: any) => {
+        return e.title === t.title
+      })
+      localStorage.setItem("categoryHistory", JSON.stringify(categoryHistory.value))
+    }, 300)
+  }
+  preparedProducts.value.length < 1 && categoryHistory.value.length < 1 && closeSearchResult()
+}
+
+function clearCategoryHistory() {
+  historyRef.value.style.maxHeight = "0"
+  setTimeout(() => {
+    localStorage.removeItem("categoryHistory")
+    categoryHistory.value = []
+    preparedProducts.value.length < 1 && closeSearchResult()
+  }, 200)
+}
+
+function goTo(p: any, t: any) {
+  route.path === p && closeSearchResult(), searchPause(t)
+}
+
+function openBasket() {
+  router.push({
+    name: "basket"
+  })
+}
+
+function goCatalog() {
+  router.push({
+    name: "catalog"
+  })
+}
+
+function addToBasket(item: any) {
+  if (item.isRare) router.push({
+    name: "Product",
+    params: {
+      productID: "".concat(item.ID),
+      productSlug: item.slug
+    }
+  });
+  else if (props.isAuthorized) {
+    let n = {
+      productID: item.ID,
+      count: 1,
+      isSelected: true
+    };
+    emit("add-to-basket", n)
+  } else {
+    let o = props.basketItems.length > 0 ? [...props.basketItems] : [];
+    o.push({
+      productID: item.ID,
+      productSlug: item.slug,
+      images: item.images ? item.images : [],
+      name: item.name,
+      price: item.price,
+      count: 1,
+      isRemoved: false,
+      isInStock: item.isInStock,
+      allowDelivery: item.allowDelivery,
+      allowOnlinePayment: item.allowOnlinePayment,
+      discountID: item.discountID,
+      isWithdrawn: item.isWithdrawn,
+      limitWithCard: item.limitWithCard,
+      limitWithoutCard: item.limitWithoutCard,
+      deliveryDaysMax: item.deliveryDaysMax,
+      isRecipe: item.isRecipe,
+      isAvailable: item.isAvailable,
+      deliveryAmount: item.deliveryAmount,
+      discountTemplate: item.discountTemplate,
+      mightNeedID: item.mightNeedID,
+      imagesSizeXS: item.imagesSizeXS,
+      imagesSizeS: item.imagesSizeS,
+      isSelected: true,
+      isSiteSellRemains: item.isSiteSellRemains,
+      isWaitingArrive: item.isWaitingArrive,
+      isOrderRcNoRc: item.isOrderRcNoRc
+    })
+    void 0 !== item.bonuses && void 0 === item.sticker && (o[o.length - 1].bonuses = item.bonuses)
+    void 0 !== item.sticker && (o[o.length - 1].sticker = item.sticker)
+    void 0 !== item.deliveryRuleID && (o[o.length - 1].deliveryRuleID = item.deliveryRuleID)
+    if (!props.isMobile) {
+      useNotificationsStore().NOTIFICATIONS_UPD({
+        status: "basket",
+        image: image(item)
+      })
+    }
+    localStorage.setItem("basket", JSON.stringify(o))
+    emit("basket-store-update", o)
+  }
+}
+
+function updateBasketItem(t: any) {
+  emit("basket-item-update", t)
+}
+
+function updateBasketStore(t: any) {
+  emit("basket-store-update", t)
+}
+
+function blur() {
+  isFocus.value = false
+  searchRef.value.firstElementChild.blur()
+}
+
+function clear() {
+  closeSearchResult()
+  isNotFound.value = false
+  setTimeout(() => {
+    requestText.value = undefined
+    window.clearTimeout(timeoutID.value)
+    emit("search-result-clear")
+    emit("search-result-open", false)
+  }, props.isMobile ? 0 : 200)
+}
+
+function closeSearchResult() {
+  itemIndex.value = undefined;
+  var e = resultRef.value;
+  props.isMobile || (Array.from(e.children).forEach((t: any) => {
+    t.className.includes("history") || t.className.includes("not-found") || (t.style.maxHeight = "0")
+  }), e.style.maxHeight = "0")
+
+  setTimeout(() => {
+    isSearched.value = false
+  }, 50)
+  emit("search-result-open", false)
+  blur()
+  document.removeEventListener("keydown", keyDown)
+  document.removeEventListener("mousedown", outside)
+}
+
+function resetItemIndex() {
+  itemIndex.value = undefined
+}
+
+function searchPause(t: any) {
+  isSearchPause.value = true
+  requestText.value = t
+  closeSearchResult()
+  blur()
+}
+
+function keyDown(t: any) {
+  if ("Escape" === t.code && (blur(), closeSearchResult()), "Enter" === t.code || "NumpadEnter" === t.code || "Enter" === t.key)
+    if (void 0 === itemIndex.value) search();
+    else {
+      let o = resultRef.value.querySelector(".item-selected");
+      searchPause(o.querySelector(".name").innerHTML)
+      o.className.includes("product") ? o.children[0].click() : o.click()
+    }
+  "ArrowUp" === t.code && (
+      t.preventDefault(), itemIndex.value = void 0 === itemIndex.value ? -1 : itemIndex.value - 1, itemIndex.value < 0 && (itemIndex.value = filteredCategoryHistory.value.length + preparedProperties.value.length + (props.searchResult?.products ? props.searchResult.products : []).length - 1)
+  )
+  "ArrowDown" === t.code && (
+      t.preventDefault(), itemIndex.value = void 0 === itemIndex.value ? 0 : itemIndex.value + 1, itemIndex.value >= filteredCategoryHistory.value.length + preparedProperties.value.length + (props.searchResult?.products ? props.searchResult.products : []).length && (itemIndex.value = 0)
+  )
+}
+
+function focus() {
+  isFocus.value = true;
+  let e = JSON.parse(localStorage.getItem("categoryHistory") ? <any>localStorage.getItem("categoryHistory") : "[]");
+  if (e.length > 0) {
+    categoryHistory.value = e.filter((i: any) => {
+      return i.title?.length > 0 && i.url?.length > 0
+    })
+    openSearchResult()
+  }
+  0 === preparedProducts.value.length ? !1 !== isSearched.value || isEmptyString.value || searchProducts() : isEmptyString.value ? emit("search-result-clear") : openSearchResult(), props.isMobile && (resizeHeight(), emit("search-result-open", true), openSearchResult())
+}
+
+function openSearchResult() {
+  isSearched.value = true
+  document.addEventListener("keydown", keyDown)
+  document.addEventListener("mousedown", outside)
+}
+
+function outside(t: any) {
+  let e, n = searchRef.value,
+      o = resultRef.value,
+      form = formSearchRef.value,
+      r = t.target;
+  o.contains(r) || form.contains(r) || n.contains(r) || "digi-fake-button-search" === (null == r ? void 0 : r.className) || (null === (e = null == r ? void 0 : r.parentElement) || void 0 === e ? void 0 : e.className.includes("category")) || props.isMobile || (blur(), closeSearchResult())
+}
+
+function pasteText(t: any) {
+  let e, n = t.clipboardData.getData("Text");
+  n.includes("Источник") && (t.preventDefault(), requestText.value = "".concat(null !== (e = requestText.value) && void 0 !== e ? e : "", " ").concat(n.slice(0, n.indexOf("Источник:") - 2)).replace(/(^\s)/, ""))
+}
+
+function resizeHeight() {
+  let e = resultRef.value;
+  props.isMobile || nextTick(() => {
+    !isSearched.value || requestText.value?.length < 1 && filteredCategoryHistory.value.length < 1 ? e.style.maxHeight = "0px" : setTimeout(() => {
+      let r = 37 * filteredCategoryHistory.value.length + 58 * props.searchResult?.properties?.length + 100 * props.searchResult?.products?.length + 100 + (props.searchResult?.isAnalogs ? 110 : 0);
+      Array.from(e.children).forEach((e: any) => {
+        e.className.includes("history") ? e.style.maxHeight = "".concat(<any>(37 * <any>(filteredCategoryHistory.value.length) + 50), "px") : e.className.includes("property-list") ? e.style.maxHeight = "".concat(<any>(58 * props.searchResult?.properties?.length), "px") : e.className.includes("product-list") && (e.style.maxHeight = "".concat(<any>(100 * props.searchResult?.products?.length + 100), "px"))
+      })
+      e.style.maxHeight = "" + isNotFound.value && !isEmptyString.value ? 115 : r + "px"
+    }, 100)
+  })
+}
+
+function search() {
+  metric("search", requestText.value)
+  isEmptyString.value || void 0 === requestText.value || (closeSearchResult(), window.clearTimeout(timeoutID.value), requestText.value !== props.routeParams?.search && router.push({
+    name: "Search",
+    params: {
+      search: requestText.value
+    }
+  }))
+}
+
+
+function searchProducts() {
+  itemIndex.value = undefined;
+  let e = props.city ? props.city.ID : undefined,
+      n = requestText.value.replace(/[^A-zА-яё\d\s№.,%\/+-]|\s(?=\s)|^%|[\[\]\\`\^_]|\.(?=\.)|,(?=,)|%(?=%)|\/(?=\/)|№(?=№)|-(?=-)|\+(?=\+)/, ""),
+      filter = 'q="'.concat(n, '"&advanced="true"&cityID=').concat(e, "[:").concat(<any>limit.value, "]");
+  emit("search", filter)
+  isLoading.value = true
+}
+
+function throttle(t: any, e: any) {
+  window.clearTimeout(timeoutID.value)
+  timeoutID.value = window.setTimeout(() => {
+    t()
+  }, e)
+}
 </script>
+
 <template>
   <div :class='["c-search", { mobile: isMobile, opened: isOpened }]'>
-    <form ref="formSearchRef" action="" @submit.prevent>
-      <!--      TODO isFocus -->
-      <div ref="searchRef" class="search" :class='["search", { focus: false }]'>
-        <input v-model.trim="requestText" ref="searchFieldRef" id="search-field" type="search" autocomplete="off"
-               placeholder="Я Ищу...">
-        <button type="submit">
+    <form ref="formSearchRef" action v-on:submit.prevent="search">
+      <div ref="searchRef" :class='["search", { focus: isFocus }]'>
+        <input v-model.trim="requestText" ref="searchFieldRef" :placeholder="placeholder" autocomplete="off"
+               type="search" id="search-field" :value="requestText" v-on:focus="focus" v-on:blur="blur"
+               v-on:input='(e)=>{e.target.composing || (requestText = e.target.value.trim())}'
+               v-on:keypress='(e)=>{return !e.type.indexOf("key") && e.keyCode === 13 && e.key=== "Enter" ? null : search}'/>
+        <label v-if="!isMobile && !isFocus && void 0 === requestText && null !== advertisingLinks"
+               class="advertising-links" for="search-field">
+          Например,
+          <a v-for="(item, index) in advertisingLinks" :key="index" :href="item.link" rel="nofollow">{{ item.name }}</a>
+        </label>
+        <span v-show="!isEmptyString || isFocus && isMobile || isOpened" class="icon close" @click="clear"/>
+        <button v-if="!isMobile || !isFocus && isMobile" type="submit">
           <span class="icon search"/>
         </button>
-        <span v-if="isMobile" class="icon search-mobile"/>
+        <span v-if="!isFocus" class="icon search-mobile"/>
       </div>
     </form>
   </div>
