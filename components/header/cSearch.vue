@@ -55,6 +55,7 @@ const historyRef = ref(<any>{})
 const searchRef = ref(<any>{})
 const searchFieldRef = ref(<any>{})
 const resultRef = ref(<any>{})
+const productListRef = ref(<any>{})
 
 const isFocus = ref(false)
 const isSearched = ref(false)
@@ -99,7 +100,7 @@ const placeholder = computed(() => {
   return isFocus.value ? "Введите название или симптом" : "Я ищу..."
 })
 const preparedProducts = computed(() => {
-  return uPrepared(internalSearchResult.value.products, ["isLoyal", "isRank", "isInBasket", "route"])
+  return uPrepared(internalSearchResult.value.products ? internalSearchResult.value.products : [], ["isLoyal", "isRank", "isInBasket", "route"])
 })
 const preparedProperties = computed(() => {
   let e, n, o, c, l, d = this,
@@ -118,8 +119,8 @@ const preparedProperties = computed(() => {
           routeName: "Manufacturer"
         }
       },
-      f = [...internalSearchResult.value.properties]
-  console.log(f)
+      f = internalSearchResult.value?.properties ? [...internalSearchResult.value.properties] : []
+  // TODO console.log(f)
   // try {
   //   var v = function () {
   //     var t = function (t) {
@@ -196,7 +197,7 @@ const preparedProperties = computed(() => {
 })
 
 const filteredCategoryHistory = computed(() => {
-  return void 0 === requestText.value || requestText.value.length < 1 ? categoryHistory.value : categoryHistory.value.filter((e: any) => {
+  return requestText.value.length < 1 ? categoryHistory.value : categoryHistory.value.filter((e: any) => {
     return e.title.toLowerCase().includes(requestText.value.toLowerCase())
   })
 })
@@ -231,7 +232,7 @@ watch(() => props.searchResult, (value: any) => {
   setTimeout(() => {
     internalSearchResult.value = null != value ? value : {}
   }, 200)
-  if (!isEmptyString) {
+  if (!isEmptyString.value) {
     value.products?.length < 1 && value.properties?.length < 1 ? isNotFound.value = true : isNotFound.value = false
     openSearchResult()
   }
@@ -255,7 +256,7 @@ watch(() => requestText.value, (value, oldValue) => {
 })
 watch(() => route, (value) => {
   setTimeout(() => {
-    "Search" === value.name || void 0 === requestText.value || isSearchPause.value || (requestText.value = void 0, emit("search-result-clear")), props.isMobile && emit("search-result-open", false), window.clearTimeout(timeoutID.value), closeSearchResult(), isSearchPause.value = false
+    "Search" === value.name || requestText.value.length < 1 || isSearchPause.value || (requestText.value = "", emit("search-result-clear")), props.isMobile && emit("search-result-open", false), window.clearTimeout(timeoutID.value), closeSearchResult(), isSearchPause.value = false
   }, 200)
 })
 
@@ -331,7 +332,7 @@ function listenStart(t: any) {
 }
 
 function transcriptHandler(t: any) {
-  var e = searchFieldRef.value,
+  let e = searchFieldRef.value,
       n = parseTranscript(t);
   recognizedSpeech.value = n
   e.focus()
@@ -471,7 +472,7 @@ function clear() {
   closeSearchResult()
   isNotFound.value = false
   setTimeout(() => {
-    requestText.value = undefined
+    requestText.value = ""
     window.clearTimeout(timeoutID.value)
     emit("search-result-clear")
     emit("search-result-open", false)
@@ -555,19 +556,26 @@ function pasteText(t: any) {
 function resizeHeight() {
   let e = resultRef.value;
   props.isMobile || nextTick(() => {
-    !isSearched.value || requestText.value?.length < 1 && filteredCategoryHistory.value.length < 1 ? e.style.maxHeight = "0px" : setTimeout(() => {
-      let r = 37 * filteredCategoryHistory.value.length + 58 * props.searchResult?.properties?.length + 100 * props.searchResult?.products?.length + 100 + (props.searchResult?.isAnalogs ? 110 : 0);
-      Array.from(e.children).forEach((e: any) => {
-        e.className.includes("history") ? e.style.maxHeight = "".concat(<any>(37 * <any>(filteredCategoryHistory.value.length) + 50), "px") : e.className.includes("property-list") ? e.style.maxHeight = "".concat(<any>(58 * props.searchResult?.properties?.length), "px") : e.className.includes("product-list") && (e.style.maxHeight = "".concat(<any>(100 * props.searchResult?.products?.length + 100), "px"))
-      })
-      e.style.maxHeight = "" + isNotFound.value && !isEmptyString.value ? 115 : r + "px"
-    }, 100)
+    if (isSearched.value) {
+      if (requestText.value.length < 1 && filteredCategoryHistory.value.length < 1) {
+        e.style.maxHeight = "0px"
+      } else {
+        setTimeout(() => {
+          let r = 37 * filteredCategoryHistory.value.length + 58 * props.searchResult?.properties?.length + 100 * props.searchResult?.products?.length + 100 + (props.searchResult?.isAnalogs ? 110 : 0);
+          Array.from(e.children).forEach((e: any) => {
+            e.className.includes("history") ? e.style.maxHeight = "".concat(<any>(37 * <any>(filteredCategoryHistory.value.length) + 50), "px") : e.className.includes("property-list") ? e.style.maxHeight = "".concat(<any>(58 * props.searchResult?.properties?.length), "px") : e.className.includes("product-list") && (e.style.maxHeight = "".concat(<any>(100 * props.searchResult?.products?.length + 100), "px"))
+          })
+          e.style.maxHeight = "" + (isNotFound.value && !isEmptyString.value ? 115 : r) + "px"
+        }, 100)
+      }
+    }
+
   })
 }
 
 function search() {
   metric("search", requestText.value)
-  isEmptyString.value || void 0 === requestText.value || (closeSearchResult(), window.clearTimeout(timeoutID.value), requestText.value !== props.routeParams?.search && router.push({
+  isEmptyString.value || requestText.value.length < 1 || (closeSearchResult(), window.clearTimeout(timeoutID.value), requestText.value !== props.routeParams?.search && router.push({
     name: "Search",
     params: {
       search: requestText.value
@@ -598,10 +606,10 @@ function throttle(t: any, e: any) {
     <form ref="formSearchRef" action v-on:submit.prevent="search">
       <div ref="searchRef" :class='["search", { focus: isFocus }]'>
         <input v-model.trim="requestText" ref="searchFieldRef" :placeholder="placeholder" autocomplete="off"
-               type="search" id="search-field" :value="requestText" v-on:focus="focus" v-on:blur="blur"
+               type="search" id="search-field" v-on:focus="focus" v-on:blur="blur"
                v-on:input='(e)=>{e.target.composing || (requestText = e.target.value.trim())}'
                v-on:keypress='(e)=>{return !e.type.indexOf("key") && e.keyCode === 13 && e.key=== "Enter" ? null : search}'/>
-        <label v-if="!isMobile && !isFocus && void 0 === requestText && null !== advertisingLinks"
+        <label v-if="!isMobile && !isFocus && requestText.length < 1 && null !== advertisingLinks"
                class="advertising-links" for="search-field">
           Например,
           <a v-for="(item, index) in advertisingLinks" :key="index" :href="item.link" rel="nofollow">{{ item.name }}</a>
@@ -612,6 +620,137 @@ function throttle(t: any, e: any) {
         </button>
         <span v-if="!isFocus" class="icon search-mobile"/>
       </div>
+      <div ref="resultRef"
+           :class='["result", { opened: isOpened, "not-found": isNotFound && isOpened, "page-scrolled": isPageScrolled }]'>
+        <LazyUiCSpinner v-if="isLoading"/>
+        <div v-show="filteredCategoryHistory.length > 0 && !isNotFound" ref="historyRef"
+             :class='["history", { only: preparedProperties.length < 1 && preparedProducts.length < 1, hidden: filteredCategoryHistory.length < 1 || isNotFound && !isEmptyString }]'>
+          <div :class='["header", { hidden: !isEmptyString || filteredCategoryHistory.length < 1 }]'>
+            <span class="name">Недавние</span>
+            <span class="clear" @click="clearCategoryHistory">Очистить все</span>
+          </div>
+          <div v-for="(item, index) in filteredCategoryHistory" :key="index"
+               :class='["category", { delete: item.delete, "item-selected": index === itemIndex }]'
+               @click="goTo(item.url, item.title)" v-on:mouseover="resetItemIndex">
+            <NuxtLink :to='{ path: item.url }'>
+              <div>
+                <span class="icon category-history"/>
+                <span class="name">{{ item.title }}</span>
+              </div>
+              <span class="icon close" @click.prevent.stop="deleteCategory(item, index)"/>
+            </NuxtLink>
+          </div>
+        </div>
+        <div :class='["property-list", { hidden: preparedProperties.length < 1 }]'>
+          <div v-for="(item, index) in preparedProperties" :key="index"
+               :class='["property", { "item-selected": filteredCategoryHistory.length + index === itemIndex }]'
+               v-on:mouseover="resetItemIndex" @click="goTo(item.route, item.name)">
+            <NuxtLink :to="{...item.route}">
+              <div>
+                <span class="name">{{ item.name }}</span>
+                <span :class='["page", item.type]'>{{ item.page }}</span>
+                <UiCArrowSVG size="s" hover-color="#3F51B5"/>
+              </div>
+            </NuxtLink>
+          </div>
+        </div>
+        <div :class='["not-found-products", { show: searchResult?.isAnalogs && !isEmptyString }]'>
+          <p>К сожалению, по Вашему запросу ничего не найдено</p>
+          <div>
+            Пожалуйста, ознакомьтесь с рекомендациями или воспользуйтесь нашим
+            <NuxtLink class="hover-bottom-line" :to='{ name: "catalog" }'>каталогом<span/></NuxtLink>
+          </div>
+        </div>
+        <div ref="productListRef" :class='["product-list", { hidden: preparedProducts.length < 1 }]'>
+          <div v-for="(item, index) in preparedProducts" :key="index"
+               :class='["product", { "item-selected": filteredCategoryHistory.length + preparedProperties.length + index === itemIndex }]'
+               @mouseover="resetItemIndex"
+               v-on:contextmenu='()=>{return newTabOrNewWindow("searchSelect", requestText, item.ID, true)}'>
+            <NuxtLink :to='{...item.route}' data-tooltip="Перейти на страницу товара">
+              <div class="image">
+                <img :alt='item.images ? item.name : "Изображение отсутствует"' :src='image(item)'
+                     :data-tooltip='item.images ? item.name : "Изображение отсутствует"' width="100%" height="100%"/>
+              </div>
+              <div class="description">
+                <div class="title flex-vertical">
+                  <!--                  TODO-->
+                  <NuxtLink v-if="void 0 === item.ID" class="category" :to='prepareCategoryRoute(item.ID)'
+                            data-tooltip="Перейти на страницу категории">
+                    <span class="text">Выбрать в категории</span>
+                    <UiCArrowSVG color="#ffffff" hover-color="#ffffff" size="s"/>
+                  </NuxtLink>
+                  <NuxtLink class="name" :to='{...item.route}' data-tooltip="Перейти на страницу товара">
+                    {{ item.name }}
+                  </NuxtLink>
+                  <span v-if="item.sticker" class="sticker" v-html="item.sticker"/>
+                </div>
+                <span v-if="!isMobile" :class='["prescription", { icon: item.isRecipe }]'
+                      :data-tooltip='item.isRecipe ? "Отпускается по рецепту" : ""'/>
+                <div v-if="void 0 !== item.price" class="prices">
+                  <div class="without-card">
+                    <span>Цена:</span>
+                    <span>{{ item.price?.withoutCard + " ₽" }}</span>
+                  </div>
+                  <div v-if="item.isLoyal || item.isRank" class="line"/>
+                  <div v-if="item.isLoyal" class="with-card">
+                    <span>По акции:</span>
+                    <span>{{ item.price?.withCard + " ₽" }}</span>
+                  </div>
+                  <div v-if="item.isRank" class="with-period">
+                    <span>Клубная цена:</span>
+                    <span>{{ item.price?.withPeriod + " ₽" }}</span>
+                  </div>
+                </div>
+                <div v-if="isMobile && item.isRecipe" class="is-recipe">
+                  <span class="icon prescription-mini"/>
+                  Отпускается по рецепту
+                </div>
+                <div v-if="!item.isAvailable" class="not-available">
+                  {{ item.isWaitingArrive ? "Ожидается" : "Временно отсутствует" }}
+                </div>
+              </div>
+            </NuxtLink>
+            <div v-show="!item.isInBasket && item.isAvailable"
+                 :class='["add-to-basket", { disabled: loadingBasketProductIDs.includes(item.ID), rare: item.isRare }]'
+                 :data-tooltip='item.isRare ? "Оформить заказ" : "Добавить в корзину"'
+                 @click.prevent="addToBasket(item)">
+              <span v-if="loadingBasketProductIDs.includes(item.ID)" class="icon spinner"/>
+              <span v-else class="icon add-basket2"/>
+            </div>
+            <div v-show="item.isInBasket && item.isAvailable" class="in-basket" data-tooltip="Перейти в корзину"
+                 @click.prevent="openBasket">
+              <span class="icon in-basket"/>
+            </div>
+          </div>
+          <div v-if="preparedProducts.length === limit && !isMobile" class="show-more" @click="search">
+            Посмотреть все
+            <UiCArrowSVG size="s" hover-color="#3F51B5"/>
+          </div>
+          <div v-if="preparedProducts.length === limit && isMobile" class="show-more-mobile">
+            <LazyUiCButton v-if="preparedProducts.length === limit && isMobile" mode="primary" size="xl"
+                           @click="search">
+              Посмотреть все
+            </LazyUiCButton>
+          </div>
+        </div>
+        <div :class='["not-found", { show: isNotFound && !isEmptyString }]'>
+          <p>К сожалению, по Вашему запросу ничего не найдено</p>
+          <div>
+            Пожалуйста, проверьте формулировку Вашего запроса или воспользуйтесь нашим
+            <span v-if="isMobile">каталогом</span>
+            <NuxtLink v-else class="hover-bottom-line" :to='{name: "catalog"}'>
+              каталогом
+              <span/>
+            </NuxtLink>
+            <div>
+              <LazyUiCButton v-if="isMobile" mode="primary" @click="goCatalog">
+                Перейти в каталог
+              </LazyUiCButton>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="!isMobile" :class='["overlay", { active: isSearched }]' @click="closeSearchResult"/>
     </form>
   </div>
 </template>
@@ -1252,21 +1391,21 @@ function throttle(t: any, e: any) {
   align-items: center
 }
 
-.c-search > form > .result > .product-list > .show-more > .icon {
+.c-search > form > .result > .product-list > :deep(.show-more) > .icon {
   width: 20px;
   height: 20px;
   background-color: #3f51b5
 }
 
-.c-search > form > .result > .product-list > .show-more:hover > .c-arrow-svg > div > span {
+.c-search > form > .result > .product-list > :deep(.show-more:hover) > .c-arrow-svg > div > span {
   background-color: #3f51b5
 }
 
-.c-search > form > .result > .product-list > .show-more:hover > .c-arrow-svg > div > span:first-of-type {
+.c-search > form > .result > .product-list > :deep(.show-more:hover) > .c-arrow-svg > div > span:first-of-type {
   opacity: 1
 }
 
-.c-search > form > .result > .product-list > .show-more:hover > .c-arrow-svg > div > span:last-of-type {
+.c-search > form > .result > .product-list > :deep(.show-more:hover) > .c-arrow-svg > div > span:last-of-type {
   transform: translateX(4px)
 }
 
@@ -1274,7 +1413,7 @@ function throttle(t: any, e: any) {
   display: flex
 }
 
-.c-search > form > .result > .product-list > .show-more-mobile > .c-button {
+.c-search > form > .result > .product-list > :deep(.show-more-mobile) > .c-button {
   max-width: 308px;
   margin: 20px auto;
   -webkit-tap-highlight-color: transparent
@@ -1467,7 +1606,7 @@ function throttle(t: any, e: any) {
   padding-right: 0
 }
 
-.c-search.mobile > form > .result > .product-list > .show-more-mobile > .c-button {
+.c-search.mobile > form > .result > .product-list > :deep(.show-more-mobile) > .c-button {
   margin-top: 10px;
   margin-bottom: 0;
   height: 40px

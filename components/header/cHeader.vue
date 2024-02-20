@@ -92,7 +92,7 @@ const props = defineProps({
     type: Object
   },
   params: {
-    type: Object
+    type: <any>Object
   },
   possiblePrices: {
     type: Object
@@ -264,8 +264,8 @@ function search(filter: any) {
 
         <LazyHeaderCCatalog v-if="!isMobile"/>
 
-        <HeaderCSearch :advertising-links="props.params?.advertisingLinksForSearch"
-                       :cdn-url="props.params?.cdnURL.url"
+        <HeaderCSearch :advertising-links="props.params.advertisingLinksForSearch"
+                       :cdn-url="props.params.cdnURL.url"
                        :loading-basket-product-i-ds="loadingBasketProductIDs"
                        :updating-basket-product-i-ds="updatingBasketProductIDs"
                        :basket-items="basketItems"
