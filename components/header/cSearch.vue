@@ -67,9 +67,6 @@ const timeoutID = ref(<any>undefined)
 const isNotFound = ref(false)
 const categoryHistory = ref(<any>[])
 const isLoading = ref(false)
-const recognition = ref({})
-const recognizedSpeech = ref("")
-const isSpeaching = ref(false)
 const itemIndex = ref(<any>undefined)
 const isSearchPause = ref(false)
 const internalSearchResult = ref(<any>{})
@@ -84,7 +81,7 @@ const emit = defineEmits(["search-result-clear", "search-result-open", "basket-s
 const me = computed(() => {
   return meStore.getMe
 })
-const categoryDirectory = computed(() => {
+const categoryDirectory: any = computed(() => {
   return catalogStore.categoryDirectory
 })
 const catalog = computed(() => {
@@ -105,7 +102,7 @@ const preparedProducts = computed(() => {
 const preparedProperties = computed(() => {
   let e, n, o, c, l, d = this,
       h = <any>[],
-      m = {
+      m = <any>{
         brand: {
           page: "Бренд",
           routeName: "Brand"
@@ -120,79 +117,65 @@ const preparedProperties = computed(() => {
         }
       },
       f = internalSearchResult.value?.properties ? [...internalSearchResult.value.properties] : []
-  // TODO console.log(f)
-  // try {
-  //   var v = function () {
-  //     var t = function (t) {
-  //       for (var i = 1; i < arguments.length; i++) {
-  //         var source = null != arguments[i] ? arguments[i] : {};
-  //         i % 2 ? Gt(Object(source), !0).forEach((function (e) {
-  //           Object(r.a)(t, e, source[e])
-  //         })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(source)) : Gt(Object(source)).forEach((function (e) {
-  //           Object.defineProperty(t, e, Object.getOwnPropertyDescriptor(source, e))
-  //         }))
-  //       }
-  //       return t
-  //     }({}, l.value);
-  //     if (!["type", "subtype", "category"].includes(t.type) && void 0 === m[t.type]) return "continue";
-  //     if (["type", "subtype", "category"].includes(t.type)) {
-  //       if ("type" === t.type && (t.page = "Каталог", t.route = {
-  //         name: "CatalogType",
-  //         params: {
-  //           typeID: "".concat(t.ID),
-  //           typeSlug: t.slug
-  //         }
-  //       }), "subtype" === t.type) {
-  //         var f = null === (e = d.catalog) || void 0 === e ? void 0 : e.subtypes.find((function (e) {
-  //               return e.ID === t.ID
-  //             })),
-  //             v = null === (n = d.catalog) || void 0 === n ? void 0 : n.types.find((function (t) {
-  //               return t.ID === (null == f ? void 0 : f.typeIDs[0])
-  //             }));
-  //         t.page = "".concat(v.name, " / ").concat(null == f ? void 0 : f.name), t.route = {
-  //           name: "CatalogSubtype",
-  //           params: {
-  //             typeID: "".concat(null == f ? void 0 : f.typeIDs[0]),
-  //             typeSlug: v.slug,
-  //             subtypeID: "".concat(t.ID),
-  //             subtypeSlug: t.slug
-  //           }
-  //         }
-  //       }
-  //       if ("category" === t.type) {
-  //         var V = null === (o = d.catalog) || void 0 === o ? void 0 : o.categories.find((function (e) {
-  //               return e.ID === t.ID
-  //             })),
-  //             y = null === (c = d.catalog) || void 0 === c ? void 0 : c.subtypes.find((function (t) {
-  //               return t.ID === V.subtypeIDs[0]
-  //             }));
-  //         t.page = "".concat(y.name, " / ").concat(V.name), t.route = {
-  //           name: "CatalogCategory",
-  //           params: {
-  //             typeID: "".concat(d.categoryDirectory[t.ID].typeID),
-  //             typeSlug: d.categoryDirectory[t.ID].typeSlug,
-  //             subtypeID: "".concat(d.categoryDirectory[t.ID].subtypeID),
-  //             subtypeSlug: d.categoryDirectory[t.ID].subtypeSlug,
-  //             categoryID: "".concat(t.ID),
-  //             categorySlug: t.slug
-  //           }
-  //         }
-  //       }
-  //     } else t.page = m[t.type].page, t.route = {
-  //       name: m[t.type].routeName,
-  //       params: {
-  //         propertyID: "".concat(t.ID),
-  //         propertySlug: t.slug
-  //       }
-  //     };
-  //     h.push(t)
-  //   };
-  //   for (f.s(); !(l = f.n()).done;) v()
-  // } catch (t) {
-  //   f.e(t)
-  // } finally {
-  //   f.f()
-  // }
+  f.forEach((item) => {
+    if (!["type", "subtype", "category"].includes(item.type) && void 0 === m[item.type]) return "continue";
+    if (["type", "subtype", "category"].includes(item.type)) {
+      if ("type" === item.type && (item.page = "Каталог", item.route = {
+        name: "CatalogType",
+        params: {
+          typeID: "".concat(item.ID),
+          typeSlug: item.slug
+        }
+      }), "subtype" === item.type) {
+        var f = null === (e = catalog.value) || void 0 === e ? void 0 : e.subtypes.find((e: any) => {
+              return e.ID === item.ID
+            }),
+            v = null === (n = catalog.value) || void 0 === n ? void 0 : n.types.find((t: any) => {
+              return t.ID === (null == f ? void 0 : f.typeIDs[0])
+            });
+        item.page = "".concat(v.name, " / ").concat(null == f ? void 0 : f.name)
+        item.route = {
+          name: "CatalogSubtype",
+          params: {
+            typeID: "".concat(null == f ? void 0 : f.typeIDs[0]),
+            typeSlug: v.slug,
+            subtypeID: "".concat(item.ID),
+            subtypeSlug: item.slug
+          }
+        }
+      }
+      if ("category" === item.type) {
+        var V = null === (o = catalog.value) || void 0 === o ? void 0 : o.categories.find((e: any) => {
+              return e.ID === item.ID
+            }),
+            y = null === (c = catalog.value) || void 0 === c ? void 0 : c.subtypes.find((t: any) => {
+              return t.ID === V.subtypeIDs[0]
+            });
+        item.page = "".concat(y.name, " / ").concat(V.name)
+        item.route = {
+          name: "CatalogCategory",
+          params: {
+            typeID: "".concat(categoryDirectory.value[item.ID].typeID),
+            typeSlug: categoryDirectory.value[item.ID].typeSlug,
+            subtypeID: "".concat(categoryDirectory.value[item.ID].subtypeID),
+            subtypeSlug: categoryDirectory.value[item.ID].subtypeSlug,
+            categoryID: "".concat(item.ID),
+            categorySlug: item.slug
+          }
+        }
+      }
+    } else {
+      item.page = m[item.type].page
+      item.route = {
+        name: m[item.type]?.routeName,
+        params: {
+          propertyID: "".concat(item.ID),
+          propertySlug: item.slug
+        }
+      };
+    }
+    h.push(item)
+  });
   return h
 })
 
@@ -206,12 +189,10 @@ watch(() => isOpened.value, (value) => {
   if (props.isMobile)
     if (value) {
       appStore.HIDE_MOBILE_FOOTER(true)
-      //TODO this.$store.commit("app/".concat(z.APP.HIDE_CHAT_BOT), !0)
       let e: any = document.querySelector(".product-prices-fixed");
       null !== e && (e.style.display = "none")
       document.body.style.overflow = "hidden"
     } else {
-      //TODO this.$store.commit("app/".concat(z.APP.HIDE_CHAT_BOT), !1)
       appStore.HIDE_MOBILE_FOOTER(false)
       let n: any = document.querySelector(".product-prices-fixed");
       null !== n && (n.style.display = "flex")
@@ -254,103 +235,34 @@ watch(() => requestText.value, (value, oldValue) => {
     return throttle(searchProducts, 700)
   }
 })
-watch(() => route, (value) => {
+
+watch(() => route.name, value => {
   setTimeout(() => {
-    "Search" === value.name || requestText.value.length < 1 || isSearchPause.value || (requestText.value = "", emit("search-result-clear")), props.isMobile && emit("search-result-open", false), window.clearTimeout(timeoutID.value), closeSearchResult(), isSearchPause.value = false
+    "Search" === value || requestText.value.length < 1 || isSearchPause.value || (requestText.value = "", emit("search-result-clear"))
+    props.isMobile && emit("search-result-open", false)
+    window.clearTimeout(timeoutID.value)
+    closeSearchResult()
+    isSearchPause.value = false
   }, 200)
 })
 
-// onBeforeRouteUpdate(() => {
-//   resultRef.value.style.maxHeight = "0"
-// })
-
-onMounted(() => {
-  //window.addEventListener("resize", resizeHeight)
-  //searchRef.value.addEventListener("paste", pasteText);
-
-
-  // let o = window.localStorage.getItem("metric");
-  // if (null !== o) {
-  //   let r = JSON.parse(o),
-  //       c = r.type,
-  //       l = r.searchText,
-  //       d = r.productID,
-  //       h = r.isFastSearch;
-  //   d === Number(route.params.productID) && metric(c, l, d, h), window.localStorage.removeItem("metric")
-  // }
+watch(() => route.path, () => {
+  // resultRef.value.style.maxHeight = "0"
 })
 
-
-function newTabOrNewWindow(t: any, e: any, n: any, o: any) {
-  window.localStorage.setItem("metric", JSON.stringify({
-    type: t,
-    searchText: e,
-    productID: n,
-    isFastSearch: o
-  }))
-}
-
-function metric(t?: any, e?: any, n?: any, o?: any) {
-  if (oldRequestText.value !== requestText.value && e || "search" !== t) {
-    let data = <any>{
-      cityID: props.city?.ID,
-      type: t,
-      searchText: e,
-      productID: n,
-      isFastSearch: o
-    };
-    props.isAuthorized && (data.userID = me.value.ID)
-    //TODO ??? Ut.a.metric(data).then((function () {
-    "search" === t && (oldRequestText.value = e)
-    // }))
-  }
-}
-
-function prepareCategoryRoute(t: any) {
-  return {
-    name: "SelectInCategory",
-    params: {
-      productID: "".concat(t)
-    }
-  }
-}
+onMounted(() => {
+  window.addEventListener("resize", resizeHeight)
+  searchRef.value.addEventListener("paste", pasteText);
+})
+onUnmounted(() => {
+  // window.removeEventListener("resize", resizeHeight)
+  // searchRef.value.removeEventListener("paste", pasteText);
+})
 
 function image(item: any) {
   return uPrepareProduct(item, SIZE_XS, props.cdnUrl).images[0]
 }
 
-function listenStart(t: any) {
-  var e = searchFieldRef.value;
-  //TODO ??? try {
-  //   if (this.isSpeaching) return this.recognition.abort(), this.isSpeaching = !1, void (e.placeholder = this.placeholder);
-  //   t.preventDefault(), e.placeholder = "Говорите...", this.recognizedSpeech = "", this.isSpeaching = !0, this.recognition.start(), this.isMobile || this.playSound(H.p)
-  // } catch (t) {
-  // this.recognition.abort()
-  isSpeaching.value = false
-  e.placeholder = placeholder.value
-  // }
-}
-
-function transcriptHandler(t: any) {
-  let e = searchFieldRef.value,
-      n = parseTranscript(t);
-  recognizedSpeech.value = n
-  e.focus()
-  //TODO ??? t.results[0].isFinal && (this.isSpeaching = !1, e.placeholder = this.placeholder, this.requestText = this.recognizedSpeech, this.isMobile || this.playSound(H.s))
-}
-
-function parseTranscript(t: any) {
-  return Array.from(t.results).map((t: any) => {
-    return t[0]
-  }).map((t) => {
-    return t.transcript
-  }).join("")
-}
-
-function playSound(s: any) {
-  // TODO var audio = new Audio;
-  // audio.preload = "auto", audio.src = s, audio.play()
-}
 
 function deleteCategory(t: any, i: any) {
   if (1 === categoryHistory.value.length) {
@@ -381,7 +293,8 @@ function clearCategoryHistory() {
 }
 
 function goTo(p: any, t: any) {
-  route.path === p && closeSearchResult(), searchPause(t)
+  route.path === p && closeSearchResult()
+  searchPause(t)
 }
 
 function openBasket() {
@@ -453,14 +366,6 @@ function addToBasket(item: any) {
     localStorage.setItem("basket", JSON.stringify(o))
     emit("basket-store-update", o)
   }
-}
-
-function updateBasketItem(t: any) {
-  emit("basket-item-update", t)
-}
-
-function updateBasketStore(t: any) {
-  emit("basket-store-update", t)
 }
 
 function blur() {
@@ -556,25 +461,35 @@ function pasteText(t: any) {
 function resizeHeight() {
   let e = resultRef.value;
   props.isMobile || nextTick(() => {
-    if (isSearched.value) {
-      if (requestText.value.length < 1 && filteredCategoryHistory.value.length < 1) {
-        e.style.maxHeight = "0px"
-      } else {
-        setTimeout(() => {
-          let r = 37 * filteredCategoryHistory.value.length + 58 * props.searchResult?.properties?.length + 100 * props.searchResult?.products?.length + 100 + (props.searchResult?.isAnalogs ? 110 : 0);
+        let n;
+        !isSearched.value || (null !== (n = requestText.value) && void 0 !== n ? n : "").length < 1 && filteredCategoryHistory.value.length < 1 ? e.style.maxHeight = "0px" : setTimeout(() => {
+          let r = (filteredCategoryHistory.value.length ? 37 * filteredCategoryHistory.value.length : 0) + (props.searchResult?.properties?.length ? 58 * props.searchResult?.properties?.length : 0) + (props.searchResult?.products?.length ? 100 * props.searchResult?.products?.length : 0) + 100 + (props.searchResult?.isAnalogs ? 110 : 0);
           Array.from(e.children).forEach((e: any) => {
             e.className.includes("history") ? e.style.maxHeight = "".concat(<any>(37 * <any>(filteredCategoryHistory.value.length) + 50), "px") : e.className.includes("property-list") ? e.style.maxHeight = "".concat(<any>(58 * props.searchResult?.properties?.length), "px") : e.className.includes("product-list") && (e.style.maxHeight = "".concat(<any>(100 * props.searchResult?.products?.length + 100), "px"))
           })
           e.style.maxHeight = "" + (isNotFound.value && !isEmptyString.value ? 115 : r) + "px"
         }, 100)
-      }
-    }
 
-  })
+        // if (!isSearched.value) {
+        //   if (requestText.value.length < 1 && filteredCategoryHistory.value.length < 1) {
+        //     e.style.maxHeight = "0px"
+        //   }
+        // } else {
+        //   setTimeout(() => {
+        //     let r = (filteredCategoryHistory.value.length ? 37 * filteredCategoryHistory.value.length : 0) + (props.searchResult?.properties?.length ? 58 * props.searchResult?.properties?.length : 0) + (props.searchResult?.products?.length ? 100 * props.searchResult?.products?.length : 0) + 100 + (props.searchResult?.isAnalogs ? 110 : 0);
+        //     Array.from(e.children).forEach((e: any) => {
+        //       e.className.includes("history") ? e.style.maxHeight = "".concat(<any>(37 * <any>(filteredCategoryHistory.value.length) + 50), "px") : e.className.includes("property-list") ? e.style.maxHeight = "".concat(<any>(58 * props.searchResult?.properties?.length), "px") : e.className.includes("product-list") && (e.style.maxHeight = "".concat(<any>(100 * props.searchResult?.products?.length + 100), "px"))
+        //     })
+        //     e.style.maxHeight = "" + (isNotFound.value && !isEmptyString.value ? 115 : r) + "px"
+        //   }, 100)
+        // }
+
+
+      }
+  )
 }
 
 function search() {
-  metric("search", requestText.value)
   isEmptyString.value || requestText.value.length < 1 || (closeSearchResult(), window.clearTimeout(timeoutID.value), requestText.value !== props.routeParams?.search && router.push({
     name: "Search",
     params: {
@@ -649,8 +564,8 @@ function throttle(t: any, e: any) {
               <div>
                 <span class="name">{{ item.name }}</span>
                 <span :class='["page", item.type]'>{{ item.page }}</span>
-                <UiCArrowSVG size="s" hover-color="#3F51B5"/>
               </div>
+              <UiCArrowSVG size="s" hover-color="#3F51B5"/>
             </NuxtLink>
           </div>
         </div>
@@ -664,8 +579,7 @@ function throttle(t: any, e: any) {
         <div ref="productListRef" :class='["product-list", { hidden: preparedProducts.length < 1 }]'>
           <div v-for="(item, index) in preparedProducts" :key="index"
                :class='["product", { "item-selected": filteredCategoryHistory.length + preparedProperties.length + index === itemIndex }]'
-               @mouseover="resetItemIndex"
-               v-on:contextmenu='()=>{return newTabOrNewWindow("searchSelect", requestText, item.ID, true)}'>
+               @mouseover="resetItemIndex">
             <NuxtLink :to='{...item.route}' data-tooltip="Перейти на страницу товара">
               <div class="image">
                 <img :alt='item.images ? item.name : "Изображение отсутствует"' :src='image(item)'
@@ -673,12 +587,6 @@ function throttle(t: any, e: any) {
               </div>
               <div class="description">
                 <div class="title flex-vertical">
-                  <!--                  TODO-->
-                  <NuxtLink v-if="void 0 === item.ID" class="category" :to='prepareCategoryRoute(item.ID)'
-                            data-tooltip="Перейти на страницу категории">
-                    <span class="text">Выбрать в категории</span>
-                    <UiCArrowSVG color="#ffffff" hover-color="#ffffff" size="s"/>
-                  </NuxtLink>
                   <NuxtLink class="name" :to='{...item.route}' data-tooltip="Перейти на страницу товара">
                     {{ item.name }}
                   </NuxtLink>
@@ -863,29 +771,6 @@ function throttle(t: any, e: any) {
   background-color: #3f51b5
 }
 
-.c-search > form > .search-mobile > .voice, .c-search > form > .search > .voice {
-  position: absolute;
-  cursor: pointer;
-  min-width: 24px;
-  top: 8px;
-  right: 63px;
-  background-color: #818ca9
-}
-
-.c-search > form > .search-mobile > .voice:hover, .c-search > form > .search > .voice:hover {
-  background-color: #3f51b5
-}
-
-.c-search > form > .search-mobile > .voice.right, .c-search > form > .search > .voice.right {
-  right: 96px
-}
-
-.c-search > form > .search-mobile > .voice.speaching, .c-search > form > .search > .voice.speaching {
-  background-color: #f36363;
-  -webkit-animation: speach .8s linear infinite;
-  animation: speach .8s linear infinite
-}
-
 .c-search > form > .search-mobile > button, .c-search > form > .search > button {
   padding: 0 16px;
   display: flex;
@@ -934,7 +819,7 @@ function throttle(t: any, e: any) {
   padding-top: 15px
 }
 
-.c-search > form > .result > .c-spinner {
+.c-search > form > :deep(.result) > .c-spinner {
   position: absolute !important
 }
 
@@ -1086,15 +971,15 @@ function throttle(t: any, e: any) {
   background-color: #ebf0f9
 }
 
-.c-search > form > .result > .history > .category.item-selected > a > .c-arrow-svg > div > span, .c-search > form > .result > .history > .category:hover > a > .c-arrow-svg > div > span, .c-search > form > .result > .history > .property.item-selected > a > .c-arrow-svg > div > span, .c-search > form > .result > .history > .property:hover > a > .c-arrow-svg > div > span, .c-search > form > .result > .property-list > .category.item-selected > a > .c-arrow-svg > div > span, .c-search > form > .result > .property-list > .category:hover > a > .c-arrow-svg > div > span, .c-search > form > .result > .property-list > .property.item-selected > a > .c-arrow-svg > div > span, .c-search > form > .result > .property-list > .property:hover > a > .c-arrow-svg > div > span {
+.c-search > form > .result > .history > .category.item-selected > a > .c-arrow-svg > div > span, .c-search > form > .result > .history > :deep(.category:hover) > a > .c-arrow-svg > div > span, .c-search > form > .result > .history > .property.item-selected > a > .c-arrow-svg > div > span, .c-search > form > .result > .history > :deep(.property:hover) > a > .c-arrow-svg > div > span, .c-search > form > .result > .property-list > .category.item-selected > a > .c-arrow-svg > div > span, .c-search > form > .result > .property-list > :deep(.category:hover) > a > .c-arrow-svg > div > span, .c-search > form > .result > .property-list > .property.item-selected > a > .c-arrow-svg > div > span, .c-search > form > .result > .property-list > :deep(.property:hover) > a > .c-arrow-svg > div > span {
   background-color: #3f51b5
 }
 
-.c-search > form > .result > .history > .category.item-selected > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .history > .category:hover > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .history > .property.item-selected > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .history > .property:hover > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .property-list > .category.item-selected > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .property-list > .category:hover > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .property-list > .property.item-selected > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .property-list > .property:hover > a > .c-arrow-svg > div > span:first-of-type {
+.c-search > form > .result > .history > .category.item-selected > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .history > :deep(.category:hover) > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .history > .property.item-selected > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .history > :deep(.property:hover) > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .property-list > .category.item-selected > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .property-list > :deep(.category:hover) > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .property-list > .property.item-selected > a > .c-arrow-svg > div > span:first-of-type, .c-search > form > .result > .property-list > :deep(.property:hover) > a > .c-arrow-svg > div > span:first-of-type {
   opacity: 1
 }
 
-.c-search > form > .result > .history > .category.item-selected > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .history > .category:hover > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .history > .property.item-selected > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .history > .property:hover > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .property-list > .category.item-selected > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .property-list > .category:hover > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .property-list > .property.item-selected > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .property-list > .property:hover > a > .c-arrow-svg > div > span:last-of-type {
+.c-search > form > .result > .history > .category.item-selected > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .history > :deep(.category:hover) > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .history > .property.item-selected > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .history > :deep(.property:hover) > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .property-list > .category.item-selected > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .property-list > :deep(.category:hover) > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .property-list > .property.item-selected > a > .c-arrow-svg > div > span:last-of-type, .c-search > form > .result > .property-list > :deep(.property:hover) > a > .c-arrow-svg > div > span:last-of-type {
   transform: translateX(4px)
 }
 
@@ -1200,25 +1085,25 @@ function throttle(t: any, e: any) {
   font-weight: 500
 }
 
-.c-search > form > .result > .product-list > .product > a > .description > .title > .category > .c-arrow-svg {
+.c-search > form > .result > .product-list > .product > a > .description > .title > :deep(.category) > .c-arrow-svg {
   background-color: #ff0089;
   border-radius: 0 20px 20px 0;
   width: 20px;
   height: 20px
 }
 
-.c-search > form > .result > .product-list > .product > a > .description > .title > .category > .c-arrow-svg .icon {
+.c-search > form > .result > .product-list > .product > a > .description > .title > :deep(.category) > .c-arrow-svg .icon {
   width: 20px;
   height: 20px;
   min-width: 20px
 }
 
-.c-search > form > .result > .product-list > .product > a > .description > .title > .category:hover > .c-arrow-svg > div > span:first-of-type {
+.c-search > form > .result > .product-list > .product > a > .description > .title > :deep(.category:hover) > .c-arrow-svg > div > span:first-of-type {
   opacity: 1;
   transform: translateX(-4px)
 }
 
-.c-search > form > .result > .product-list > .product > a > .description > .title > .category:hover > .c-arrow-svg > div > span:last-of-type {
+.c-search > form > .result > .product-list > .product > a > .description > .title > :deep(.category:hover) > .c-arrow-svg > div > span:last-of-type {
   transform: translateX(2px)
 }
 
@@ -1338,7 +1223,8 @@ function throttle(t: any, e: any) {
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
-  mask-position: center
+  mask-position: center;
+  margin-left: 2px;
 }
 
 .c-search > form > .result > .product-list > .product > .add-to-basket > .spinner, .c-search > form > .result > .product-list > .product > .in-basket > .spinner {
@@ -1366,7 +1252,8 @@ function throttle(t: any, e: any) {
 
 .c-search > form > .result > .product-list > .product > .in-basket > .icon {
   background-color: #fff;
-  margin: 0
+  margin: 0;
+  margin-left: 2px;
 }
 
 .c-search > form > .result > .product-list > .product > .in-basket:hover {
@@ -1509,11 +1396,6 @@ function throttle(t: any, e: any) {
   right: 15px
 }
 
-.c-search.mobile.opened > form > .search > .voice.right {
-  top: 17px;
-  right: 45px
-}
-
 .c-search.mobile.opened > form > .search > .search-mobile {
   top: 18px;
   left: 13px
@@ -1536,7 +1418,7 @@ function throttle(t: any, e: any) {
   z-index: 1
 }
 
-.c-search.mobile.opened > form > .result > .c-spinner {
+.c-search.mobile.opened > form > :deep(.result) > .c-spinner {
   height: 98%;
   width: 95%
 }
@@ -1560,15 +1442,6 @@ function throttle(t: any, e: any) {
 
 .c-search.mobile > form > .search > input {
   padding-right: 70px
-}
-
-.c-search.mobile > form > .search > .voice {
-  top: 7px;
-  right: 7px
-}
-
-.c-search.mobile > form > .search > .voice.right {
-  right: 35px
 }
 
 .c-search.mobile > form > .result {
@@ -1632,7 +1505,8 @@ function throttle(t: any, e: any) {
   width: 22px;
   height: 22px;
   -webkit-mask-size: 100%;
-  mask-size: 100%
+  mask-size: 100%;
+  margin-left: 2px;
 }
 
 .c-search.mobile > form > .result > .product-list > .product > a {
@@ -1802,26 +1676,6 @@ function throttle(t: any, e: any) {
   padding-bottom: 10px
 }
 
-@-webkit-keyframes speach {
-  50% {
-    transform: scale(1.1)
-  }
-
-  to {
-    transform: scale(1)
-  }
-}
-
-@keyframes speach {
-  50% {
-    transform: scale(1.1)
-  }
-
-  to {
-    transform: scale(1)
-  }
-}
-
 @media screen and (max-width: 850px) {
   .c-search {
     padding: 0 10px
@@ -1863,10 +1717,6 @@ function throttle(t: any, e: any) {
 
   .c-search > form > .search > .advertising-links {
     left: 90px
-  }
-
-  .c-search > form > .search > .voice {
-    right: 10px
   }
 
   .c-search > form > .result.opened {

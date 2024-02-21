@@ -39,6 +39,7 @@ export default <RouterConfig>{
         "nuxt-link-active",
     linkExactActiveClass:
         "nuxt-link-exact-active",
+    strict: true,
     routes: (_routes) => [
         {
             path: "/",
@@ -218,8 +219,8 @@ export default <RouterConfig>{
             name: "Company"
         },
         {
-            path: "/product/:productID(\\d+)-:productSlug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            path: "/product/:productID()-:productSlug()",
+            component: () => import('~/components/pages/vProduct.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     productID: Number(t.params.productID),
@@ -228,11 +229,18 @@ export default <RouterConfig>{
                 })
             },
             name: "Product",
-            children: [{
-                path: "otzyvy",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
-                name: "ProductReviews"
-            }]
+        },
+        {
+            path: "/product/:productID()-:productSlug()/otzyvy",
+            component: () => import('~/components/pages/vProduct.vue'),
+            props: function (t: any) {
+                return Object.assign(Object.assign({}, t.params), {}, {
+                    productID: Number(t.params.productID),
+                    needOpenSidebar: t.params.needOpenSidebar,
+                    itemCount: t.params.itemCount
+                })
+            },
+            name: "ProductReviews"
         },
         {
             path: "/stock/:slug?",
@@ -295,7 +303,7 @@ export default <RouterConfig>{
         },
         {
             path: "/search/:search",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/pages/vSearch.vue').then(r => r.default || r),
             props: !0,
             name: "Search"
         },
@@ -482,6 +490,6 @@ export default <RouterConfig>{
 
 function withMeta(originalRoutes: Readonly<RouteRecordRaw[]>, route: RouteRecordRaw) {
     const originalRoute = originalRoutes.find(originalRoute => originalRoute.path === route.path)
-
+    // console.log(originalRoutes)
     return merge(originalRoute, route)
 }

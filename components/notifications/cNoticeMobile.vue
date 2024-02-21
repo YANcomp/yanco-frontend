@@ -78,30 +78,30 @@ function close() {
         <template v-if="isCompareLimited">
           <span class="desc">
             У вас 6 товаров в сравнении
-            <NuxtLink to="/" class="hover-bottom-line">
+            <NuxtLink :to="{name:'compare'}" class="hover-bottom-line">
               Перейти в сравнение
             </NuxtLink>
           </span>
         </template>
 
         <template v-else-if="isBasket || isFavorites || isCompare">
-          <img src='https://pictures1.apteka-april.ru/products/326171/208/3019d88ae96777694aa8d824a798e59d.webp'
+          <img :src='notice.image'
                width="100%" height="100%" alt=""/>
           <span class="desc" v-if="isBasket">
             Товар добавлен <br v-if="currentWidth <= 425"> к вашим покупкам
-            <NuxtLink to="/">
+            <NuxtLink :to="{name:'basket'}">
               Перейти в корзину
             </NuxtLink>
           </span>
           <span class="desc" v-if="isFavorites">
             Товар добавлен <br v-if="currentWidth <= 384"> в избранное
-            <NuxtLink to="/">
+            <NuxtLink :to="{name:'favorites'}">
               Перейти в избранное
             </NuxtLink>
           </span>
           <span class="desc" v-if="isCompare">
             Товар добавлен <br v-if="currentWidth <= 387"> к сравнению
-            <NuxtLink to="/">
+            <NuxtLink :to="{name:'compare'}">
               Перейти в сравнение
             </NuxtLink>
           </span>

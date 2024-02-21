@@ -177,7 +177,8 @@ function updateFavoritesStore(t: any) {
 }
 
 .c-products-slider > :deep(.c-slider) > .c-arrow-svg {
-  margin-top: -30px !important
+  margin-top: -30px !important;
+  margin-left: 5px;
 }
 
 .c-products-slider.mobile {

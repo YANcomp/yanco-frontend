@@ -272,11 +272,12 @@ useSeoMeta({
               <UiCArrowSVG class="prev" color="#3f51b5" hover-color="#4960df" size="s"/>
               Перейти в каталог
             </UiCButton>
-            <UiCButton mode="primary" size="xl" @click="goToHome">
-              Перейти на главную
-              <UiCArrowSVG color="#fff" hover-color="#fff" size="s"/>
-            </UiCButton>
           </template>
+          <UiCButton mode="primary" size="xl" @click="goToHome">
+            Перейти на главную
+            <UiCArrowSVG color="#fff" hover-color="#fff" size="s"/>
+          </UiCButton>
+
         </div>
       </div>
     </template>
@@ -304,7 +305,7 @@ useSeoMeta({
   margin-top: 0;
   margin-bottom: 20px;
   line-height: 34px;
-  width: 100%
+  /*width: 100%*/
 }
 
 .v-favorites > .products {
