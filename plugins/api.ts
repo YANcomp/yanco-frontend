@@ -19,6 +19,7 @@ import ApiFavoritesModule from "~/api/favorites";
 import ApiSessionsModule from "~/api/sessions";
 import ApiMeModule from "~/api/me";
 import ApiSearchModule from "~/api/search";
+import ApiPropertiesModule from "~/api/properties";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -71,7 +72,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         products: new ApiProductsModule(opts),
         // productSubtypes: K,
         // productTypes: J,
-        // properties: X,
+        properties: new ApiPropertiesModule(opts),
         regions: new ApiRegionsModule(opts),
         // restrictTypes: et,
         // reviews: it,

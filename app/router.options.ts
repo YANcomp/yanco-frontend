@@ -357,7 +357,7 @@ export default <RouterConfig>{
         },
         {
             path: "/brand",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/pages/vPropertyList.vue').then(r => r.default || r),
             name: "Brands"
         },
         {

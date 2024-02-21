@@ -1,0 +1,626 @@
+[
+  {
+    "ID": 3743,
+    "name": "Абиратерон",
+    "slug": "abirateron",
+    "typeID": 10
+  },
+  {
+    "ID": 1118,
+    "name": "Абуцел",
+    "slug": "abucel",
+    "typeID": 10
+  },
+  {
+    "ID": 183,
+    "name": "Аванта",
+    "slug": "avanta",
+    "typeID": 10
+  },
+  {
+    "ID": 3610,
+    "name": "Авастин",
+    "slug": "avastin",
+    "typeID": 10
+  },
+  {
+    "ID": 1090,
+    "name": "Аверсус",
+    "slug": "aversus",
+    "typeID": 10
+  },
+  {
+    "ID": 4064,
+    "name": "Авиамарин",
+    "slug": "aviamarin",
+    "typeID": 10
+  },
+  {
+    "ID": 3492,
+    "name": "Аводарт",
+    "slug": "avodart",
+    "typeID": 10
+  },
+  {
+    "ID": 118,
+    "name": "Агуша",
+    "slug": "agusha",
+    "typeID": 10
+  },
+  {
+    "ID": 3975,
+    "name": "Адаклин",
+    "slug": "adaklin",
+    "typeID": 10
+  },
+  {
+    "ID": 3465,
+    "name": "Адант",
+    "slug": "adant",
+    "typeID": 10
+  },
+  {
+    "ID": 11608,
+    "name": "Адаптер сетевой",
+    "slug": "adapter_setevoj",
+    "typeID": 10
+  },
+  {
+    "ID": 3663,
+    "name": "Адаптол",
+    "slug": "adaptol",
+    "typeID": 10
+  },
+  {
+    "ID": 3925,
+    "name": "Адвантан",
+    "slug": "advantan",
+    "typeID": 10
+  },
+  {
+    "ID": 3804,
+    "name": "Адеметионин",
+    "slug": "ademetionin",
+    "typeID": 10
+  },
+  {
+    "ID": 3474,
+    "name": "Аденопросин",
+    "slug": "adenoprosin",
+    "typeID": 10
+  },
+  {
+    "ID": 3996,
+    "name": "Аджиколд",
+    "slug": "adzhikold",
+    "typeID": 10
+  },
+  {
+    "ID": 3891,
+    "name": "Аджисепт",
+    "slug": "adzhisept",
+    "typeID": 10
+  },
+  {
+    "ID": 3442,
+    "name": "Адиарин",
+    "slug": "adiarin",
+    "typeID": 10
+  },
+  {
+    "ID": 3632,
+    "name": "Адиарин Пробио",
+    "slug": "adiarin_probio",
+    "typeID": 10
+  },
+  {
+    "ID": 2512,
+    "name": "Адиарин Регидро",
+    "slug": "adiarin_regidro",
+    "typeID": 10
+  },
+  {
+    "ID": 2288,
+    "name": "Адмера",
+    "slug": "admera",
+    "typeID": 10
+  },
+  {
+    "ID": 3950,
+    "name": "Адонис-бром",
+    "slug": "adonisbrom",
+    "typeID": 10
+  },
+  {
+    "ID": 3957,
+    "name": "Адреналина гидрохлорид",
+    "slug": "adrenalina_gidrohlorid",
+    "typeID": 10
+  },
+  {
+    "ID": 3883,
+    "name": "АЕ витамины-форте",
+    "slug": "ae_vitaminyforte",
+    "typeID": 10
+  },
+  {
+    "ID": 4055,
+    "name": "Аевит капсулы",
+    "slug": "aevit",
+    "typeID": 10
+  },
+  {
+    "ID": 13347,
+    "name": "Аевит крем",
+    "slug": "aevit_krem",
+    "typeID": 10
+  },
+  {
+    "ID": 3608,
+    "name": "Азарга",
+    "slug": "azarga",
+    "typeID": 10
+  },
+  {
+    "ID": 3930,
+    "name": "Азелик",
+    "slug": "azelik",
+    "typeID": 10
+  },
+  {
+    "ID": 4023,
+    "name": "Азикс-дерм",
+    "slug": "aziksderm",
+    "typeID": 10
+  },
+  {
+    "ID": 3689,
+    "name": "Азитромицин",
+    "slug": "azitromicin",
+    "typeID": 10
+  },
+  {
+    "ID": 3879,
+    "name": "Азия Кисс",
+    "slug": "aziya_kiss",
+    "typeID": 10
+  },
+  {
+    "ID": 3460,
+    "name": "Азопт",
+    "slug": "azopt",
+    "typeID": 10
+  },
+  {
+    "ID": 3607,
+    "name": "Азурикс",
+    "slug": "azuriks",
+    "typeID": 10
+  },
+  {
+    "ID": 3542,
+    "name": "Акатинол мемантин",
+    "slug": "akatinol_memantin",
+    "typeID": 10
+  },
+  {
+    "ID": 4080,
+    "name": "Аква Д3",
+    "slug": "akva_d3",
+    "typeID": 10
+  },
+  {
+    "ID": 3488,
+    "name": "Аквадетрим",
+    "slug": "akvadetrim",
+    "typeID": 10
+  },
+  {
+    "ID": 3802,
+    "name": "Аквалор",
+    "slug": "akvalor",
+    "typeID": 10
+  },
+  {
+    "ID": 3764,
+    "name": "Аква Марис",
+    "slug": "akva_maris",
+    "typeID": 10
+  },
+  {
+    "ID": 3499,
+    "name": "АкваОптик",
+    "slug": "akvaoptik",
+    "typeID": 10
+  },
+  {
+    "ID": 3685,
+    "name": "Акласта",
+    "slug": "aklasta",
+    "typeID": 10
+  },
+  {
+    "ID": 3956,
+    "name": "Акнеклин",
+    "slug": "akneklin",
+    "typeID": 10
+  },
+  {
+    "ID": 4075,
+    "name": "Акнекутан",
+    "slug": "aknekutan",
+    "typeID": 10
+  },
+  {
+    "ID": 3543,
+    "name": "Акридерм",
+    "slug": "akriderm",
+    "typeID": 10
+  },
+  {
+    "ID": 11843,
+    "name": "Акридерм Гента",
+    "slug": "akriderm_genta",
+    "typeID": 10
+  },
+  {
+    "ID": 11844,
+    "name": "Акридерм ГК",
+    "slug": "akriderm_gk",
+    "typeID": 10
+  },
+  {
+    "ID": 11845,
+    "name": "Акридерм СК",
+    "slug": "akriderm_sk",
+    "typeID": 10
+  },
+  {
+    "ID": 4011,
+    "name": "Акримекс",
+    "slug": "akrimeks",
+    "typeID": 10
+  },
+  {
+    "ID": 3844,
+    "name": "Акриол про",
+    "slug": "akriol_pro",
+    "typeID": 10
+  },
+  {
+    "ID": 3560,
+    "name": "Аксамон",
+    "slug": "aksamon",
+    "typeID": 10
+  },
+  {
+    "ID": 13351,
+    "name": "Актиферт-Андро",
+    "slug": "aktifertandro",
+    "typeID": 10
+  },
+  {
+    "ID": 3534,
+    "name": "Актиферт-Гино",
+    "slug": "aktifertgino",
+    "typeID": 10
+  },
+  {
+    "ID": 3572,
+    "name": "Актиферт Кристал",
+    "slug": "aktifert",
+    "typeID": 10
+  },
+  {
+    "ID": 3539,
+    "name": "Актовегин",
+    "slug": "aktovegin",
+    "typeID": 10
+  },
+  {
+    "ID": 4078,
+    "name": "Актофлор-С",
+    "slug": "aktoflors",
+    "typeID": 10
+  },
+  {
+    "ID": 3823,
+    "name": "Актрапид НМ",
+    "slug": "aktrapid_nm",
+    "typeID": 10
+  },
+  {
+    "ID": 3618,
+    "name": "Актрапид НМ Пенфилл",
+    "slug": "aktrapid_nm_penfill",
+    "typeID": 10
+  },
+  {
+    "ID": 3564,
+    "name": "Албендазол",
+    "slug": "albendazol",
+    "typeID": 10
+  },
+  {
+    "ID": 3505,
+    "name": "Алвовизан",
+    "slug": "alvovizan",
+    "typeID": 10
+  },
+  {
+    "ID": 3774,
+    "name": "Алгель",
+    "slug": "algel",
+    "typeID": 10
+  },
+  {
+    "ID": 3954,
+    "name": "Алексан",
+    "slug": "aleksan",
+    "typeID": 10
+  },
+  {
+    "ID": 3846,
+    "name": "Алендронат",
+    "slug": "alendronat",
+    "typeID": 10
+  },
+  {
+    "ID": 3850,
+    "name": "Аленталь",
+    "slug": "alental",
+    "typeID": 10
+  },
+  {
+    "ID": 3916,
+    "name": "Алесорб",
+    "slug": "alesorb",
+    "typeID": 10
+  },
+  {
+    "ID": 3452,
+    "name": "Алзепил",
+    "slug": "alzepil",
+    "typeID": 10
+  },
+  {
+    "ID": 3965,
+    "name": "Алкодетокс",
+    "slug": "alkodetoks",
+    "typeID": 10
+  },
+  {
+    "ID": 3489,
+    "name": "Аллапинин",
+    "slug": "allapinin",
+    "typeID": 10
+  },
+  {
+    "ID": 4046,
+    "name": "Аллафорте",
+    "slug": "allaforte",
+    "typeID": 10
+  },
+  {
+    "ID": 3983,
+    "name": "Аллегра",
+    "slug": "allegra",
+    "typeID": 10
+  },
+  {
+    "ID": 3857,
+    "name": "Аллервей",
+    "slug": "allervej",
+    "typeID": 10
+  },
+  {
+    "ID": 3807,
+    "name": "Аллервэй Экспресс",
+    "slug": "allervej_ekspress",
+    "typeID": 10
+  },
+  {
+    "ID": 3836,
+    "name": "Аллергодил",
+    "slug": "allergodil",
+    "typeID": 10
+  },
+  {
+    "ID": 3582,
+    "name": "Аллокин альфа",
+    "slug": "allokin_alfa",
+    "typeID": 10
+  },
+  {
+    "ID": 3473,
+    "name": "Аллохол",
+    "slug": "allohol",
+    "typeID": 10
+  },
+  {
+    "ID": 923,
+    "name": "Алмаг",
+    "slug": "almag",
+    "typeID": 10
+  },
+  {
+    "ID": 3495,
+    "name": "Алмагель",
+    "slug": "almagel",
+    "typeID": 10
+  },
+  {
+    "ID": 11873,
+    "name": "Алоэ Вера ЖКТ-комплекс",
+    "slug": "aloe_vera_zhktkompleks",
+    "typeID": 10
+  },
+  {
+    "ID": 4031,
+    "name": "Алоэ сок",
+    "slug": "aloe_sok",
+    "typeID": 10
+  },
+  {
+    "ID": 3719,
+    "name": "Алоэ экстракт",
+    "slug": "aloe_ekstrakt",
+    "typeID": 10
+  },
+  {
+    "ID": 4063,
+    "name": "Алтейный сироп",
+    "slug": "altejnyj_sirop",
+    "typeID": 10
+  },
+  {
+    "ID": 3513,
+    "name": "Алфлутоп",
+    "slug": "alflutop",
+    "typeID": 10
+  },
+  {
+    "ID": 3714,
+    "name": "Алфупрост",
+    "slug": "alfuprost",
+    "typeID": 10
+  },
+  {
+    "ID": 3645,
+    "name": "Альбарел",
+    "slug": "albarel",
+    "typeID": 10
+  },
+  {
+    "ID": 3662,
+    "name": "Альтерпур",
+    "slug": "alterpur",
+    "typeID": 10
+  },
+  {
+    "ID": 3786,
+    "name": "Альфаган",
+    "slug": "alfagan",
+    "typeID": 10
+  },
+  {
+    "ID": 3997,
+    "name": "Альфа Д3",
+    "slug": "alfa_d3",
+    "typeID": 10
+  },
+  {
+    "ID": 3941,
+    "name": "Альфадол Са",
+    "slug": "alfadol_sa",
+    "typeID": 10
+  },
+  {
+    "ID": 4073,
+    "name": "Альфазокс",
+    "slug": "alfazoks",
+    "typeID": 10
+  },
+  {
+    "ID": 3755,
+    "name": "Альфаксим",
+    "slug": "alfaksim",
+    "typeID": 10
+  },
+  {
+    "ID": 3962,
+    "name": "Альфа-липоевая кислота",
+    "slug": "alfalipoevaya_kislota",
+    "typeID": 10
+  },
+  {
+    "ID": 3481,
+    "name": "Альфа нормикс",
+    "slug": "alfa_normiks",
+    "typeID": 10
+  },
+  {
+    "ID": 1085,
+    "name": "Альфапластик",
+    "slug": "alfaplastik",
+    "typeID": 10
+  },
+  {
+    "ID": 9075,
+    "name": "Альфа-Токоферола ацетат",
+    "slug": "tokoferola_acetat",
+    "typeID": 10
+  },
+  {
+    "ID": 3927,
+    "name": "Амарил",
+    "slug": "amaril",
+    "typeID": 10
+  },
+  {
+    "ID": 3831,
+    "name": "Амбене Био",
+    "slug": "ambene_bio",
+    "typeID": 10
+  },
+  {
+    "ID": 3779,
+    "name": "Амбробене",
+    "slug": "ambrobene",
+    "typeID": 10
+  },
+  {
+    "ID": 3658,
+    "name": "Амброксол",
+    "slug": "ambroksol",
+    "typeID": 10
+  },
+  {
+    "ID": 4047,
+    "name": "Амелотекс",
+    "slug": "ameloteks",
+    "typeID": 10
+  },
+  {
+    "ID": 3444,
+    "name": "Амигренин",
+    "slug": "amigrenin",
+    "typeID": 10
+  },
+  {
+    "ID": 4060,
+    "name": "Амизон",
+    "slug": "amizon",
+    "typeID": 10
+  },
+  {
+    "ID": 3733,
+    "name": "Аминазин",
+    "slug": "aminazin",
+    "typeID": 10
+  },
+  {
+    "ID": 3845,
+    "name": "Аминалон",
+    "slug": "aminalon",
+    "typeID": 10
+  },
+  {
+    "ID": 13211,
+    "name": "Аминоглицин",
+    "slug": "aminoglicin",
+    "typeID": 10
+  },
+  {
+    "ID": 4059,
+    "name": "Амиодарон",
+    "slug": "amiodaron",
+    "typeID": 10
+  },
+  {
+    "ID": 3979,
+    "name": "Амитриптилин",
+    "slug": "amitriptilin",
+    "typeID": 10
+  }
+]
