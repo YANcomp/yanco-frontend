@@ -43,141 +43,141 @@ export default <RouterConfig>{
     routes: (_routes) => [
         {
             path: "/",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "index"
         },
         {
             path: "/about",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "about"
         },
         {
             path: "/account",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "account",
             children: [{
                 path: "bindings",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                 name: "account-bindings"
             }, {
                 path: "card",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                 name: "account-card"
             }, {
                 path: "favorites-pharmacies",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                 name: "account-favorites-pharmacies"
             }, {
                 path: "orders",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                 name: "account-orders"
             }, {
                 path: "settings",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                 name: "account-settings"
             }, {
                 path: "subscription",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                 name: "account-subscription"
             }, {
                 path: "order/:id?",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                 name: "account-order-id"
             }]
         },
         {
             path: "/basket",
-            component: () => import('~/components/pages/vBasket.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vBasket.vue').then(r => r.default || r),
             name: "basket"
         },
         {
             path: "/bloggers",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "bloggers"
         },
         {
             path: "/catalog",
-            component: () => import('~/components/pages/VCatalog.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vCatalog.vue').then(r => r.default || r),
             name: "catalog",
         },
         {
             path: "/checkout",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "checkout"
         },
         {
             path: "/compare",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "compare"
         },
         {
             path: "/cross-action",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "cross-action"
         },
         {
             path: "/delivery",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "delivery"
         },
         {
             path: "/distance-sale",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "distance-sale"
         },
         {
             path: "/error",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "error"
         },
         {
             path: "/favorites",
-            component: () => import('~/components/pages/vFavorites.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vFavorites.vue').then(r => r.default || r),
             name: "favorites"
         },
         {
             path: "/help",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "help"
         },
         {
             path: "/investment",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "investment"
         },
         {
             path: "/landlords",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "landlords"
         },
         {
             path: "/loyal",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "loyal"
         },
         {
             path: "/mobile",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "mobile"
         },
         {
             path: "/partners",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "partners"
         },
         {
             path: "/pharmacies",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "pharmacies"
         },
         {
             path: "/survey",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "survey"
         },
         {
             path: "/vacancies",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "vacancies"
         },
         {
@@ -202,25 +202,25 @@ export default <RouterConfig>{
         },
         {
             path: "/:mode(login|registration)",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: !0,
             name: "login-or-registration"
         },
         {
             path: "/pages/:slug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: !0,
             name: "Pages"
         },
         {
             path: "/distance-sale/:slug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: !0,
             name: "Company"
         },
         {
             path: "/product/:productID()-:productSlug()",
-            component: () => import('~/components/pages/vProduct.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vProduct.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     productID: Number(t.params.productID),
@@ -232,7 +232,7 @@ export default <RouterConfig>{
         },
         {
             path: "/product/:productID()-:productSlug()/otzyvy",
-            component: () => import('~/components/pages/vProduct.vue'),
+            component: () => import('~/components/vPages/vProduct.vue'),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     productID: Number(t.params.productID),
@@ -244,7 +244,7 @@ export default <RouterConfig>{
         },
         {
             path: "/stock/:slug?",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     slug: t.params.slug
@@ -253,8 +253,8 @@ export default <RouterConfig>{
             name: "Stock"
         },
         {
-            path: "/catalog/:typeID(\\d+)-:typeSlug/:subtypeID(\\d+)-:subtypeSlug/:categoryID(\\d+)-:categorySlug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            path: "/catalog/:typeID()-:typeSlug()/:subtypeID()-:subtypeSlug()/:categoryID()-:categorySlug()",
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     typeID: Number(t.params.typeID),
@@ -265,8 +265,8 @@ export default <RouterConfig>{
             name: "CatalogCategory"
         },
         {
-            path: "/catalog/select-in-category/:productID(\\d+)",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            path: "/catalog/select-in-category/:productID()",
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     productID: Number(t.params.productID)
@@ -275,8 +275,8 @@ export default <RouterConfig>{
             name: "SelectInCategory"
         },
         {
-            path: "/catalog/:typeID(\\d+)-:typeSlug/:subtypeID(\\d+)-:subtypeSlug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            path: "/catalog/:typeID()-:typeSlug()/:subtypeID()-:subtypeSlug()",
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     typeID: Number(t.params.typeID),
@@ -286,8 +286,8 @@ export default <RouterConfig>{
             name: "CatalogSubtype"
         },
         {
-            path: "/catalog/:typeID(\\d+)-:typeSlug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            path: "/catalog/:typeID()-:typeSlug()",
+            component: () => import('~/components/vPages/vCatalogType.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     typeID: Number(t.params.typeID)
@@ -296,20 +296,14 @@ export default <RouterConfig>{
             name: "CatalogType"
         },
         {
-            path: "/catalog/:slug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
-            props: !0,
-            name: "CatalogNewYears"
-        },
-        {
             path: "/search/:search",
-            component: () => import('~/components/pages/vSearch.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vSearch.vue').then(r => r.default || r),
             props: !0,
             name: "Search"
         },
         {
-            path: "/poll/:ID(\\d+)",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            path: "/poll/:ID()",
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     ID: Number(t.params.ID)
@@ -318,19 +312,19 @@ export default <RouterConfig>{
             name: "Poll"
         },
         {
-            path: "/catalog/categories/:popularCategory",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            path: "/catalog/categories/:popularCategory()",
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: !0,
             name: "PopularCategories"
         },
         {
             path: "/deystvuyushchee_veshchestvo",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "ActiveSubstances"
         },
         {
-            path: "/deystvuyushchee_veshchestvo/:propertyID(\\d+)-:propertySlug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            path: "/deystvuyushchee_veshchestvo/:propertyID()-:propertySlug",
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     propertyTypeID: 6,
@@ -341,12 +335,12 @@ export default <RouterConfig>{
         },
         {
             path: "/proizvoditel",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "Manufacturers"
         },
         {
-            path: "/proizvoditel/:propertyID(\\d+)-:propertySlug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            path: "/proizvoditel/:propertyID()-:propertySlug",
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     propertyTypeID: 13,
@@ -357,12 +351,12 @@ export default <RouterConfig>{
         },
         {
             path: "/brand",
-            component: () => import('~/components/pages/vPropertyList.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vPropertyList.vue').then(r => r.default || r),
             name: "Brands"
         },
         {
-            path: "/brand/:propertyID(\\d+)-:propertySlug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            path: "/brand/:propertyID()-:propertySlug()",
+            component: () => import('~/components/vPages/vProductList.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     propertyTypeID: 10,
@@ -373,12 +367,12 @@ export default <RouterConfig>{
         },
         {
             path: "/analogi",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "Analogi"
         },
         {
-            path: "/analogi/:propertyID(\\d+)-:propertySlug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            path: "/analogi/:propertyID()-:propertySlug",
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     propertyTypeID: 10,
@@ -389,12 +383,12 @@ export default <RouterConfig>{
         },
         {
             path: "/redkie-preparaty",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "RareProducts"
         },
         {
             path: "/apteki",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     ID: Number(t.params.ID),
@@ -403,8 +397,8 @@ export default <RouterConfig>{
             },
             name: "Apteki",
             children: [{
-                path: ":ID(\\d+)-:slug",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                path: ":ID()-:slug",
+                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                 props: function (t: any) {
                     return Object.assign(Object.assign({}, t.params), {}, {
                         ID: Number(t.params.ID),
@@ -416,7 +410,7 @@ export default <RouterConfig>{
         },
         {
             path: "/confirmation/:code?",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: function (t: any) {
             },
             alias: "/account",
@@ -424,7 +418,7 @@ export default <RouterConfig>{
         },
         {
             path: "/blog/400-:slug",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     slug: t.params.slug
@@ -433,7 +427,7 @@ export default <RouterConfig>{
             name: "Allvit",
             children: [{
                 path: ":setName",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                 props: function (t: any) {
                     return Object.assign(Object.assign({}, t.params), {}, {
                         setName: t.params.setName
@@ -442,7 +436,7 @@ export default <RouterConfig>{
                 name: "AllvitSections",
                 children: [{
                     path: ":productID",
-                    component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                    component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                     props: function (t: any) {
                         return Object.assign(Object.assign({}, t.params), {}, {
                             productID: t.params.productID
@@ -454,12 +448,12 @@ export default <RouterConfig>{
         },
         {
             path: "/:sectionName(blog|news)",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: !0,
             name: "Articles",
             children: [{
-                path: ":categoryName(mom-and-child|intresting-and-useful)?/:ID(\\d+)-:slug",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                path: ":categoryName(mom-and-child|intresting-and-useful)?/:ID()-:slug",
+                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                 props: function (t: any) {
                     return Object.assign(Object.assign({}, t.params), {}, {
                         ID: Number(t.params.ID),
@@ -469,7 +463,7 @@ export default <RouterConfig>{
                 name: "Article"
             }, {
                 path: "/:sectionName(blog|news)/:categoryName(mom-and-child|intresting-and-useful)?",
-                component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
                 props: function (t: any) {
                     return Object.assign(Object.assign({}, t.params), {}, {
                         sectionName: t.params.sectionName,
@@ -481,7 +475,7 @@ export default <RouterConfig>{
         },
         {
             path: "/vacancies/faces",
-            component: () => import('~/components/pages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: !0,
             name: "WorkInFaces"
         }
@@ -490,6 +484,7 @@ export default <RouterConfig>{
 
 function withMeta(originalRoutes: Readonly<RouteRecordRaw[]>, route: RouteRecordRaw) {
     const originalRoute = originalRoutes.find(originalRoute => originalRoute.path === route.path)
+    // console.log(route)
     // console.log(originalRoutes)
     return merge(originalRoute, route)
 }

@@ -237,13 +237,13 @@ useHead(() => ({
   ],
 }))
 useSeoMeta({
-  title: 'Beauty | Yanco. Поиск, наличие косметики и цены в магазинах YBeauty.',
+  title: 'Cosmetic | Yanco. Поиск, наличие косметики и цены в магазинах YCosmetic.',
   description: 'Удобный поиск, низкие цены и широкий ассортимент косметики в магазинах YBeauty. ' +
       'Оформляйте интернет заказ на сайте с доставкой на дом, бронируйте и покупайте в ближайшем магазине. Телефон справочной: ' + params.value.hotlinePhone + ".",
   ogType: 'website',
   ogUrl: params.value.siteURL,
   ogImage: 'https://pictures.apteka-april.ru/generic/pharmacy_logo.png',
-  ogTitle: 'Beauty | Yanco. Поиск, наличие косметики и цены в магазинах YBeauty.',
+  ogTitle: 'Cosmetic | Yanco. Поиск, наличие косметики и цены в магазинах YCosmetic.',
   ogDescription: 'Удобный поиск, низкие цены и широкий ассортимент косметики в магазинах YBeauty. ' +
       'Оформляйте интернет заказ на сайте с доставкой на дом, бронируйте и покупайте в ближайшем магазине. Телефон справочной: ' + params.value.hotlinePhone + "."
 })

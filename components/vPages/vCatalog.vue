@@ -72,13 +72,13 @@ useHead(() => ({
   ],
 }))
 useSeoMeta({
-  title: 'Каталог - Beauty | Yanco',
-  description: 'В нашем Каталоге представлен широкий выбор товаров с низкими ценами. Оформите заказ онлайн на сайте и заберите в ближайшем магазине YBeauty.',
+  title: 'Каталог — Cosmetic | Yanco',
+  description: 'В нашем Каталоге представлен широкий выбор товаров с низкими ценами. Оформите заказ онлайн на сайте и заберите в ближайшем магазине YCosmetic.',
   ogType: 'website',
   ogUrl: params.value.siteURL + route.path,
   ogImage: 'https://pictures.apteka-april.ru/generic/pharmacy_logo.png',
-  ogTitle: 'Каталог - Beauty | Yanco',
-  ogDescription: 'В нашем Каталоге представлен широкий выбор товаров с низкими ценами. Оформите заказ онлайн на сайте и заберите в ближайшем магазине YBeauty.'
+  ogTitle: 'Каталог — Cosmetic | Yanco',
+  ogDescription: 'В нашем Каталоге представлен широкий выбор товаров с низкими ценами. Оформите заказ онлайн на сайте и заберите в ближайшем магазине YCosmetic.'
 })
 </script>
 

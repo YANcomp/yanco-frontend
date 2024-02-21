@@ -190,12 +190,12 @@ useHead(() => ({
   ],
 }))
 useSeoMeta({
-  title: 'Корзина - Beauty | Yanco',
+  title: 'Корзина — Cosmetic | Yanco',
   description: 'На этой странице представлены товары, добавленные в корзину.',
   ogType: 'website',
   ogUrl: params.value.siteURL + route.path,
   ogImage: 'https://pictures.apteka-april.ru/generic/pharmacy_logo.png',
-  ogTitle: 'Корзина - Beauty | Yanco',
+  ogTitle: 'Корзина — Cosmetic | Yanco',
   ogDescription: 'На этой странице представлены товары, добавленные в корзину.'
 })
 </script>

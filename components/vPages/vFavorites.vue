@@ -222,12 +222,12 @@ useHead(() => ({
   ],
 }))
 useSeoMeta({
-  title: 'Избранное - Beauty | Yanco',
+  title: 'Избранное — Cosmetic | Yanco',
   description: 'На этой странице представлены товары, добавленные в избранное.',
   ogType: 'website',
   ogUrl: params.value.siteURL + route.path,
   ogImage: 'https://pictures.apteka-april.ru/generic/pharmacy_logo.png',
-  ogTitle: 'Избранное - Beauty | Yanco',
+  ogTitle: 'Избранное — Cosmetic | Yanco',
   ogDescription: 'На этой странице представлены товары, добавленные в избранное.'
 })
 </script>

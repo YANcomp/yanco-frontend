@@ -41,7 +41,10 @@ export const useAppStore = defineStore('app', {
             this.isMobile = val
         },
         async BREADCRUMBS_UPD(val: any) {
-            this.breadcrumbs = val
+            return new Promise((resolve, reject)=>{
+                this.breadcrumbs = val
+                resolve(val)
+            })
         },
         async DISCOUNT_NOTICE_UPD(val: boolean) {
             this.isShowDiscountNotice = val
