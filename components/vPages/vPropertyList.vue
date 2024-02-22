@@ -22,9 +22,10 @@ if (brandAnalogs.value.length < 1 && isBrandsAnalogs) {
     })
   })
 }
+
 if (properties.value.length < 1 || isBrandsAnalogs) {
   await new Promise(async (resolve) => {
-    await propertiesStore.GET(propertyTypeID).then(() => {
+    return await propertiesStore.GET(propertyTypeID).then(() => {
       properties.value = isBrands ? propertiesStore.brands : propertiesStore.list ? propertiesStore.list : []
       resolve("")
     }).catch((error: any) => {

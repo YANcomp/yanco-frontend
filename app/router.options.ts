@@ -254,7 +254,7 @@ export default <RouterConfig>{
         },
         {
             path: "/catalog/:typeID()-:typeSlug()/:subtypeID()-:subtypeSlug()/:categoryID()-:categorySlug()",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vProductList.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     typeID: Number(t.params.typeID),
@@ -276,7 +276,7 @@ export default <RouterConfig>{
         },
         {
             path: "/catalog/:typeID()-:typeSlug()/:subtypeID()-:subtypeSlug()",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vProductList.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign(Object.assign({}, t.params), {}, {
                     typeID: Number(t.params.typeID),

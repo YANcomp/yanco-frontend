@@ -479,7 +479,7 @@ const router = useRouter()
     <UserCLoginOrRegistration :is-mobile="isMobile"/>
     <!--    cQRPaymentModal-->
 
-    <LazyBreadcrumbsCBreadcrumbs v-if="isBreadcrumbs" :breadcrumbs="breadcrumbs" :class='{ mobile: isMobile }'/>
+    <BreadcrumbsCBreadcrumbs :breadcrumbs="breadcrumbs" :class='{ mobile: isMobile }'/>
 
     <slot/>
 

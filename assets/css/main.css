@@ -1,4 +1,6 @@
-body::-webkit-scrollbar { width: 0 !important }
+body::-webkit-scrollbar {
+    width: 0 !important
+}
 
 #__layout, #__nuxt {
     height: 100%

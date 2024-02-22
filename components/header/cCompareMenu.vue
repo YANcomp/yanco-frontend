@@ -62,7 +62,6 @@ function image(product: any) {
 }
 
 function remove(item: any) {
-  console.log(item)
   let n = [...props.comparisonProductIDs],
       o: any = props.comparisonProductIDs.find((p: any) => {
         return p.productIDs.includes(item)

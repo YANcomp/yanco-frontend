@@ -67,7 +67,7 @@ useHead(() => ({
   link: [
     {
       rel: 'canonical',
-      href: 'http://beauty.yanco.ru' + route.path,
+      href: params.value.siteURL + route.path,
     },
   ],
 }))

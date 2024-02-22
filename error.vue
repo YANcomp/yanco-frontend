@@ -1,16 +1,7 @@
 <script setup lang="ts">
-import type {NuxtError} from '#app'
-
-const props = defineProps({
-  error: Object as () => NuxtError
-})
+const error = useError()
 </script>
 
 <template>
-  <div>
-    <NuxtLayout name="error">
-      <h1>{{ error.statusCode }}</h1>
-      <NuxtLink to="/">Go back home</NuxtLink>
-    </NuxtLayout>
-  </div>
+  <VPagesVError :error="error"/>
 </template>
