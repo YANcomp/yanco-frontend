@@ -3,12 +3,19 @@ import {defineStore} from "pinia";
 export const useProductsStore = defineStore('products', {
     state: () => ({
         item: <any>{},
+        list: <any>[],
         productOfDay: <any>{},
         specialOffers: <any>[],
         ourProduction: <any>[],
     }),
     //TODO
     actions: {
+        async GET_LIST(props?: any) {
+            return await useNuxtApp().$api.products.get_special_offers().then((res: any) => {
+                this.list = res
+                return Promise.resolve(res)
+            })
+        },
         async GET_PRODUCT_OF_DAY(props?: any) {
             return await useNuxtApp().$api.productOfDay.get().then((res: any) => {
                 this.productOfDay = res[0]

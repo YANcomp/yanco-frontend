@@ -296,8 +296,8 @@ export default <RouterConfig>{
             name: "CatalogType"
         },
         {
-            path: "/search/:search",
-            component: () => import('~/components/vPages/vSearch.vue').then(r => r.default || r),
+            path: "/search/:search()",
+            component: () => import('~/components/vPages/vProductList.vue').then(r => r.default || r),
             props: !0,
             name: "Search"
         },

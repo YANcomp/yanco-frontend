@@ -6,7 +6,7 @@ class ApiProductsModule {
     }
 
     //TODO
-    async get(props: any, select: any) {
+    async get(props?: any, select?: any, path?: any) {
         return await $fetch(`catalog/products/specialOffers.json`, {
             ...this.$opts,
             method: 'GET',
