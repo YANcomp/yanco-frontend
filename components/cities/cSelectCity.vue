@@ -43,7 +43,7 @@ const regionsStore = useRegionsStore()
 const cities = computed(() => {
   let citiesVar = citiesStore.list
   if (citiesVar) {
-    watchCities(citiesVar)
+    // watchCities(citiesVar)
     return citiesVar
   } else {
     return []
@@ -95,10 +95,10 @@ const regionsHasStock = computed(() => {
   })
 })
 
-
-watch(() => cities.value, () => {
+onMounted(()=>{
   watchCities(cities.value)
-});
+})
+
 watch(() => props.isOpenSelector, (val: any) => {
   val && openCloseOverlay()
 });
@@ -116,12 +116,16 @@ watch(() => isOpened.value, (val: any) => {
 const emit = defineEmits(["region-select"])
 
 function changeCity(t: any) {
+  let needUpdateLocalStorage = false
+  if (process.client) {
+    needUpdateLocalStorage = true
+  }
   if (props.isRegions) {
     emit("region-select", t)
     closeOverlay()
     clear()
   } else {
-    citiesStore.CITIES_UPD(t).finally(() => {
+    citiesStore.CITIES_UPD(t, needUpdateLocalStorage).finally(() => {
       closeOverlay()
       clear()
     })
@@ -200,7 +204,12 @@ function mouseUp(t: any) {
 }
 
 function watchCities(cityComputed: any) {
-  let cityFromStorage = JSON.parse(<any>localStorage.getItem("city"))
+  let cityFromStorage: any = null
+  let needUpdateLocalStorage = false
+  if (process.client) {
+    needUpdateLocalStorage = true
+    cityFromStorage = JSON.parse(<any>localStorage.getItem("city"))
+  }
   if (cityFromStorage !== null) {
     let o = cityComputed.find((cityFind: any) => {
       return cityFind.ID === cityFromStorage.ID
@@ -216,7 +225,7 @@ function watchCities(cityComputed: any) {
       cityFromStorage = cityDefault
     }
   }
-  citiesStore.CITIES_UPD(cityFromStorage)
+  citiesStore.CITIES_UPD(cityFromStorage, needUpdateLocalStorage)
 }
 </script>
 

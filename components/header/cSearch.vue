@@ -188,12 +188,12 @@ const filteredCategoryHistory = computed(() => {
 watch(() => isOpened.value, (value) => {
   if (props.isMobile)
     if (value) {
-      appStore.HIDE_MOBILE_FOOTER(true)
+      appStore.COMMIT_HIDE_MOBILE_FOOTER(true)
       let e: any = document.querySelector(".product-prices-fixed");
       null !== e && (e.style.display = "none")
       document.body.style.overflow = "hidden"
     } else {
-      appStore.HIDE_MOBILE_FOOTER(false)
+      appStore.COMMIT_HIDE_MOBILE_FOOTER(false)
       let n: any = document.querySelector(".product-prices-fixed");
       null !== n && (n.style.display = "flex")
       document.body.style.overflow = ""

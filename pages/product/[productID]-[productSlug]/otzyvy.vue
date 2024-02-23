@@ -2,8 +2,8 @@
 definePageMeta({
   middleware: [
     function (to) {
-      const {BREADCRUMBS_UPD} = useAppStore();
-      BREADCRUMBS_UPD([
+      const {COMMIT_BREADCRUMBS_UPD} = useAppStore();
+      COMMIT_BREADCRUMBS_UPD([
         {
           name: "Главная страница",
           routeName: "index"

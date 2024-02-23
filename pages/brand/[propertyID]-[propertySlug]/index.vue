@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 definePageMeta({
   middleware: async (to) => {
-    const {BREADCRUMBS_UPD} = useAppStore()
+    const {COMMIT_BREADCRUMBS_UPD} = useAppStore()
     const propertiesStore = usePropertiesStore()
 
     const propertyTypeID = 10
@@ -17,7 +17,7 @@ definePageMeta({
       })
     }
 
-    BREADCRUMBS_UPD([{
+    await COMMIT_BREADCRUMBS_UPD([{
       name: "Главная страница",
       routeName: "index"
     }, {

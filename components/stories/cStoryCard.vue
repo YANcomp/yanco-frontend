@@ -28,7 +28,7 @@ function touchEnd() {
 }
 
 function openStory() {
-  appStore.OPEN_CLOSE_STORY_MODAL(true)
+  appStore.COMMIT_OPEN_CLOSE_STORY_MODAL(true)
   storiesStore.COMMIT_CHANGE_CURRENT_STORY_ID(props.story.ID)
 }
 </script>

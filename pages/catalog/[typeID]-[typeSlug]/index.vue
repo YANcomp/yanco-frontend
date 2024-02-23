@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 definePageMeta({
   scrollToTop: true,
-  middleware: (to) => {
-    const {BREADCRUMBS_UPD} = useAppStore();
+  middleware: async (to) => {
+    const {COMMIT_BREADCRUMBS_UPD} = useAppStore();
     const {catalog} = useCatalogStore();
 
     let findType = catalog.types.find((t: any) => {
@@ -16,7 +16,7 @@ definePageMeta({
       })
     }
 
-    BREADCRUMBS_UPD([{
+    await COMMIT_BREADCRUMBS_UPD([{
       name: "Главная страница",
       routeName: "index"
     }, {

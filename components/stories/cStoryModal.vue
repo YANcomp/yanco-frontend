@@ -98,7 +98,7 @@ watch(
 )
 
 watch(() => isOpened.value, (value) => {
-  value || (appStore.OPEN_CLOSE_STORY_MODAL(false),
+  value || (appStore.COMMIT_OPEN_CLOSE_STORY_MODAL(false),
       storiesStore.COMMIT_CHANGE_CURRENT_STORY_ID(undefined))
 })
 
@@ -172,11 +172,11 @@ function openCloseModal() {
     currentSlideIndex.value = -1
     document.body.style.overflow = ""
     //TODO
-    isMobile.value && appStore.HIDE_MOBILE_FOOTER(false)
+    isMobile.value && appStore.COMMIT_HIDE_MOBILE_FOOTER(false)
   }, 300)) : (isMobile.value && !isShowArrowsMobile.value && (mobileScrollY.value = window.scrollY, window.scrollTo({
     top: 0,
     left: 0
-  })), document.body.style.overflow = "hidden", isMobile.value && (appStore.HIDE_MOBILE_FOOTER(true)), isOpened.value = !isOpened.value, isClosed.value = !isClosed.value)
+  })), document.body.style.overflow = "hidden", isMobile.value && (appStore.COMMIT_HIDE_MOBILE_FOOTER(true)), isOpened.value = !isOpened.value, isClosed.value = !isClosed.value)
 }
 
 function openStory() {

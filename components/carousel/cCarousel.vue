@@ -18,9 +18,13 @@ const props = defineProps({
     type: <any>Array
   }
 })
+const citiesStore = useCitiesStore()
 const bannersStore = useBannersStore()
 const notificationsStore = useNotificationsStore()
 
+const city = computed(() => {
+  return citiesStore.currentCity
+})
 const banners = computed(() => {
   if (props.items) {
     return props.items
@@ -31,12 +35,12 @@ const banners = computed(() => {
   }
 })
 
-watch(() => props.city, () => {
+watch(() => city.value, () => {
   loadBanners()
 })
 
 onMounted(() => {
-  0 === banners.value.length && void 0 !== props.city && loadBanners().catch((e: any) => {
+  0 === banners.value.length && undefined !== city.value && loadBanners().catch((e: any) => {
     notificationsStore.NOTIFICATIONS_UPD({
       title: "Произошла ошибка",
       desc: e,
@@ -47,11 +51,12 @@ onMounted(() => {
 })
 
 function loadBanners() {
-  return bannersStore.GET(props.city)
+  return bannersStore.GET(city.value)
 }
 </script>
 
 <template>
-  <LazyCarouselCCarouselMobile v-if="isMobile" :items="banners.length > 0 ? banners : [{}]" :switch-interval="switchInterval" :params="params"/>
+  <LazyCarouselCCarouselMobile v-if="isMobile" :items="banners.length > 0 ? banners : [{}]"
+                               :switch-interval="switchInterval" :params="params"/>
   <LazyCarouselCCarouselDesktop v-if="!isMobile" :items="banners" :switch-interval="switchInterval" :params="params"/>
 </template>

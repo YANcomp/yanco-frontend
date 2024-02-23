@@ -121,7 +121,7 @@ watch(isOpened, (val: any) => {
       phoneFocus()
     }, 450)
   } else {
-    appStore.DISCOUNT_NOTICE_UPD(false)
+    appStore.COMMIT_DISCOUNT_NOTICE_UPD(false)
   }
 })
 

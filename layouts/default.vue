@@ -20,8 +20,8 @@ const notificationsStore = useNotificationsStore()
 //TODO END MIDDLEWARE
 
 //TODO HOOKS
-const device = useDevice();
-appStore.MOBILE_UPD(device.isMobile)
+const device = useDevice()
+await appStore.COMMIT_MOBILE_UPD(device.isMobile)
 //TODO END HOOKS
 
 //TODO DATA
@@ -81,13 +81,13 @@ const basketCount = computed(() => {
   return basketStore.basketCount
 })
 const basketItems = computed(() => {
-  return basketStore.items ? basketStore.items : []
+  return basketStore.items
 })
 const isBasketConflict = computed(() => {
   return basketStore.isBasketConflict
 })
 const favoritesItems = computed(() => {
-  return favoritesStore.items ? favoritesStore.items : []
+  return favoritesStore.items
 })
 const favoritesCount = computed(() => {
   return favoritesStore.favoritesCount
@@ -160,9 +160,13 @@ const isBreadcrumbs = computed(() => {
 })
 //TODO END COMPUTED
 
+// onBeforeMount(()=>{
+//   init()
+// })
 //TODO MOUNTED
 onMounted(() => {
-  appStore.DISCOUNT_NOTICE_UPD(JSON.parse(localStorage.getItem("isShowDiscountNotice") ? <any>localStorage.getItem("isShowDiscountNotice") : "true"))
+  init()
+  appStore.COMMIT_DISCOUNT_NOTICE_UPD(JSON.parse(localStorage.getItem("isShowDiscountNotice") ? <any>localStorage.getItem("isShowDiscountNotice") : "true"))
 
   window.addEventListener("storage", changeLocalStorage)
   window.addEventListener("scroll", checkScroll)
@@ -181,9 +185,9 @@ onDeactivated(() => {
 //TODO END MOUNTED
 
 watch(() => city.value, () => {
-  appStore.LOADING_UPD(true)
+  appStore.COMMIT_LOADING_UPD(true)
   init().finally(() => {
-    appStore.LOADING_UPD(false)
+    appStore.COMMIT_LOADING_UPD(false)
   })
 })
 
@@ -325,9 +329,9 @@ function init() {
 }
 
 function loadBasket() {
-  appStore.LOADING_BASKET(true)
+  appStore.COMMIT_LOADING_BASKET(true)
   return loadFromStoreOrLocalStorage("basket", basketStore.BASKET_GET, basketStore.COMMIT_BASKET_UPD).finally(() => {
-    appStore.LOADING_BASKET(false)
+    appStore.COMMIT_LOADING_BASKET(false)
   })
 }
 

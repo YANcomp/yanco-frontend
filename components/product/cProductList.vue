@@ -42,7 +42,7 @@ const props = defineProps({
     }
   },
   totalCount: {
-    type: Number,
+    type: <any>Number,
     default: 0
   },
   updatingBasketProductIDs: {
@@ -141,7 +141,7 @@ const props = defineProps({
     default: false
   },
   products: {
-    type: Array,
+    type: <any>Array,
     default: function () {
       return []
     }
@@ -188,8 +188,122 @@ const topBarOffset = ref(0)
 const searchOffset = ref(0)
 const searchLimit = ref(25)
 
-onMounted(() => {
+const route = useRoute()
+const meStore = useMeStore()
+const citiesStore = useCitiesStore()
+const bannersStore = useBannersStore()
+const catalogStore = useCatalogStore()
+const appStore = useAppStore()
+const sessionsStore = useSessionsStore()
+const popularCategoriesStore = usePopularCategoriesStore()
 
+const me = computed(() => {
+  return meStore.getMe
+})
+const city = computed(() => {
+  return citiesStore.currentCity
+})
+const bannerCatalog = computed(() => {
+  return (bannersStore.forCatalog)[0]
+})
+const isShowButtonMore = computed(() => {
+  return props.search ? !isAllProducts.value && props.products.length > 0 : searchOffset.value + searchLimit.value < props.products.length
+})
+const preparedLoadMoreText = computed(() => {
+  return void 0 === props.search ? "ПОКАЗАТЬ ЕЩЁ " + (props.totalCount - props.products.length > 25 ? 25 : props.totalCount - props.products.length) + " ИЗ " + props.totalCount + " ".concat(uPluralize(props.totalCount, ["ТОВАРА", "ТОВАРОВ", "ТОВАРОВ"])) : "ПОКАЗАТЬ ЕЩЁ " + (props.totalCount - (searchLimit.value + searchOffset.value) > 25 ? 25 : props.totalCount - (searchLimit.value + searchOffset.value)) + " ИЗ " + props.totalCount + " ".concat(uPluralize(props.totalCount, ["ТОВАРА", "ТОВАРОВ", "ТОВАРОВ"]))
+})
+const countBarWidth = computed(() => {
+  return void 0 === props.search ? props.products.length / (props.totalCount / 100) : (searchLimit.value + searchOffset.value) / (props.totalCount / 100)
+})
+const hasFilteredProducts = computed(() => {
+  return props.products.length > 0 && props.selectedFiltersIDs.length > 0
+})
+const hasFilterList = computed(() => {
+  return (props.productFilters.length > 0 || void 0 !== props.summary && Object.keys(props.summary).length > 0) && void 0 !== props.productPropertyType && Object.keys(props.productPropertyType).length > 0
+})
+const catalog = computed(() => {
+  return catalogStore.catalog
+})
+const currentCity = computed(() => {
+  return citiesStore.currentCity
+})
+const hasLoyalCard = computed(() => {
+  return meStore.hasLoyalCard
+})
+const isHorizontalCardsMode = computed(() => {
+  return appStore.isHorizontalCardsMode
+})
+const isAllProducts = computed(() => {
+  return props.totalCount === props.products.length
+})
+const isAuthorized = computed(() => {
+  return sessionsStore.isAuthorized
+})
+const isFreeShip = computed(() => {
+  return "free_ship" === route.params.popularCategory
+})
+const isLoading = computed(() => {
+  return appStore.getIsLoading
+})
+const isNotFound = computed(() => {
+  return !isLoading.value && !hasFilteredProducts.value && props.products.length < 1
+})
+const popularCategories = computed(() => {
+  return popularCategoriesStore.categories
+})
+const productCategories = computed(() => {
+  return catalog.value.categories
+})
+const productSubtypes = computed(() => {
+  return catalog.value.subtypes
+})
+const productTypes = computed(() => {
+  return catalog.value.types
+})
+// const favoritesPharmacies = computed(() => {
+//   var e;
+//   return (null !== (e = this.$store.state.pharmacies.favorites) && void 0 !== e ? e : []).map((function (p) {
+//     return p.pharmacyID
+//   }))
+// })
+// const pharmacies = computed(() => {
+//   var e;
+//   if (void 0 === this.city) return [];
+//   var t = "".concat(this.city.name.toLowerCase().replace("ё", "е"), ",");
+//   return (null !== (e = this.$store.state.pharmacies.list) && void 0 !== e ? e : []).reduce((function (e, r) {
+//     if (r.address.toLowerCase().replace("ё", "е").match(t)) {
+//       var o = r.address.slice(r.address.toLowerCase().replace("ё", "е").indexOf(t) + t.length).replace("ул. ", "").replace("проспект ", "").trim();
+//       e.push(Y(Y({}, r), {}, {
+//         address: o.length > 5 ? o : r.address
+//       }))
+//     } else e.push(r);
+//     return e
+//   }), [])
+// })
+
+watch(() => city.value, () => {
+  isCategoriesView.value = false
+})
+watch(() => route.path, () => {
+  isCategoriesView.value = false
+})
+
+onMounted(() => {
+  if (props.isMobile) {
+    let t = <any>document.querySelector(".c-types"),
+        r = <any>document.querySelector(".c-breadcrumbs");
+    null !== t && (t.style.display = "none")
+    null !== r && (r.style.marginTop = "10px")
+  }
+  let o = JSON.parse(localStorage.getItem("isHorizontalCardsMode") || "null");
+  if (o !== null) {
+    appStore.COMMIT_CARD_MODE_UPD(o)
+  } else {
+    props.isMobile && appStore.COMMIT_CARD_MODE_UPD(true)
+  }
+  topBarOffset.value = props.isMobile ? 0 : <any>document.querySelector(".c-header")?.clientHeight
+  void 0 !== props.subtypeID && void 0 === props.categoryID && checkCategories()
+  calculateCountBarLeft()
 })
 onUnmounted(() => {
 
@@ -200,7 +314,7 @@ onUnmounted(() => {
   <div :class='["c-product-list", { empty: isEmpty, mobile: isMobile }]'>
     <div v-show="!isEmpty" class="results">
       <div v-if="!isSearchEmpty" class="top-bar">
-<!--        TODO-->
+        <!--        TODO-->
       </div>
     </div>
   </div>
