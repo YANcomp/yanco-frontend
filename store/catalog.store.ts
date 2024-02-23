@@ -3,9 +3,9 @@ import {defineStore} from "pinia";
 export const useCatalogStore = defineStore('catalog', {
     state: () => ({
         catalog: <any>{},
-        catalogTree: [],
-        categoryDirectory: {},
-        catalogTypes: [],
+        catalogTree: <any>[],
+        categoryDirectory: <any>{},
+        catalogTypes: <any>[],
     }),
     actions: {
         async CATALOG_GET() {

@@ -69,10 +69,12 @@ function remove(item: any) {
   n = 1 === o.productIDs.length ? props.comparisonProductIDs.filter((p: any) => {
     return p.categoryID !== o.categoryID
   }) : n.filter((p: any) => {
-    return p.categoryID === o.categoryID && (p.productIDs = p.productIDs.filter((e: any) => {
+    p.categoryID === o.categoryID && (p.productIDs = p.productIDs.filter((e: any) => {
       return e !== item
-    })), p
-  }), comparisonProductsStore.COMPARISON_PRODUCTS_UPD(n)
+    }))
+    return p
+  })
+  comparisonProductsStore.COMPARISON_PRODUCTS_UPD(n)
 }
 </script>
 

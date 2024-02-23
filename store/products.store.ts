@@ -4,6 +4,7 @@ export const useProductsStore = defineStore('products', {
     state: () => ({
         item: <any>{},
         list: <any>[],
+        buyToday: <any>[],
         productOfDay: <any>{},
         specialOffers: <any>[],
         ourProduction: <any>[],
@@ -11,10 +12,18 @@ export const useProductsStore = defineStore('products', {
     //TODO
     actions: {
         async GET_LIST(props?: any) {
-            return await useNuxtApp().$api.products.get_special_offers().then((res: any) => {
-                this.list = res
-                return Promise.resolve(res)
-            })
+            //TODO
+            if (props.filter?.length > 190) {
+                return await useNuxtApp().$api.products.get_special_offers().then((res: any) => {
+                    this.list = res
+                    return Promise.resolve(res)
+                })
+            } else {
+                return await useNuxtApp().$api.products.get_our_products().then((res: any) => {
+                    this.list = res
+                    return Promise.resolve(res)
+                })
+            }
         },
         async GET_PRODUCT_OF_DAY(props?: any) {
             return await useNuxtApp().$api.productOfDay.get().then((res: any) => {
@@ -81,6 +90,10 @@ export const useProductsStore = defineStore('products', {
             // }).catch(error => {
             //     return Promise.reject(error)
             // })
+        },
+        async COMMIT_GET_LIST(val?: any) {
+            this.list = []
+            this.buyToday = []
         },
     },
     // getters: {

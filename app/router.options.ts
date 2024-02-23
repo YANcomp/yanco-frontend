@@ -356,12 +356,13 @@ export default <RouterConfig>{
         },
         {
             path: "/brand/:propertyID()-:propertySlug()",
-            component: () => import('~/components/vPages/vProductList.vue').then(r => r.default || r),
-            props: function (t: any) {
-                return Object.assign(Object.assign({}, t.params), {}, {
+            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            props: (t: any) => {
+                return {
+                    ...t.params,
                     propertyTypeID: 10,
                     propertyID: Number(t.params.propertyID)
-                })
+                }
             },
             name: "Brand"
         },

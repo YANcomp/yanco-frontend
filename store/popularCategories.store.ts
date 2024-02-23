@@ -2,7 +2,7 @@ import {defineStore} from "pinia";
 
 export const usePopularCategoriesStore = defineStore('popularCategories', {
     state: () => ({
-        categories: [],
+        categories: <any>[],
         count: 0
     }),
     actions: {

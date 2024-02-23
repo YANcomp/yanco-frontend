@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 definePageMeta({
+  scrollToTop: true,
   middleware: (to) => {
     const {BREADCRUMBS_UPD} = useAppStore();
     const {catalog} = useCatalogStore();
