@@ -9,7 +9,7 @@ class ApiPropertiesModule {
         //TODO return o.a.get("catalog/products/properties?typeID=".concat(t))
         return await $fetch(`catalog/products/properties/` + propID + '.json', {
             ...this.$opts,
-            method: 'POST',
+            method: 'GET',
         })
     }
 }

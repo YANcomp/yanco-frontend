@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 definePageMeta({
   scrollToTop: true,
-  middleware: (to) => {
+  middleware: async (to) => {
     const {COMMIT_BREADCRUMBS_UPD} = useAppStore();
     const {catalog} = useCatalogStore();
 
@@ -22,7 +22,7 @@ definePageMeta({
       })
     }
 
-    COMMIT_BREADCRUMBS_UPD([{
+    await COMMIT_BREADCRUMBS_UPD([{
       name: "Главная страница",
       routeName: "index"
     }, {
@@ -32,13 +32,15 @@ definePageMeta({
       name: "" + findType.name ? findType.name : "",
       routeName: "CatalogType",
       params: {
-        typeID: "".concat(findType.ID),
+        typeID: "" + findType.ID,
         typeSlug: findType.slug
       }
     }, {
       name: "" + findSubtype.name ? findSubtype.name : "",
       routeName: "CatalogSubtype",
       params: {
+        typeID: "".concat(findType.ID),
+        typeSlug: findType.slug,
         subtypeID: "".concat(findSubtype.ID),
         subtypeSlug: findSubtype.slug
       }

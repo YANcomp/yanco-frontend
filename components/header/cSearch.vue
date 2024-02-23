@@ -27,7 +27,7 @@ const props = defineProps({
     default: false
   },
   searchResult: {
-    type: Object
+    type: <any>Object
   },
   routeParams: {
     type: Object
@@ -272,10 +272,9 @@ function deleteCategory(t: any, i: any) {
       categoryHistory.value = []
     }, 300)
   } else {
-    t.delete = true
     setTimeout(() => {
-      categoryHistory.value = categoryHistory.value.findIndex((e: any) => {
-        return e.title === t.title
+      categoryHistory.value = categoryHistory.value.filter((e: any) => {
+        return e.title !== t.title
       })
       localStorage.setItem("categoryHistory", JSON.stringify(categoryHistory.value))
     }, 300)
@@ -522,8 +521,7 @@ function throttle(t: any, e: any) {
       <div ref="searchRef" :class='["search", { focus: isFocus }]'>
         <input v-model.trim="requestText" ref="searchFieldRef" :placeholder="placeholder" autocomplete="off"
                type="search" id="search-field" v-on:focus="focus" v-on:blur="blur"
-               v-on:input='(e)=>{e.target.composing || (requestText = e.target.value.trim())}'
-               v-on:keypress='(e)=>{return !e.type.indexOf("key") && e.keyCode === 13 && e.key=== "Enter" ? null : search}'/>
+               v-on:input='(e)=>{e.target.composing || (requestText = e.target.value.trim())}'/>
         <label v-if="!isMobile && !isFocus && requestText.length < 1 && null !== advertisingLinks"
                class="advertising-links" for="search-field">
           Например,
@@ -560,7 +558,7 @@ function throttle(t: any, e: any) {
           <div v-for="(item, index) in preparedProperties" :key="index"
                :class='["property", { "item-selected": filteredCategoryHistory.length + index === itemIndex }]'
                v-on:mouseover="resetItemIndex" @click="goTo(item.route, item.name)">
-            <NuxtLink :to="{...item.route}">
+            <NuxtLink :to="item.route">
               <div>
                 <span class="name">{{ item.name }}</span>
                 <span :class='["page", item.type]'>{{ item.page }}</span>

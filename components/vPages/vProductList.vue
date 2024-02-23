@@ -80,6 +80,7 @@ const products = ref(<any>[])
 const isSearchEmpty = ref(false)
 const isAnalogSearchProducts = ref(false)
 const isFailedGettingProducts = ref(false)
+const isFailedGettingStockProducts = ref(false)
 const buyToday = ref(<any>productsStore.buyToday)
 // TODO FETCH DATA
 
@@ -264,7 +265,13 @@ if (props.search === undefined) {
 
 if (buyToday.value.length < 1) {
   //TODO get buy today
-  // st = 'groups="buy_today"&cityID='.concat(null !== (k = null == N ? void 0 : N.ID) && void 0 !== k ? k : 41, "[:20]"), "buyToday", o.next = 86, r.dispatch("products/".concat(l.PRODUCT.GET_LIST), {
+  await productsStore.GET_SPECIAL_OFFERS().then((res: any) => {
+    buyToday.value = res
+  }).catch((err: any) => {
+    console.log(err)
+    buyToday.value = []
+  })
+  //TODO  st = 'groups="buy_today"&cityID='.concat(null !== (k = null == N ? void 0 : N.ID) && void 0 !== k ? k : 41, "[:20]"), "buyToday", o.next = 86, r.dispatch("products/".concat(l.PRODUCT.GET_LIST), {
   //   filter: st,
   //   fields: P,
   //   listName: "buyToday"
@@ -300,17 +307,17 @@ const PREPARED_PRODUCTS_FIELDS = ref(["isInBasket", "isInFavorites"])
 const isLeaving = ref(false)
 
 onMounted(() => {
-  // void 0 !== city.value && init()
+  void 0 !== city.value && init()
   // this.getBannersForCatalog()
   isLeaving.value = false
-  // 0 === this.$data.buyToday.length && loadBuyToday()
+  0 === buyToday.value.length && loadBuyToday()
   // this.updateRouteBreadcrumbs()
 })
 onBeforeUnmount(() => {
   window.clearTimeout(timeoutID.value)
   productFilters.value = []
   productsStore.COMMIT_GET_LIST()
-  // this.$store.commit("products/".concat(l.PRODUCT.GET_LIST), {
+  // TODO this.$store.commit("products/".concat(l.PRODUCT.GET_LIST), {
   //   listName: "list",
   //   products: void 0
   // })
@@ -331,7 +338,7 @@ onBeforeRouteLeave((to, from, next) => {
   isLeaving.value = true
   productFilters.value = []
   productsStore.COMMIT_GET_LIST()
-  // this.$store.commit("products/".concat(l.PRODUCT.GET_LIST), {
+  // TODO this.$store.commit("products/".concat(l.PRODUCT.GET_LIST), {
   //   listName: "list",
   //   products: void 0
   // })
@@ -343,7 +350,16 @@ onBeforeRouteLeave((to, from, next) => {
   // }
   next()
 })
+
+const basketStore = useBasketStore()
+const favoritesStore = useFavoritesStore()
 //COMPUTED
+const basketItems = computed(() => {
+  return basketStore.items
+})
+const favoritesItems = computed(() => {
+  return favoritesStore.items
+})
 const productCategories = computed(() => {
   return catalog.value.categories
 })
@@ -359,7 +375,51 @@ const productSubtypes = computed(() => {
 const productTypes = computed(() => {
   return catalog.value.types
 })
-
+const isShowCategories = computed(() => {
+  return void 0 !== props.subtypeID && void 0 === props.categoryID
+})
+const isSelectInCategory = computed(() => {
+  return "SelectInCategory" === route.name
+})
+const activeCatalogSubtype = computed(() => {
+  return catalog.value.subtypes.find((s: any) => {
+    return s.ID === props.subtypeID
+  })
+})
+const activeCatalogType = computed(() => {
+  return catalog.value.types.find((t: any) => {
+    return t.ID === props.typeID
+  })
+})
+const preparedCategories = computed(() => {
+  if (void 0 !== props.subtypeID && void 0 === props.categoryID) return productCategories.value.reduce((e: any, o: any) => {
+    o.subtypeIDs.includes(props.subtypeID) && o.typeIDs.includes(props.typeID) && e.push({
+      ...o,
+      color: activeCatalogType.value ? activeCatalogType.value.color : undefined,
+      background: activeCatalogType.value ? activeCatalogType.value.background : undefined,
+      route: {
+        name: "CatalogCategory",
+        params: {
+          categoryID: "".concat(o.ID),
+          categorySlug: o.slug,
+          subtypeID: "".concat(categoryDirectory.value[o.ID].subtypeID),
+          subtypeSlug: categoryDirectory.value[o.ID].subtypeSlug,
+          typeID: "".concat(categoryDirectory.value[o.ID].typeID),
+          typeSlug: categoryDirectory.value[o.ID].typeSlug
+        }
+      }
+    })
+    return e
+  }, [])
+})
+const isEmpty = computed(() => {
+  return 0 === products.value.length && 0 === selectedFiltersIDs.value.length && void 0 === minPrice.value && !isLeaving.value
+})
+const currentPopularCategory = computed(() => {
+  return popularCategories.value.find((t: any) => {
+    return t.slug === props.popularCategory
+  })
+})
 const title = computed(() => {
   if (void 0 !== props.search) return "Результаты поиска по запросу «" + props.search + "»"
   if (void 0 !== props.popularCategory) return findPopularCategories.value.name.includes("/") ? findPopularCategories.value.name.split("/")[isMobile.value ? 1 : 0] : findPopularCategories.value.name;
@@ -371,7 +431,7 @@ const title = computed(() => {
   })
   return o.name ? o.name : ""
 })
-
+const preparedProducts = uPrepared
 const metaInfo = computed(() => {
   let meta,
       l = function (t: any) {
@@ -428,6 +488,41 @@ switch (route.name) {
       return t.ID === props.categoryID
     }))?.slug)
 }
+
+//METHODS
+function setViewedCategory() {
+  if (void 0 !== props.search && 0 !== products.value.length || void 0 !== props.categoryID || void 0 !== props.subtypeID) {
+    let o = JSON.parse(localStorage.getItem("categoryHistory") !== null ? <any>localStorage.getItem("categoryHistory") : "[]"),
+        r = {
+          title: props.search ? props.search : title.value,
+          url: decodeURI(route.fullPath)
+        };
+    JSON.stringify(o).includes(JSON.stringify(r)) || (o.unshift(r), o.length > 4 && (o = o.slice(0, 4)), localStorage.setItem("categoryHistory", JSON.stringify(o)))
+  }
+}
+
+function init() {
+  appStore.COMMIT_LOADING_UPD(true)
+  // Promise.all([
+  //   void 0 === popularCategories.value ? loadPopularCategories() : Promise.resolve(),
+  //   void 0 === productPropertyTypes.value ? loadPropertyTypes().catch((function () {
+  //     y.p.request(t.loadPropertyTypes, 3, 5e3)
+  //   })) : Promise.resolve(),
+  //   void 0 === this.popularCategory && void 0 === this.search || 0 !== this.$data.productFilters.length ? Promise.resolve() : this.getFilters().catch((function () {
+  //     y.p.request(t.getFilters, 3, 5e3)
+  //   })),
+  //   0 === Object.keys(this.$data.summary).length ? this.getSummary().catch((function () {
+  //     y.p.request(t.getSummary, 3, 5e3)
+  //   })) : Promise.resolve(),
+  //   this.isFreeShip ? this.getSubtypeIDs() : Promise.resolve()
+  // ]).finally(() => {
+  //   setViewedCategory()
+  //   appStore.COMMIT_LOADING_UPD(false)
+  // })
+  setViewedCategory()
+  appStore.COMMIT_LOADING_UPD(false)
+}
+
 useHead(() => ({
   link: [
     {
@@ -449,10 +544,35 @@ useSeoMeta({
 
 <template>
   <main class="v-product-list">
-    <ProductCProductList :search="route.params.search" :products="products" :is-mobile="isMobile"/>
+    <ProductCProductList :search="route.params.search" :is-analog-search-products="isAnalogSearchProducts"
+                         :prepared-product-subtypes="preparedProductSubtypes"
+                         :loading-basket-product-i-ds="loadingBasketProductIDs"
+                         :updating-basket-product-i-ds="updatingBasketProductIDs"
+                         :loading-favorites-product-i-ds="loadingFavoritesProductIDs"
+                         :selected-filters-i-ds="selectedFiltersIDs" :total-count="totalCount"
+                         :basket-items="basketItems" :buy-today="preparedProducts(buyToday, PREPARED_PRODUCTS_FIELDS)"
+                         :current-popular-category="currentPopularCategory" :favorites-items="favoritesItems"
+                         :is-failed-getting-products="isFailedGettingProducts" :is-empty="isEmpty"
+                         :is-select-in-category="isSelectInCategory" :title="title"
+                         :is-show-categories="isShowCategories" :params="params"
+                         :prepared-categories="preparedCategories" :product-filters="productFilters" :summary="summary"
+                         :product-property-type="productPropertyType"
+                         :products="preparedProducts(products, PREPARED_PRODUCTS_FIELDS)"
+                         :is-failed-getting-stock-products="isFailedGettingStockProducts" :category-i-d="categoryID"
+                         :subtype-i-d="subtypeID" :type-i-d="typeID" :is-loading-more-products="isLoadingMoreProducts"
+                         :is-mobile="isMobile" :is-search-empty="isSearchEmpty" :is-leaving="isLeaving"/>
+    <!--                         v-on:add-to-basket="addToBasket"-->
+    <!--                         v-on:add-to-favorites="addToFavorites"-->
+    <!--                         v-on:basket-item-update="updateBasketItem"-->
+    <!--                         v-on:basket-store-update="updateBasketStore"-->
+    <!--                         v-on:favorites-store-update="updateFavoritesStore"-->
+    <!--                         v-on:load-buy-today="loadBuyToday"-->
+    <!--                         v-on:more-products-load="getProducts"-->
+    <!--                         v-on:prices-changed="pricesChanged"-->
+    <!--                         v-on:properties-changed="propertiesChanged"-->
+    <!--                         v-on:repeat-getting-products="repeatGettingProducts"-->
+    <!--                         v-on:reset-filter="resetFilter"-->
+    <!--                         v-on:sort-type-change="changeSortType"-->
+
   </main>
 </template>
-
-<style scoped>
-
-</style>

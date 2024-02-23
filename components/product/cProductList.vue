@@ -81,7 +81,7 @@ const props = defineProps({
     }
   },
   currentPopularCategory: {
-    type: Object
+    type: <any>Object
   },
   favoritesItems: {
     type: Array,
@@ -174,9 +174,13 @@ const props = defineProps({
     type: String
   },
   params: {
-    type: Object
+    type: <any>Object
   }
 })
+
+const emit = defineEmits(["basket-item-update", "basket-store-update", "favorites-store-update", "reset-filter", "repeat-getting-products", "properties-changed", "prices-changed", "add-to-favorites", "add-to-basket", "more-products-load", "load-buy-today", "sort-type-change"])
+const categoriesRef = ref(<any>undefined)
+const catalogRef = ref(<any>undefined)
 
 const isCategoriesView = ref(false)
 const isClosedAlert = ref(false)
@@ -295,9 +299,9 @@ onMounted(() => {
     null !== t && (t.style.display = "none")
     null !== r && (r.style.marginTop = "10px")
   }
-  let o = JSON.parse(localStorage.getItem("isHorizontalCardsMode") || "null");
-  if (o !== null) {
-    appStore.COMMIT_CARD_MODE_UPD(o)
+  let isHorizontalCardsMode = JSON.parse(localStorage.getItem("isHorizontalCardsMode") || "null");
+  if (isHorizontalCardsMode !== null) {
+    appStore.COMMIT_CARD_MODE_UPD(isHorizontalCardsMode)
   } else {
     props.isMobile && appStore.COMMIT_CARD_MODE_UPD(true)
   }
@@ -306,17 +310,271 @@ onMounted(() => {
   calculateCountBarLeft()
 })
 onUnmounted(() => {
-
+  if (props.isMobile) {
+    let e = <any>document.querySelector(".c-types"),
+        t = <any>document.querySelector(".c-breadcrumbs");
+    null !== e && (e.style.display = "flex")
+    null !== t && (t.style.marginTop = "0")
+  }
 })
+
+function newTabOrNewWindow(e: any, t: any, r: any, o: any) {
+  window.localStorage.setItem("metric", JSON.stringify({
+    type: e,
+    searchText: t,
+    productID: r,
+    isFastSearch: o
+  }))
+}
+
+function metricSelected(e: any, t: any) {
+  //TODO METRIC ????
+  // var r = arguments.length > 2 && void 0 !== arguments[2] && arguments[2];
+  // if (e) {
+  //   var data = {
+  //     type: "searchSelect",
+  //     cityID: this.currentCity.ID,
+  //     searchText: e,
+  //     productID: t,
+  //     isFastSearch: r
+  //   };
+  //   this.isAuthorized && (data.userID = this.me.ID), G.a.metric(data)
+  // }
+}
+
+function changeCardsMode(e: any) {
+  appStore.COMMIT_CARD_MODE_UPD(e)
+}
+
+function calculateCountBarLeft() {
+  let e = countBarWidth.value - 5;
+  e < 0 && (e = 0)
+  e > 78 && (e = 78)
+  countBarLeft.value = window.innerWidth < 550 && e > 65 ? 65 : e
+}
+
+function changeSortType(s: any) {
+  emit("sort-type-change", s)
+}
+
+function loadBuyToday() {
+  emit("load-buy-today")
+}
+
+function loadMoreProducts() {
+  void 0 !== props.search ? searchOffset.value += searchLimit.value : emit("more-products-load", true)
+}
+
+function addToBasket(e: any, t: any) {
+  emit("add-to-basket", e, t)
+}
+
+function addToFavorites(e: any) {
+  emit("add-to-favorites", e)
+}
+
+function checkCategories() {
+  let e = categoriesRef.value;
+  isManyCategories.value = e.scrollHeight > 1.5 * e.children[0].scrollHeight
+  e.style.maxHeight = "" + (1.5 * e.children[0].scrollHeight) + "px"
+}
+
+function closeAlert() {
+  isClosedAlert.value = true
+}
+
+function error(err: any) {
+  useNotificationsStore().NOTIFICATIONS_UPD({
+    title: "Произошла ошибка",
+    desc: err,
+    status: "error"
+  })
+}
+
+function hideAlertSelectInCategory() {
+  setTimeout(() => {
+    return isHideAlertSelectInCategory.value = true
+  }, 450)
+}
+
+function pricesChanged(e: any, t: any) {
+  let r = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2];
+  emit("prices-changed", e, t, r)
+}
+
+function propertiesChanged(e: any) {
+  var t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
+  emit("properties-changed", e, t)
+}
+
+function repeatGettingProducts() {
+  emit("repeat-getting-products")
+}
+
+function resetFilter() {
+  emit("reset-filter")
+}
+
+function showHideCategories() {
+  isCategoriesView.value = !isCategoriesView.value
+  let e = categoriesRef.value;
+  e.scrollHeight > 300 && (e.style.transition = "max-height 0.5s")
+  e.style.maxHeight = isCategoriesView.value ? "".concat(e.scrollHeight, "px") : "" + (1.5 * e.children[0].scrollHeight) + "px"
+}
+
+function updateBasketItem(e: any) {
+  emit("basket-item-update", e)
+}
+
+function updateBasketStore(e: any) {
+  emit("basket-store-update", e)
+}
+
+function updateFavoritesStore(e: any) {
+  emit("favorites-store-update", e)
+}
 </script>
 
 <template>
   <div :class='["c-product-list", { empty: isEmpty, mobile: isMobile }]'>
     <div v-show="!isEmpty" class="results">
-      <div v-if="!isSearchEmpty" class="top-bar">
-        <!--        TODO-->
+      <div v-if="!isSearchEmpty" class="top-bar" :style='{ top: topBarOffset + "px" }'>
+        <span>
+          <template v-if="isBrandAnalogs">
+            <h1>
+              Также покупают
+              <template v-if="brandHasProducts">
+                <NuxtLink class="hover-bottom-line"
+                          :to='{ name: "Brand", params: { propertyID: propertyID, propertySlug: propertySlug } }'>
+                  {{ brandName }}
+                </NuxtLink>
+              </template>
+              <template v-else>
+                {{ brandName }}
+              </template>
+              <span v-if="!isMobile" :class='["count", { "not-found": isNotFound }]'>({{ totalCount }})</span>
+            </h1>
+          </template>
+
+          <template v-if="isAnalogSearchProducts">
+            <h1 class="analogs-search">
+              <span>По вашему запросу ничего не найдено.</span>
+              <br>
+              <span class="recommendations">
+                Пожалуйста, ознакомьтесь с
+                <span class="pink">рекомендациями</span>
+                <span v-if="!isMobile">
+                  на основе вашего запроса:
+                </span>
+              </span>
+              <span v-if="!isMobile" :class='["count", { "not-found": isNotFound }]'>
+                ({{ totalCount }})
+              </span>
+            </h1>
+          </template>
+          <template v-else-if="!isBrandAnalogs && !isAnalogSearchProducts">
+            <h1>
+              {{ title }}
+              <span v-if="!isMobile" :class='["count", { "not-found": isNotFound }]'>
+                ({{ totalCount }})
+              </span>
+            </h1>
+          </template>
+        </span>
+      </div>
+      <div v-if="isSelectInCategory && !isHideAlertSelectInCategory" class="alert">
+        cAlert
+      </div>
+      <div v-show="isShowCategories && !isMobile" class="categories" id="categories">
+        <div ref="categoriesRef" class="list">
+          <NuxtLink v-for="(t,o) in preparedCategories" :key="o"
+                    :style='{ backgroundColor: t.background, color: t.color }' :to="t.route">
+            {{ t.name }}
+          </NuxtLink>
+        </div>
+        <div v-show="isManyCategories && !isMobile" class="action" @click="showHideCategories">
+          <span>
+            {{ isCategoriesView ? "Скрыть" : "Показать всё" }}
+          </span>
+          <span :class='["icon", isCategoriesView ? "minus2" : "plus3", { opened: isCategoriesView }]'/>
+        </div>
+      </div>
+
+      <div v-if="void 0 !== currentPopularCategory && void 0 !== currentPopularCategory.infoMessage && !isClosedAlert">
+        cAlert
+      </div>
+      <div v-if="hasFilterList && !isFailedGettingProducts">
+        cFilter
+      </div>
+
+      <div ref="catalogRef" class="catalog">
+        <div>
+          <div v-show="products.length > 0" :class='["products", { "horizontal-cards": isHorizontalCardsMode }]'
+               id="product-list">
+            <div v-if="products.length > params?.bannerPositionInCatalog - 1 && void 0 !== bannerCatalog">
+              cBannerCard
+            </div>
+            <ProductCProductCard v-for="(p,i) in products" :key="i" :style="{order:i}"
+                                 v-show="void 0 === search || i < searchLimit + searchOffset"
+                                 :active-catalog-type-i-d="typeID" :basket-items="basketItems" :city="city"
+                                 :favorites-items="favoritesItems" :has-loyal-card="hasLoyalCard"
+                                 :is-authorized="isAuthorized" :is-horizontal-mode="isHorizontalCardsMode"
+                                 :is-basket-loading="loadingBasketProductIDs.includes(p.ID)"
+                                 :is-basket-updating="updatingBasketProductIDs.includes(p.ID)"
+                                 :is-favorites-loading="loadingFavoritesProductIDs.includes(p.ID)"
+                                 :product-categories="productCategories" :product-subtypes="productSubtypes"
+                                 :product-types="productTypes" :product="p" size="m"
+                                 v-on:add-to-basket="addToBasket"
+                                 v-on:add-to-favorites="addToFavorites"
+                                 v-on:basket-item-update="updateBasketItem"
+                                 v-on:basket-store-update="updateBasketStore"
+                                 v-on:favorites-store-update="updateFavoritesStore"/>
+          </div>
+          <UiCButton v-show="isShowButtonMore" class="load-more" :is-loading="isLoadingMoreProducts"
+                     @click="loadMoreProducts">
+            {{ preparedLoadMoreText }}
+            <div class="line" :style='{ width: countBarWidth + "%" }'/>
+          </UiCButton>
+          <section v-if="isNotFound && !isSearchEmpty" class="not-found">
+            <p>К сожалению, по Вашему запросу ничего не найдено</p>
+            <span>Попробуйте изменить критерии поиска</span>
+          </section>
+          <div v-if="hasAnalogs" :class='["analogs", { "horizontal-cards": isHorizontalCardsMode }]'>
+            <span>Также покупают</span>
+            <div>
+              v-for brandAnalogs
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <template v-if="isFailedGettingProducts || !isSearchEmpty && !isEmpty || !isSearchEmpty && isLoading"/>
+    <template v-else>
+      <section class="not-found flex-vertical">
+        <p>К сожалению, по Вашему запросу ничего не найдено</p>
+        <span>
+          Пожалуйста, проверьте формулировку Вашего запроса или воспользуйтесь нашим
+          <NuxtLink class="hover-bottom-line" :to="{name:'catalog'}">
+            каталогом
+          </NuxtLink>
+        </span>
+      </section>
+    </template>
+    <template v-if="buyToday.length > 0">
+      <ProductCProductsSlider class="stock" title="Сегодня покупают" :basket-items="basketItems"
+                              :favorites-items="favoritesItems" :city="city" :has-loyal-card="hasLoyalCard"
+                              :is-authorized="isAuthorized" :is-mobile="isMobile"
+                              :loading-basket-product-i-ds="loadingBasketProductIDs"
+                              :updating-basket-product-i-ds="updatingBasketProductIDs"
+                              :loading-favorites-product-i-ds="loadingFavoritesProductIDs"
+                              :product-categories="productCategories" :product-subtypes="productSubtypes"
+                              :product-types="productTypes" :products="buyToday"
+                              v-on:add-to-basket="addToBasket"
+                              v-on:add-to-favorites="addToFavorites"
+                              v-on:basket-item-update="updateBasketItem"
+                              v-on:basket-store-update="updateBasketStore"
+                              v-on:favorites-store-update="updateFavoritesStore"/>
+    </template>
   </div>
 </template>
 
@@ -327,7 +585,7 @@ onUnmounted(() => {
   margin: 0 auto 20px
 }
 
-.c-product-list > {
+.c-product-list > div {
   padding: 0 10px
 }
 
@@ -346,7 +604,7 @@ onUnmounted(() => {
   padding: 0
 }
 
-.c-product-list > .results > {
+.c-product-list > .results > div {
   max-width: 1368px;
   margin: auto;
   padding: 0 10px
@@ -641,7 +899,7 @@ onUnmounted(() => {
   margin: auto
 }
 
-.c-product-list > .stock > .top {
+.c-product-list > :deep(.stock) > .top {
   margin: 35px 0 15px;
   font-weight: 600;
   font-size: 28px;
@@ -749,7 +1007,7 @@ onUnmounted(() => {
   margin-top: 10px
 }
 
-.c-product-list.mobile > .results > .catalog > div > .products.horizontal-cards >, .c-product-list.mobile > .results > .catalog > div > .products > {
+.c-product-list.mobile > .results > .catalog > div > .products.horizontal-cards > div, .c-product-list.mobile > .results > .catalog > div > .products > div {
   margin: 0 0 30px
 }
 
@@ -765,7 +1023,7 @@ onUnmounted(() => {
   grid-gap: 0
 }
 
-.c-product-list.mobile > .results > .catalog > div > .analogs.horizontal-cards > div > {
+.c-product-list.mobile > .results > .catalog > div > .analogs.horizontal-cards > div > div {
   margin: 0 0 30px
 }
 
@@ -777,7 +1035,7 @@ onUnmounted(() => {
   grid-gap: 0
 }
 
-.c-product-list.mobile > .results > .catalog > div > .analogs > div > {
+.c-product-list.mobile > .results > .catalog > div > .analogs > div > div {
   margin: 4px
 }
 

@@ -28,9 +28,9 @@ export const useProductsStore = defineStore('products', {
         async GET_PRODUCT_OF_DAY(props?: any) {
             return await useNuxtApp().$api.productOfDay.get().then((res: any) => {
                 this.productOfDay = res[0]
-                return Promise.resolve(res[0])
+                return Promise.resolve(res)
             })
-            // return await useNuxtApp().$api.productGroups.get().then(res => {
+            //TODO return await useNuxtApp().$api.productGroups.get().then(res => {
             //     let n = (res ? <any>res : []).reduce((result: any, item: any) => {
             //         return "site_discounts" === item.slug && (item.name = "Онлайн-акции"), "buy_today" === item.slug && (item.name = "Сегодня покупают"), void 0 === result.find((t: any) => {
             //             return t.slug === item.slug

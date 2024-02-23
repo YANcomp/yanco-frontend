@@ -256,11 +256,12 @@ export default <RouterConfig>{
             path: "/catalog/:typeID()-:typeSlug()/:subtypeID()-:subtypeSlug()/:categoryID()-:categorySlug()",
             component: () => import('~/components/vPages/vProductList.vue').then(r => r.default || r),
             props: function (t: any) {
-                return Object.assign(Object.assign({}, t.params), {}, {
+                return {
+                    ...t.params,
                     typeID: Number(t.params.typeID),
                     subtypeID: Number(t.params.subtypeID),
                     categoryID: Number(t.params.categoryID)
-                })
+                }
             },
             name: "CatalogCategory"
         },
