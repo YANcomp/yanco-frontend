@@ -168,15 +168,18 @@ if (props.popularCategory !== undefined ||
 
 //STEP 62
 if (productPropertyTypes.value.length < 1) {
-  await productPropertyTypesStore.GET().then((res: any) => {
+  await productPropertyTypesStore.PRODUCT_PROPERTY_TYPES_GET().then((res: any) => {
     productPropertyTypes.value = res
   })
 }
 
 if (props.subtypeID !== undefined) {
   let ot = void 0 === props.categoryID ? "subtype" : "category"
-  // TODO await useNuxtApp().$api.summary
-  summary.value = {count: 100}
+  await useNuxtApp().$api.summary.get('type="'.concat(ot, '"&ID=') + (props.categoryID ? props.categoryID : props.subtypeID + "&cityID=" + city.value ? city.value.ID : 41)).then((s: any) => {
+    summary.value = s
+  }).catch((err: any) => {
+    console.log(err)
+  })
 }
 
 if ("free_ship" === route.params.popularCategory) {
@@ -240,7 +243,7 @@ await productsStore.GET_LIST(at).then((res: any) => {
   products.value = void 0 !== props.search ? res.products ? res.products : [] : res ? res : []
   isSearchEmpty.value = void 0 !== props.search && (res.products ? res.products : []).length < 1
   isAnalogSearchProducts.value = void 0 !== props.search && res.isAnalogs
-  if (props.search) {
+  if (props.search !== undefined) {
     totalCount.value = (res.products ? res.products : []).length
     if (needUpdateFilters.value) {
       productFilters.value = res.products ? res.products : []
@@ -254,13 +257,12 @@ await productsStore.GET_LIST(at).then((res: any) => {
 
 if (props.search === undefined) {
   //TODO
-  // v.a.products.get(Z(), ["ID"], void 0 !== c.productID ? "withCategory" : "products").then((function (p) {
-  //   var t, e;
-  //   x = void 0 !== c.productID ? (null !== (t = p.products) && void 0 !== t ? t : []).length : (null !== (e = p) && void 0 !== e ? e : []).length
-  // })).catch((function (t) {
-  //   console.log(t)
-  // }))
-  totalCount.value = 324
+  await useNuxtApp().$api.products.get(getPath(), ["ID"], "products").then((p: any) => {
+    totalCount.value = p.length
+  }).catch((t) => {
+    console.log(t)
+  })
+  // totalCount.value = 324
 }
 
 if (buyToday.value.length < 1) {
@@ -293,8 +295,8 @@ if (buyToday.value.length < 1) {
 //CONST DATA
 const limit = ref(25)
 const isLoadingMoreProducts = ref(false)
-const loadingBasketProductIDs = ref([])
-const loadingFavoritesProductIDs = ref([])
+const loadingBasketProductIDs = ref(<any>[])
+const loadingFavoritesProductIDs = ref(<any>[])
 const maxPrice = ref(undefined)
 const minPrice = ref(undefined)
 const offset = ref(0)
@@ -302,7 +304,7 @@ const preparedProductSubtypes = ref([])
 const selectedFiltersIDs = ref([])
 const sortType = ref("Популярное")
 const timeoutID = ref(undefined)
-const updatingBasketProductIDs = ref([])
+const updatingBasketProductIDs = ref(<any>[])
 const PREPARED_PRODUCTS_FIELDS = ref(["isInBasket", "isInFavorites"])
 const isLeaving = ref(false)
 
@@ -523,6 +525,83 @@ function init() {
   appStore.COMMIT_LOADING_UPD(false)
 }
 
+function changeSortType(t: any) {
+  sortType.value = t
+}
+
+function addToBasket(t: any, e: any) {
+  if (e) {
+    updatingBasketProductIDs.value.push(t.productID)
+  } else {
+    loadingBasketProductIDs.value.push(t.productID)
+  }
+  basketStore.BASKET_ADD({
+    item: t,
+    cityID: city.value.ID,
+    isUpdate: e
+  }).catch((t) => {
+    console.log(t)
+  }).finally(() => {
+    loadingBasketProductIDs.value = []
+    e && (updatingBasketProductIDs.value = [])
+  })
+}
+
+function addToFavorites(t: any) {
+  loadingFavoritesProductIDs.value.push(t)
+  favoritesStore.FAVORITES_ADD({
+    itemID: t,
+    cityID: city.value.ID
+  }).catch((err) => {
+    console.log(err)
+  }).finally(() => {
+    loadingFavoritesProductIDs.value = []
+  })
+}
+
+function resetFilter() {
+  selectedFiltersIDs.value = []
+  minPrice.value = undefined
+  maxPrice.value = undefined
+  offset.value = 0
+  getTotalCount()
+  getProducts().then((p: any) => {
+    offset.value = undefined !== props.search ? (p.products ? p.products : []).length : p.length
+  })
+}
+
+function updateBasketItem(t: any) {
+  addToBasket(t, true)
+}
+
+function updateBasketStore(t: any) {
+  basketStore.COMMIT_BASKET_UPD(t)
+}
+
+function updateFavoritesStore(t: any) {
+  favoritesStore.COMMIT_FAVORITES_UPD(t)
+}
+
+function getProducts(t?: any) {
+  //TODO
+}
+
+function pricesChanged(t?: any) {
+  //TODO
+}
+
+function loadBuyToday(t?: any) {
+  //TODO
+}
+
+function propertiesChanged(t?: any) {
+  //TODO
+}
+
+function repeatGettingProducts(t?: any) {
+  //TODO
+}
+
 useHead(() => ({
   link: [
     {
@@ -560,19 +639,19 @@ useSeoMeta({
                          :products="preparedProducts(products, PREPARED_PRODUCTS_FIELDS)"
                          :is-failed-getting-stock-products="isFailedGettingStockProducts" :category-i-d="categoryID"
                          :subtype-i-d="subtypeID" :type-i-d="typeID" :is-loading-more-products="isLoadingMoreProducts"
-                         :is-mobile="isMobile" :is-search-empty="isSearchEmpty" :is-leaving="isLeaving"/>
-    <!--                         v-on:add-to-basket="addToBasket"-->
-    <!--                         v-on:add-to-favorites="addToFavorites"-->
-    <!--                         v-on:basket-item-update="updateBasketItem"-->
-    <!--                         v-on:basket-store-update="updateBasketStore"-->
-    <!--                         v-on:favorites-store-update="updateFavoritesStore"-->
-    <!--                         v-on:load-buy-today="loadBuyToday"-->
-    <!--                         v-on:more-products-load="getProducts"-->
-    <!--                         v-on:prices-changed="pricesChanged"-->
-    <!--                         v-on:properties-changed="propertiesChanged"-->
-    <!--                         v-on:repeat-getting-products="repeatGettingProducts"-->
-    <!--                         v-on:reset-filter="resetFilter"-->
-    <!--                         v-on:sort-type-change="changeSortType"-->
+                         :is-mobile="isMobile" :is-search-empty="isSearchEmpty" :is-leaving="isLeaving"
+                         v-on:add-to-basket="addToBasket"
+                         v-on:add-to-favorites="addToFavorites"
+                         v-on:basket-item-update="updateBasketItem"
+                         v-on:basket-store-update="updateBasketStore"
+                         v-on:favorites-store-update="updateFavoritesStore"
+                         v-on:load-buy-today="loadBuyToday"
+                         v-on:more-products-load="getProducts"
+                         v-on:prices-changed="pricesChanged"
+                         v-on:properties-changed="propertiesChanged"
+                         v-on:repeat-getting-products="repeatGettingProducts"
+                         v-on:reset-filter="resetFilter"
+                         v-on:sort-type-change="changeSortType"/>
 
   </main>
 </template>

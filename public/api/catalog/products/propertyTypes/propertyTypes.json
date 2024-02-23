@@ -1,0 +1,77 @@
+[
+  {
+    "ID": 6,
+    "isVisible": true,
+    "name": "Действующее вещество"
+  },
+  {
+    "ID": 10,
+    "isVisible": true,
+    "name": "Бренд"
+  },
+  {
+    "ID": 13,
+    "isVisible": true,
+    "name": "Производитель"
+  },
+  {
+    "ID": 15,
+    "isVisible": true,
+    "name": "Страна"
+  },
+  {
+    "ID": 14,
+    "isVisible": false,
+    "name": "Симптомы"
+  },
+  {
+    "ID": 16,
+    "isVisible": false,
+    "name": "Форма выпуска"
+  },
+  {
+    "ID": 17,
+    "isVisible": false,
+    "name": "Рецептурность"
+  },
+  {
+    "ID": 18,
+    "isVisible": false,
+    "name": "Способ хранения"
+  },
+  {
+    "ID": 20,
+    "isVisible": false,
+    "name": "Дозировка"
+  },
+  {
+    "ID": 21,
+    "isVisible": false,
+    "name": "Фарм. действие"
+  },
+  {
+    "ID": 222,
+    "isVisible": false,
+    "name": "Форма выпуска(числовое значение)"
+  },
+  {
+    "ID": 5,
+    "isVisible": false,
+    "name": "Нозология"
+  },
+  {
+    "ID": 19,
+    "isVisible": false,
+    "name": "МНН"
+  },
+  {
+    "ID": 8,
+    "isVisible": false,
+    "name": "Признаки для сайта"
+  },
+  {
+    "ID": 12,
+    "isVisible": false,
+    "name": "Торговая марка"
+  }
+]

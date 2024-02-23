@@ -7,7 +7,8 @@ const props = defineProps({
     }
   }
 })
-
+const route = useRoute()
+const {isMobile} = useAppStore()
 const preparedBreadcrumbs: any = computed(() => {
   return props.breadcrumbs
 })
@@ -21,7 +22,8 @@ function routeTo(item: any) {
 </script>
 
 <template>
-  <ol class="c-breadcrumbs container" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <ol class="c-breadcrumbs container" itemscope itemtype="https://schema.org/BreadcrumbList"
+      :style="isMobile && (route.name === 'CatalogSubtype' || route.name === 'CatalogCategory') ? {'margin-top': '10px' } : {}">
     <li v-for="(item,index) in preparedBreadcrumbs" :key="index" itemscope itemprop="itemListElement"
         itemtype="https://schema.org/ListItem">
       <span class="icon arrow-forward"/>

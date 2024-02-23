@@ -12,6 +12,7 @@ const props = defineProps({
 const isScrolled = ref(false)
 const typesRef = ref(<any>undefined)
 
+const route = useRoute()
 const catalogStore = useCatalogStore()
 const catalog = computed(() => {
   return catalogStore.catalog
@@ -78,7 +79,8 @@ function checkScroll() {
 </script>
 
 <template>
-  <section :class='["c-types", "container", { hide: isScrolled }, { mobile: isMobile }]'>
+  <section :class='["c-types", "container", { hide: isScrolled }, { mobile: isMobile }]'
+           :style="isMobile && (route.name === 'CatalogSubtype' || route.name === 'CatalogCategory') ? {'display':'none'} : {}">
     <div v-if="!isMobile">
       <LazyCitiesCSelectCity v-if="!isMobile" :current-city="city"/>
     </div>

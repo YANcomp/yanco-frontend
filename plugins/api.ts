@@ -20,6 +20,8 @@ import ApiSessionsModule from "~/api/sessions";
 import ApiMeModule from "~/api/me";
 import ApiSearchModule from "~/api/search";
 import ApiPropertiesModule from "~/api/properties";
+import ApiSummaryModule from "~/api/summary";
+import ApiProductPropertyTypesModule from "~/api/productPropertyTypes";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -68,7 +70,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         // productCategories: H,
         productGroups: new ApiProductGroupsModule(opts),
         productOfDay: new ApiProductOfDayModule(opts),
-        // productPropertyTypes: Y,
+        productPropertyTypes: new ApiProductPropertyTypesModule(opts),
         products: new ApiProductsModule(opts),
         // productSubtypes: K,
         // productTypes: J,
@@ -79,7 +81,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         search: new ApiSearchModule(opts),
         sessions: new ApiSessionsModule(opts),
         // subscribe: at,
-        // summary: summary,
+        summary: new ApiSummaryModule(opts),
         // surveys: ct,
         // users: lt,
         // vacancies: ut,
