@@ -75,6 +75,10 @@ const props = defineProps({
 const route = useRoute()
 
 const cFilterRef = ref(<any>undefined)
+const priceRef = ref(<any>undefined)
+const showCategoriesRef = ref(<any>undefined)
+const categoriesRef = ref(<any>undefined)
+const filtersRef = ref(<any>undefined)
 
 const currentMax = ref(undefined)
 const currentMin = ref(undefined)
@@ -191,7 +195,7 @@ function checkCategories() {
   // this.isManyCategories = e.scrollHeight > 1.5 * e.children[0].scrollHeight, e.style.maxHeight = "".concat(1.5 * e.children[0].scrollHeight, "px")
 }
 
-function dragging(b) {
+function dragging(b: any) {
   // this.isDraggingPrice = b
 }
 
@@ -223,7 +227,7 @@ function onFilterType() {
   // this.snapshotSelectedFilters = JSON.stringify(this.directorySelectedFilter)
 }
 
-function leaveFilterType(e) {
+function leaveFilterType(e: any) {
   // this.sortActiveProperties(e), this.snapshotSelectedFilters !== JSON.stringify(this.directorySelectedFilter) && this.emitPropertiesChanged()
 }
 
@@ -232,7 +236,7 @@ function checkScroll() {
   // this.lastScrollTop > window.scrollY ? (this.isScrollTop = !0, this.filterTop = (this.isMobile ? 0 : document.querySelector(".c-header").clientHeight) - 2 - (null !== (t = null === (e = this.$refs.categories) || void 0 === e ? void 0 : e.clientHeight) && void 0 !== t ? t : 0)) : (this.isScrollTop = !1, this.filterTop = -this.$refs["c-filter"].clientHeight), this.lastScrollTop = window.scrollY, this.isFilterInHeader = window.scrollY + (this.isFilterInHeader ? 42 : 0) > this.productListOffset
 }
 
-function changeCardsMode(e) {
+function changeCardsMode(e: any) {
   // this.isHorizontalCardsMode !== e && this.$emit("change-cards-mode", e)
 }
 
@@ -272,7 +276,7 @@ function resize() {
   // })))
 }
 
-function filteringValues(e, s) {
+function filteringValues(e: any, s: any) {
   // 666 === e ? (this.isShowAllFreeShip = !0, this.preparedPropertySubtypes.forEach((function (e) {
   //   0 !== e.name.toLocaleLowerCase().indexOf(s.toLocaleLowerCase()) ? e.isShow = !1 : e.isShow = !0
   // }))) : 777 === e ? (this.isShowAllPharamcy = !0, this.preparedPharmacies.forEach((function (e) {
@@ -282,7 +286,7 @@ function filteringValues(e, s) {
   // })))
 }
 
-function removeFilter(e) {
+function removeFilter(e?: any, t?:any) {
   // var t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
   // if (void 0 !== e.typeID) {
   //   this.selectingFilter(e, !1, !0, t);
@@ -314,19 +318,19 @@ function removeFilter(e) {
   // }
 }
 
-function changeRange(e, t) {
+function changeRange(e: any, t: any) {
   // var r, o, n = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2],
   //     c = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3];
   // this.productListOffset = null !== (o = null === (r = document.querySelector("#product-list")) || void 0 === r ? void 0 : r.offsetTop) && void 0 !== o ? o : 0, this.currentMin = e, this.currentMax = t, n && this.$emit("prices-changed", e, t, c)
 }
 
-function resetPrices() {
+function resetPrices(e?: any, t?: any) {
   // var e = !(arguments.length > 0 && void 0 !== arguments[0]) || arguments[0],
   //     t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
   // this.currentMin = void 0, this.currentMax = void 0, this.resetID += 1, e && this.$emit("prices-changed", void 0, void 0, t)
 }
 
-function resetFilterType(e) {
+function resetFilterType(e: any) {
   // if (666 === e) {
   //   this.countSelectedSubtype = 0;
   //   var t, r = x(this.preparedPropertySubtypes);
@@ -458,14 +462,14 @@ function resetFilters() {
   // }), this.$emit("reset")
 }
 
-function clickCategory(e) {
+function clickCategory(e: any) {
   // this.$set(e, "isSelectedFilter", !Boolean(e.isSelectedFilter)), this.selectingFilter({
   //   categoryID: e.ID,
   //   name: e.name
   // }, e.isSelectedFilter, !0)
 }
 
-function selectingFilter(i, e) {
+function selectingFilter(i: any, e: any) {
   // var t, r, o = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2],
   //     n = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3];
   // this.productListOffset = null !== (r = null === (t = document.querySelector("#product-list")) || void 0 === t ? void 0 : t.offsetTop) && void 0 !== r ? r : 0, e ? (this.selectedFilters.push(i), void 0 !== i.typeID && this.preparedProperty[i.typeID].countSelected++, void 0 !== i.subtypeID && this.countSelectedSubtype++, void 0 !== i.pharmacyID && this.countSelectedPharmacy++) : (void 0 !== i.typeID && this.preparedProperty[i.typeID].countSelected--, void 0 !== i.subtypeID && this.countSelectedSubtype--, void 0 !== i.pharmacyID && this.countSelectedPharmacy--, this.selectedFilters.splice(this.selectedFilters.findIndex((function (e) {
@@ -473,7 +477,7 @@ function selectingFilter(i, e) {
   // })), 1)), o && this.emitPropertiesChanged(n)
 }
 
-function sortActiveProperties(e) {
+function sortActiveProperties(e: any) {
   // var t;
   // 666 === e ? this.preparedPropertySubtypes.sort((function (a, b) {
   //   return Number(b.isSelectedFilter) - Number(a.isSelectedFilter)
@@ -496,17 +500,112 @@ function sortActiveProperties(e) {
           <div class="top">
             <span class="title">
               Фильтры
-              <span v-if="countSelectedFilters > 0" class="count">({{countSelectedFilters}})</span>
+              <span v-if="countSelectedFilters > 0" class="count">({{ countSelectedFilters }})</span>
             </span>
-            <span v-if="!isMobile" :class='["reset", { show: isFiltersSelected && showButtonReset }]' @click="resetFilters">
+            <span v-if="!isMobile" :class='["reset", { show: isFiltersSelected && showButtonReset }]'
+                  @click="resetFilters">
               Сбросить все
               <span class="icon trash2"/>
             </span>
             <span class="icon close2" @click="closeFilter"/>
-<!--            TODO THIS -->
+            <!--            TODO THIS -->
           </div>
         </div>
+        <section class="scrollbar">
+          <div v-if="isFiltersSelected" class="selected-filters">
+            <span>
+              Выбраны:
+            </span>
+            <ul>
+              <li v-if="showPricesFilter" class="prices">
+                <span class="name">
+                  <span>от {{ currentMin }}</span>
+                  <span>до {{ currentMax }} ₽</span>
+                </span>
+                <span class="icon close" @click="resetPrices(true, false)"/>
+              </li>
+              <li v-for="(t,o) in selectedFilters" :key="o"
+                  v-show="t.ID !== propertyID && t.typeID !== propertyTypeID || void 0 !== t.subtypeID || void 0 !== t.categoryID">
+                <span class="name" :data-tooltip="t.name">
+                  {{t.name}}
+                </span>
+                <span class="icon close" @click="removeFilter(t, false)"/>
+              </li>
+              <li v-if="isMobile && showButtonReset" class="reset" @click="resetFilters">
+                <span class="name">
+                  Сбросить все
+                </span>
+              </li>
+            </ul>
+          </div>
+          <ul>
+            <li>stock</li>
+            <li v-if="!isNoPrices" ref="priceRef" class="prices">
+              <span class="property-name">
+                Цена
+                <span v-if="showPricesFilter" class="reset" @click="resetPrices(true, false)">
+                  Сбросить
+                </span>
+              </span>
+              cPriceRange
+            </li>
+            <li v-if="isShowCategories" ref="showCategoriesRef">
+              <span class="property-name">
+                Категория
+                <span v-if="countSelectedSubtype > 0" class="reset" @click="resetFilterType(666)">
+                  Сбросить
+                </span>
+              </span>
+              <div class="search">
+                <span class="icon search-mobile"/>
+                cEdit
+              </div>
+              <div :class='["scrollbar", { show: isShowAllFreeShip }]'>
+                checkBox v for preparedPropertySubtypes
+              </div>
+            </li>
+            <li v-for="(p,t) in preparedProperty" :key="t" ref="t">
+              <span class="property-name">
+                {{productPropertyType[t].name}}
+                <span v-if="p.countSelected > 0" class="reset" @click="resetFilterType(t)">
+                  Сбросить
+                </span>
+              </span>
+              <div class="search">
+                <span class="icon search-mobile"/>
+                cEdit
+              </div>
+              <div :class='["scrollbar", { show: p.isShowAll }]'>
+                checkbox v-for p.uniqueValue
+              </div>
+            </li>
+          </ul>
+        </section>
+        <div class="show-product">
+          <UiCButton mode="primary" @click="closeFilter">
+            {{totalCount > 0 ? productCountButton : "СОЖАЛЕЕМ, НИЧЕГО НЕ НАЙДЕНО"}}
+          </UiCButton>
+        </div>
       </div>
+    </div>
+
+    <div v-if="hasStockCategories && isShowStockCategories" id="categories" class="categories container">
+      <div ref="categoriesRef" class="list">
+        stockBabyProductCategories
+      </div>
+    </div>
+
+    <div class="filters container">
+      <ul ref="filtersRef">
+        <li :class='["sort", { mobile: isMobile, opened: openedSort, "opened-bar": openedSortBar }]' @click="openCloseSort">
+          <span class="property-name">
+            Сортировка
+            <span class="icon arrow-down2"/>
+          </span>
+          cDropDown
+<!--          TODO -->
+        </li>
+      </ul>
     </div>
   </div>
 </template>
