@@ -376,7 +376,7 @@ function addToFavorites(e: any) {
 function checkCategories() {
   let e = categoriesRef.value;
   isManyCategories.value = e.scrollHeight > 1.5 * e.children[0].scrollHeight
-  e.style.maxHeight = "" + (1.5 * e.children[0].scrollHeight) + "px"
+  // e.style.maxHeight = "" + (1.5 * e.children[0].scrollHeight) + "px"
 }
 
 function closeAlert() {
@@ -503,9 +503,18 @@ function updateFavoritesStore(e: any) {
       <div v-if="void 0 !== currentPopularCategory && void 0 !== currentPopularCategory.infoMessage && !isClosedAlert">
         cAlert
       </div>
-      <div v-if="hasFilterList && !isFailedGettingProducts">
-        cFilter
-      </div>
+
+      <ProductCFilter v-if="hasFilterList && !isFailedGettingProducts" :is-brand-analogs="isBrandAnalogs"
+                      :is-free-ship="isFreeShip" :is-mobile="isMobile"
+                      :is-opened="isOpened" :is-stock="isStock" :item-count="totalCount"
+                      :prepared-product-subtypes="preparedProductSubtypes" :product-filters="productFilters"
+                      :product-property-type="productPropertyType" :property-i-d="propertyID"
+                      :property-type-i-d="propertyTypeID" :property-name="title" :summary="summary"
+                      :is-search-empty="isSearchEmpty" :is-horizontal-cards-mode="isHorizontalCardsMode"
+                      v-on:prices-changed="pricesChanged" v-on:change-cards-mode="changeCardsMode"
+                      v-on:properties-changed="propertiesChanged" v-on:sort-type-change="changeSortType"
+                      v-on:reset="resetFilter"/>
+
 
       <div ref="catalogRef" class="catalog">
         <div>
