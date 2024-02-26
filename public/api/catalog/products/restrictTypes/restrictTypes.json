@@ -1,0 +1,47 @@
+[
+  {
+    "ID": 1,
+    "icon": "https://pictures.apteka-april.ru/restricts/pregnancy.svg",
+    "name": "При беременности"
+  },
+  {
+    "ID": 3,
+    "icon": "https://pictures.apteka-april.ru/restricts/liver.svg",
+    "name": "При нарушениях функций печени"
+  },
+  {
+    "ID": 4,
+    "icon": "https://pictures.apteka-april.ru/restricts/renal.svg",
+    "name": "При нарушении функций почек"
+  },
+  {
+    "ID": 5,
+    "icon": "https://pictures.apteka-april.ru/restricts/children.svg",
+    "name": "Для детей"
+  },
+  {
+    "ID": 6,
+    "icon": "https://pictures.apteka-april.ru/restricts/adults.svg",
+    "name": "Для взрослых"
+  },
+  {
+    "ID": 7,
+    "icon": "https://pictures.apteka-april.ru/restricts/elderly.svg",
+    "name": "Для пожилых пациентов"
+  },
+  {
+    "ID": 8,
+    "icon": "https://pictures.apteka-april.ru/restricts/driving.svg",
+    "name": "При вождении автотранспорта"
+  },
+  {
+    "ID": 9,
+    "icon": "https://pictures.apteka-april.ru/restricts/diabetes.svg",
+    "name": "При сахарном диабете"
+  },
+  {
+    "ID": 2,
+    "icon": "https://pictures.apteka-april.ru/restricts/lactation.svg",
+    "name": "При лактации"
+  }
+]

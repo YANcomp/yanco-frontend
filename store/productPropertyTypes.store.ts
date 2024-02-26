@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 
-export const useProductPropertyTypes = defineStore('productPropertyTypes', {
+export const useProductPropertyTypesStore = defineStore('productPropertyTypes', {
     state: () => ({
         list: <any>[]
     }),

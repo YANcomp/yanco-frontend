@@ -1,0 +1,5883 @@
+[
+  {
+    "ID": 97056,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      2557
+    ],
+    "categoryID": 273,
+    "slug": "ameloteks_rastvor_10mgml_ampuly_1_5ml_5",
+    "name": "Амелотекс раствор для инъекций 10мг/мл ампулы 1,5мл №5",
+    "rating": 35,
+    "price": {
+      "withCard": 699.0,
+      "withPeriod": 521.0,
+      "withoutCard": 699.0
+    },
+    "priceZakaz": {
+      "withCard": 699.0,
+      "withPeriod": 521.0,
+      "withoutCard": 699.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "10мг/мл",
+        "slug": "10mg",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 7,
+        "name": "8-25 С",
+        "slug": "825_s",
+        "typeID": 18
+      },
+      {
+        "ID": 20,
+        "name": "Раствор для инъекций",
+        "slug": "rastvor_dlya_inekcij",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 173,
+        "name": "Мовалис",
+        "slug": "movalis",
+        "typeID": 8
+      },
+      {
+        "ID": 196,
+        "name": "Вольтарен",
+        "slug": "voltaren",
+        "typeID": 8
+      },
+      {
+        "ID": 213,
+        "name": "1.50 мл, 5 шт",
+        "slug": "1_50_ml_5_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 257,
+        "name": "Товар на первом месте",
+        "slug": "tovar_na_pervom_meste",
+        "typeID": 8
+      },
+      {
+        "ID": 281,
+        "name": "Боль в суставе",
+        "slug": "bol_v_sustave",
+        "typeID": 5
+      },
+      {
+        "ID": 690,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 19
+      },
+      {
+        "ID": 1083,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 6
+      },
+      {
+        "ID": 1497,
+        "name": "Дексалгин",
+        "slug": "deksalgin",
+        "typeID": 8
+      },
+      {
+        "ID": 1638,
+        "name": "Диклофенак",
+        "slug": "diklofenak",
+        "typeID": 8
+      },
+      {
+        "ID": 2198,
+        "name": "ЗАО \"ФармФирма Сотекс\"",
+        "slug": "zao_soteks_farmfirma",
+        "typeID": 13
+      },
+      {
+        "ID": 2198,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 8
+      },
+      {
+        "ID": 2550,
+        "name": "Артрозан",
+        "slug": "artrozan",
+        "typeID": 8
+      },
+      {
+        "ID": 2625,
+        "name": "Артоксан",
+        "slug": "artoksan",
+        "typeID": 8
+      },
+      {
+        "ID": 2653,
+        "name": "Амелотекс",
+        "slug": "ameloteks",
+        "typeID": 8
+      },
+      {
+        "ID": 2667,
+        "name": "Тексаред",
+        "slug": "teksared",
+        "typeID": 8
+      },
+      {
+        "ID": 3935,
+        "name": "Противовоспалительные средства (внутренние)",
+        "slug": "protivovospalitelnye_sredstva_vnutrennie",
+        "typeID": 21
+      },
+      {
+        "ID": 4047,
+        "name": "Амелотекс",
+        "slug": "ameloteks",
+        "typeID": 10
+      },
+      {
+        "ID": 15275,
+        "name": "Острая боль",
+        "slug": "ostraya_bol",
+        "typeID": 5
+      },
+      {
+        "ID": 15276,
+        "name": "Другая постоянная боль (хроническая)",
+        "slug": "drugaya_postoyannaya_bol_hronicheskaya",
+        "typeID": 5
+      },
+      {
+        "ID": 15447,
+        "name": "Артрит неуточненный",
+        "slug": "artrit_neutochnennyj",
+        "typeID": 5
+      },
+      {
+        "ID": 15454,
+        "name": "Анкилозирующий спондилит",
+        "slug": "ankiloziruyushchij_spondilit",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "39c6683aa67018f5791cb6df1e308bd3.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "bonuses": 23,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/97056/80/39c6683aa67018f5791cb6df1e308bd3.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/97056/208/39c6683aa67018f5791cb6df1e308bd3.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "35%",
+      "internalCard": "35% покупателей выбирают",
+      "internalCardHint": "35% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 263129,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      2557
+    ],
+    "categoryID": 275,
+    "slug": "veldeksal_tabletki_25mg_10",
+    "name": "Велдексал таблетки 25мг №10",
+    "rating": 83,
+    "price": {
+      "withCard": 477.0,
+      "withPeriod": 299.0,
+      "withoutCard": 477.0
+    },
+    "priceZakaz": {
+      "withCard": 477.0,
+      "withPeriod": 299.0,
+      "withoutCard": 477.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "25мг",
+        "slug": "25mg",
+        "typeID": 20
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 16,
+        "name": "Таблетки",
+        "slug": "tabletki",
+        "typeID": 16
+      },
+      {
+        "ID": 17,
+        "name": "Сегодня покупают",
+        "slug": "segodnya_pokupayut",
+        "typeID": 8
+      },
+      {
+        "ID": 77,
+        "name": "Германия",
+        "slug": "germaniya",
+        "typeID": 15
+      },
+      {
+        "ID": 97,
+        "name": "Болит зуб",
+        "slug": "bolit_zub",
+        "typeID": 8
+      },
+      {
+        "ID": 204,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 14
+      },
+      {
+        "ID": 205,
+        "name": "Боль в горле",
+        "slug": "bolit_gorlo",
+        "typeID": 14
+      },
+      {
+        "ID": 206,
+        "name": "Жар",
+        "slug": "zhar",
+        "typeID": 14
+      },
+      {
+        "ID": 207,
+        "name": "Повышенная температура тела",
+        "slug": "vysokaya_temperatura",
+        "typeID": 14
+      },
+      {
+        "ID": 208,
+        "name": "Боль в ухе (отит)",
+        "slug": "bolit_uho",
+        "typeID": 14
+      },
+      {
+        "ID": 217,
+        "name": "Головная боль",
+        "slug": "golovnaya_bol",
+        "typeID": 14
+      },
+      {
+        "ID": 219,
+        "name": "Озноб",
+        "slug": "oznob",
+        "typeID": 14
+      },
+      {
+        "ID": 281,
+        "name": "Боль в суставе",
+        "slug": "bol_v_sustave",
+        "typeID": 5
+      },
+      {
+        "ID": 473,
+        "name": "10 шт",
+        "slug": "10_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 510,
+        "name": "Декскетопрофен",
+        "slug": "deksketoprofen",
+        "typeID": 6
+      },
+      {
+        "ID": 684,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 8
+      },
+      {
+        "ID": 685,
+        "name": "Боль в спине",
+        "slug": "bol_v_spine",
+        "typeID": 8
+      },
+      {
+        "ID": 1497,
+        "name": "Дексалгин",
+        "slug": "deksalgin",
+        "typeID": 8
+      },
+      {
+        "ID": 1508,
+        "name": "Диафлекс",
+        "slug": "diafleks",
+        "typeID": 8
+      },
+      {
+        "ID": 1645,
+        "name": "Кетонал",
+        "slug": "ketonal",
+        "typeID": 8
+      },
+      {
+        "ID": 1647,
+        "name": "Аэртал",
+        "slug": "aertal",
+        "typeID": 8
+      },
+      {
+        "ID": 1648,
+        "name": "Найз",
+        "slug": "najz",
+        "typeID": 8
+      },
+      {
+        "ID": 1651,
+        "name": "Артрокер",
+        "slug": "artroker",
+        "typeID": 8
+      },
+      {
+        "ID": 1652,
+        "name": "Фламадекс",
+        "slug": "flamadeks",
+        "typeID": 8
+      },
+      {
+        "ID": 1654,
+        "name": "Нурофен",
+        "slug": "nurofen",
+        "typeID": 8
+      },
+      {
+        "ID": 2040,
+        "name": "Ибупрофен",
+        "slug": "ibuprofen",
+        "typeID": 8
+      },
+      {
+        "ID": 2198,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 8
+      },
+      {
+        "ID": 2296,
+        "name": "НПВС",
+        "slug": "npvs",
+        "typeID": 8
+      },
+      {
+        "ID": 2297,
+        "name": "НПВС таблетки",
+        "slug": "npvs_tabletki",
+        "typeID": 8
+      },
+      {
+        "ID": 2298,
+        "name": "НПВС капсулы",
+        "slug": "npvs_kapsuly",
+        "typeID": 8
+      },
+      {
+        "ID": 2299,
+        "name": "НПВС порошки",
+        "slug": "npvs_poroshki",
+        "typeID": 8
+      },
+      {
+        "ID": 2300,
+        "name": "Нестероидные противовоспалительные препараты",
+        "slug": "nesteroidnye_protivovospalitelnye_preparaty",
+        "typeID": 8
+      },
+      {
+        "ID": 2653,
+        "name": "Амелотекс",
+        "slug": "ameloteks",
+        "typeID": 8
+      },
+      {
+        "ID": 2678,
+        "name": "Оки",
+        "slug": "oki",
+        "typeID": 8
+      },
+      {
+        "ID": 2686,
+        "name": "Ксефокам",
+        "slug": "ksefokam",
+        "typeID": 8
+      },
+      {
+        "ID": 2690,
+        "name": "Кеторол",
+        "slug": "ketorol",
+        "typeID": 8
+      },
+      {
+        "ID": 2753,
+        "name": "Декскетопрофен",
+        "slug": "deksketoprofen",
+        "typeID": 19
+      },
+      {
+        "ID": 3936,
+        "name": "Средства от боли",
+        "slug": "sredstva_ot_boli",
+        "typeID": 21
+      },
+      {
+        "ID": 4330,
+        "name": "Велдексал",
+        "slug": "veldeksal",
+        "typeID": 10
+      },
+      {
+        "ID": 15276,
+        "name": "Другая постоянная боль (хроническая)",
+        "slug": "drugaya_postoyannaya_bol_hronicheskaya",
+        "typeID": 5
+      },
+      {
+        "ID": 15279,
+        "name": "Почечная колика неуточненная",
+        "slug": "pochechnaya_kolika_neutochnennaya",
+        "typeID": 5
+      },
+      {
+        "ID": 15594,
+        "name": "Ишиас",
+        "slug": "ishias",
+        "typeID": 5
+      },
+      {
+        "ID": 15715,
+        "name": "Вывих, растяжение и перенапряжение капсульно-связочного аппарата сустава неуточненной области тела",
+        "slug": "vyvih_rastyazhenie_i_perenapryazhenie_kapsulnosvyazochnogo_apparata_sustava_neutochnennoj_oblasti_tela",
+        "typeID": 5
+      },
+      {
+        "ID": 20782,
+        "name": "ООО \"Велфарм\"/ООО \"Велфарм-М\"",
+        "slug": "ooo_velfarm",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "bd96d9dc2d5bcf3f57964492499b63cc.webp"
+    ],
+    "reviewsNumber": 15,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 4.93,
+    "bonuses": 31,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/263129/80/bd96d9dc2d5bcf3f57964492499b63cc.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/263129/208/bd96d9dc2d5bcf3f57964492499b63cc.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "83%",
+      "internalCard": "83% покупателей выбирают",
+      "internalCardHint": "83% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 183456,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 520,
+    "slug": "analgin_tabletki_500mg_20",
+    "name": "Анальгин таблетки 500мг №20 Медисорб",
+    "rating": 89,
+    "price": {
+      "withCard": 106.00,
+      "withPeriod": 75.00,
+      "withoutCard": 106.00
+    },
+    "priceZakaz": {
+      "withCard": 106.00,
+      "withPeriod": 75.00,
+      "withoutCard": 106.00
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "500мг",
+        "slug": "500mg",
+        "typeID": 20
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 14,
+        "name": "Домашняя аптечка",
+        "slug": "domashnyaya_aptechka",
+        "typeID": 8
+      },
+      {
+        "ID": 16,
+        "name": "Таблетки",
+        "slug": "tabletki",
+        "typeID": 16
+      },
+      {
+        "ID": 31,
+        "name": "Аптечка путешественника",
+        "slug": "aptechka_puteshestvennika",
+        "typeID": 8
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 132,
+        "name": "Миалгия",
+        "slug": "mialgiya",
+        "typeID": 5
+      },
+      {
+        "ID": 604,
+        "name": "20 шт",
+        "slug": "20_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 684,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 8
+      },
+      {
+        "ID": 685,
+        "name": "Боль в спине",
+        "slug": "bol_v_spine",
+        "typeID": 8
+      },
+      {
+        "ID": 712,
+        "name": "Метамизол натрия",
+        "slug": "metamizol_natriya",
+        "typeID": 19
+      },
+      {
+        "ID": 1103,
+        "name": "Метамизол натрия",
+        "slug": "metamizol_natriya",
+        "typeID": 6
+      },
+      {
+        "ID": 1654,
+        "name": "Нурофен",
+        "slug": "nurofen",
+        "typeID": 8
+      },
+      {
+        "ID": 1860,
+        "name": "АО \"Медисорб\"",
+        "slug": "zao_medisorb",
+        "typeID": 13
+      },
+      {
+        "ID": 2376,
+        "name": "Внутренние средства от боли",
+        "slug": "vnutrennie_sredstva_ot_boli",
+        "typeID": 8
+      },
+      {
+        "ID": 2377,
+        "name": "Средства от боли внутренние",
+        "slug": "sredstva_ot_boli_vnutrennie",
+        "typeID": 8
+      },
+      {
+        "ID": 2494,
+        "name": "Аскофен",
+        "slug": "askofen",
+        "typeID": 8
+      },
+      {
+        "ID": 2532,
+        "name": "Цитрамон",
+        "slug": "citramon",
+        "typeID": 8
+      },
+      {
+        "ID": 2631,
+        "name": "Цитромон",
+        "slug": "citromon",
+        "typeID": 8
+      },
+      {
+        "ID": 2691,
+        "name": "Анальгин",
+        "slug": "analgin",
+        "typeID": 8
+      },
+      {
+        "ID": 3821,
+        "name": "Анальгин",
+        "slug": "analgin",
+        "typeID": 10
+      },
+      {
+        "ID": 3936,
+        "name": "Средства от боли",
+        "slug": "sredstva_ot_boli",
+        "typeID": 21
+      },
+      {
+        "ID": 15276,
+        "name": "Другая постоянная боль (хроническая)",
+        "slug": "drugaya_postoyannaya_bol_hronicheskaya",
+        "typeID": 5
+      },
+      {
+        "ID": 15527,
+        "name": "Термические и химические ожоги неуточненной локализации",
+        "slug": "termicheskie_i_himicheskie_ozhogi_neutochnennoj_lokalizacii",
+        "typeID": 5
+      },
+      {
+        "ID": 15600,
+        "name": "Невралгия и неврит неуточненные",
+        "slug": "nevralgiya_i_nevrit_neutochnennye",
+        "typeID": 5
+      },
+      {
+        "ID": 15711,
+        "name": "Первичная дисменорея",
+        "slug": "pervichnaya_dismenoreya",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "cb05199d862631c8e04de958f2e769b1.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "bonuses": 3,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/183456/80/cb05199d862631c8e04de958f2e769b1.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/183456/208/cb05199d862631c8e04de958f2e769b1.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 243072,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      3872
+    ],
+    "categoryID": 225,
+    "slug": "prostudoks_poroshok_limon_pak_10",
+    "name": "Простудокс порошок для приготовления раствора для приема внутрь Лимон пакетики №10",
+    "rating": 89,
+    "price": {
+      "withCard": 411.0,
+      "withPeriod": 312.0,
+      "withoutCard": 411.0
+    },
+    "priceZakaz": {
+      "withCard": 411.0,
+      "withPeriod": 312.0,
+      "withoutCard": 411.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "750мг+10мг+60мг",
+        "slug": "750mg_10mg_60mg",
+        "typeID": 20
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 49,
+        "name": "Порошок для приготовления раствора для внутреннего применения",
+        "slug": "poroshok_dlya_prigotovleniya_rastvora_dlya_vnutrennego_primeneniya",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 140,
+        "name": "Аскорбиновая кислота",
+        "slug": "askorbinovaya_kislota",
+        "typeID": 6
+      },
+      {
+        "ID": 204,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 14
+      },
+      {
+        "ID": 205,
+        "name": "Боль в горле",
+        "slug": "bolit_gorlo",
+        "typeID": 14
+      },
+      {
+        "ID": 206,
+        "name": "Жар",
+        "slug": "zhar",
+        "typeID": 14
+      },
+      {
+        "ID": 207,
+        "name": "Повышенная температура тела",
+        "slug": "vysokaya_temperatura",
+        "typeID": 14
+      },
+      {
+        "ID": 209,
+        "name": "Слабость",
+        "slug": "slabost",
+        "typeID": 14
+      },
+      {
+        "ID": 210,
+        "name": "Тошнота",
+        "slug": "toshnota",
+        "typeID": 14
+      },
+      {
+        "ID": 211,
+        "name": "Рвота",
+        "slug": "rvota",
+        "typeID": 14
+      },
+      {
+        "ID": 212,
+        "name": "Диарея (понос)",
+        "slug": "diareya_ponos",
+        "typeID": 14
+      },
+      {
+        "ID": 213,
+        "name": "Боль в животе",
+        "slug": "bol_v_zhivote",
+        "typeID": 14
+      },
+      {
+        "ID": 215,
+        "name": "Обезвоживание",
+        "slug": "obezvozhivanie",
+        "typeID": 14
+      },
+      {
+        "ID": 216,
+        "name": "Снижение аппетита",
+        "slug": "snizhenie_appetita",
+        "typeID": 14
+      },
+      {
+        "ID": 217,
+        "name": "Головная боль",
+        "slug": "golovnaya_bol",
+        "typeID": 14
+      },
+      {
+        "ID": 219,
+        "name": "Озноб",
+        "slug": "oznob",
+        "typeID": 14
+      },
+      {
+        "ID": 220,
+        "name": "Насморк (сопли)",
+        "slug": "nasmork_sopli",
+        "typeID": 14
+      },
+      {
+        "ID": 221,
+        "name": "Чихание",
+        "slug": "chihanie",
+        "typeID": 14
+      },
+      {
+        "ID": 222,
+        "name": "Заложенность носа",
+        "slug": "zalozhennost_nosa",
+        "typeID": 14
+      },
+      {
+        "ID": 223,
+        "name": "Охриплость/осиплость",
+        "slug": "ohriplost",
+        "typeID": 14
+      },
+      {
+        "ID": 224,
+        "name": "Кашель сухой",
+        "slug": "kashel_suhoj",
+        "typeID": 14
+      },
+      {
+        "ID": 225,
+        "name": "Кашель влажный",
+        "slug": "kashel_vlazhnyj",
+        "typeID": 14
+      },
+      {
+        "ID": 226,
+        "name": "Покраснение глаз (конъюктивит)",
+        "slug": "pokrasnenie_glaz_konyuktivit",
+        "typeID": 14
+      },
+      {
+        "ID": 227,
+        "name": "Затруднённость дыхания (в связи с кашлем)",
+        "slug": "zatrudnyonnost_dyhaniya",
+        "typeID": 14
+      },
+      {
+        "ID": 228,
+        "name": "Спутанность сознания",
+        "slug": "sputannost_soznaniya",
+        "typeID": 14
+      },
+      {
+        "ID": 229,
+        "name": "Утомляемость",
+        "slug": "utomlyaemost",
+        "typeID": 14
+      },
+      {
+        "ID": 230,
+        "name": "Увеличение лимфоузлов",
+        "slug": "uvelichenie_limfouzlov",
+        "typeID": 14
+      },
+      {
+        "ID": 232,
+        "name": "Одышка (в связи с кашлем)",
+        "slug": "odyshka_v_svyazi_s_kashlem",
+        "typeID": 14
+      },
+      {
+        "ID": 233,
+        "name": "Покраснение горла",
+        "slug": "pokrasnenie_gorla",
+        "typeID": 14
+      },
+      {
+        "ID": 251,
+        "name": "Потеря обоняния",
+        "slug": "poterya_obonyaniya",
+        "typeID": 14
+      },
+      {
+        "ID": 252,
+        "name": "Потеря вкуса",
+        "slug": "poterya_vkusa",
+        "typeID": 14
+      },
+      {
+        "ID": 473,
+        "name": "10 шт",
+        "slug": "10_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 916,
+        "name": "Парацетамол+Фенилэфрин+Аскорбиновая кислота",
+        "slug": "paracetamol_fenilefrin_askorbinovaya_kislota",
+        "typeID": 19
+      },
+      {
+        "ID": 937,
+        "name": "Терафлю",
+        "slug": "teraflyu",
+        "typeID": 8
+      },
+      {
+        "ID": 1358,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 6
+      },
+      {
+        "ID": 1805,
+        "name": "Ринза",
+        "slug": "rinza",
+        "typeID": 8
+      },
+      {
+        "ID": 1821,
+        "name": "Фервекс",
+        "slug": "ferveks",
+        "typeID": 8
+      },
+      {
+        "ID": 1884,
+        "name": "Фенилэфрин",
+        "slug": "fenilefrin",
+        "typeID": 6
+      },
+      {
+        "ID": 2174,
+        "name": "ОАО \"Синтез\"",
+        "slug": "oao_sintez",
+        "typeID": 13
+      },
+      {
+        "ID": 2187,
+        "name": "От гриппа",
+        "slug": "ot_grippa",
+        "typeID": 8
+      },
+      {
+        "ID": 2188,
+        "name": "От простуды",
+        "slug": "ot_prostudy",
+        "typeID": 8
+      },
+      {
+        "ID": 2196,
+        "name": "Противопростудные комплексы",
+        "slug": "protivoprostudnye_kompleksy",
+        "typeID": 8
+      },
+      {
+        "ID": 2197,
+        "name": "Порошки от простуды",
+        "slug": "poroshki_ot_prostudy",
+        "typeID": 8
+      },
+      {
+        "ID": 2397,
+        "name": "Колдрекс",
+        "slug": "koldreks",
+        "typeID": 8
+      },
+      {
+        "ID": 2398,
+        "name": "Колдакт",
+        "slug": "koldakt",
+        "typeID": 8
+      },
+      {
+        "ID": 2456,
+        "name": "Дуоколд",
+        "slug": "duokold",
+        "typeID": 8
+      },
+      {
+        "ID": 2570,
+        "name": "Анвимакс",
+        "slug": "anvimaks",
+        "typeID": 8
+      },
+      {
+        "ID": 2642,
+        "name": "Антигриппин",
+        "slug": "antigrippin",
+        "typeID": 8
+      },
+      {
+        "ID": 2697,
+        "name": "Максиколд",
+        "slug": "maksikold",
+        "typeID": 8
+      },
+      {
+        "ID": 2834,
+        "name": "Флюфайт",
+        "slug": "flyufajt",
+        "typeID": 8
+      },
+      {
+        "ID": 2835,
+        "name": "Стопгрипан",
+        "slug": "stopgripan",
+        "typeID": 8
+      },
+      {
+        "ID": 2836,
+        "name": "Простудокс",
+        "slug": "prostudoks",
+        "typeID": 8
+      },
+      {
+        "ID": 4018,
+        "name": "Противопростудные комплексы",
+        "slug": "protivoprostudnye_kompleksy",
+        "typeID": 21
+      },
+      {
+        "ID": 8181,
+        "name": "Простудокс",
+        "slug": "prostudoks",
+        "typeID": 10
+      },
+      {
+        "ID": 15509,
+        "name": "Острая инфекция верхних отделов дыхательных путей неуточненная",
+        "slug": "ostraya_infekciya_verhnih_otdelov_dyhatelnyh_putej_neutochnennaya",
+        "typeID": 5
+      },
+      {
+        "ID": 15584,
+        "name": "Грипп, вызванный идентифицированным вирусом сезонного гриппа",
+        "slug": "gripp_vyzvannyj_identificirovannym_virusom_sezonnogo_grippa",
+        "typeID": 5
+      },
+      {
+        "ID": 15604,
+        "name": "\tЛихорадка неясного происхождения",
+        "slug": "_lihoradka_neyasnogo_proishozhdeniya",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "4aeb953822341830b7967ad6250c5575.webp"
+    ],
+    "reviewsNumber": 11,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 31,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/243072/80/4aeb953822341830b7967ad6250c5575.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/243072/208/4aeb953822341830b7967ad6250c5575.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": true
+  },
+  {
+    "ID": 205881,
+    "typeIDs": [
+      396070,
+      396194,
+      398611
+    ],
+    "subtypeIDs": [
+      35,
+      2552,
+      2557
+    ],
+    "categoryID": 440,
+    "slug": "diklofenak_gel_5_100g",
+    "name": "Диклофенак гель 5% 100г Синтез",
+    "rating": 88,
+    "price": {
+      "withCard": 684.0,
+      "withPeriod": 452.0,
+      "withoutCard": 684.0
+    },
+    "priceZakaz": {
+      "withCard": 684.0,
+      "withPeriod": 452.0,
+      "withoutCard": 684.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "5%",
+        "slug": "5",
+        "typeID": 20
+      },
+      {
+        "ID": 6,
+        "name": "15-25 С",
+        "slug": "1525_s",
+        "typeID": 18
+      },
+      {
+        "ID": 14,
+        "name": "Домашняя аптечка",
+        "slug": "domashnyaya_aptechka",
+        "typeID": 8
+      },
+      {
+        "ID": 26,
+        "name": "Гель для наружного применения",
+        "slug": "gel_dlya_naruzhnogo_primeneniya",
+        "typeID": 16
+      },
+      {
+        "ID": 62,
+        "name": "Подагра",
+        "slug": "podagra",
+        "typeID": 5
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 196,
+        "name": "Вольтарен",
+        "slug": "voltaren",
+        "typeID": 8
+      },
+      {
+        "ID": 374,
+        "name": "Диклофенак",
+        "slug": "diklofenak",
+        "typeID": 19
+      },
+      {
+        "ID": 542,
+        "name": "Диклофенак",
+        "slug": "diklofenak",
+        "typeID": 6
+      },
+      {
+        "ID": 570,
+        "name": "100 г",
+        "slug": "100_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 684,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 8
+      },
+      {
+        "ID": 685,
+        "name": "Боль в спине",
+        "slug": "bol_v_spine",
+        "typeID": 8
+      },
+      {
+        "ID": 1488,
+        "name": "Быструмгель",
+        "slug": "bystrumgel",
+        "typeID": 8
+      },
+      {
+        "ID": 1638,
+        "name": "Диклофенак",
+        "slug": "diklofenak",
+        "typeID": 8
+      },
+      {
+        "ID": 1904,
+        "name": "Дип Рилиф",
+        "slug": "dip_rilif",
+        "typeID": 8
+      },
+      {
+        "ID": 1954,
+        "name": "Диклак",
+        "slug": "diklak",
+        "typeID": 8
+      },
+      {
+        "ID": 1997,
+        "name": "Долобене",
+        "slug": "dolobene",
+        "typeID": 8
+      },
+      {
+        "ID": 2174,
+        "name": "ОАО \"Синтез\"",
+        "slug": "oao_sintez",
+        "typeID": 13
+      },
+      {
+        "ID": 2692,
+        "name": "Траумель",
+        "slug": "traumel",
+        "typeID": 8
+      },
+      {
+        "ID": 3938,
+        "name": "Противовоспалительные и обезболивающие средства (наружные)",
+        "slug": "protivovospalitelnye_i_obezbolivayushchie_sredstva_naruzhnye",
+        "typeID": 21
+      },
+      {
+        "ID": 5499,
+        "name": "Диклофенак",
+        "slug": "diklofenak",
+        "typeID": 10
+      },
+      {
+        "ID": 15324,
+        "name": "Серопозитивный ревматоидный артрит",
+        "slug": "seropozitivnyj_revmatoidnyj_artrit",
+        "typeID": 5
+      },
+      {
+        "ID": 15449,
+        "name": "Артроз неуточненный",
+        "slug": "artroz_neutochnennyj",
+        "typeID": 5
+      },
+      {
+        "ID": 15455,
+        "name": "Спондилез",
+        "slug": "spondilez",
+        "typeID": 5
+      },
+      {
+        "ID": 15459,
+        "name": "Адгезивный капсулит плеча",
+        "slug": "adgezivnyj_kapsulit_plecha",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "c4d913ebb64b6ca9bd0cf574ee00a505.webp"
+    ],
+    "reviewsNumber": 21,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 30,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/205881/80/c4d913ebb64b6ca9bd0cf574ee00a505.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/205881/208/c4d913ebb64b6ca9bd0cf574ee00a505.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "88%",
+      "internalCard": "88% покупателей выбирают",
+      "internalCardHint": "88% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 239984,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      2557
+    ],
+    "categoryID": 273,
+    "slug": "elokssolofarm_rastvor_10mgml_ampuly_1_5ml_5",
+    "name": "Элокс-СОЛОфарм раствор 10мг/мл ампулы 1.5мл №5",
+    "rating": 70,
+    "price": {
+      "withCard": 540.0,
+      "withPeriod": 432.0,
+      "withoutCard": 540.0
+    },
+    "priceZakaz": {
+      "withCard": 540.0,
+      "withPeriod": 432.0,
+      "withoutCard": 540.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "10мг/мл",
+        "slug": "10mg",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 20,
+        "name": "Раствор для инъекций",
+        "slug": "rastvor_dlya_inekcij",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 173,
+        "name": "Мовалис",
+        "slug": "movalis",
+        "typeID": 8
+      },
+      {
+        "ID": 196,
+        "name": "Вольтарен",
+        "slug": "voltaren",
+        "typeID": 8
+      },
+      {
+        "ID": 213,
+        "name": "1.50 мл, 5 шт",
+        "slug": "1_50_ml_5_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 690,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 19
+      },
+      {
+        "ID": 1083,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 6
+      },
+      {
+        "ID": 1638,
+        "name": "Диклофенак",
+        "slug": "diklofenak",
+        "typeID": 8
+      },
+      {
+        "ID": 2198,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 8
+      },
+      {
+        "ID": 3935,
+        "name": "Противовоспалительные средства (внутренние)",
+        "slug": "protivovospalitelnye_sredstva_vnutrennie",
+        "typeID": 21
+      },
+      {
+        "ID": 10549,
+        "name": "Элокс-СОЛОфарм",
+        "slug": "elokssolofarm",
+        "typeID": 10
+      },
+      {
+        "ID": 15275,
+        "name": "Острая боль",
+        "slug": "ostraya_bol",
+        "typeID": 5
+      },
+      {
+        "ID": 15449,
+        "name": "Артроз неуточненный",
+        "slug": "artroz_neutochnennyj",
+        "typeID": 5
+      },
+      {
+        "ID": 15454,
+        "name": "Анкилозирующий спондилит",
+        "slug": "ankiloziruyushchij_spondilit",
+        "typeID": 5
+      },
+      {
+        "ID": 15455,
+        "name": "Спондилез",
+        "slug": "spondilez",
+        "typeID": 5
+      },
+      {
+        "ID": 15593,
+        "name": "Радикулопатия",
+        "slug": "radikulopatiya",
+        "typeID": 5
+      },
+      {
+        "ID": 18058,
+        "name": "ООО \"Гротекс\"",
+        "slug": "ooo_groteks",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "cee3552a3ffacbbbd73cfbcd5a701d13.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "bonuses": 34,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/239984/80/cee3552a3ffacbbbd73cfbcd5a701d13.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/239984/208/cee3552a3ffacbbbd73cfbcd5a701d13.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "70%",
+      "internalCard": "70% покупателей выбирают",
+      "internalCardHint": "70% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 39497,
+    "typeIDs": [
+      396070,
+      398611
+    ],
+    "subtypeIDs": [
+      11,
+      2552,
+      2572
+    ],
+    "categoryID": 474,
+    "slug": "dimeksid_fl_100ml",
+    "name": "Димексид флакон 100мл №1",
+    "rating": 77,
+    "price": {
+      "withCard": 388.0,
+      "withPeriod": 310.0,
+      "withoutCard": 388.0
+    },
+    "priceZakaz": {
+      "withCard": 388.0,
+      "withPeriod": 310.0,
+      "withoutCard": 388.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "sticker": "-50% на 2-ю уп.",
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "99%",
+        "slug": "99",
+        "typeID": 20
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 76,
+        "name": "Пиодермия",
+        "slug": "piodermiya",
+        "typeID": 5
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 185,
+        "name": "100 мл",
+        "slug": "100_00_ml",
+        "typeID": 222
+      },
+      {
+        "ID": 384,
+        "name": "Диметилсульфоксид",
+        "slug": "dimetilsulfoksid",
+        "typeID": 19
+      },
+      {
+        "ID": 429,
+        "name": "Концентрат для приготовления раствора для наружного применения",
+        "slug": "koncentrat_dlya_prigotovleniya_rastvora_dlya_naruzhnogo_primeneniya",
+        "typeID": 16
+      },
+      {
+        "ID": 553,
+        "name": "Диметилсульфоксид",
+        "slug": "dimetilsulfoksid",
+        "typeID": 6
+      },
+      {
+        "ID": 684,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 8
+      },
+      {
+        "ID": 685,
+        "name": "Боль в спине",
+        "slug": "bol_v_spine",
+        "typeID": 8
+      },
+      {
+        "ID": 753,
+        "name": "От боли в суставах",
+        "slug": "ot_boli_v_sustavah",
+        "typeID": 8
+      },
+      {
+        "ID": 955,
+        "name": "Ушиб",
+        "slug": "ushib1",
+        "typeID": 8
+      },
+      {
+        "ID": 1731,
+        "name": "АО \"Кировская ФФ\"",
+        "slug": "oao_kirovskaya_ff",
+        "typeID": 13
+      },
+      {
+        "ID": 4006,
+        "name": "Местнораздражающие средства",
+        "slug": "mestnorazdrazhayushchie_sredstva",
+        "typeID": 21
+      },
+      {
+        "ID": 5350,
+        "name": "Димексид",
+        "slug": "dimeksid",
+        "typeID": 10
+      },
+      {
+        "ID": 15448,
+        "name": "Полиартроз",
+        "slug": "poliartroz",
+        "typeID": 5
+      },
+      {
+        "ID": 15593,
+        "name": "Радикулопатия",
+        "slug": "radikulopatiya",
+        "typeID": 5
+      },
+      {
+        "ID": 15912,
+        "name": "Флебит и тромбофлебит",
+        "slug": "flebit_i_tromboflebit",
+        "typeID": 5
+      },
+      {
+        "ID": 15958,
+        "name": "Дискоидная красная волчанка",
+        "slug": "diskoidnaya_krasnaya_volchanka",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "39497.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "bonuses": 11,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "discountTemplate": "n_percent_m_pack",
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/39497/80/39497.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/39497/208/39497.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "77%",
+      "internalCard": "77% покупателей выбирают",
+      "internalCardHint": "77% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 263145,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 463,
+    "slug": "drotaverin_tabletki_40mg_30",
+    "name": "Дротаверин таблетки 40мг №30",
+    "rating": 89,
+    "price": {
+      "withCard": 124.0,
+      "withPeriod": 111.0,
+      "withoutCard": 124.0
+    },
+    "priceZakaz": {
+      "withCard": 124.0,
+      "withPeriod": 111.0,
+      "withoutCard": 124.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "sticker": "1+1",
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "40мг",
+        "slug": "40mg",
+        "typeID": 20
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 12,
+        "name": "30 шт",
+        "slug": "30_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 16,
+        "name": "Таблетки",
+        "slug": "tabletki",
+        "typeID": 16
+      },
+      {
+        "ID": 17,
+        "name": "Сегодня покупают",
+        "slug": "segodnya_pokupayut",
+        "typeID": 8
+      },
+      {
+        "ID": 90,
+        "name": "Болит живот",
+        "slug": "bolit_zhivot",
+        "typeID": 8
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 422,
+        "name": "Дротаверин",
+        "slug": "drotaverin",
+        "typeID": 19
+      },
+      {
+        "ID": 596,
+        "name": "Дротаверин",
+        "slug": "drotaverin",
+        "typeID": 6
+      },
+      {
+        "ID": 2545,
+        "name": "Ношпа",
+        "slug": "noshpa",
+        "typeID": 8
+      },
+      {
+        "ID": 2639,
+        "name": "Дротаверин",
+        "slug": "drotaverin",
+        "typeID": 8
+      },
+      {
+        "ID": 2685,
+        "name": "Но шпа",
+        "slug": "no_shpa",
+        "typeID": 8
+      },
+      {
+        "ID": 3937,
+        "name": "Средства спазмолитики",
+        "slug": "sredstva_spazmolitiki",
+        "typeID": 21
+      },
+      {
+        "ID": 5336,
+        "name": "Дротаверин",
+        "slug": "drotaverin",
+        "typeID": 10
+      },
+      {
+        "ID": 15278,
+        "name": "Желчнокаменная болезнь [холелитиаз] (в т.ч. печеночная колика)",
+        "slug": "zhelchnokamennaya_bolezn_holelitiaz_v_t_ch_pechenochnaya_kolika",
+        "typeID": 5
+      },
+      {
+        "ID": 15288,
+        "name": "Холангит",
+        "slug": "holangit",
+        "typeID": 5
+      },
+      {
+        "ID": 15295,
+        "name": "Острый тубулоинстерстициальный нефрит (острый пиелонефрит)",
+        "slug": "ostryj_tubuloinstersticialnyj_nefrit_ostryj_pielonefrit",
+        "typeID": 5
+      },
+      {
+        "ID": 15366,
+        "name": "Гастрит и дуоденит",
+        "slug": "gastrit_i_duodenit",
+        "typeID": 5
+      },
+      {
+        "ID": 15711,
+        "name": "Первичная дисменорея",
+        "slug": "pervichnaya_dismenoreya",
+        "typeID": 5
+      },
+      {
+        "ID": 20782,
+        "name": "ООО \"Велфарм\"/ООО \"Велфарм-М\"",
+        "slug": "ooo_velfarm",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "a783e5334fcccb3bd35d70da3c240198.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "bonuses": 4,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "discountTemplate": "n+m",
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/263145/80/a783e5334fcccb3bd35d70da3c240198.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/263145/208/a783e5334fcccb3bd35d70da3c240198.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 259201,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 495,
+    "slug": "paracetamol_detskij_s_mernoj_lozhkoj_suspenziya_120_mg5_ml_fl_100ml",
+    "name": "Парацетамол суспензия 120 мг/5 мл фл. 100мл",
+    "rating": 89,
+    "price": {
+      "withCard": 88.0,
+      "withPeriod": 81.0,
+      "withoutCard": 88.0
+    },
+    "priceZakaz": {
+      "withCard": 88.0,
+      "withPeriod": 81.0,
+      "withoutCard": 88.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "24мг/мл",
+        "slug": "24mg",
+        "typeID": 20
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 18,
+        "name": "Суспензия для приема внутрь",
+        "slug": "suspenziya_dlya_priema_vnutr",
+        "typeID": 16
+      },
+      {
+        "ID": 105,
+        "name": "Головная боль",
+        "slug": "golovnaya_bol",
+        "typeID": 5
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 132,
+        "name": "Миалгия",
+        "slug": "mialgiya",
+        "typeID": 5
+      },
+      {
+        "ID": 152,
+        "name": "Жар",
+        "slug": "zhar",
+        "typeID": 8
+      },
+      {
+        "ID": 185,
+        "name": "100 мл",
+        "slug": "100_00_ml",
+        "typeID": 222
+      },
+      {
+        "ID": 914,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 19
+      },
+      {
+        "ID": 1358,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 6
+      },
+      {
+        "ID": 1654,
+        "name": "Нурофен",
+        "slug": "nurofen",
+        "typeID": 8
+      },
+      {
+        "ID": 2044,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 8
+      },
+      {
+        "ID": 2223,
+        "name": "Жаропонижающие сиропы",
+        "slug": "zharoponizhayushchie_siropy",
+        "typeID": 8
+      },
+      {
+        "ID": 2224,
+        "name": "Сироп от температуры",
+        "slug": "sirop_ot_temperatury",
+        "typeID": 8
+      },
+      {
+        "ID": 2225,
+        "name": "Суспензия от температуры",
+        "slug": "suspenziya_ot_temperatury",
+        "typeID": 8
+      },
+      {
+        "ID": 2290,
+        "name": "Жаропонижающие средства",
+        "slug": "zharoponizhayushchie_sredstva",
+        "typeID": 8
+      },
+      {
+        "ID": 2440,
+        "name": "ЗАО \"ЭКОлаб\"",
+        "slug": "zao_ekolab",
+        "typeID": 13
+      },
+      {
+        "ID": 2661,
+        "name": "Парацетомол",
+        "slug": "paracetomol",
+        "typeID": 8
+      },
+      {
+        "ID": 3936,
+        "name": "Средства от боли",
+        "slug": "sredstva_ot_boli",
+        "typeID": 21
+      },
+      {
+        "ID": 8307,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 10
+      },
+      {
+        "ID": 15584,
+        "name": "Грипп, вызванный идентифицированным вирусом сезонного гриппа",
+        "slug": "gripp_vyzvannyj_identificirovannym_virusom_sezonnogo_grippa",
+        "typeID": 5
+      },
+      {
+        "ID": 15600,
+        "name": "Невралгия и неврит неуточненные",
+        "slug": "nevralgiya_i_nevrit_neutochnennye",
+        "typeID": 5
+      },
+      {
+        "ID": 15710,
+        "name": "Другие уточненные изменения зубов и их опорного аппарата (в т.ч. зубная боль)",
+        "slug": "drugie_utochnennye_izmeneniya_zubov_i_ih_opornogo_apparata_v_t_ch_zubnaya_bol",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "d38e193530bbac75d84d0e81e22a130d.webp"
+    ],
+    "reviewsNumber": 2,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 5,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/259201/80/d38e193530bbac75d84d0e81e22a130d.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/259201/208/d38e193530bbac75d84d0e81e22a130d.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 44985,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 513,
+    "slug": "lidokaina_gidrohlorid_rastvor_dlya_inekcij_20mgml_ampuly_2ml_10",
+    "name": "Лидокаина гидрохлорид раствор для инъекций 20мг/мл ампулы 2мл №10 Гротекс",
+    "rating": 89,
+    "price": {
+      "withCard": 139.0,
+      "withPeriod": 117.0,
+      "withoutCard": 139.0
+    },
+    "priceZakaz": {
+      "withCard": 139.0,
+      "withPeriod": 117.0,
+      "withoutCard": 139.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "2%",
+        "slug": "2",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 20,
+        "name": "Раствор для инъекций",
+        "slug": "rastvor_dlya_inekcij",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 139,
+        "name": "2 мл, 10 шт",
+        "slug": "2_00_ml_10_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 635,
+        "name": "Лидокаин",
+        "slug": "lidokain",
+        "typeID": 19
+      },
+      {
+        "ID": 947,
+        "name": "Лидокаин",
+        "slug": "lidokain",
+        "typeID": 6
+      },
+      {
+        "ID": 3939,
+        "name": "Средства для анестезии",
+        "slug": "sredstva_dlya_anestezii",
+        "typeID": 21
+      },
+      {
+        "ID": 6435,
+        "name": "Лидокаина гидрохлорид",
+        "slug": "lidokaina_gidrohlorid",
+        "typeID": 10
+      },
+      {
+        "ID": 15585,
+        "name": "\tПодготовительные процедуры для последующего лечения или обследования, не классифицированные в других рубриках\r\n",
+        "slug": "_podgotovitelnye_procedury_dlya_posleduyushchego_lecheniya_ili_obsledovaniya_ne_klassificirovannye_v_drugih_rubrikah",
+        "typeID": 5
+      },
+      {
+        "ID": 18058,
+        "name": "ООО \"Гротекс\"",
+        "slug": "ooo_groteks",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "78b650ce2825500a0ef5adf955af6707.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "bonuses": 7,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/44985/80/78b650ce2825500a0ef5adf955af6707.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/44985/208/78b650ce2825500a0ef5adf955af6707.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 324925,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 534,
+    "slug": "analgin_rastvor_50_ampuly_2ml_10",
+    "name": "Анальгин раствор 50% ампулы 2мл №10 Эллара",
+    "rating": 89,
+    "price": {
+      "withCard": 137.0,
+      "withPeriod": 105.0,
+      "withoutCard": 137.0
+    },
+    "priceZakaz": {
+      "withCard": 137.0,
+      "withPeriod": 105.0,
+      "withoutCard": 137.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "500мг/мл",
+        "slug": "500mg",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 14,
+        "name": "Домашняя аптечка",
+        "slug": "domashnyaya_aptechka",
+        "typeID": 8
+      },
+      {
+        "ID": 20,
+        "name": "Раствор для инъекций",
+        "slug": "rastvor_dlya_inekcij",
+        "typeID": 16
+      },
+      {
+        "ID": 31,
+        "name": "Аптечка путешественника",
+        "slug": "aptechka_puteshestvennika",
+        "typeID": 8
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 139,
+        "name": "2 мл, 10 шт",
+        "slug": "2_00_ml_10_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 196,
+        "name": "Вольтарен",
+        "slug": "voltaren",
+        "typeID": 8
+      },
+      {
+        "ID": 684,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 8
+      },
+      {
+        "ID": 685,
+        "name": "Боль в спине",
+        "slug": "bol_v_spine",
+        "typeID": 8
+      },
+      {
+        "ID": 712,
+        "name": "Метамизол натрия",
+        "slug": "metamizol_natriya",
+        "typeID": 19
+      },
+      {
+        "ID": 753,
+        "name": "От боли в суставах",
+        "slug": "ot_boli_v_sustavah",
+        "typeID": 8
+      },
+      {
+        "ID": 1103,
+        "name": "Метамизол натрия",
+        "slug": "metamizol_natriya",
+        "typeID": 6
+      },
+      {
+        "ID": 1497,
+        "name": "Дексалгин",
+        "slug": "deksalgin",
+        "typeID": 8
+      },
+      {
+        "ID": 1654,
+        "name": "Нурофен",
+        "slug": "nurofen",
+        "typeID": 8
+      },
+      {
+        "ID": 2198,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 8
+      },
+      {
+        "ID": 2376,
+        "name": "Внутренние средства от боли",
+        "slug": "vnutrennie_sredstva_ot_boli",
+        "typeID": 8
+      },
+      {
+        "ID": 2377,
+        "name": "Средства от боли внутренние",
+        "slug": "sredstva_ot_boli_vnutrennie",
+        "typeID": 8
+      },
+      {
+        "ID": 2455,
+        "name": "ООО \"Эллара\"",
+        "slug": "ooo_ellara_mc",
+        "typeID": 13
+      },
+      {
+        "ID": 2494,
+        "name": "Аскофен",
+        "slug": "askofen",
+        "typeID": 8
+      },
+      {
+        "ID": 2532,
+        "name": "Цитрамон",
+        "slug": "citramon",
+        "typeID": 8
+      },
+      {
+        "ID": 2550,
+        "name": "Артрозан",
+        "slug": "artrozan",
+        "typeID": 8
+      },
+      {
+        "ID": 2625,
+        "name": "Артоксан",
+        "slug": "artoksan",
+        "typeID": 8
+      },
+      {
+        "ID": 2631,
+        "name": "Цитромон",
+        "slug": "citromon",
+        "typeID": 8
+      },
+      {
+        "ID": 2667,
+        "name": "Тексаред",
+        "slug": "teksared",
+        "typeID": 8
+      },
+      {
+        "ID": 2691,
+        "name": "Анальгин",
+        "slug": "analgin",
+        "typeID": 8
+      },
+      {
+        "ID": 3821,
+        "name": "Анальгин",
+        "slug": "analgin",
+        "typeID": 10
+      },
+      {
+        "ID": 15278,
+        "name": "Желчнокаменная болезнь [холелитиаз] (в т.ч. печеночная колика)",
+        "slug": "zhelchnokamennaya_bolezn_holelitiaz_v_t_ch_pechenochnaya_kolika",
+        "typeID": 5
+      },
+      {
+        "ID": 15600,
+        "name": "Невралгия и неврит неуточненные",
+        "slug": "nevralgiya_i_nevrit_neutochnennye",
+        "typeID": 5
+      },
+      {
+        "ID": 15711,
+        "name": "Первичная дисменорея",
+        "slug": "pervichnaya_dismenoreya",
+        "typeID": 5
+      },
+      {
+        "ID": 15712,
+        "name": "Вторичная дисменорея",
+        "slug": "vtorichnaya_dismenoreya",
+        "typeID": 5
+      },
+      {
+        "ID": 15715,
+        "name": "Вывих, растяжение и перенапряжение капсульно-связочного аппарата сустава неуточненной области тела",
+        "slug": "vyvih_rastyazhenie_i_perenapryazhenie_kapsulnosvyazochnogo_apparata_sustava_neutochnennoj_oblasti_tela",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "042df08236b0d82ae9d9c3dfcdf75aae.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/324925/80/042df08236b0d82ae9d9c3dfcdf75aae.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/324925/208/042df08236b0d82ae9d9c3dfcdf75aae.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 273422,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 274,
+    "slug": "indometacin_suppozitorii_rektalnye_50mg_10",
+    "name": "Индометацин суппозитории ректальные 50мг №10",
+    "rating": 89,
+    "price": {
+      "withCard": 82.0,
+      "withPeriod": 48.0,
+      "withoutCard": 82.0
+    },
+    "priceZakaz": {
+      "withCard": 82.0,
+      "withPeriod": 48.0,
+      "withoutCard": 82.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "50мг",
+        "slug": "50mg",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 41,
+        "name": "Суппозитории ректальные",
+        "slug": "suppozitorii_rektalnye",
+        "typeID": 16
+      },
+      {
+        "ID": 62,
+        "name": "Подагра",
+        "slug": "podagra",
+        "typeID": 5
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 196,
+        "name": "Вольтарен",
+        "slug": "voltaren",
+        "typeID": 8
+      },
+      {
+        "ID": 466,
+        "name": "Индометацин",
+        "slug": "indometacin",
+        "typeID": 19
+      },
+      {
+        "ID": 473,
+        "name": "10 шт",
+        "slug": "10_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 680,
+        "name": "Индометацин",
+        "slug": "indometacin",
+        "typeID": 6
+      },
+      {
+        "ID": 2250,
+        "name": "ООО \"Тульская ФФ\"",
+        "slug": "ooo_tulskaya_ff",
+        "typeID": 13
+      },
+      {
+        "ID": 2775,
+        "name": "Свечи",
+        "slug": "svechi",
+        "typeID": 8
+      },
+      {
+        "ID": 5296,
+        "name": "Индометацин",
+        "slug": "indometacin",
+        "typeID": 10
+      },
+      {
+        "ID": 15275,
+        "name": "Острая боль",
+        "slug": "ostraya_bol",
+        "typeID": 5
+      },
+      {
+        "ID": 15324,
+        "name": "Серопозитивный ревматоидный артрит",
+        "slug": "seropozitivnyj_revmatoidnyj_artrit",
+        "typeID": 5
+      },
+      {
+        "ID": 15457,
+        "name": "Болезни мягких тканей, связанные с нагрузкой, перегрузкой и давлением",
+        "slug": "bolezni_myagkih_tkanej_svyazannye_s_nagruzkoj_peregruzkoj_i_davleniem",
+        "typeID": 5
+      },
+      {
+        "ID": 15933,
+        "name": "\tПоражения нервных корешков и сплетений",
+        "slug": "_porazheniya_nervnyh_koreshkov_i_spletenij",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "5c833244f3b708fb5c662b022db4bff4.webp"
+    ],
+    "reviewsNumber": 1,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 5,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/273422/80/5c833244f3b708fb5c662b022db4bff4.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/273422/208/5c833244f3b708fb5c662b022db4bff4.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 168187,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      2557
+    ],
+    "categoryID": 497,
+    "slug": "paracetamol_supp_rekt_330mg_10",
+    "name": "Парацетамол детский супп.рект. 100мг №10",
+    "rating": 65,
+    "price": {
+      "withCard": 50.0,
+      "withPeriod": 41.0,
+      "withoutCard": 50.0
+    },
+    "priceZakaz": {
+      "withCard": 50.0,
+      "withPeriod": 41.0,
+      "withoutCard": 50.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "100мг",
+        "slug": "100mg",
+        "typeID": 20
+      },
+      {
+        "ID": 5,
+        "name": "Обычный",
+        "slug": "obychnyj",
+        "typeID": 18
+      },
+      {
+        "ID": 41,
+        "name": "Суппозитории ректальные",
+        "slug": "suppozitorii_rektalnye",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 132,
+        "name": "Миалгия",
+        "slug": "mialgiya",
+        "typeID": 5
+      },
+      {
+        "ID": 206,
+        "name": "Жар",
+        "slug": "zhar",
+        "typeID": 14
+      },
+      {
+        "ID": 207,
+        "name": "Повышенная температура тела",
+        "slug": "vysokaya_temperatura",
+        "typeID": 14
+      },
+      {
+        "ID": 208,
+        "name": "Боль в ухе (отит)",
+        "slug": "bolit_uho",
+        "typeID": 14
+      },
+      {
+        "ID": 473,
+        "name": "10 шт",
+        "slug": "10_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 914,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 19
+      },
+      {
+        "ID": 1358,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 6
+      },
+      {
+        "ID": 1654,
+        "name": "Нурофен",
+        "slug": "nurofen",
+        "typeID": 8
+      },
+      {
+        "ID": 2044,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 8
+      },
+      {
+        "ID": 2250,
+        "name": "ООО \"Тульская ФФ\"",
+        "slug": "ooo_tulskaya_ff",
+        "typeID": 13
+      },
+      {
+        "ID": 2290,
+        "name": "Жаропонижающие средства",
+        "slug": "zharoponizhayushchie_sredstva",
+        "typeID": 8
+      },
+      {
+        "ID": 2291,
+        "name": "Жаропонижающие свечи",
+        "slug": "zharoponizhayushchie_svechi",
+        "typeID": 8
+      },
+      {
+        "ID": 2292,
+        "name": "Свечи от температуры",
+        "slug": "svechi_ot_temperatury",
+        "typeID": 8
+      },
+      {
+        "ID": 2769,
+        "name": "Вибуркол",
+        "slug": "viburkol",
+        "typeID": 8
+      },
+      {
+        "ID": 2775,
+        "name": "Свечи",
+        "slug": "svechi",
+        "typeID": 8
+      },
+      {
+        "ID": 3936,
+        "name": "Средства от боли",
+        "slug": "sredstva_ot_boli",
+        "typeID": 21
+      },
+      {
+        "ID": 8307,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 10
+      },
+      {
+        "ID": 15275,
+        "name": "Острая боль",
+        "slug": "ostraya_bol",
+        "typeID": 5
+      },
+      {
+        "ID": 15509,
+        "name": "Острая инфекция верхних отделов дыхательных путей неуточненная",
+        "slug": "ostraya_infekciya_verhnih_otdelov_dyhatelnyh_putej_neutochnennaya",
+        "typeID": 5
+      },
+      {
+        "ID": 15600,
+        "name": "Невралгия и неврит неуточненные",
+        "slug": "nevralgiya_i_nevrit_neutochnennye",
+        "typeID": 5
+      },
+      {
+        "ID": 15604,
+        "name": "\tЛихорадка неясного происхождения",
+        "slug": "_lihoradka_neyasnogo_proishozhdeniya",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "68ca573c61709c07cc67e5462342f6d1.webp"
+    ],
+    "reviewsNumber": 2,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 5,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/168187/80/68ca573c61709c07cc67e5462342f6d1.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/168187/208/68ca573c61709c07cc67e5462342f6d1.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "65%",
+      "internalCard": "65% покупателей выбирают",
+      "internalCardHint": "65% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 66468,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      2557
+    ],
+    "categoryID": 275,
+    "slug": "meloksikam_tabletki_15mg_20",
+    "name": "Мелоксикам таблетки 15мг №20 Вертекс",
+    "rating": 89,
+    "price": {
+      "withCard": 409.0,
+      "withPeriod": 327.0,
+      "withoutCard": 409.0
+    },
+    "priceZakaz": {
+      "withCard": 409.0,
+      "withPeriod": 327.0,
+      "withoutCard": 409.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "15мг",
+        "slug": "15mg",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 14,
+        "name": "Домашняя аптечка",
+        "slug": "domashnyaya_aptechka",
+        "typeID": 8
+      },
+      {
+        "ID": 16,
+        "name": "Таблетки",
+        "slug": "tabletki",
+        "typeID": 16
+      },
+      {
+        "ID": 31,
+        "name": "Аптечка путешественника",
+        "slug": "aptechka_puteshestvennika",
+        "typeID": 8
+      },
+      {
+        "ID": 97,
+        "name": "Болит зуб",
+        "slug": "bolit_zub",
+        "typeID": 8
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 173,
+        "name": "Мовалис",
+        "slug": "movalis",
+        "typeID": 8
+      },
+      {
+        "ID": 204,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 14
+      },
+      {
+        "ID": 205,
+        "name": "Боль в горле",
+        "slug": "bolit_gorlo",
+        "typeID": 14
+      },
+      {
+        "ID": 206,
+        "name": "Жар",
+        "slug": "zhar",
+        "typeID": 14
+      },
+      {
+        "ID": 207,
+        "name": "Повышенная температура тела",
+        "slug": "vysokaya_temperatura",
+        "typeID": 14
+      },
+      {
+        "ID": 208,
+        "name": "Боль в ухе (отит)",
+        "slug": "bolit_uho",
+        "typeID": 14
+      },
+      {
+        "ID": 217,
+        "name": "Головная боль",
+        "slug": "golovnaya_bol",
+        "typeID": 14
+      },
+      {
+        "ID": 219,
+        "name": "Озноб",
+        "slug": "oznob",
+        "typeID": 14
+      },
+      {
+        "ID": 281,
+        "name": "Боль в суставе",
+        "slug": "bol_v_sustave",
+        "typeID": 5
+      },
+      {
+        "ID": 604,
+        "name": "20 шт",
+        "slug": "20_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 684,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 8
+      },
+      {
+        "ID": 685,
+        "name": "Боль в спине",
+        "slug": "bol_v_spine",
+        "typeID": 8
+      },
+      {
+        "ID": 690,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 19
+      },
+      {
+        "ID": 753,
+        "name": "От боли в суставах",
+        "slug": "ot_boli_v_sustavah",
+        "typeID": 8
+      },
+      {
+        "ID": 1083,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 6
+      },
+      {
+        "ID": 1497,
+        "name": "Дексалгин",
+        "slug": "deksalgin",
+        "typeID": 8
+      },
+      {
+        "ID": 1498,
+        "name": "АО «ВЕРТЕКС»",
+        "slug": "ao_verteks",
+        "typeID": 13
+      },
+      {
+        "ID": 1508,
+        "name": "Диафлекс",
+        "slug": "diafleks",
+        "typeID": 8
+      },
+      {
+        "ID": 1651,
+        "name": "Артрокер",
+        "slug": "artroker",
+        "typeID": 8
+      },
+      {
+        "ID": 1652,
+        "name": "Фламадекс",
+        "slug": "flamadeks",
+        "typeID": 8
+      },
+      {
+        "ID": 2198,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 8
+      },
+      {
+        "ID": 2296,
+        "name": "НПВС",
+        "slug": "npvs",
+        "typeID": 8
+      },
+      {
+        "ID": 2297,
+        "name": "НПВС таблетки",
+        "slug": "npvs_tabletki",
+        "typeID": 8
+      },
+      {
+        "ID": 2298,
+        "name": "НПВС капсулы",
+        "slug": "npvs_kapsuly",
+        "typeID": 8
+      },
+      {
+        "ID": 2299,
+        "name": "НПВС порошки",
+        "slug": "npvs_poroshki",
+        "typeID": 8
+      },
+      {
+        "ID": 2300,
+        "name": "Нестероидные противовоспалительные препараты",
+        "slug": "nesteroidnye_protivovospalitelnye_preparaty",
+        "typeID": 8
+      },
+      {
+        "ID": 2550,
+        "name": "Артрозан",
+        "slug": "artrozan",
+        "typeID": 8
+      },
+      {
+        "ID": 2653,
+        "name": "Амелотекс",
+        "slug": "ameloteks",
+        "typeID": 8
+      },
+      {
+        "ID": 2678,
+        "name": "Оки",
+        "slug": "oki",
+        "typeID": 8
+      },
+      {
+        "ID": 2686,
+        "name": "Ксефокам",
+        "slug": "ksefokam",
+        "typeID": 8
+      },
+      {
+        "ID": 2690,
+        "name": "Кеторол",
+        "slug": "ketorol",
+        "typeID": 8
+      },
+      {
+        "ID": 3935,
+        "name": "Противовоспалительные средства (внутренние)",
+        "slug": "protivovospalitelnye_sredstva_vnutrennie",
+        "typeID": 21
+      },
+      {
+        "ID": 7233,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 10
+      },
+      {
+        "ID": 15447,
+        "name": "Артрит неуточненный",
+        "slug": "artrit_neutochnennyj",
+        "typeID": 5
+      },
+      {
+        "ID": 15448,
+        "name": "Полиартроз",
+        "slug": "poliartroz",
+        "typeID": 5
+      },
+      {
+        "ID": 15455,
+        "name": "Спондилез",
+        "slug": "spondilez",
+        "typeID": 5
+      },
+      {
+        "ID": 15593,
+        "name": "Радикулопатия",
+        "slug": "radikulopatiya",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "ce99722aa77b120c2beae62e55f16f37.webp"
+    ],
+    "reviewsNumber": 1,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 5,
+    "bonuses": 28,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/66468/80/ce99722aa77b120c2beae62e55f16f37.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/66468/208/ce99722aa77b120c2beae62e55f16f37.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": true
+  },
+  {
+    "ID": 259744,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      3872
+    ],
+    "categoryID": 225,
+    "slug": "prostudoks_poroshok_limon_pak_5",
+    "name": "Простудокс порошок для приготовления раствора для приема внутрь Лимон пакетики №5",
+    "rating": 89,
+    "price": {
+      "withCard": 287.0,
+      "withPeriod": 229.0,
+      "withoutCard": 287.0
+    },
+    "priceZakaz": {
+      "withCard": 287.0,
+      "withPeriod": 229.0,
+      "withoutCard": 287.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "750мг+10мг+60мг",
+        "slug": "750mg_10mg_60mg",
+        "typeID": 20
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 49,
+        "name": "Порошок для приготовления раствора для внутреннего применения",
+        "slug": "poroshok_dlya_prigotovleniya_rastvora_dlya_vnutrennego_primeneniya",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 140,
+        "name": "Аскорбиновая кислота",
+        "slug": "askorbinovaya_kislota",
+        "typeID": 6
+      },
+      {
+        "ID": 204,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 14
+      },
+      {
+        "ID": 205,
+        "name": "Боль в горле",
+        "slug": "bolit_gorlo",
+        "typeID": 14
+      },
+      {
+        "ID": 206,
+        "name": "Жар",
+        "slug": "zhar",
+        "typeID": 14
+      },
+      {
+        "ID": 207,
+        "name": "Повышенная температура тела",
+        "slug": "vysokaya_temperatura",
+        "typeID": 14
+      },
+      {
+        "ID": 209,
+        "name": "Слабость",
+        "slug": "slabost",
+        "typeID": 14
+      },
+      {
+        "ID": 210,
+        "name": "Тошнота",
+        "slug": "toshnota",
+        "typeID": 14
+      },
+      {
+        "ID": 211,
+        "name": "Рвота",
+        "slug": "rvota",
+        "typeID": 14
+      },
+      {
+        "ID": 212,
+        "name": "Диарея (понос)",
+        "slug": "diareya_ponos",
+        "typeID": 14
+      },
+      {
+        "ID": 213,
+        "name": "Боль в животе",
+        "slug": "bol_v_zhivote",
+        "typeID": 14
+      },
+      {
+        "ID": 215,
+        "name": "Обезвоживание",
+        "slug": "obezvozhivanie",
+        "typeID": 14
+      },
+      {
+        "ID": 216,
+        "name": "Снижение аппетита",
+        "slug": "snizhenie_appetita",
+        "typeID": 14
+      },
+      {
+        "ID": 217,
+        "name": "Головная боль",
+        "slug": "golovnaya_bol",
+        "typeID": 14
+      },
+      {
+        "ID": 219,
+        "name": "Озноб",
+        "slug": "oznob",
+        "typeID": 14
+      },
+      {
+        "ID": 220,
+        "name": "Насморк (сопли)",
+        "slug": "nasmork_sopli",
+        "typeID": 14
+      },
+      {
+        "ID": 221,
+        "name": "Чихание",
+        "slug": "chihanie",
+        "typeID": 14
+      },
+      {
+        "ID": 222,
+        "name": "Заложенность носа",
+        "slug": "zalozhennost_nosa",
+        "typeID": 14
+      },
+      {
+        "ID": 223,
+        "name": "Охриплость/осиплость",
+        "slug": "ohriplost",
+        "typeID": 14
+      },
+      {
+        "ID": 224,
+        "name": "Кашель сухой",
+        "slug": "kashel_suhoj",
+        "typeID": 14
+      },
+      {
+        "ID": 225,
+        "name": "Кашель влажный",
+        "slug": "kashel_vlazhnyj",
+        "typeID": 14
+      },
+      {
+        "ID": 226,
+        "name": "Покраснение глаз (конъюктивит)",
+        "slug": "pokrasnenie_glaz_konyuktivit",
+        "typeID": 14
+      },
+      {
+        "ID": 227,
+        "name": "Затруднённость дыхания (в связи с кашлем)",
+        "slug": "zatrudnyonnost_dyhaniya",
+        "typeID": 14
+      },
+      {
+        "ID": 228,
+        "name": "Спутанность сознания",
+        "slug": "sputannost_soznaniya",
+        "typeID": 14
+      },
+      {
+        "ID": 229,
+        "name": "Утомляемость",
+        "slug": "utomlyaemost",
+        "typeID": 14
+      },
+      {
+        "ID": 230,
+        "name": "Увеличение лимфоузлов",
+        "slug": "uvelichenie_limfouzlov",
+        "typeID": 14
+      },
+      {
+        "ID": 232,
+        "name": "Одышка (в связи с кашлем)",
+        "slug": "odyshka_v_svyazi_s_kashlem",
+        "typeID": 14
+      },
+      {
+        "ID": 233,
+        "name": "Покраснение горла",
+        "slug": "pokrasnenie_gorla",
+        "typeID": 14
+      },
+      {
+        "ID": 251,
+        "name": "Потеря обоняния",
+        "slug": "poterya_obonyaniya",
+        "typeID": 14
+      },
+      {
+        "ID": 252,
+        "name": "Потеря вкуса",
+        "slug": "poterya_vkusa",
+        "typeID": 14
+      },
+      {
+        "ID": 272,
+        "name": "5 шт",
+        "slug": "5_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 916,
+        "name": "Парацетамол+Фенилэфрин+Аскорбиновая кислота",
+        "slug": "paracetamol_fenilefrin_askorbinovaya_kislota",
+        "typeID": 19
+      },
+      {
+        "ID": 937,
+        "name": "Терафлю",
+        "slug": "teraflyu",
+        "typeID": 8
+      },
+      {
+        "ID": 1358,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 6
+      },
+      {
+        "ID": 1805,
+        "name": "Ринза",
+        "slug": "rinza",
+        "typeID": 8
+      },
+      {
+        "ID": 1821,
+        "name": "Фервекс",
+        "slug": "ferveks",
+        "typeID": 8
+      },
+      {
+        "ID": 1884,
+        "name": "Фенилэфрин",
+        "slug": "fenilefrin",
+        "typeID": 6
+      },
+      {
+        "ID": 2174,
+        "name": "ОАО \"Синтез\"",
+        "slug": "oao_sintez",
+        "typeID": 13
+      },
+      {
+        "ID": 2187,
+        "name": "От гриппа",
+        "slug": "ot_grippa",
+        "typeID": 8
+      },
+      {
+        "ID": 2188,
+        "name": "От простуды",
+        "slug": "ot_prostudy",
+        "typeID": 8
+      },
+      {
+        "ID": 2196,
+        "name": "Противопростудные комплексы",
+        "slug": "protivoprostudnye_kompleksy",
+        "typeID": 8
+      },
+      {
+        "ID": 2197,
+        "name": "Порошки от простуды",
+        "slug": "poroshki_ot_prostudy",
+        "typeID": 8
+      },
+      {
+        "ID": 2397,
+        "name": "Колдрекс",
+        "slug": "koldreks",
+        "typeID": 8
+      },
+      {
+        "ID": 2398,
+        "name": "Колдакт",
+        "slug": "koldakt",
+        "typeID": 8
+      },
+      {
+        "ID": 2456,
+        "name": "Дуоколд",
+        "slug": "duokold",
+        "typeID": 8
+      },
+      {
+        "ID": 2570,
+        "name": "Анвимакс",
+        "slug": "anvimaks",
+        "typeID": 8
+      },
+      {
+        "ID": 2642,
+        "name": "Антигриппин",
+        "slug": "antigrippin",
+        "typeID": 8
+      },
+      {
+        "ID": 2697,
+        "name": "Максиколд",
+        "slug": "maksikold",
+        "typeID": 8
+      },
+      {
+        "ID": 2834,
+        "name": "Флюфайт",
+        "slug": "flyufajt",
+        "typeID": 8
+      },
+      {
+        "ID": 2835,
+        "name": "Стопгрипан",
+        "slug": "stopgripan",
+        "typeID": 8
+      },
+      {
+        "ID": 2836,
+        "name": "Простудокс",
+        "slug": "prostudoks",
+        "typeID": 8
+      },
+      {
+        "ID": 4018,
+        "name": "Противопростудные комплексы",
+        "slug": "protivoprostudnye_kompleksy",
+        "typeID": 21
+      },
+      {
+        "ID": 8181,
+        "name": "Простудокс",
+        "slug": "prostudoks",
+        "typeID": 10
+      },
+      {
+        "ID": 15509,
+        "name": "Острая инфекция верхних отделов дыхательных путей неуточненная",
+        "slug": "ostraya_infekciya_verhnih_otdelov_dyhatelnyh_putej_neutochnennaya",
+        "typeID": 5
+      },
+      {
+        "ID": 15584,
+        "name": "Грипп, вызванный идентифицированным вирусом сезонного гриппа",
+        "slug": "gripp_vyzvannyj_identificirovannym_virusom_sezonnogo_grippa",
+        "typeID": 5
+      },
+      {
+        "ID": 15604,
+        "name": "\tЛихорадка неясного происхождения",
+        "slug": "_lihoradka_neyasnogo_proishozhdeniya",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "30852b78093a229d497c62bc5787bb6a.webp"
+    ],
+    "reviewsNumber": 2,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 20,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/259744/80/30852b78093a229d497c62bc5787bb6a.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/259744/208/30852b78093a229d497c62bc5787bb6a.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": true
+  },
+  {
+    "ID": 190401,
+    "typeIDs": [
+      396070,
+      396194,
+      398611
+    ],
+    "subtypeIDs": [
+      35,
+      2552,
+      2557
+    ],
+    "categoryID": 440,
+    "slug": "ketoprofen_gel_5_30g",
+    "name": "Кетопрофен гель 5% 30г",
+    "rating": 89,
+    "price": {
+      "withCard": 280.0,
+      "withPeriod": 224.0,
+      "withoutCard": 280.0
+    },
+    "priceZakaz": {
+      "withCard": 280.0,
+      "withPeriod": 224.0,
+      "withoutCard": 280.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "5%",
+        "slug": "5",
+        "typeID": 20
+      },
+      {
+        "ID": 10,
+        "name": "Не выше 20 С",
+        "slug": "ne_vyshe_20_s",
+        "typeID": 18
+      },
+      {
+        "ID": 14,
+        "name": "Домашняя аптечка",
+        "slug": "domashnyaya_aptechka",
+        "typeID": 8
+      },
+      {
+        "ID": 26,
+        "name": "Гель для наружного применения",
+        "slug": "gel_dlya_naruzhnogo_primeneniya",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 196,
+        "name": "Вольтарен",
+        "slug": "voltaren",
+        "typeID": 8
+      },
+      {
+        "ID": 556,
+        "name": "Кетопрофен",
+        "slug": "ketoprofen",
+        "typeID": 19
+      },
+      {
+        "ID": 596,
+        "name": "30 г",
+        "slug": "30_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 684,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 8
+      },
+      {
+        "ID": 685,
+        "name": "Боль в спине",
+        "slug": "bol_v_spine",
+        "typeID": 8
+      },
+      {
+        "ID": 795,
+        "name": "Кетопрофен",
+        "slug": "ketoprofen",
+        "typeID": 6
+      },
+      {
+        "ID": 1488,
+        "name": "Быструмгель",
+        "slug": "bystrumgel",
+        "typeID": 8
+      },
+      {
+        "ID": 1498,
+        "name": "АО «ВЕРТЕКС»",
+        "slug": "ao_verteks",
+        "typeID": 13
+      },
+      {
+        "ID": 1904,
+        "name": "Дип Рилиф",
+        "slug": "dip_rilif",
+        "typeID": 8
+      },
+      {
+        "ID": 1954,
+        "name": "Диклак",
+        "slug": "diklak",
+        "typeID": 8
+      },
+      {
+        "ID": 1997,
+        "name": "Долобене",
+        "slug": "dolobene",
+        "typeID": 8
+      },
+      {
+        "ID": 2692,
+        "name": "Траумель",
+        "slug": "traumel",
+        "typeID": 8
+      },
+      {
+        "ID": 2734,
+        "name": "Кетопрофен",
+        "slug": "ketoprofen",
+        "typeID": 8
+      },
+      {
+        "ID": 3938,
+        "name": "Противовоспалительные и обезболивающие средства (наружные)",
+        "slug": "protivovospalitelnye_i_obezbolivayushchie_sredstva_naruzhnye",
+        "typeID": 21
+      },
+      {
+        "ID": 7003,
+        "name": "Кетопрофен",
+        "slug": "ketoprofen",
+        "typeID": 10
+      },
+      {
+        "ID": 15324,
+        "name": "Серопозитивный ревматоидный артрит",
+        "slug": "seropozitivnyj_revmatoidnyj_artrit",
+        "typeID": 5
+      },
+      {
+        "ID": 15448,
+        "name": "Полиартроз",
+        "slug": "poliartroz",
+        "typeID": 5
+      },
+      {
+        "ID": 15449,
+        "name": "Артроз неуточненный",
+        "slug": "artroz_neutochnennyj",
+        "typeID": 5
+      },
+      {
+        "ID": 15577,
+        "name": "Поверхностная травма неуточненной области тела (в т.ч. ссадина, кровоподтек, ушиб, гематома, укус неядовитого насекомого)",
+        "slug": "poverhnostnaya_travma_neutochnennoj_oblasti_tela_v_t_ch_ssadina_krovopodtek_ushib_gematoma_ukus_neyadovitogo_nasekomogo",
+        "typeID": 5
+      },
+      {
+        "ID": 15715,
+        "name": "Вывих, растяжение и перенапряжение капсульно-связочного аппарата сустава неуточненной области тела",
+        "slug": "vyvih_rastyazhenie_i_perenapryazhenie_kapsulnosvyazochnogo_apparata_sustava_neutochnennoj_oblasti_tela",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "dfc0b3410dbc4f9ba3c8dbef61a7bd42.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "bonuses": 22,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/190401/80/dfc0b3410dbc4f9ba3c8dbef61a7bd42.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/190401/208/dfc0b3410dbc4f9ba3c8dbef61a7bd42.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 268879,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      2557
+    ],
+    "categoryID": 273,
+    "slug": "meloksikam_rr_10mgml_amp_1_5ml_5",
+    "name": "Мелоксикам Акос раствор 10мг/мл ампулы 1,5мл №5",
+    "rating": 88,
+    "price": {
+      "withCard": 414.0,
+      "withPeriod": 289.0,
+      "withoutCard": 414.0
+    },
+    "priceZakaz": {
+      "withCard": 414.0,
+      "withPeriod": 289.0,
+      "withoutCard": 414.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "10мг/мл",
+        "slug": "10mg",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 9,
+        "name": "Не выше 30 С",
+        "slug": "ne_vyshe_30_s",
+        "typeID": 18
+      },
+      {
+        "ID": 20,
+        "name": "Раствор для инъекций",
+        "slug": "rastvor_dlya_inekcij",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 196,
+        "name": "Вольтарен",
+        "slug": "voltaren",
+        "typeID": 8
+      },
+      {
+        "ID": 213,
+        "name": "1.50 мл, 5 шт",
+        "slug": "1_50_ml_5_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 690,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 19
+      },
+      {
+        "ID": 1083,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 6
+      },
+      {
+        "ID": 1497,
+        "name": "Дексалгин",
+        "slug": "deksalgin",
+        "typeID": 8
+      },
+      {
+        "ID": 1638,
+        "name": "Диклофенак",
+        "slug": "diklofenak",
+        "typeID": 8
+      },
+      {
+        "ID": 2174,
+        "name": "ОАО \"Синтез\"",
+        "slug": "oao_sintez",
+        "typeID": 13
+      },
+      {
+        "ID": 2198,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 8
+      },
+      {
+        "ID": 2550,
+        "name": "Артрозан",
+        "slug": "artrozan",
+        "typeID": 8
+      },
+      {
+        "ID": 2625,
+        "name": "Артоксан",
+        "slug": "artoksan",
+        "typeID": 8
+      },
+      {
+        "ID": 2667,
+        "name": "Тексаред",
+        "slug": "teksared",
+        "typeID": 8
+      },
+      {
+        "ID": 7233,
+        "name": "Мелоксикам",
+        "slug": "meloksikam",
+        "typeID": 10
+      },
+      {
+        "ID": 15324,
+        "name": "Серопозитивный ревматоидный артрит",
+        "slug": "seropozitivnyj_revmatoidnyj_artrit",
+        "typeID": 5
+      },
+      {
+        "ID": 15453,
+        "name": "Остеохондроз позвоночника",
+        "slug": "osteohondroz_pozvonochnika",
+        "typeID": 5
+      },
+      {
+        "ID": 15454,
+        "name": "Анкилозирующий спондилит",
+        "slug": "ankiloziruyushchij_spondilit",
+        "typeID": 5
+      },
+      {
+        "ID": 15459,
+        "name": "Адгезивный капсулит плеча",
+        "slug": "adgezivnyj_kapsulit_plecha",
+        "typeID": 5
+      },
+      {
+        "ID": 15593,
+        "name": "Радикулопатия",
+        "slug": "radikulopatiya",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "de55b1a38af13e545ee56e1ab80d358a.webp"
+    ],
+    "reviewsNumber": 1,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 5,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/268879/80/de55b1a38af13e545ee56e1ab80d358a.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/268879/208/de55b1a38af13e545ee56e1ab80d358a.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "88%",
+      "internalCard": "88% покупателей выбирают",
+      "internalCardHint": "88% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 238174,
+    "typeIDs": [
+      396070,
+      398611
+    ],
+    "subtypeIDs": [
+      11,
+      2552,
+      2572
+    ],
+    "categoryID": 474,
+    "slug": "kapsifit_gel_dlya_tela_100ml",
+    "name": "Капсифит гель для тела 100мл",
+    "rating": 81,
+    "price": {
+      "withCard": 232.0,
+      "withPeriod": 184.0,
+      "withoutCard": 232.0
+    },
+    "priceZakaz": {
+      "withCard": 232.0,
+      "withPeriod": 184.0,
+      "withoutCard": 232.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "Отсутствует",
+        "slug": "otsutstvuet",
+        "typeID": 20
+      },
+      {
+        "ID": 5,
+        "name": "Обычный",
+        "slug": "obychnyj",
+        "typeID": 18
+      },
+      {
+        "ID": 14,
+        "name": "Домашняя аптечка",
+        "slug": "domashnyaya_aptechka",
+        "typeID": 8
+      },
+      {
+        "ID": 26,
+        "name": "Гель для наружного применения",
+        "slug": "gel_dlya_naruzhnogo_primeneniya",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 123,
+        "name": "Капсикам",
+        "slug": "kapsikam",
+        "typeID": 8
+      },
+      {
+        "ID": 124,
+        "name": "Випросал",
+        "slug": "viprosal_nayatoks",
+        "typeID": 8
+      },
+      {
+        "ID": 171,
+        "name": "Бадяга",
+        "slug": "badyaga",
+        "typeID": 6
+      },
+      {
+        "ID": 185,
+        "name": "100 мл",
+        "slug": "100_00_ml",
+        "typeID": 222
+      },
+      {
+        "ID": 501,
+        "name": "Деготь",
+        "slug": "degot",
+        "typeID": 6
+      },
+      {
+        "ID": 670,
+        "name": "Экстракт имбиря",
+        "slug": "imbirya_ekt",
+        "typeID": 6
+      },
+      {
+        "ID": 766,
+        "name": "Капсаицин",
+        "slug": "kapsaicin",
+        "typeID": 6
+      },
+      {
+        "ID": 1432,
+        "name": "Пихты масло",
+        "slug": "pihty_maslo",
+        "typeID": 6
+      },
+      {
+        "ID": 1642,
+        "name": "Скипидар",
+        "slug": "skipidar",
+        "typeID": 6
+      },
+      {
+        "ID": 5600,
+        "name": "Капсифит",
+        "slug": "kapsifit",
+        "typeID": 10
+      },
+      {
+        "ID": 8260,
+        "name": "Пихты масло+Скипидар+Капсаицин+Бадяга+Экстракт имбиря+Деготь",
+        "slug": "pihty_maslo",
+        "typeID": 19
+      },
+      {
+        "ID": 11766,
+        "name": "ООО \"Мирролла\"",
+        "slug": "ooo_mirrolla",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "238174.webp"
+    ],
+    "reviewsNumber": 5,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 10,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/238174/80/238174.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/238174/208/238174.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "81%",
+      "internalCard": "81% покупателей выбирают",
+      "internalCardHint": "81% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 272701,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 463,
+    "slug": "drotaverin_tabletki_40mg_50",
+    "name": "Дротаверин Велфарм таблетки 40мг №50",
+    "rating": 86,
+    "price": {
+      "withCard": 183.0,
+      "withPeriod": 140.0,
+      "withoutCard": 183.0
+    },
+    "priceZakaz": {
+      "withCard": 183.0,
+      "withPeriod": 140.0,
+      "withoutCard": 183.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "40мг",
+        "slug": "40mg",
+        "typeID": 20
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 16,
+        "name": "Таблетки",
+        "slug": "tabletki",
+        "typeID": 16
+      },
+      {
+        "ID": 90,
+        "name": "Болит живот",
+        "slug": "bolit_zhivot",
+        "typeID": 8
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 422,
+        "name": "Дротаверин",
+        "slug": "drotaverin",
+        "typeID": 19
+      },
+      {
+        "ID": 477,
+        "name": "50 шт",
+        "slug": "50_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 596,
+        "name": "Дротаверин",
+        "slug": "drotaverin",
+        "typeID": 6
+      },
+      {
+        "ID": 2545,
+        "name": "Ношпа",
+        "slug": "noshpa",
+        "typeID": 8
+      },
+      {
+        "ID": 2639,
+        "name": "Дротаверин",
+        "slug": "drotaverin",
+        "typeID": 8
+      },
+      {
+        "ID": 2685,
+        "name": "Но шпа",
+        "slug": "no_shpa",
+        "typeID": 8
+      },
+      {
+        "ID": 5283,
+        "name": "Острый холецистит",
+        "slug": "ostryj_holecistit",
+        "typeID": 5
+      },
+      {
+        "ID": 5336,
+        "name": "Дротаверин",
+        "slug": "drotaverin",
+        "typeID": 10
+      },
+      {
+        "ID": 15612,
+        "name": "\tМетеоризм и родственные состояния (в т.ч. вздутие живота, отрыжка)",
+        "slug": "_meteorizm_i_rodstvennye_sostoyaniya_v_t_ch_vzdutie_zhivota_otryzhka",
+        "typeID": 5
+      },
+      {
+        "ID": 15654,
+        "name": "Камни почки и мочеточника",
+        "slug": "kamni_pochki_i_mochetochnika",
+        "typeID": 5
+      },
+      {
+        "ID": 15978,
+        "name": "Другие уточненные болезни заднего прохода и прямой кишки (в т.ч. проктит)",
+        "slug": "drugie_utochnennye_bolezni_zadnego_prohoda_i_pryamoj_kishki_v_t_ch_proktit",
+        "typeID": 5
+      },
+      {
+        "ID": 15979,
+        "name": "Другие уточненные болезни желчевыводящих путей",
+        "slug": "drugie_utochnennye_bolezni_zhelchevyvodyashchih_putej",
+        "typeID": 5
+      },
+      {
+        "ID": 20782,
+        "name": "ООО \"Велфарм\"/ООО \"Велфарм-М\"",
+        "slug": "ooo_velfarm",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "86d2b695dd86c017a6a490b9e4ffb80b.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/272701/80/86d2b695dd86c017a6a490b9e4ffb80b.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/272701/208/86d2b695dd86c017a6a490b9e4ffb80b.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "86%",
+      "internalCard": "86% покупателей выбирают",
+      "internalCardHint": "86% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 209103,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 513,
+    "slug": "novokain_rastvor_dlya_inekcij_0_5_ampuly_5ml_10",
+    "name": "Новокаин раствор для инъекций 0,5% ампулы 5мл №10 Гротекс",
+    "rating": 89,
+    "price": {
+      "withCard": 107.0,
+      "withPeriod": 96.0,
+      "withoutCard": 107.0
+    },
+    "priceZakaz": {
+      "withCard": 107.0,
+      "withPeriod": 96.0,
+      "withoutCard": 107.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "0.5%",
+        "slug": "0_5",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 20,
+        "name": "Раствор для инъекций",
+        "slug": "rastvor_dlya_inekcij",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 566,
+        "name": "5 мл, 10 шт",
+        "slug": "5_00_ml_10_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 1012,
+        "name": "Прокаин",
+        "slug": "prokain",
+        "typeID": 19
+      },
+      {
+        "ID": 1487,
+        "name": "Прокаин",
+        "slug": "prokain",
+        "typeID": 6
+      },
+      {
+        "ID": 3939,
+        "name": "Средства для анестезии",
+        "slug": "sredstva_dlya_anestezii",
+        "typeID": 21
+      },
+      {
+        "ID": 7489,
+        "name": "Новокаин",
+        "slug": "novokain",
+        "typeID": 10
+      },
+      {
+        "ID": 15585,
+        "name": "\tПодготовительные процедуры для последующего лечения или обследования, не классифицированные в других рубриках\r\n",
+        "slug": "_podgotovitelnye_procedury_dlya_posleduyushchego_lecheniya_ili_obsledovaniya_ne_klassificirovannye_v_drugih_rubrikah",
+        "typeID": 5
+      },
+      {
+        "ID": 18058,
+        "name": "ООО \"Гротекс\"",
+        "slug": "ooo_groteks",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "912451933d563f70164f24e95af40836.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "bonuses": 5,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/209103/80/912451933d563f70164f24e95af40836.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/209103/208/912451933d563f70164f24e95af40836.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 370,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 534,
+    "slug": "analgin_rastvor_50_ampuly_2ml_10",
+    "name": "Анальгин раствор 50% ампулы 2мл №10 Дальхимфарм",
+    "rating": 89,
+    "price": {
+      "withCard": 160.0,
+      "withPeriod": 120.0,
+      "withoutCard": 160.0
+    },
+    "priceZakaz": {
+      "withCard": 160.0,
+      "withPeriod": 120.0,
+      "withoutCard": 160.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "500мг/мл",
+        "slug": "500mg",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 8,
+        "name": "5-25 С",
+        "slug": "525_s",
+        "typeID": 18
+      },
+      {
+        "ID": 14,
+        "name": "Домашняя аптечка",
+        "slug": "domashnyaya_aptechka",
+        "typeID": 8
+      },
+      {
+        "ID": 20,
+        "name": "Раствор для инъекций",
+        "slug": "rastvor_dlya_inekcij",
+        "typeID": 16
+      },
+      {
+        "ID": 31,
+        "name": "Аптечка путешественника",
+        "slug": "aptechka_puteshestvennika",
+        "typeID": 8
+      },
+      {
+        "ID": 105,
+        "name": "Головная боль",
+        "slug": "golovnaya_bol",
+        "typeID": 5
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 139,
+        "name": "2 мл, 10 шт",
+        "slug": "2_00_ml_10_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 684,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 8
+      },
+      {
+        "ID": 685,
+        "name": "Боль в спине",
+        "slug": "bol_v_spine",
+        "typeID": 8
+      },
+      {
+        "ID": 712,
+        "name": "Метамизол натрия",
+        "slug": "metamizol_natriya",
+        "typeID": 19
+      },
+      {
+        "ID": 1103,
+        "name": "Метамизол натрия",
+        "slug": "metamizol_natriya",
+        "typeID": 6
+      },
+      {
+        "ID": 1589,
+        "name": "ОАО \"Дальхимфарм\"",
+        "slug": "oao_dalhimfarm",
+        "typeID": 13
+      },
+      {
+        "ID": 1654,
+        "name": "Нурофен",
+        "slug": "nurofen",
+        "typeID": 8
+      },
+      {
+        "ID": 2376,
+        "name": "Внутренние средства от боли",
+        "slug": "vnutrennie_sredstva_ot_boli",
+        "typeID": 8
+      },
+      {
+        "ID": 2377,
+        "name": "Средства от боли внутренние",
+        "slug": "sredstva_ot_boli_vnutrennie",
+        "typeID": 8
+      },
+      {
+        "ID": 2494,
+        "name": "Аскофен",
+        "slug": "askofen",
+        "typeID": 8
+      },
+      {
+        "ID": 2532,
+        "name": "Цитрамон",
+        "slug": "citramon",
+        "typeID": 8
+      },
+      {
+        "ID": 2631,
+        "name": "Цитромон",
+        "slug": "citromon",
+        "typeID": 8
+      },
+      {
+        "ID": 2691,
+        "name": "Анальгин",
+        "slug": "analgin",
+        "typeID": 8
+      },
+      {
+        "ID": 3821,
+        "name": "Анальгин",
+        "slug": "analgin",
+        "typeID": 10
+      },
+      {
+        "ID": 3936,
+        "name": "Средства от боли",
+        "slug": "sredstva_ot_boli",
+        "typeID": 21
+      },
+      {
+        "ID": 15275,
+        "name": "Острая боль",
+        "slug": "ostraya_bol",
+        "typeID": 5
+      },
+      {
+        "ID": 15279,
+        "name": "Почечная колика неуточненная",
+        "slug": "pochechnaya_kolika_neutochnennaya",
+        "typeID": 5
+      },
+      {
+        "ID": 15710,
+        "name": "Другие уточненные изменения зубов и их опорного аппарата (в т.ч. зубная боль)",
+        "slug": "drugie_utochnennye_izmeneniya_zubov_i_ih_opornogo_apparata_v_t_ch_zubnaya_bol",
+        "typeID": 5
+      },
+      {
+        "ID": 15711,
+        "name": "Первичная дисменорея",
+        "slug": "pervichnaya_dismenoreya",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "fdac12c69be74ab2a5fb0862de2ada5a.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "bonuses": 7,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/370/80/fdac12c69be74ab2a5fb0862de2ada5a.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/370/208/fdac12c69be74ab2a5fb0862de2ada5a.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 269007,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      2557
+    ],
+    "categoryID": 275,
+    "slug": "nimesulid_tabletki_100mg_40",
+    "name": "Нимесулид таблетки 100мг №40",
+    "rating": 85,
+    "price": {
+      "withCard": 319.0,
+      "withPeriod": 255.0,
+      "withoutCard": 319.0
+    },
+    "priceZakaz": {
+      "withCard": 319.0,
+      "withPeriod": 255.0,
+      "withoutCard": 319.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "100мг",
+        "slug": "100mg",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 16,
+        "name": "Таблетки",
+        "slug": "tabletki",
+        "typeID": 16
+      },
+      {
+        "ID": 97,
+        "name": "Болит зуб",
+        "slug": "bolit_zub",
+        "typeID": 8
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 152,
+        "name": "Жар",
+        "slug": "zhar",
+        "typeID": 8
+      },
+      {
+        "ID": 204,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 14
+      },
+      {
+        "ID": 205,
+        "name": "Боль в горле",
+        "slug": "bolit_gorlo",
+        "typeID": 14
+      },
+      {
+        "ID": 206,
+        "name": "Жар",
+        "slug": "zhar",
+        "typeID": 14
+      },
+      {
+        "ID": 207,
+        "name": "Повышенная температура тела",
+        "slug": "vysokaya_temperatura",
+        "typeID": 14
+      },
+      {
+        "ID": 208,
+        "name": "Боль в ухе (отит)",
+        "slug": "bolit_uho",
+        "typeID": 14
+      },
+      {
+        "ID": 217,
+        "name": "Головная боль",
+        "slug": "golovnaya_bol",
+        "typeID": 14
+      },
+      {
+        "ID": 219,
+        "name": "Озноб",
+        "slug": "oznob",
+        "typeID": 14
+      },
+      {
+        "ID": 684,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 8
+      },
+      {
+        "ID": 685,
+        "name": "Боль в спине",
+        "slug": "bol_v_spine",
+        "typeID": 8
+      },
+      {
+        "ID": 700,
+        "name": "40 шт",
+        "slug": "40_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 838,
+        "name": "Нимесулид",
+        "slug": "nimesulid",
+        "typeID": 19
+      },
+      {
+        "ID": 1255,
+        "name": "Нимесулид",
+        "slug": "nimesulid",
+        "typeID": 6
+      },
+      {
+        "ID": 1497,
+        "name": "Дексалгин",
+        "slug": "deksalgin",
+        "typeID": 8
+      },
+      {
+        "ID": 1508,
+        "name": "Диафлекс",
+        "slug": "diafleks",
+        "typeID": 8
+      },
+      {
+        "ID": 1645,
+        "name": "Кетонал",
+        "slug": "ketonal",
+        "typeID": 8
+      },
+      {
+        "ID": 1647,
+        "name": "Аэртал",
+        "slug": "aertal",
+        "typeID": 8
+      },
+      {
+        "ID": 1648,
+        "name": "Найз",
+        "slug": "najz",
+        "typeID": 8
+      },
+      {
+        "ID": 1651,
+        "name": "Артрокер",
+        "slug": "artroker",
+        "typeID": 8
+      },
+      {
+        "ID": 1652,
+        "name": "Фламадекс",
+        "slug": "flamadeks",
+        "typeID": 8
+      },
+      {
+        "ID": 1797,
+        "name": "Нимесил",
+        "slug": "nimesil",
+        "typeID": 8
+      },
+      {
+        "ID": 2040,
+        "name": "Ибупрофен",
+        "slug": "ibuprofen",
+        "typeID": 8
+      },
+      {
+        "ID": 2044,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 8
+      },
+      {
+        "ID": 2296,
+        "name": "НПВС",
+        "slug": "npvs",
+        "typeID": 8
+      },
+      {
+        "ID": 2297,
+        "name": "НПВС таблетки",
+        "slug": "npvs_tabletki",
+        "typeID": 8
+      },
+      {
+        "ID": 2298,
+        "name": "НПВС капсулы",
+        "slug": "npvs_kapsuly",
+        "typeID": 8
+      },
+      {
+        "ID": 2299,
+        "name": "НПВС порошки",
+        "slug": "npvs_poroshki",
+        "typeID": 8
+      },
+      {
+        "ID": 2300,
+        "name": "Нестероидные противовоспалительные препараты",
+        "slug": "nesteroidnye_protivovospalitelnye_preparaty",
+        "typeID": 8
+      },
+      {
+        "ID": 2524,
+        "name": "Немулекс",
+        "slug": "nemuleks",
+        "typeID": 8
+      },
+      {
+        "ID": 2526,
+        "name": "Нимулид",
+        "slug": "nimulid",
+        "typeID": 8
+      },
+      {
+        "ID": 2549,
+        "name": "Нимесулид",
+        "slug": "nimesulid",
+        "typeID": 8
+      },
+      {
+        "ID": 2678,
+        "name": "Оки",
+        "slug": "oki",
+        "typeID": 8
+      },
+      {
+        "ID": 2686,
+        "name": "Ксефокам",
+        "slug": "ksefokam",
+        "typeID": 8
+      },
+      {
+        "ID": 2690,
+        "name": "Кеторол",
+        "slug": "ketorol",
+        "typeID": 8
+      },
+      {
+        "ID": 7603,
+        "name": "Нимесулид",
+        "slug": "nimesulid",
+        "typeID": 10
+      },
+      {
+        "ID": 15324,
+        "name": "Серопозитивный ревматоидный артрит",
+        "slug": "seropozitivnyj_revmatoidnyj_artrit",
+        "typeID": 5
+      },
+      {
+        "ID": 15456,
+        "name": "Синовиты и теносиновиты",
+        "slug": "sinovity_i_tenosinovity",
+        "typeID": 5
+      },
+      {
+        "ID": 15457,
+        "name": "Болезни мягких тканей, связанные с нагрузкой, перегрузкой и давлением",
+        "slug": "bolezni_myagkih_tkanej_svyazannye_s_nagruzkoj_peregruzkoj_i_davleniem",
+        "typeID": 5
+      },
+      {
+        "ID": 15577,
+        "name": "Поверхностная травма неуточненной области тела (в т.ч. ссадина, кровоподтек, ушиб, гематома, укус неядовитого насекомого)",
+        "slug": "poverhnostnaya_travma_neutochnennoj_oblasti_tela_v_t_ch_ssadina_krovopodtek_ushib_gematoma_ukus_neyadovitogo_nasekomogo",
+        "typeID": 5
+      },
+      {
+        "ID": 15807,
+        "name": "Дорсалгия",
+        "slug": "dorsalgiya",
+        "typeID": 5
+      },
+      {
+        "ID": 16427,
+        "name": "ООО \"Изварино Фарма\"",
+        "slug": "ooo_izvarino_farma",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "92037b3395d8b1bc9567f541dade7d3c.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "bonuses": 25,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/269007/80/92037b3395d8b1bc9567f541dade7d3c.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/269007/208/92037b3395d8b1bc9567f541dade7d3c.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "85%",
+      "internalCard": "85% покупателей выбирают",
+      "internalCardHint": "85% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 226619,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 520,
+    "slug": "migrenium_tabletki_50mg650mg_20",
+    "name": "Мигрениум таблетки 500мг+65мг №20",
+    "rating": 89,
+    "price": {
+      "withCard": 428.0,
+      "withPeriod": 235.0,
+      "withoutCard": 428.0
+    },
+    "priceZakaz": {
+      "withCard": 428.0,
+      "withPeriod": 235.0,
+      "withoutCard": 428.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "500мг+65мг",
+        "slug": "500mg_65mg",
+        "typeID": 20
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 14,
+        "name": "Домашняя аптечка",
+        "slug": "domashnyaya_aptechka",
+        "typeID": 8
+      },
+      {
+        "ID": 16,
+        "name": "Таблетки",
+        "slug": "tabletki",
+        "typeID": 16
+      },
+      {
+        "ID": 31,
+        "name": "Аптечка путешественника",
+        "slug": "aptechka_puteshestvennika",
+        "typeID": 8
+      },
+      {
+        "ID": 52,
+        "name": "Мигрень",
+        "slug": "migren",
+        "typeID": 5
+      },
+      {
+        "ID": 84,
+        "name": "Болит голова",
+        "slug": "bolit_golova",
+        "typeID": 8
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 113,
+        "name": "Пенталгин",
+        "slug": "pentalgin",
+        "typeID": 8
+      },
+      {
+        "ID": 603,
+        "name": "Парацетамол+Кофеин",
+        "slug": "paracetamol_kofein",
+        "typeID": 19
+      },
+      {
+        "ID": 604,
+        "name": "20 шт",
+        "slug": "20_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 861,
+        "name": "Кофеин",
+        "slug": "kofein",
+        "typeID": 6
+      },
+      {
+        "ID": 1358,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 6
+      },
+      {
+        "ID": 1453,
+        "name": "АО \"Биохимик\"",
+        "slug": "oao_biohimik",
+        "typeID": 13
+      },
+      {
+        "ID": 1654,
+        "name": "Нурофен",
+        "slug": "nurofen",
+        "typeID": 8
+      },
+      {
+        "ID": 1655,
+        "name": "Миг",
+        "slug": "mig",
+        "typeID": 8
+      },
+      {
+        "ID": 1657,
+        "name": "Солпадеин",
+        "slug": "solpadein",
+        "typeID": 8
+      },
+      {
+        "ID": 1659,
+        "name": "Баралгин",
+        "slug": "baralgin",
+        "typeID": 8
+      },
+      {
+        "ID": 1662,
+        "name": "Темпалгин",
+        "slug": "tempalgin",
+        "typeID": 8
+      },
+      {
+        "ID": 2245,
+        "name": "От головной боли",
+        "slug": "ot_golovnoj_boli",
+        "typeID": 8
+      },
+      {
+        "ID": 2376,
+        "name": "Внутренние средства от боли",
+        "slug": "vnutrennie_sredstva_ot_boli",
+        "typeID": 8
+      },
+      {
+        "ID": 2377,
+        "name": "Средства от боли внутренние",
+        "slug": "sredstva_ot_boli_vnutrennie",
+        "typeID": 8
+      },
+      {
+        "ID": 2494,
+        "name": "Аскофен",
+        "slug": "askofen",
+        "typeID": 8
+      },
+      {
+        "ID": 2592,
+        "name": "Налгезин",
+        "slug": "nalgezin",
+        "typeID": 8
+      },
+      {
+        "ID": 2631,
+        "name": "Цитромон",
+        "slug": "citromon",
+        "typeID": 8
+      },
+      {
+        "ID": 2661,
+        "name": "Парацетомол",
+        "slug": "paracetomol",
+        "typeID": 8
+      },
+      {
+        "ID": 2691,
+        "name": "Анальгин",
+        "slug": "analgin",
+        "typeID": 8
+      },
+      {
+        "ID": 3936,
+        "name": "Средства от боли",
+        "slug": "sredstva_ot_boli",
+        "typeID": 21
+      },
+      {
+        "ID": 7294,
+        "name": "Мигрениум",
+        "slug": "migrenium",
+        "typeID": 10
+      },
+      {
+        "ID": 15600,
+        "name": "Невралгия и неврит неуточненные",
+        "slug": "nevralgiya_i_nevrit_neutochnennye",
+        "typeID": 5
+      },
+      {
+        "ID": 15710,
+        "name": "Другие уточненные изменения зубов и их опорного аппарата (в т.ч. зубная боль)",
+        "slug": "drugie_utochnennye_izmeneniya_zubov_i_ih_opornogo_apparata_v_t_ch_zubnaya_bol",
+        "typeID": 5
+      },
+      {
+        "ID": 15711,
+        "name": "Первичная дисменорея",
+        "slug": "pervichnaya_dismenoreya",
+        "typeID": 5
+      },
+      {
+        "ID": 15712,
+        "name": "Вторичная дисменорея",
+        "slug": "vtorichnaya_dismenoreya",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "226619a.webp"
+    ],
+    "reviewsNumber": 12,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 12,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/226619/80/226619a.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/226619/208/226619a.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 322174,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      3872
+    ],
+    "categoryID": 225,
+    "slug": "flyufajt_por_limon_pak_10",
+    "name": "Флюфайт порошок Лимон пакеты №10",
+    "rating": 66,
+    "price": {
+      "withCard": 426.0,
+      "withPeriod": 338.0,
+      "withoutCard": 426.0
+    },
+    "priceZakaz": {
+      "withCard": 426.0,
+      "withPeriod": 338.0,
+      "withoutCard": 426.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "750мг+30мг+10мг+20мг",
+        "slug": "750mg_30mg_10mg_20mg",
+        "typeID": 20
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 49,
+        "name": "Порошок для приготовления раствора для внутреннего применения",
+        "slug": "poroshok_dlya_prigotovleniya_rastvora_dlya_vnutrennego_primeneniya",
+        "typeID": 16
+      },
+      {
+        "ID": 83,
+        "name": "Индия",
+        "slug": "indiya",
+        "typeID": 15
+      },
+      {
+        "ID": 105,
+        "name": "Головная боль",
+        "slug": "golovnaya_bol",
+        "typeID": 5
+      },
+      {
+        "ID": 204,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 14
+      },
+      {
+        "ID": 205,
+        "name": "Боль в горле",
+        "slug": "bolit_gorlo",
+        "typeID": 14
+      },
+      {
+        "ID": 206,
+        "name": "Жар",
+        "slug": "zhar",
+        "typeID": 14
+      },
+      {
+        "ID": 207,
+        "name": "Повышенная температура тела",
+        "slug": "vysokaya_temperatura",
+        "typeID": 14
+      },
+      {
+        "ID": 209,
+        "name": "Слабость",
+        "slug": "slabost",
+        "typeID": 14
+      },
+      {
+        "ID": 210,
+        "name": "Тошнота",
+        "slug": "toshnota",
+        "typeID": 14
+      },
+      {
+        "ID": 211,
+        "name": "Рвота",
+        "slug": "rvota",
+        "typeID": 14
+      },
+      {
+        "ID": 212,
+        "name": "Диарея (понос)",
+        "slug": "diareya_ponos",
+        "typeID": 14
+      },
+      {
+        "ID": 213,
+        "name": "Боль в животе",
+        "slug": "bol_v_zhivote",
+        "typeID": 14
+      },
+      {
+        "ID": 215,
+        "name": "Обезвоживание",
+        "slug": "obezvozhivanie",
+        "typeID": 14
+      },
+      {
+        "ID": 216,
+        "name": "Снижение аппетита",
+        "slug": "snizhenie_appetita",
+        "typeID": 14
+      },
+      {
+        "ID": 217,
+        "name": "Головная боль",
+        "slug": "golovnaya_bol",
+        "typeID": 14
+      },
+      {
+        "ID": 219,
+        "name": "Озноб",
+        "slug": "oznob",
+        "typeID": 14
+      },
+      {
+        "ID": 220,
+        "name": "Насморк (сопли)",
+        "slug": "nasmork_sopli",
+        "typeID": 14
+      },
+      {
+        "ID": 221,
+        "name": "Чихание",
+        "slug": "chihanie",
+        "typeID": 14
+      },
+      {
+        "ID": 222,
+        "name": "Заложенность носа",
+        "slug": "zalozhennost_nosa",
+        "typeID": 14
+      },
+      {
+        "ID": 223,
+        "name": "Охриплость/осиплость",
+        "slug": "ohriplost",
+        "typeID": 14
+      },
+      {
+        "ID": 224,
+        "name": "Кашель сухой",
+        "slug": "kashel_suhoj",
+        "typeID": 14
+      },
+      {
+        "ID": 225,
+        "name": "Кашель влажный",
+        "slug": "kashel_vlazhnyj",
+        "typeID": 14
+      },
+      {
+        "ID": 226,
+        "name": "Покраснение глаз (конъюктивит)",
+        "slug": "pokrasnenie_glaz_konyuktivit",
+        "typeID": 14
+      },
+      {
+        "ID": 227,
+        "name": "Затруднённость дыхания (в связи с кашлем)",
+        "slug": "zatrudnyonnost_dyhaniya",
+        "typeID": 14
+      },
+      {
+        "ID": 228,
+        "name": "Спутанность сознания",
+        "slug": "sputannost_soznaniya",
+        "typeID": 14
+      },
+      {
+        "ID": 229,
+        "name": "Утомляемость",
+        "slug": "utomlyaemost",
+        "typeID": 14
+      },
+      {
+        "ID": 230,
+        "name": "Увеличение лимфоузлов",
+        "slug": "uvelichenie_limfouzlov",
+        "typeID": 14
+      },
+      {
+        "ID": 232,
+        "name": "Одышка (в связи с кашлем)",
+        "slug": "odyshka_v_svyazi_s_kashlem",
+        "typeID": 14
+      },
+      {
+        "ID": 233,
+        "name": "Покраснение горла",
+        "slug": "pokrasnenie_gorla",
+        "typeID": 14
+      },
+      {
+        "ID": 251,
+        "name": "Потеря обоняния",
+        "slug": "poterya_obonyaniya",
+        "typeID": 14
+      },
+      {
+        "ID": 252,
+        "name": "Потеря вкуса",
+        "slug": "poterya_vkusa",
+        "typeID": 14
+      },
+      {
+        "ID": 473,
+        "name": "10 шт",
+        "slug": "10_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 861,
+        "name": "Кофеин",
+        "slug": "kofein",
+        "typeID": 6
+      },
+      {
+        "ID": 937,
+        "name": "Терафлю",
+        "slug": "teraflyu",
+        "typeID": 8
+      },
+      {
+        "ID": 1358,
+        "name": "Парацетамол",
+        "slug": "paracetamol",
+        "typeID": 6
+      },
+      {
+        "ID": 1884,
+        "name": "Фенилэфрин",
+        "slug": "fenilefrin",
+        "typeID": 6
+      },
+      {
+        "ID": 1887,
+        "name": "Фенирамин",
+        "slug": "feniramin",
+        "typeID": 6
+      },
+      {
+        "ID": 2187,
+        "name": "От гриппа",
+        "slug": "ot_grippa",
+        "typeID": 8
+      },
+      {
+        "ID": 2188,
+        "name": "От простуды",
+        "slug": "ot_prostudy",
+        "typeID": 8
+      },
+      {
+        "ID": 2196,
+        "name": "Противопростудные комплексы",
+        "slug": "protivoprostudnye_kompleksy",
+        "typeID": 8
+      },
+      {
+        "ID": 2197,
+        "name": "Порошки от простуды",
+        "slug": "poroshki_ot_prostudy",
+        "typeID": 8
+      },
+      {
+        "ID": 2397,
+        "name": "Колдрекс",
+        "slug": "koldreks",
+        "typeID": 8
+      },
+      {
+        "ID": 2398,
+        "name": "Колдакт",
+        "slug": "koldakt",
+        "typeID": 8
+      },
+      {
+        "ID": 2456,
+        "name": "Дуоколд",
+        "slug": "duokold",
+        "typeID": 8
+      },
+      {
+        "ID": 2570,
+        "name": "Анвимакс",
+        "slug": "anvimaks",
+        "typeID": 8
+      },
+      {
+        "ID": 2823,
+        "name": "Боремся с простудой и гриппом",
+        "slug": "boremsya_s_prostudoj_i_grippom",
+        "typeID": 8
+      },
+      {
+        "ID": 2834,
+        "name": "Флюфайт",
+        "slug": "flyufajt",
+        "typeID": 8
+      },
+      {
+        "ID": 2835,
+        "name": "Стопгрипан",
+        "slug": "stopgripan",
+        "typeID": 8
+      },
+      {
+        "ID": 2836,
+        "name": "Простудокс",
+        "slug": "prostudoks",
+        "typeID": 8
+      },
+      {
+        "ID": 3743,
+        "name": "Парацетамол+Кофеин+Фенилэфрин+Фенирамин",
+        "slug": "paracetamol_kofein_fenilefrin_feniramin",
+        "typeID": 19
+      },
+      {
+        "ID": 10261,
+        "name": "Флюфайт",
+        "slug": "flyufajt",
+        "typeID": 10
+      },
+      {
+        "ID": 15312,
+        "name": "Острый назофарингит (насморк)",
+        "slug": "ostryj_nazofaringit_nasmork",
+        "typeID": 5
+      },
+      {
+        "ID": 15509,
+        "name": "Острая инфекция верхних отделов дыхательных путей неуточненная",
+        "slug": "ostraya_infekciya_verhnih_otdelov_dyhatelnyh_putej_neutochnennaya",
+        "typeID": 5
+      },
+      {
+        "ID": 15584,
+        "name": "Грипп, вызванный идентифицированным вирусом сезонного гриппа",
+        "slug": "gripp_vyzvannyj_identificirovannym_virusom_sezonnogo_grippa",
+        "typeID": 5
+      },
+      {
+        "ID": 15604,
+        "name": "\tЛихорадка неясного происхождения",
+        "slug": "_lihoradka_neyasnogo_proishozhdeniya",
+        "typeID": 5
+      },
+      {
+        "ID": 22106,
+        "name": "Celebrity Biopharma, Ltd./Селебрити Биофарма Лтд.",
+        "slug": "celebrity_biopharma_ltd",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "322174t.webp"
+    ],
+    "reviewsNumber": 1,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/322174/80/322174t.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/322174/208/322174t.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "66%",
+      "internalCard": "66% покупателей выбирают",
+      "internalCardHint": "66% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 240415,
+    "typeIDs": [
+      396070,
+      396194,
+      398611
+    ],
+    "subtypeIDs": [
+      35,
+      2552,
+      2557
+    ],
+    "categoryID": 440,
+    "slug": "ketoprofen_gel_5_50g",
+    "name": "Кетопрофен Вертекс гель 5% 50г",
+    "rating": 86,
+    "price": {
+      "withCard": 346.0,
+      "withPeriod": 274.0,
+      "withoutCard": 346.0
+    },
+    "priceZakaz": {
+      "withCard": 346.0,
+      "withPeriod": 274.0,
+      "withoutCard": 346.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "5%",
+        "slug": "5",
+        "typeID": 20
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 26,
+        "name": "Гель для наружного применения",
+        "slug": "gel_dlya_naruzhnogo_primeneniya",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 196,
+        "name": "Вольтарен",
+        "slug": "voltaren",
+        "typeID": 8
+      },
+      {
+        "ID": 198,
+        "name": "50 г",
+        "slug": "50_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 556,
+        "name": "Кетопрофен",
+        "slug": "ketoprofen",
+        "typeID": 19
+      },
+      {
+        "ID": 684,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 8
+      },
+      {
+        "ID": 685,
+        "name": "Боль в спине",
+        "slug": "bol_v_spine",
+        "typeID": 8
+      },
+      {
+        "ID": 795,
+        "name": "Кетопрофен",
+        "slug": "ketoprofen",
+        "typeID": 6
+      },
+      {
+        "ID": 1488,
+        "name": "Быструмгель",
+        "slug": "bystrumgel",
+        "typeID": 8
+      },
+      {
+        "ID": 1498,
+        "name": "АО «ВЕРТЕКС»",
+        "slug": "ao_verteks",
+        "typeID": 13
+      },
+      {
+        "ID": 1904,
+        "name": "Дип Рилиф",
+        "slug": "dip_rilif",
+        "typeID": 8
+      },
+      {
+        "ID": 1954,
+        "name": "Диклак",
+        "slug": "diklak",
+        "typeID": 8
+      },
+      {
+        "ID": 1997,
+        "name": "Долобене",
+        "slug": "dolobene",
+        "typeID": 8
+      },
+      {
+        "ID": 2692,
+        "name": "Траумель",
+        "slug": "traumel",
+        "typeID": 8
+      },
+      {
+        "ID": 2734,
+        "name": "Кетопрофен",
+        "slug": "ketoprofen",
+        "typeID": 8
+      },
+      {
+        "ID": 3938,
+        "name": "Противовоспалительные и обезболивающие средства (наружные)",
+        "slug": "protivovospalitelnye_i_obezbolivayushchie_sredstva_naruzhnye",
+        "typeID": 21
+      },
+      {
+        "ID": 7003,
+        "name": "Кетопрофен",
+        "slug": "ketoprofen",
+        "typeID": 10
+      },
+      {
+        "ID": 15453,
+        "name": "Остеохондроз позвоночника",
+        "slug": "osteohondroz_pozvonochnika",
+        "typeID": 5
+      },
+      {
+        "ID": 15458,
+        "name": "Другие бурсопатии",
+        "slug": "drugie_bursopatii",
+        "typeID": 5
+      },
+      {
+        "ID": 15501,
+        "name": "Псориатические и энтеропатические артропатии",
+        "slug": "psoriaticheskie_i_enteropaticheskie_artropatii",
+        "typeID": 5
+      },
+      {
+        "ID": 15577,
+        "name": "Поверхностная травма неуточненной области тела (в т.ч. ссадина, кровоподтек, ушиб, гематома, укус неядовитого насекомого)",
+        "slug": "poverhnostnaya_travma_neutochnennoj_oblasti_tela_v_t_ch_ssadina_krovopodtek_ushib_gematoma_ukus_neyadovitogo_nasekomogo",
+        "typeID": 5
+      },
+      {
+        "ID": 15925,
+        "name": "Болезнь Рейтера",
+        "slug": "bolezn_rejtera",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "b033dd26529e17f8de69b2023c35dc61.webp"
+    ],
+    "reviewsNumber": 6,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "bonuses": 25,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/240415/80/b033dd26529e17f8de69b2023c35dc61.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/240415/208/b033dd26529e17f8de69b2023c35dc61.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "86%",
+      "internalCard": "86% покупателей выбирают",
+      "internalCardHint": "86% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": true
+  }
+]

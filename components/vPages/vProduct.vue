@@ -26,8 +26,10 @@ const props = defineProps({
 const route = useRoute()
 const citiesStore = useCitiesStore()
 const productsStore = useProductsStore()
-const productPropertyTypesStore = useProductPropertyTypes()
+const productPropertyTypesStore = useProductPropertyTypesStore()
 const catalogStore = useCatalogStore()
+const restrictTypesStore = useRestrictTypesStore()
+const articlesStore = useArticlesStore()
 
 const city = computed(() => {
   return citiesStore.currentCity
@@ -36,36 +38,56 @@ const city = computed(() => {
 //async data
 const currentCityID = city.value.ID! ? city.value.ID : 41
 
-const L = "ProductReviews" === route.name
-const x = !1
-const F = !1
-const N = !1
-const z = !1
-const G = L ? productsStore.item : undefined
-const U = L && productsStore.replacements! ? productsStore.replacements : []
-const H = L && productsStore.recommendations! ? productsStore.recommendations : []
-const j = L && productsStore.reviews! ? productsStore.reviews : []
-const Y = L && productsStore.trademarkProducts! ? productsStore.trademarkProducts : []
-const W = productPropertyTypesStore.list
-const V = restrictTypesStore.list! ? restrictTypesStore.list : []
-const Z = !1
-const X = []
-const Q = 0
-const J = L ? 2 : 0
-const K = catalogStore.categoryDirectory
-const tt = articlesStore.categories
-const et = 10
+const isProductReviews = ref("ProductReviews" === route.name)
+const isFailedGettingProduct = ref(false)
+const isFailedGettingReplacements = ref(false)
+const isFailedGettingRecommend = ref(false)
+const isFailedGettingReviews = ref(false)
+const product = ref(productsStore.item)
+const replacements = ref(productsStore.replacements)
+const recommendations = ref(productsStore.recommendations)
+const reviews = ref(productsStore.reviews)
+const trademarkProducts = ref(productsStore.trademarkProducts)
+const W = ref(productPropertyTypesStore.list)
+const V = ref(restrictTypesStore.list! ? restrictTypesStore.list : [])
+const Z = ref(false)
+const allGrades = ref([])
+const totalCountReviews = ref(0)
+const activeTab = ref(isProductReviews.value ? 2 : 0)
+const K = ref(catalogStore.categoryDirectory)
+const articleCategories = ref(<any>articlesStore.categories)
+const et = ref(10)
 
-if (void 0 === tt) { //TODO length
-                     // TODO ARTICLES.GET_CATEGORIES
+if (articleCategories.value.length < 1) {
+  // TODO ARTICLES.GET_CATEGORIES
+  await articlesStore.ARTICLES_GET_CATEGORIES().then((res:any)=>{
+    articleCategories.value = res
+  }).catch((err)=>{
+    console.log(err)
+  })
 }
 
-if (void 0 === G) {
+if (product.value.length < 1) {
+  //TODO STOP HERE
   // PRODUCT.GET "ID="
 }
 //case 34:
 
-
+// activeTab: J,
+// trademarkProducts: Y,
+// isProductReviews: L,
+// isFailedGettingProduct: x,
+// isFailedGettingReplacements: F,
+// isFailedGettingRecommend: N,
+// isFailedGettingReviews: z,
+// category: lt,
+// product: G,
+// recommendations: H,
+// reviews: j,
+// replacements: U,
+// articleCategories: tt,
+// allGrades: X,
+// totalCountReviews: Q
 //END async data
 </script>
 

@@ -22,6 +22,8 @@ import ApiSearchModule from "~/api/search";
 import ApiPropertiesModule from "~/api/properties";
 import ApiSummaryModule from "~/api/summary";
 import ApiProductPropertyTypesModule from "~/api/productPropertyTypes";
+import ApiRestrictTypesModule from "~/api/restrictTypes";
+import ApiReviewsModule from "~/api/reviews";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -76,8 +78,8 @@ export default defineNuxtPlugin((nuxtApp) => {
         // productTypes: J,
         properties: new ApiPropertiesModule(opts),
         regions: new ApiRegionsModule(opts),
-        // restrictTypes: et,
-        // reviews: it,
+        restrictTypes: new ApiRestrictTypesModule(opts),
+        reviews: new ApiReviewsModule(opts),
         search: new ApiSearchModule(opts),
         sessions: new ApiSessionsModule(opts),
         // subscribe: at,

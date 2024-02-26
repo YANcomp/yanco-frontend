@@ -32,7 +32,7 @@ const props = defineProps({
 const route = useRoute()
 const appStore = useAppStore()
 const popularCategoriesStore = usePopularCategoriesStore()
-const productPropertyTypesStore = useProductPropertyTypes()
+const productPropertyTypesStore = useProductPropertyTypesStore()
 const citiesStore = useCitiesStore()
 const catalogStore = useCatalogStore()
 const productsStore = useProductsStore()
@@ -158,7 +158,7 @@ if (props.popularCategory !== undefined ||
   }
 
   // if (props.search === undefined) {
-  useNuxtApp().$api.products.get(filter, ["price", "properties"]).then((res: any) => {
+  await useNuxtApp().$api.products.get(filter, ["price", "properties"], path).then((res: any) => {
     productFilters.value = void 0 !== props.search ? res.products ? res.products : [] : res ? res : []
   }).catch((error: any) => {
     console.log(error)
@@ -239,7 +239,7 @@ if (props.search) {
   at.path = "search"
 }
 
-await productsStore.GET_LIST(at).then((res: any) => {
+await productsStore.PRODUCT_GET_LIST(at).then((res: any) => {
   products.value = void 0 !== props.search ? res.products ? res.products : [] : res ? res : []
   isSearchEmpty.value = void 0 !== props.search && (res.products ? res.products : []).length < 1
   isAnalogSearchProducts.value = void 0 !== props.search && res.isAnalogs
@@ -262,33 +262,20 @@ if (props.search === undefined) {
   }).catch((t) => {
     console.log(t)
   })
-  // totalCount.value = 324
 }
 
 if (buyToday.value.length < 1) {
-  //TODO get buy today
-  await productsStore.GET_SPECIAL_OFFERS().then((res: any) => {
+  let st = 'groups="buy_today"&cityID=' + cityDefault.value.ID + "[:20]"
+  await productsStore.PRODUCT_GET_LIST({
+    filter: st,
+    listName: "buyToday"
+  }).then((res) => {
     buyToday.value = res
   }).catch((err: any) => {
     console.log(err)
     buyToday.value = []
   })
-  //TODO  st = 'groups="buy_today"&cityID='.concat(null !== (k = null == N ? void 0 : N.ID) && void 0 !== k ? k : 41, "[:20]"), "buyToday", o.next = 86, r.dispatch("products/".concat(l.PRODUCT.GET_LIST), {
-  //   filter: st,
-  //   fields: P,
-  //   listName: "buyToday"
-  // }).then((function (p) {
-  //   G = null != p ? p : []
-  // })).catch((function (t) {
-  //   tt(t), G = []
-  // }))
 }
-
-// findType - ct
-// findSubtype - nt
-// findPopularCategories - ut
-
-
 // TODO END FETCH DATA
 
 
@@ -318,15 +305,14 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.clearTimeout(timeoutID.value)
   productFilters.value = []
-  productsStore.COMMIT_GET_LIST()
-  // TODO this.$store.commit("products/".concat(l.PRODUCT.GET_LIST), {
-  //   listName: "list",
-  //   products: void 0
-  // })
-  // this.$store.commit("products/".concat(l.PRODUCT.GET_LIST), {
-  //   listName: "buyToday",
-  //   products: void 0
-  // })
+  productsStore.COMMIT_PRODUCT_GET_LIST({
+    listName: "list",
+    products: []
+  })
+  productsStore.COMMIT_PRODUCT_GET_LIST({
+    listName: "buyToday",
+    products: []
+  })
 })
 onBeforeRouteUpdate((to, from, next) => {
   window.scrollTo({
@@ -339,17 +325,17 @@ onBeforeRouteUpdate((to, from, next) => {
 onBeforeRouteLeave((to, from, next) => {
   isLeaving.value = true
   productFilters.value = []
-  productsStore.COMMIT_GET_LIST()
-  // TODO this.$store.commit("products/".concat(l.PRODUCT.GET_LIST), {
-  //   listName: "list",
-  //   products: void 0
-  // })
-  // if (!["CatalogCategory", "CatalogSubtype", "CatalogType", "PopularCategories"].includes(null !== (r = null == t ? void 0 : t.name) && void 0 !== r ? r : "")) {
-  //   this.$store.commit("products/".concat(l.PRODUCT.GET_LIST), {
-  //     listName: "buyToday",
-  //     products: void 0
-  //   })
-  // }
+  productsStore.COMMIT_PRODUCT_GET_LIST({
+    listName: "list",
+    products: []
+  })
+  if (!["CatalogCategory", "CatalogSubtype", "CatalogType", "PopularCategories"].includes(<any>to.name)) {
+    productsStore.COMMIT_PRODUCT_GET_LIST({
+      listName: "buyToday",
+      products: []
+    })
+  }
+
   next()
 })
 

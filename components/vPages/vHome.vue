@@ -165,17 +165,29 @@ function loadProductGroups() {
 
 function loadSpecialOffers() {
   //TODO
-  return productsStore.GET_SPECIAL_OFFERS()
+  let filter = 'groups="special_offer"&cityID='+city.value.ID + "&isAvailable=true[:20]"
+
+  return productsStore.PRODUCT_GET_LIST({
+    filter: filter,
+    path: "random",
+    listName: "specialOffers"
+  })
 }
 
 function loadOurProducts() {
   //TODO
-  return productsStore.GET_OUR_PRODUCTS()
+  let filter = 'groups="our_products"&cityID='+city.value.ID + "&isAvailable=true[:20]"
+
+  return productsStore.PRODUCT_GET_LIST({
+    filter: filter,
+    path: "random",
+    listName: "ourProduction"
+  })
+
 }
 
 function loadProductOfDay() {
-  //TODO City props
-  return productsStore.GET_PRODUCT_OF_DAY()
+  return productsStore.PRODUCT_GET_PRODUCT_OF_DAY(city.value.ID)
 }
 
 const preparedProducts = uPrepared

@@ -1,13 +1,13 @@
-class ApiProductOfDayModule {
+class ApiRestrictTypesModule {
     private $opts: Parameters<typeof $fetch<unknown>> [1];
 
     constructor(opts: Parameters<typeof $fetch<unknown>> [1]) {
         this.$opts = opts;
     }
 
-    //TODO
-    async get(props?:any) {
-        return await $fetch(`catalog/products/productOfDay.json`, {
+    async get() {
+        //return o.a.get("catalog/products/restrictTypes")
+        return await $fetch(`catalog/products/restrictTypes/restrictTypes.json`, {
             ...this.$opts,
             method: 'GET',
         })
@@ -15,4 +15,4 @@ class ApiProductOfDayModule {
 
 }
 
-export default ApiProductOfDayModule;
+export default ApiRestrictTypesModule;

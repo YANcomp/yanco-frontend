@@ -1,0 +1,413 @@
+[
+  {
+    "ID": 236220,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 5,
+    "bonuses": 55,
+    "categoryID": 374,
+    "images": [
+      "dbd63fdcf7b67c573e4b2e96e6c221bb.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/236220/208/dbd63fdcf7b67c573e4b2e96e6c221bb.webp"
+    ],
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/236220/80/dbd63fdcf7b67c573e4b2e96e6c221bb.webp"
+    ],
+    "isAvailable": true,
+    "isInStock": true,
+    "isOrderRcNoRc": false,
+    "isRare": false,
+    "isRecipe": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "limitWithCard": 36,
+    "limitWithoutCard": 36,
+    "name": "Осельтамивир капсулы 75мг №10",
+    "price": {
+      "withCard": 867,
+      "withPeriod": 729,
+      "withoutCard": 867
+    },
+    "priceZakaz": {
+      "withCard": 867,
+      "withPeriod": 729,
+      "withoutCard": 867
+    },
+    "properties": [
+      {
+        "ID": 1,
+        "name": "75мг",
+        "slug": "75mg",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 14,
+        "name": "Домашняя аптечка",
+        "slug": "domashnyaya_aptechka",
+        "typeID": 8
+      },
+      {
+        "ID": 19,
+        "name": "Капсулы",
+        "slug": "kapsuly_dlya_priema_vnutr",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 172,
+        "name": "Ингавирин",
+        "slug": "ingavirin",
+        "typeID": 8
+      },
+      {
+        "ID": 202,
+        "name": "Циклоферон",
+        "slug": "cikloferon",
+        "typeID": 8
+      },
+      {
+        "ID": 203,
+        "name": "Арепливир",
+        "slug": "areplivir",
+        "typeID": 8
+      },
+      {
+        "ID": 204,
+        "name": "Боль в мышцах",
+        "slug": "bol_v_myshcah",
+        "typeID": 14
+      },
+      {
+        "ID": 205,
+        "name": "Боль в горле",
+        "slug": "bolit_gorlo",
+        "typeID": 14
+      },
+      {
+        "ID": 206,
+        "name": "Жар",
+        "slug": "zhar",
+        "typeID": 14
+      },
+      {
+        "ID": 207,
+        "name": "Повышенная температура тела",
+        "slug": "vysokaya_temperatura",
+        "typeID": 14
+      },
+      {
+        "ID": 209,
+        "name": "Слабость",
+        "slug": "slabost",
+        "typeID": 14
+      },
+      {
+        "ID": 210,
+        "name": "Тошнота",
+        "slug": "toshnota",
+        "typeID": 14
+      },
+      {
+        "ID": 211,
+        "name": "Рвота",
+        "slug": "rvota",
+        "typeID": 14
+      },
+      {
+        "ID": 212,
+        "name": "Диарея (понос)",
+        "slug": "diareya_ponos",
+        "typeID": 14
+      },
+      {
+        "ID": 217,
+        "name": "Головная боль",
+        "slug": "golovnaya_bol",
+        "typeID": 14
+      },
+      {
+        "ID": 222,
+        "name": "Заложенность носа",
+        "slug": "zalozhennost_nosa",
+        "typeID": 14
+      },
+      {
+        "ID": 224,
+        "name": "Кашель сухой",
+        "slug": "kashel_suhoj",
+        "typeID": 14
+      },
+      {
+        "ID": 225,
+        "name": "Кашель влажный",
+        "slug": "kashel_vlazhnyj",
+        "typeID": 14
+      },
+      {
+        "ID": 226,
+        "name": "Покраснение глаз (конъюктивит)",
+        "slug": "pokrasnenie_glaz_konyuktivit",
+        "typeID": 14
+      },
+      {
+        "ID": 228,
+        "name": "Спутанность сознания",
+        "slug": "sputannost_soznaniya",
+        "typeID": 14
+      },
+      {
+        "ID": 229,
+        "name": "Утомляемость",
+        "slug": "utomlyaemost",
+        "typeID": 14
+      },
+      {
+        "ID": 232,
+        "name": "Одышка (в связи с кашлем)",
+        "slug": "odyshka_v_svyazi_s_kashlem",
+        "typeID": 14
+      },
+      {
+        "ID": 251,
+        "name": "Потеря обоняния",
+        "slug": "poterya_obonyaniya",
+        "typeID": 14
+      },
+      {
+        "ID": 252,
+        "name": "Потеря вкуса",
+        "slug": "poterya_vkusa",
+        "typeID": 14
+      },
+      {
+        "ID": 473,
+        "name": "10 шт",
+        "slug": "10_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 1173,
+        "name": "Арбидол",
+        "slug": "arbidol",
+        "typeID": 8
+      },
+      {
+        "ID": 1331,
+        "name": "Осельтамивир",
+        "slug": "oseltamivir",
+        "typeID": 6
+      },
+      {
+        "ID": 1453,
+        "name": "Трекрезан",
+        "slug": "trekrezan",
+        "typeID": 8
+      },
+      {
+        "ID": 1798,
+        "name": "Нобазит",
+        "slug": "nobazit",
+        "typeID": 8
+      },
+      {
+        "ID": 1829,
+        "name": "Осельтамивир",
+        "slug": "oseltamivir",
+        "typeID": 19
+      },
+      {
+        "ID": 1871,
+        "name": "Цитовир",
+        "slug": "citovir",
+        "typeID": 8
+      },
+      {
+        "ID": 1872,
+        "name": "Анаферон",
+        "slug": "anaferon",
+        "typeID": 8
+      },
+      {
+        "ID": 1873,
+        "name": "Агри",
+        "slug": "agri",
+        "typeID": 8
+      },
+      {
+        "ID": 1874,
+        "name": "Римантадин",
+        "slug": "rimantadin",
+        "typeID": 8
+      },
+      {
+        "ID": 1876,
+        "name": "Кагоцел",
+        "slug": "kagocel",
+        "typeID": 8
+      },
+      {
+        "ID": 1877,
+        "name": "Лавомакс",
+        "slug": "lavomaks",
+        "typeID": 8
+      },
+      {
+        "ID": 1879,
+        "name": "Тамифлю",
+        "slug": "tamiflyu",
+        "typeID": 8
+      },
+      {
+        "ID": 1880,
+        "name": "Эргоферон",
+        "slug": "ergoferon",
+        "typeID": 8
+      },
+      {
+        "ID": 1881,
+        "name": "Амиксин",
+        "slug": "amiksin",
+        "typeID": 8
+      },
+      {
+        "ID": 1882,
+        "name": "Номидес",
+        "slug": "nomides",
+        "typeID": 8
+      },
+      {
+        "ID": 2186,
+        "name": "Противовирусные средства",
+        "slug": "protivovirusnye_sredstva",
+        "typeID": 8
+      },
+      {
+        "ID": 2187,
+        "name": "От гриппа",
+        "slug": "ot_grippa",
+        "typeID": 8
+      },
+      {
+        "ID": 2189,
+        "name": "Рафамин",
+        "slug": "rafamin",
+        "typeID": 8
+      },
+      {
+        "ID": 2294,
+        "name": "Противовирусное",
+        "slug": "protivovirusnye_sredstva_prochie",
+        "typeID": 8
+      },
+      {
+        "ID": 2418,
+        "name": "Осельтамивир",
+        "slug": "oseltamivir",
+        "typeID": 8
+      },
+      {
+        "ID": 2422,
+        "name": "Афлюдол",
+        "slug": "aflyudol",
+        "typeID": 8
+      },
+      {
+        "ID": 2518,
+        "name": "Арпефлю",
+        "slug": "arpeflyu",
+        "typeID": 8
+      },
+      {
+        "ID": 2593,
+        "name": "Нормомед",
+        "slug": "normomed",
+        "typeID": 8
+      },
+      {
+        "ID": 2622,
+        "name": "Тилорон",
+        "slug": "tiloron",
+        "typeID": 8
+      },
+      {
+        "ID": 2641,
+        "name": "Ремантадин",
+        "slug": "remantadin",
+        "typeID": 8
+      },
+      {
+        "ID": 2718,
+        "name": "Противовирусные",
+        "slug": "protivovirusnye",
+        "typeID": 8
+      },
+      {
+        "ID": 2823,
+        "name": "Боремся с простудой и гриппом",
+        "slug": "boremsya_s_prostudoj_i_grippom",
+        "typeID": 8
+      },
+      {
+        "ID": 3972,
+        "name": "Противовирусные средства внутреннего применения",
+        "slug": "protivovirusnye_sredstva_vnutrennego_primeneniya",
+        "typeID": 21
+      },
+      {
+        "ID": 7331,
+        "name": "Осельтамивир",
+        "slug": "oseltamivir",
+        "typeID": 10
+      },
+      {
+        "ID": 15584,
+        "name": "Грипп, вызванный идентифицированным вирусом сезонного гриппа",
+        "slug": "gripp_vyzvannyj_identificirovannym_virusom_sezonnogo_grippa",
+        "typeID": 5
+      },
+      {
+        "ID": 16427,
+        "name": "ООО \"Изварино Фарма\"",
+        "slug": "ooo_izvarino_farma",
+        "typeID": 13
+      }
+    ],
+    "rating": 68,
+    "ratingText": {
+      "externalCard": "68%",
+      "extraHint": "(являются статистическими данными)",
+      "internalCard": "68% покупателей выбирают",
+      "internalCardHint": "68% покупателей выбирают данный товар"
+    },
+    "reviewsNumber": 5,
+    "slug": "oseltamivir_kapsuly_75mg_10",
+    "subtypeIDs": [
+      2557,
+      2558,
+      2566,
+      3872
+    ],
+    "typeIDs": [
+      396070
+    ]
+  }
+]
