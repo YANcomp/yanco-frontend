@@ -23,11 +23,55 @@ const props = defineProps({
     type: String
   }
 })
+const route = useRoute()
+const citiesStore = useCitiesStore()
+const productsStore = useProductsStore()
+const productPropertyTypesStore = useProductPropertyTypes()
+const catalogStore = useCatalogStore()
+
+const city = computed(() => {
+  return citiesStore.currentCity
+})
+
+//async data
+const currentCityID = city.value.ID! ? city.value.ID : 41
+
+const L = "ProductReviews" === route.name
+const x = !1
+const F = !1
+const N = !1
+const z = !1
+const G = L ? productsStore.item : undefined
+const U = L && productsStore.replacements! ? productsStore.replacements : []
+const H = L && productsStore.recommendations! ? productsStore.recommendations : []
+const j = L && productsStore.reviews! ? productsStore.reviews : []
+const Y = L && productsStore.trademarkProducts! ? productsStore.trademarkProducts : []
+const W = productPropertyTypesStore.list
+const V = restrictTypesStore.list! ? restrictTypesStore.list : []
+const Z = !1
+const X = []
+const Q = 0
+const J = L ? 2 : 0
+const K = catalogStore.categoryDirectory
+const tt = articlesStore.categories
+const et = 10
+
+if (void 0 === tt) { //TODO length
+                     // TODO ARTICLES.GET_CATEGORIES
+}
+
+if (void 0 === G) {
+  // PRODUCT.GET "ID="
+}
+//case 34:
+
+
+//END async data
 </script>
 
 <template>
   <main class="v-product container">
-    vProduct {{props}}
+    vProduct {{ props }}
   </main>
 </template>
 
