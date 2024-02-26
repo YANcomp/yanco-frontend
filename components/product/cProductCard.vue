@@ -121,7 +121,7 @@ const isRank = computed(() => {
   return void 0 !== props.product?.price && !isLoyal.value && props.product?.price?.withPeriod !== props.product?.price?.withoutCard
 })
 const image = computed(() => {
-  return uPrepareProduct(props.product ? props.product : {}, SIZE_S, params.value.cdnURL.url).images[0]
+  return uPrepareProduct(props.product ? props.product : {}, uSIZE_S, params.value.cdnURL.url).images[0]
 })
 const averageRating = computed(() => {
   return (props.product?.averageRating ? props.product.averageRating : 0).toFixed(1).replace(".", ",")

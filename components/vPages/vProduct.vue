@@ -3,12 +3,12 @@ const props = defineProps({
   productID: {
     type: Number,
     required: true,
-    default: undefined
+    default: 0
   },
   productSlug: {
     type: String,
     required: true,
-    default: undefined
+    default: ""
   },
   needOpenReviews: {
     type: String
@@ -24,12 +24,19 @@ const props = defineProps({
   }
 })
 const route = useRoute()
+const appStore = useAppStore()
 const citiesStore = useCitiesStore()
+const regionsStore = useRegionsStore()
 const productsStore = useProductsStore()
 const productPropertyTypesStore = useProductPropertyTypesStore()
 const catalogStore = useCatalogStore()
 const restrictTypesStore = useRestrictTypesStore()
 const articlesStore = useArticlesStore()
+const meStore = useMeStore()
+const sessionsStore = useSessionsStore()
+const basketStore = useBasketStore()
+const favoritesStore = useFavoritesStore()
+const comparisonProductsStore = useComparisonProductsStore()
 
 const city = computed(() => {
   return citiesStore.currentCity
@@ -60,18 +67,12 @@ const et = ref(10)
 
 if (articleCategories.value.length < 1) {
   // TODO ARTICLES.GET_CATEGORIES
-  await articlesStore.ARTICLES_GET_CATEGORIES().then((res:any)=>{
+  await articlesStore.ARTICLES_GET_CATEGORIES().then((res: any) => {
     articleCategories.value = res
-  }).catch((err)=>{
+  }).catch((err) => {
     console.log(err)
   })
 }
-
-if (product.value.length < 1) {
-  //TODO STOP HERE
-  // PRODUCT.GET "ID="
-}
-//case 34:
 
 // activeTab: J,
 // trademarkProducts: Y,
@@ -89,11 +90,1386 @@ if (product.value.length < 1) {
 // allGrades: X,
 // totalCountReviews: Q
 //END async data
+
+const vProductRef = ref(<any>undefined)
+const comparisonRef = ref(<any>undefined)
+const menuRef = ref(<any>undefined)
+
+
+const needPaddingHeader = ref(false)
+const isShowDescription = ref(false)
+const isShowReviews = ref(true)
+const SIZE_XS = ref(uSIZE_XS)
+const SIZE_S = ref(uSIZE_S)
+const SIZE_M = ref(uSIZE_M)
+const SIZE_L = ref(uSIZE_L)
+const isHorizontalCardMode = ref(false)
+const isLoadingReviewAside = ref(false)
+const isLoadingMoreReviews = ref(false)
+const lastScrollTop = ref(0)
+const isScrollTop = ref(false)
+const headerTop = ref(0)
+const isShowFixedHeader = ref(false)
+const activeAccordion = ref(undefined)
+const BONUSES_TITLE = ref(uBONUSES_TITLE)
+const descriptionHash = ref(undefined)
+const internalItems = ref([])
+const isComparisonLoading = ref(false)
+const isFavoritesLoading = ref(false)
+const isFromCatalog = ref(false)
+const isLoadingReplacements = ref(false)
+const isLoadingRecommend = ref(false)
+const isLoadingReviews = ref(false)
+const isOpenedShare = ref(false)
+const showDisposableHintCompared = ref(false)
+const loadingBasketProductIDs = ref([])
+const loadingFavoritesProductIDs = ref([])
+const pharmacyStock = ref([])
+const routeCatalogParams = ref({})
+const routeProperties = ref({
+  10: "Brand",
+  13: "Manufacturer",
+  6: "ActiveSubstance",
+  "Производитель": "Manufacturers",
+  "Бренд": "Brands",
+  "Действующее вещество": "ActiveSubstances"
+})
+const routePropertyIDs = ref([10, 13, 6])
+const routePropertyKey = ref(["Производитель", "Бренд", "Действующее вещество"])
+const updatingBasketProductIDs = ref([])
+const intervalID = ref(undefined)
+const isActiveMap = ref(false)
+const isProductFavoriteActive = ref(false)
+const isMouseDown = ref(false)
+const isMouseUp = ref(false)
+const articles = ref([])
+const limitReviews = ref(10)
+const isOpenStockSidebar = ref(false)
+const isLimitProduct = ref(false)
+const limitProduct = ref(0)
+const limitProperty = ref(4)
+const isOpenedPropertyBar = ref(false)
+const question = ref(undefined)
+const questionTitle = ref({
+  charity: "Благотворительность",
+  bonuses: "Начисление баллов",
+  delivery: "Доставка",
+  stock: "Способ получения",
+  recipe: "Рецепт",
+  "with-period": "Клубная цена",
+  "on-order": "Под заказ",
+  country: "Страна",
+  manufacturer: "Производитель",
+  "replacement-additionally-info": "Информация"
+})
+const PREPARED_PRODUCTS_FIELDS = ref(["isInBasket", "isInFavorites"])
+const TOOLTIP_TEXT = ref({
+  "Страна": "Страна производства может отличаться от указанной на сайте. Проверяйте, пожалуйста, при получении заказа.",
+  "Производитель": "Производитель может отличаться от указанного на сайте. Проверяйте, пожалуйста, при получении заказа."
+})
+const isGetRegionPharmacies = ref(false)
+const regionPharmacies = ref([])
+const regionPharmacyStock = ref([])
+const region = ref(undefined)
+const isLoadingRegionPharmacies = ref(false)
+const regionsStock = ref({})
+const fastOrderCity = ref(undefined)
+const isMounted = ref(false)
+const positionTooltipAdditionallyInfo = ref("bottom")
+const rareItemCount = ref(1)
+
+//COMPUTED
+
+const categoryRoute = computed(() => {
+  return void 0 === product.value ? {} : {
+    name: "SelectInCategory",
+    params: {
+      productID: "".concat(product.value.ID)
+    }
+  }
+})
+const titleReplacementSlider = computed(() => {
+  var t, e, o;
+  return null !== (o = null === (e = null === (t = product.value) || void 0 === t ? void 0 : t.replacementsTitle) || void 0 === e ? void 0 : e.title) && void 0 !== o ? o : ""
+})
+const replacementButtonText = computed(() => {
+  var p = product.value,
+      rt = p.replacementsTitle,
+      t = "".concat(this.hasPaidPeriod ? rt.rank : rt.loyal, " ");
+  return p.isAvailable || p.isWaitingArrive || (t = ""), "".concat("" === t ? rt.title : rt.buttonTitle, " ").concat(t).concat(rt.remarks)
+})
+const isShowBannerCard = computed(() => {
+  return this.$data.recommendations.length > 0 && void 0 !== this.bannerYouMayNeed
+})
+const bannerYouMayNeed = computed(() => {
+  var t;
+  return (null !== (t = this.$store.state.banners.youMayNeed) && void 0 !== t ? t : [])[0]
+})
+const hasAttributes = computed(() => {
+  return this.hasBonuses && !this.isStock && !this.hasPaidPeriod || product.value.allowDelivery || this.isRecipe || this.productCategory.name || this.isRare && (this.isMobile || !product.value.isAvailable)
+})
+const isSwapReplacementSlider = computed(() => {
+  return !this.$data.isFailedGettingReplacements && !this.hasReplacements && this.hasRecommend
+})
+const viewedProducts = computed(() => {
+  var t, e, o = this;
+  return null !== (e = null === (t = this.$store.state.viewedProducts.items) || void 0 === t ? void 0 : t.filter((function (i) {
+    return i.ID !== o.productID
+  }))) && void 0 !== e ? e : []
+})
+const hasViewedProducts = computed(() => {
+  return viewedProductsIDs.value.length > 0
+})
+const viewedProductsIDs = computed(() => {
+  var t;
+  return null !== (t = this.$store.state.viewedProducts.viewedProductsIDs) && void 0 !== t ? t : []
+})
+const deliveryDate = computed(() => {
+  var t, e = new Date;
+  return e.setDate(e.getDate() + (null !== (t = product.value.deliveryDaysMax) && void 0 !== t ? t : 1)), v.s.format(e, "j FG")
+})
+const isOpenedQuestion = computed(() => {
+  return void 0 !== question.value
+})
+const hasFilteredDiscountDescription = computed(() => {
+  return filteredDiscountDescription.value.length > 0
+})
+const filteredDiscountDescription = computed(() => {
+  var t, e;
+  return (null !== (e = null === (t = product.value) || void 0 === t ? void 0 : t.discountDescription) && void 0 !== e ? e : []).filter((function (t) {
+    return !t.includes("Бесплатная доставка")
+  }))
+})
+const filterReviews = computed(() => {
+  return "productID=" + props.productID
+})
+const basketItems = computed(() => {
+  return basketStore.items
+})
+const cardProjects = computed(() => {
+  //TODO return cardProjectsStore.list
+  return []
+})
+
+const catalog = computed(() => {
+  return catalogStore.catalog
+})
+const cities = computed(() => {
+  return citiesStore.list
+})
+const comparisonCaption = computed(() => {
+  return isInComparison.value ? "В сравнении" : "Сравнить"
+})
+const comparisonProducts = computed(() => {
+  return comparisonProductsStore.list
+})
+const favorites = computed(() => {
+  return null !== (t = this.$store.state.favorite.products) && void 0 !== t ? t : []
+})
+const favoritesCaption = computed(() => {
+  return isInFavorites.value ? "В избранном" : "В избранное"
+})
+const favoritesItems = computed(() => {
+  return favoritesStore.items
+})
+const hasReviews = computed(() => {
+  return product.value.reviewsNumber > 0
+})
+const hasRating = computed(() => {
+  return !!product.value.rating
+})
+const hasDescription = computed(() => {
+  return description.value.length > 0
+})
+const hasRemarks = computed(() => {
+  return !!product.value.replacementsTitle.remarks && !!product.value.replacementsTitle.remarksHint
+})
+const hasReplacements = computed(() => {
+  return this.$data.replacements.length > 0
+})
+const hasTrademarkProducts = computed(() => {
+  return this.$data.trademarkProducts.length > 0
+})
+const hasBonuses = computed(() => {
+  return void 0 !== product.value.bonuses
+})
+const hasDeliveryRuleID = computed(() => {
+  return void 0 !== product.value.deliveryRuleID
+})
+const hasImages = computed(() => {
+  var t;
+  return (null !== (t = product.value.images) && void 0 !== t ? t : []).length > 0
+})
+const hasLoyalCard = computed(() => {
+  return meStore.hasLoyalCard
+})
+const hasPaidPeriod = computed(() => {
+  return meStore.hasPaidPeriod
+})
+const hasProduct = computed(() => {
+  return Object.keys(product.value).length > 0
+})
+const hasRecommend = computed(() => {
+  return recommendations.value.length > 0
+})
+const hasRestricts = computed(() => {
+  return preparedRestricts.value.length > 0
+})
+const isAddingToFavorites = computed(() => {
+  return !isInFavorites.value && isFavoritesLoading.value
+})
+const isAuthorized = computed(() => {
+  return sessionsStore.isAuthorized
+})
+const isCityAllowDelivery = computed(() => {
+  var t, e;
+  return null !== (e = null === (t = this.city) || void 0 === t ? void 0 : t.allowDelivery) && void 0 !== e && e
+})
+const isDeletionFromFavorites = computed(() => {
+  return isInFavorites.value && isFavoritesLoading.value
+})
+const isGlobalLoading = computed(() => {
+  return appStore.getIsLoading
+})
+const isInBasket = computed(() => {
+  return !0 === basketStore.inBasket[props.productID]
+})
+const isInComparison = computed(() => {
+  return comparisonProducts.value.find((t: any) => {
+    return t.categoryID === productCategory.value.ID && t.productIDs.includes(props.productID)
+  })
+})
+const description = computed(() => {
+  return product.value.description ? product.value.description : []
+})
+const isInFavorites = computed(() => {
+  return !0 === favoritesStore.inFavorites[props.productID]
+})
+const isLoyal = computed(() => {
+  var t, e, o, r;
+  return (null === (e = null === (t = product.value) || void 0 === t ? void 0 : t.price) || void 0 === e ? void 0 : e.withCard) !== (null === (r = null === (o = product.value) || void 0 === o ? void 0 : o.price) || void 0 === r ? void 0 : r.withoutCard)
+})
+const isMobile = computed(() => {
+  return appStore.isMobile
+})
+const isNotAvailable = computed(() => {
+  return 0 === this.pharmacyStock.length
+})
+const isRank = computed(() => {
+  var t, e, o, r;
+  return !isLoyal.value && (null === (e = null === (t = product.value) || void 0 === t ? void 0 : t.price) || void 0 === e ? void 0 : e.withPeriod) !== (null === (r = null === (o = product.value) || void 0 === o ? void 0 : o.price) || void 0 === r ? void 0 : r.withoutCard)
+})
+const isRecipe = computed(() => {
+  return product.value.isRecipe
+})
+const allowOnlinePayment = computed(() => {
+  return product.value.allowOnlinePayment
+})
+const isStock = computed(() => {
+  return void 0 !== product.value.sticker
+})
+const preparedPharmacies = computed(() => {
+  var t = this,
+      e = (this.isGetRegionPharmacies ? this.regionPharmacies : this.pharmacies).map((function (p) {
+        var e = void 0 !== t.preparedPharmacyStock[p.ID] ? t.preparedPharmacyStock[p.ID].name : m.u;
+        return z(z({}, p), {}, {
+          availability: e,
+          sort: "Много" === e ? 4 : "Достаточно" === e ? 3 : "Мало" === e ? 2 : 1
+        })
+      })).sort((function (a, b) {
+        return a.sort === b.sort ? 0 : Number(a.sort) > Number(b.sort) ? -1 : 1
+      })).filter((function (p) {
+        var e = !0;
+        return t.isRare && (e = p.isRareProduct), e
+      }));
+  return product.value.isWithdrawn || product.value.isSiteSellRemains || product.value.isOrderRcNoRc ? e.filter((function (p) {
+    return "Под заказ" !== p.availability && "Отсутствует" !== p.availability
+  })) : e
+})
+const linkFreeDelivery = computed(() => {
+  var t, e, o, r, n;
+  return {
+    name: "PopularCategories",
+    params: {
+      popularCategory: null !== (n = null === (r = (null !== (o = null === (e = null !== (t = this.params) && void 0 !== t ? t : {}) || void 0 === e ? void 0 : e.deliveryRules) && void 0 !== o ? o : {})[product.value.deliveryRuleID]) || void 0 === r ? void 0 : r.code) && void 0 !== n ? n : void 0 !== product.value.deliveryAmount ? "free_ship_pack" : "free_ship"
+    }
+  }
+})
+const me = computed(() => {
+  return meStore.getMe ? meStore.getMe : {}
+})
+const params = computed(() => {
+  return appStore.params
+})
+const productSumFreeShip = computed(() => {
+  var t, e;
+  return null !== (e = null === (t = this.params.deliveryRules[product.value.deliveryRuleID]) || void 0 === t ? void 0 : t.productAmount) && void 0 !== e ? e : 0
+})
+
+const pluralizeBonuses = computed(() => {
+  return void 0 === product.value.bonuses ? "" : v.r.pluralize(product.value.bonuses, ["балл", "балла", "баллов"])
+})
+const preparedPharmacyStock = computed(() => {
+  return (this.isGetRegionPharmacies ? this.regionPharmacyStock : this.pharmacyStock).reduce((function (t, e) {
+    return t[e.pharmacyID] = e, t
+  }), {})
+})
+const regions = computed(() => {
+  return regionsStore.regions
+})
+const preparedRestricts = computed(() => {
+  var t, e = this;
+  return (null !== (t = product.value.restricts) && void 0 !== t ? t : []).reduce((function (t, o) {
+    var r = e.preparedRestrictTypes.get(o.typeID),
+        n = m.l[o.level];
+    return void 0 !== r && void 0 !== n && t.push(z(z({}, o), {}, {
+      icon: r.icon,
+      caption: "".concat(n, " ").concat(r.name.toLowerCase())
+    })), t
+  }), [])
+})
+const preparedRestrictTypes = computed(() => {
+  var t = new Map;
+  return this.restrictTypes.forEach((function (e) {
+    t.set(e.ID, z(z({}, e), {}, {
+      icon: "url(".concat(e.icon, ")")
+    }))
+  })), t
+})
+const productCardProjects = computed(() => {
+  var t = this;
+  return this.cardProjects.filter((function (e) {
+    var o;
+    return (null !== (o = t.$data.product.cardProjects) && void 0 !== o ? o : []).indexOf(e.code) > -1
+  }))
+})
+const productCharity = computed(() => {
+  var t = this;
+  return this.charity.filter((function (e) {
+    var o;
+    return (null !== (o = t.$data.product.charity) && void 0 !== o ? o : []).indexOf(e.code) > -1
+  }))
+})
+const productCategories = computed(() => {
+  var t, e;
+  return null !== (e = null === (t = this.catalog) || void 0 === t ? void 0 : t.categories) && void 0 !== e ? e : []
+})
+const productCategory = computed(() => {
+  var t, e = this;
+  return null !== (t = this.productCategories.find((function (t) {
+    return t.ID === e.$data.product.categoryID
+  }))) && void 0 !== t ? t : {}
+})
+const productSubtypes = computed(() => {
+  var t, e;
+  return null !== (e = null === (t = this.catalog) || void 0 === t ? void 0 : t.subtypes) && void 0 !== e ? e : []
+})
+const productTypes = computed(() => {
+  var t, e;
+  return null !== (e = null === (t = this.catalog) || void 0 === t ? void 0 : t.types) && void 0 !== e ? e : []
+})
+const hasDiscount = computed(() => {
+  return "n+m" === product.value.discountTemplate && void 0 !== this.preparedCheckItems[this.productID] && void 0 !== this.preparedCheckItems[this.productID].ruleID
+})
+const preparedCheckItems = computed(() => {
+  return getPreparedCheckItems()
+})
+const properties = computed(() => {
+  var t, e = this;
+  if (0 !== Object.keys(this.propertyTypes).length) {
+    var o = (null !== (t = product.value.properties) && void 0 !== t ? t : []).reduce((function (t, p) {
+      if (!e.propertyTypes[p.typeID] || !e.propertyTypes[p.typeID].isVisible) return t;
+      var o = e.propertyTypes[p.typeID].name;
+      return void 0 === t[o] && (t[o] = []), t[o].push(p), t
+    }), {});
+    isMobile.value && (o["Артикул"] = [{
+      name: props.productID
+    }]);
+    for (var r = {}, n = 0, c = ["Действующее вещество", "� ецептурность", "Форма выпуска", "Бренд", "Производитель", "Страна", "Способ хранения", "Артикул"]; n < c.length; n++) {
+      var p = c[n];
+      void 0 !== o[p] && (r[p] = o[p])
+    }
+    return r
+  }
+})
+const propertyTypes = computed(() => {
+  return productPropertyTypesStore.list.reduce((t: any, p: any) => {
+    return t[p.ID] = p, t
+  }, {})
+})
+const restrictTypes = computed(() => {
+  return restrictTypesStore.list
+})
+const shareLinks = computed(() => {
+  var imageShare = image(uSIZE_M),
+      title = product.value.name,
+      t = "".concat(params.value.siteURL, "/product/").concat(product.value.ID, "-").concat(product.value.slug);
+  return [{
+    name: "Вконтакте",
+    icon: "vk",
+    link: "https://vk.com/share.php?image=".concat(imageShare, "&title=").concat(title, "&url=").concat(t)
+  }, {
+    name: "Одноклассники",
+    icon: "ok",
+    link: "https://connect.ok.ru/offer?url=".concat(t, "&title=").concat(title, "&imageUrl=").concat(imageShare)
+  }, {
+    name: "WhatsApp",
+    icon: "whatsapp",
+    link: "https://api.whatsapp.com/send?text=".concat(t)
+  }, {
+    name: "Telegram",
+    icon: "telegram",
+    link: "https://telegram.me/share/url?url=".concat(t, "&text=").concat(title)
+  }]
+})
+const preparedArticles = computed(() => {
+  var t = this;
+  return void 0 === this.$data.articleCategories ? [] : this.articles.map((function (a) {
+    var e, o, r = (null !== (e = t.$data.articleCategories) && void 0 !== e ? e : []).find((function (t) {
+          return t.ID === a.categoryID
+        })),
+        n = z(z({}, a), {}, {
+          image: "url(".concat(a.image.endsWith(h.SIZE_S) ? a.image.slice(0, -h.SIZE_S.length) + h.SIZE_L : a.image, ")"),
+          route: {
+            name: "Article",
+            params: {
+              ID: "".concat(a.ID),
+              slug: a.slug,
+              sectionName: "blog"
+            }
+          }
+        });
+    return void 0 !== r && void 0 !== r.parentID && ((null === (o = n.route) || void 0 === o ? void 0 : o.params).categoryName = r.slug), n
+  }))
+})
+const hasRegionsStock = computed(() => {
+  var t;
+  return Object.keys(null !== (t = this.regionsStock) && void 0 !== t ? t : {}).length > 0
+})
+const productName = computed(() => {
+  var t, e;
+  return null !== (e = null === (t = product.value.properties.find((function (p) {
+    return 10 === p.typeID
+  }))) || void 0 === t ? void 0 : t.name) && void 0 !== e ? e : product.value.name
+})
+const selectedRegion = computed(() => {
+  var t = this;
+  return this.regions.find((function (e) {
+    var o;
+    return e.ID === (null === (o = t.city) || void 0 === o ? void 0 : o.regionID)
+  }))
+})
+const hasStockInHomeRegion = computed(() => {
+  var t;
+  return "".concat(null === (t = this.selectedRegion) || void 0 === t ? void 0 : t.ID) in this.regionsStock
+})
+const isRare = computed(() => {
+  return product.value.isRare
+})
+const productOnlyInPharmacies = computed(() => {
+  return product.value.isSiteSellRemains || product.value.isWaitingArrive || product.value.isOrderRcNoRc
+})
+//END COMPUTED
+
+onBeforeRouteUpdate((to, from, next) => {
+
+})
+onMounted(() => {
+
+})
+onBeforeUnmount(() => {
+
+})
+onUnmounted(() => {
+
+})
+
+
+//FUNCTIONS
+function onStorageChanged(t) {
+  var e;
+  "viewedProductsIDs" === t.key && (JSON.parse(null !== (e = t.newValue) && void 0 !== e ? e : "[]").includes(product.value.ID) || this.setViewedProductID())
+}
+
+
+const getPreparedCheckItems = uPreparedCheckItems
+
+function getCharity() {
+  this.$store.dispatch("charity/".concat(l.CHARITY.GET))
+}
+
+function getCardProjects() {
+  this.$store.dispatch("cardProjects/".concat(l.CARD_PROJECTS.GET))
+}
+
+function getBannerYouMayNeed() {
+  void 0 === this.bannerYouMayNeed && this.$store.dispatch("banners/".concat(l.BANNERS.GET_YOU_MAY_NEED))
+}
+
+
+// const translit: uTransliter // TODO
+
+function trademarkProductCountry(p) {
+  var t, e;
+  return null !== (e = null === (t = p.properties.find((function (t) {
+    return 15 === t.typeID
+  }))) || void 0 === t ? void 0 : t.name) && void 0 !== e ? e : ""
+}
+
+function trademarkProductHasCountry(p) {
+  return product.value.typeIDs.includes(396070) && void 0 !== p.properties.find((function (t) {
+    return 15 === t.typeID
+  }))
+}
+
+function closeDisposableHintCompared() {
+  localStorage.setItem("disposable-hint-compared", "false"), this.showDisposableHintCompared = !1
+}
+
+function changePaddingHeader() {
+  this.needPaddingHeader = !this.needPaddingHeader
+}
+
+function showHideDescription() {
+  this.isShowDescription = !this.isShowDescription
+}
+
+function showHideReviews() {
+  this.isMobile && (this.isShowReviews = !this.isShowReviews)
+}
+
+function image(t: any, e: any) {
+  return uPrepareProduct(product.value, t, params.value.cdnURL.url).images[0]
+}
+
+function loadViewedProducts() {
+  var t;
+  void 0 !== (null === (t = this.city) || void 0 === t ? void 0 : t.ID) && this.hasViewedProducts && this.$store.dispatch("viewedProducts/".concat(l.VIEWED_PRODUCTS.GET), {
+    IDs: this.viewedProductsIDs,
+    cityID: this.city.ID
+  })
+}
+
+function setQuestion(q) {
+  this.question = q
+}
+
+function updateIsMax(t, e) {
+  this.isLimitProduct = t, this.limitProduct = e
+}
+
+function openReviewsForm() {
+  var t = this;
+  setTimeout((function () {
+    t.$nuxt.$emit("reviews-form-open")
+  }), 500)
+}
+
+function openClosePropertybar() {
+  this.isOpenedPropertyBar = !this.isOpenedPropertyBar
+}
+
+function closeQuestionbar() {
+  this.question = void 0
+}
+
+function openStockSidebar() {
+  this.$nuxt.$emit("open-product-curtain", product.value.ID, product.value.slug, !1, !this.hasStockInHomeRegion && !this.isRare), this.isOpenStockSidebar = !0
+}
+
+function formattedCreationTime(s) {
+  var t = v.r.toDate(s);
+  return void 0 !== t ? v.s.format(t, "d.m.Y") : "Не известно"
+}
+
+function getArticlesRandom(t) {
+  var e = this,
+      o = this.$data.articleCategories.reduce((function (t, e) {
+        return "news" !== e.slug && t.push(e.ID), t
+      }), []),
+      filter = "categoryID={".concat(o.join(), "}").concat(t ? "" : "&products=".concat(product.value.ID), "[0:2]");
+  f.a.articles.get(filter, ["ID", "categoryID", "slug", "title", "image", "creationTime", "views", "readingTime", "commentsCount"], "random").then((function (a) {
+    e.articles = null != a ? a : [], null === a && e.getArticlesRandom(!0)
+  })).catch((function (o) {
+    t || e.getArticlesRandom(!0), e.error(o)
+  })).finally((function () {
+    e.$nextTick((function () {
+      e.checkHeight()
+    }))
+  }))
+}
+
+function pluralizeRestrictAge(t: any) {
+  var e = t.minimalAge,
+      o = "Месяц" === t.minimalAgeType;
+  return uPluralize(e, o ? ["месяца", "месяцев", "месяцев"] : ["года", "лет", "лет"])
+}
+
+function favoriteMouseDown() {
+  this.isMouseDown = !0, this.isProductFavoriteActive = !0
+}
+
+function favoriteMouseUp() {
+  var t = this;
+  this.isMouseDown = !1, this.isMouseUp = !0, setTimeout((function () {
+    t.isProductFavoriteActive = !1, t.isMouseUp = !1
+  }), 300)
+}
+
+function favoriteMouseOut() {
+  this.isMouseDown && !this.isMouseUp && (this.isProductFavoriteActive = !1)
+}
+
+function addReview(t) {
+  var e = this;
+  this.isLoadingReviewAside = !0, f.a.reviews.new(t).then((function () {
+    e.getTotalCountReviews(), e.getReviews().finally((function () {
+      e.isLoadingReviewAside = !1
+    }))
+  })).catch((function (t) {
+    e.isLoadingReviewAside = !1, e.error(t)
+  }))
+}
+
+function checkScroll() {
+  this.lastScrollTop > window.scrollY ? this.isScrollTop = !0 : (this.isScrollTop = !1, this.headerTop = -60), this.lastScrollTop = window.scrollY;
+  var t = this.$refs["v-product"];
+  this.isShowFixedHeader = window.scrollY > .2 * t.clientHeight
+}
+
+function addToBasket(t, e) {
+  var o, r, n, c = this;
+  if (e || (this.reachGoal("addbasket"), this.ecommerce("add", [product.value])), this.isAuthorized) e ? this.updatingBasketProductIDs.push(t.productID) : this.loadingBasketProductIDs.push(t.productID), this.$store.dispatch("basket/".concat(l.BASKET.ADD), {
+    item: t,
+    cityID: null === (o = this.city) || void 0 === o ? void 0 : o.ID,
+    isUpdate: e
+  }).finally((function () {
+    c.loadingBasketProductIDs = [], e && (c.updatingBasketProductIDs = [])
+  }));
+  else {
+    var d = v.c.clone(this.basketItems);
+    d.push({
+      productID: product.value.ID,
+      productSlug: product.value.slug,
+      images: product.value.images,
+      name: product.value.name,
+      price: product.value.price,
+      priceZakaz: product.value.priceZakaz,
+      count: 1,
+      isRemoved: !1,
+      isInStock: product.value.isInStock,
+      allowDelivery: product.value.allowDelivery,
+      allowOnlinePayment: product.value.allowOnlinePayment,
+      discountID: product.value.discountID,
+      isWithdrawn: product.value.isWithdrawn,
+      limitWithCard: product.value.limitWithCard,
+      limitWithoutCard: product.value.limitWithoutCard,
+      deliveryDaysMax: product.value.deliveryDaysMax,
+      isRecipe: null !== (n = null === (r = product.value) || void 0 === r ? void 0 : r.isRecipe) && void 0 !== n && n,
+      isAvailable: product.value.isAvailable,
+      deliveryAmount: product.value.deliveryAmount,
+      discountTemplate: product.value.discountTemplate,
+      mightNeedID: product.value.mightNeedID,
+      imagesSizeXS: product.value.imagesSizeXS,
+      imagesSizeS: product.value.imagesSizeS,
+      isSelected: !1,
+      isSiteSellRemains: product.value.isSiteSellRemains,
+      isWaitingArrive: product.value.isWaitingArrive,
+      isOrderRcNoRc: product.value.isOrderRcNoRc
+    }), this.hasBonuses && !this.isStock && (d[d.length - 1].bonuses = product.value.bonuses), void 0 !== product.value.sticker && (d[d.length - 1].sticker = product.value.sticker), void 0 !== product.value.deliveryRuleID && (d[d.length - 1].deliveryRuleID = product.value.deliveryRuleID), this.isMobile || this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+      status: "basket",
+      image: this.image(h.SIZE_XS)
+    }), localStorage.setItem("basket", JSON.stringify(d)), this.$store.commit("basket/".concat(l.BASKET.UPD), d)
+  }
+}
+
+function checkHeight() {
+  var t, e, o, r, n, c, d, l = this,
+      v = null !== (t = this.$refs.recommendations) && void 0 !== t ? t : {},
+      h = (null !== (o = null === (e = this.$refs.description) || void 0 === e ? void 0 : e.clientHeight) && void 0 !== o ? o : 0) + 50,
+      m = null !== (c = (null !== (r = v.clientHeight) && void 0 !== r ? r : 0) + (null !== (n = this.$refs.articles) && void 0 !== n ? n : {}).clientHeight) && void 0 !== c ? c : 0;
+  h < m && (this.$refs.articles.style.display = "none", h < (null !== (d = v.clientHeight) && void 0 !== d ? d : 0) && Array.from(v.children[1].children).forEach((function (t, i) {
+    i > 1 && (t.style.display = "none")
+  })), this.$nextTick((function () {
+    var t, e;
+    h < (null !== (e = (null !== (t = l.$refs.recommendations) && void 0 !== t ? t : {}).clientHeight) && void 0 !== e ? e : 0) && (Array.from(v.children[1].children).forEach((function (t, i) {
+      i > 0 && (t.style.display = "none")
+    })), l.isHorizontalCardMode = !0)
+  })))
+}
+
+function addToComparison() {
+  var t, e = this;
+  if (!this.isComparisonLoading) {
+    this.isComparisonLoading = !0;
+    var o = v.c.clone(this.comparisonProducts);
+    if (this.isInComparison) {
+      var r = null !== (t = o.find((function (p) {
+        return p.categoryID === e.productCategory.ID
+      }))) && void 0 !== t ? t : {};
+      o = 1 === r.productIDs.length ? o.filter((function (p) {
+        return p.categoryID !== e.productCategory.ID
+      })) : o.filter((function (p) {
+        return p.categoryID === e.productCategory.ID && (p.productIDs = p.productIDs.filter((function (t) {
+          return t !== e.productID
+        }))), p
+      }))
+    } else void 0 === o.find((function (t) {
+      return t.categoryID === e.productCategory.ID
+    })) ? (o.push({
+      categoryID: this.productCategory.ID,
+      productIDs: [this.productID]
+    }), this.sendNoticeCompare()) : o.map((function (t) {
+      return t.categoryID === e.productCategory.ID && (t.productIDs.length < 6 ? (t.productIDs.push(e.productID), e.sendNoticeCompare(), 6 !== t.productIDs.length || e.isMobile || e.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+        status: "compare-limited",
+        productCategoryName: e.productCategory.name.length > 21 && !e.isMobile ? "".concat(e.productCategory.name.slice(0, 21), "...") : e.productCategory.name
+      })) : e.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+        title: "Ошибка",
+        desc: 'В сравнении может быть только <br> 6 товаров данной категории.<br><br><a href="/compare" class="hover-bottom-line">Перейти в сравнение</a>',
+        status: "error"
+      })), t
+    }));
+    this.$store.dispatch("comparisonProducts/".concat(l.COMPARISON_PRODUCTS.UPD), o).finally((function () {
+      e.isComparisonLoading = !1
+    }))
+  }
+}
+
+function goToReviews() {
+  var t = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
+  this.$data.isProductReviews && (this.scrollTo("reviews"), !0 === t && this.openReviewsForm())
+}
+
+function goToProduct() {
+  this.$data.isProductReviews || (this.scrollTo("description"), this.isShowDescription = !0)
+}
+
+function goToLoyal() {
+  this.$router.push({
+    name: "loyal"
+  })
+}
+
+function sendNoticeCompare() {
+  this.isMobile || this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+    status: "compare",
+    image: this.image(h.SIZE_XS)
+  })
+}
+
+function addToFavorites(t, e) {
+  var o, r, n, c = this;
+  if (!e || !this.isFavoritesLoading)
+    if (this.isAuthorized) this.loadingFavoritesProductIDs.push(t), this.loadingFavoritesProductIDs.includes(product.value.ID) && (this.isFavoritesLoading = !0), this.$store.dispatch("favorites/".concat(l.FAVORITES.ADD), {
+      itemID: t,
+      cityID: null !== (r = null === (o = this.city) || void 0 === o ? void 0 : o.ID) && void 0 !== r ? r : 41
+    }).catch((function (t) {
+      c.error(t)
+    })).finally((function () {
+      c.loadingFavoritesProductIDs.includes(c.$data.product.ID) && (c.isFavoritesLoading = !1), c.loadingFavoritesProductIDs = []
+    }));
+    else {
+      var d = v.c.clone(null !== (n = this.$store.state.favorites.items) && void 0 !== n ? n : []);
+      if (this.isInFavorites) {
+        var m = d.findIndex((function (t) {
+          return t.ID === c.$data.product.ID
+        }));
+        d.splice(m, 1)
+      } else {
+        if (d.length >= this.params.maxCountFavorites) return void this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+          title: "Внимание!",
+          desc: "В разделе «�?збранное» добавлено максимальное количество товаров – ".concat(this.params.maxCountFavorites, " шт."),
+          status: "warning"
+        });
+        this.isMobile || this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+          status: "favorites",
+          image: this.image(h.SIZE_XS)
+        }), d.push(product.value)
+      }
+      localStorage.setItem("favorites", JSON.stringify(d)), this.$store.commit("favorites/".concat(l.FAVORITES.UPD), d)
+    }
+}
+
+function closeShareLinks() {
+  this.isOpenedShare = !1, document.removeEventListener("keydown", this.esc), document.removeEventListener("click", this.outside)
+}
+
+function copyText() {
+  var t, text = window.getSelection(),
+      e = text + "<br /><br />�?сточник: ".concat(this.params.siteURL).concat(this.$route.path),
+      div = document.createElement("div");
+  div.style.position = "absolute", div.style.left = "-99999px", div.innerHTML = "".concat(e).replace(/\n/g, "<br />"), null === (t = document.getElementById("app")) || void 0 === t || t.appendChild(div), null == text || text.selectAllChildren(div), setTimeout((function () {
+    var t;
+    null === (t = document.getElementById("app")) || void 0 === t || t.removeChild(div)
+  }), 100)
+}
+
+function deleteReview(t) {
+  var e = this;
+  this.isLoadingReviews = !0, f.a.reviews.del(t).then((function () {
+    e.getTotalCountReviews(), e.getReviews().finally((function () {
+      e.isLoadingReviews = !1
+    })), t.isActive && e.getProduct()
+  })).catch((function (t) {
+    e.isLoadingReviews = !1, e.error(t)
+  }))
+}
+
+function scrollTodescription(t) {
+  if ("#instrukciya-po-primeneniyu" !== t) {
+    var e = document.querySelector(t);
+    this.descriptionHash = t, v.q.smooth(e, -150)
+  } else this.goToProduct()
+}
+
+function scrollTo(t) {
+  var e, o = null !== (e = this.$refs[t].$el) && void 0 !== e ? e : this.$refs[t];
+  v.q.smooth(o, this.isMobile ? -60 : -150)
+}
+
+function error(t) {
+  this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+    title: "Произошла ошибка",
+    desc: t,
+    status: "error"
+  })
+}
+
+function esc(t) {
+  "Escape" === t.code && this.closeShareLinks()
+}
+
+function getReplacements(t) {
+  var e, o, r, n, c = this;
+  if (0 === (null !== (e = product.value.replacements) && void 0 !== e ? e : []).length) return Promise.resolve();
+  t && (this.isLoadingReplacements = !0);
+  var d = null !== (n = null === (r = null === (o = this.$store.state.cities) || void 0 === o ? void 0 : o.currentCity) || void 0 === r ? void 0 : r.ID) && void 0 !== n ? n : 41,
+      v = {
+        filter: 'isNotFound="false"&ID={'.concat(product.value.replacements.join(), "}&cityID=").concat(d, "&isInStock=true&saveSort=true"),
+        fields: m.k,
+        listName: "replacements"
+      },
+      h = this.$store.dispatch("products/".concat(l.PRODUCT.GET_LIST), v);
+  return h.then((function (p) {
+    c.$data.replacements = [], c.$data.product.replacements.forEach((function (t) {
+      p.find((function (e) {
+        e.ID === t && c.$data.replacements.push(e)
+      }))
+    })), c.$data.isFailedGettingReplacements = !1
+  })).catch((function (t) {
+    c.$data.isFailedGettingReplacements = !0, c.error(t)
+  })).finally((function () {
+    t && (c.isLoadingReplacements = !1)
+  })), h
+}
+
+function getTrademarkProducts() {
+  var t, e, o, r, n, c = this,
+      d = null === (t = product.value.properties.find((function (p) {
+        return 10 === p.typeID
+      }))) || void 0 === t ? void 0 : t.ID;
+  if (0 === (null !== (e = product.value.trademarkProducts) && void 0 !== e ? e : []).length || void 0 === d) return Promise.resolve();
+  var v = null !== (n = null === (r = null === (o = this.$store.state.cities) || void 0 === o ? void 0 : o.currentCity) || void 0 === r ? void 0 : r.ID) && void 0 !== n ? n : 41,
+      h = ["ID", "images", "name", "price", "slug", "isRecipe", "imagesSizeXS"];
+  product.value.typeIDs.includes(396070) && h.push("properties");
+  var m = {
+        filter: "ID!=".concat(this.productID, "&properties={typeID=10,ID=").concat(d, "}&categoryID=").concat(product.value.categoryID, "&cityID=").concat(v, "&isInStock=true&isAvailable=true[0:20]"),
+        fields: h,
+        path: "random",
+        listName: "trademarkProducts"
+      },
+      f = this.$store.dispatch("products/".concat(l.PRODUCT.GET_LIST), m);
+  return f.then((function (p) {
+    c.$data.trademarkProducts = null != p ? p : []
+  })).catch((function (t) {
+    c.error(t)
+  })), f
+}
+
+function getPharmacy() {
+  return this.$store.dispatch("pharmacies/".concat(l.PHARMACIES.GET), {
+    city: this.city
+  })
+}
+
+function getPharmacyStock() {
+  var t = this;
+  if (void 0 !== this.city && product.value.isAvailable) {
+    var e = f.a.pharmacies.getStock({
+      productID: [this.productID],
+      city: this.city,
+      isRareProduct: this.isRare
+    });
+    return this.isGetRegionPharmacies = !1, e.then((function (p) {
+      t.pharmacyStock = null != p ? p : []
+    })).catch((function (t) {
+      console.log(t)
+    })), e
+  }
+  return void 0 !== this.city && (this.pharmacyStock = [], this.isOpenStockSidebar = !1, this.isGetRegionPharmacies = !0), Promise.resolve()
+}
+
+function getProduct() {
+  var t, e, o = this,
+      r = this.$store.dispatch("products/".concat(l.PRODUCT.GET), "ID=".concat(this.productID, '&slug="').concat(this.productSlug, '"&cityID=').concat(null !== (e = null === (t = this.city) || void 0 === t ? void 0 : t.ID) && void 0 !== e ? e : 41));
+  return r.then((function (p) {
+    o.$data.product = p, o.$data.isFailedGettingProduct = !1
+  })).catch((function (t) {
+    o.$data.isFailedGettingProduct = !0, o.error(t)
+  })), r
+}
+
+function getRecommend(t) {
+  var e, o, r, n, c = this;
+  if (0 === (null !== (e = product.value.recommend) && void 0 !== e ? e : []).length) return Promise.resolve();
+  t && (this.isLoadingRecommend = !0);
+  var d = null !== (n = null === (r = null === (o = this.$store.state.cities) || void 0 === o ? void 0 : o.currentCity) || void 0 === r ? void 0 : r.ID) && void 0 !== n ? n : 41,
+      v = {
+        filter: 'isNotFound="false"&ID={'.concat(product.value.recommend.join(), "}&cityID=").concat(d, "&isInStock=true"),
+        fields: m.k,
+        listName: "recommendations"
+      },
+      h = this.$store.dispatch("products/".concat(l.PRODUCT.GET_LIST), v);
+  return h.then((function (p) {
+    var t, e = null != p ? p : [],
+        o = null !== (t = c.$data.product.recommend) && void 0 !== t ? t : [],
+        r = [];
+    o.forEach((function (t) {
+      var o = e.find((function (e) {
+        return e.ID === t
+      }));
+      void 0 !== o && r.push(o)
+    })), c.$data.recommendations = r, c.$data.isFailedGettingRecommend = !1
+  })).catch((function (t) {
+    c.$data.isFailedGettingRecommend = !0, c.error(t)
+  })).finally((function () {
+    t && (c.isLoadingRecommend = !1)
+  })), h
+}
+
+function getRestrictTypes() {
+  return 0 !== this.restrictTypes.length ? Promise.resolve() : this.$store.dispatch("restrictTypes/".concat(l.RESTRICT_TYPES.GET))
+}
+
+function getTotalCountReviews() {
+  var t = this;
+  if (this.isRecipe) return this.$data.allGrades = [], this.$data.totalCountReviews = 0, Promise.resolve();
+  var e = f.a.reviews.get("productID=".concat(this.productID), ["ID", "rate"]);
+  return e.then((function (e) {
+    t.$data.allGrades = null != e ? e : [], t.$data.totalCountReviews = t.$data.allGrades.length
+  })).catch((function (e) {
+    t.error(e)
+  })), e
+}
+
+function getRegionPharmacies() {
+  var t = this;
+  return Object(c.a)(regeneratorRuntime.mark((function e() {
+    var o, r;
+    return regeneratorRuntime.wrap((function (e) {
+      for (; ;) switch (e.prev = e.next) {
+        case 0:
+          return t.$store.commit("app/".concat(l.APP.LOADING_UPD), !0), t.isGetRegionPharmacies || (t.isGetRegionPharmacies = !0), t.isLoadingRegionPharmacies = !0, o = function () {
+            var e;
+            f.a.pharmacies.get({
+              regionID: null === (e = t.region) || void 0 === e ? void 0 : e.ID
+            }).then((function (p) {
+              t.regionPharmacies = null != p ? p : []
+            })).catch((function (t) {
+              console.error(t)
+            }))
+          }, r = function () {
+            var e;
+            f.a.pharmacies.getStock({
+              productID: [t.productID],
+              regionID: null === (e = t.region) || void 0 === e ? void 0 : e.ID,
+              isRareProduct: t.isRare
+            }).then((function (p) {
+              t.regionPharmacyStock = null != p ? p : []
+            })).catch((function (t) {
+              console.error(t)
+            }))
+          }, e.next = 7, Promise.all([o(), r()]).finally((function () {
+            t.$store.commit("app/".concat(l.APP.LOADING_UPD), !1), t.isLoadingRegionPharmacies = !1, t.isOpenStockSidebar || t.openStockSidebar()
+          }));
+        case 7:
+        case "end":
+          return e.stop()
+      }
+    }), e)
+  })))()
+}
+
+function getReviews(t) {
+  var e = this;
+  if (this.isRecipe) return this.$data.reviews = [], Promise.resolve();
+  var o = t ? "".concat(this.filterReviews, "[").concat(this.$data.reviews.length, ":").concat(this.limitReviews, "]") : "".concat(this.filterReviews, "[0:").concat(this.limitReviews, "]"),
+      n = f.a.reviews.get(o);
+  return t ? this.isLoadingMoreReviews = !0 : this.isLoadingReviews = !0, n.then((function (o) {
+    e.$data.isFailedGettingReviews = !1, e.$data.reviews = t ? [].concat(Object(r.a)(e.$data.reviews), Object(r.a)(o)) : null != o ? o : []
+  })).catch((function (t) {
+    e.$data.isFailedGettingReviews = !0, e.error(t)
+  })).finally((function () {
+    t ? e.isLoadingMoreReviews = !1 : e.isLoadingReviews = !1
+  })), n
+}
+
+function init() {
+  var t, e, o = this;
+  return this.$store.commit("app/".concat(l.APP.LOADING_UPD), !0), this.region = this.regions.find((function (t) {
+    var e;
+    return t.ID === (null === (e = o.city) || void 0 === e ? void 0 : e.regionID)
+  })), Promise.all([0 === Object.keys(this.propertyTypes).length ? this.loadPropertyTypes().catch((function () {
+    v.p.request(o.loadPropertyTypes, 3, 5e3)
+  })) : Promise.resolve(), 0 === this.restrictTypes.length ? this.getRestrictTypes().catch((function () {
+    v.p.request(o.getRestrictTypes, 3, 5e3)
+  })) : Promise.resolve(), 0 === this.pharmacyStock.length ? this.getPharmacyStock().catch((function () {
+    v.p.request(o.getPharmacyStock, 3, 5e3)
+  })) : Promise.resolve(), (null === (t = this.pharmacies[0]) || void 0 === t ? void 0 : t.cityID) !== (null === (e = this.city) || void 0 === e ? void 0 : e.ID) ? this.getPharmacy().catch((function () {
+    v.p.request(o.getPharmacy, 3, 5e3)
+  })) : Promise.resolve(), this.setViewedProductID(), this.cardProjects.length < 1 ? this.getCardProjects() : Promise.resolve(), this.charity.length < 1 ? this.getCharity() : Promise.resolve()]).finally((function () {
+    o.$store.commit("app/".concat(l.APP.LOADING_UPD), !1)
+  }))
+}
+
+function loadPropertyTypes() {
+  return this.$store.dispatch("productPropertyTypes/".concat(l.PRODUCT_PROPERTY_TYPES.GET))
+}
+
+function openFastOrder() {
+  var t, e, o, r, n, c, d, v = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : void 0;
+  this.reachGoal("oneclick");
+  var h = {
+    productID: null === (t = product.value) || void 0 === t ? void 0 : t.ID,
+    productSlug: null === (e = product.value) || void 0 === e ? void 0 : e.slug,
+    name: null === (o = product.value) || void 0 === o ? void 0 : o.name,
+    count: this.isRare ? this.rareItemCount : 1,
+    price: null === (r = product.value) || void 0 === r ? void 0 : r.price,
+    images: null === (n = product.value) || void 0 === n ? void 0 : n.images,
+    isSiteSellRemains: null === (c = product.value) || void 0 === c ? void 0 : c.isSiteSellRemains,
+    isOrderRcNoRc: null === (d = product.value) || void 0 === d ? void 0 : d.isOrderRcNoRc
+  };
+  this.$store.commit("checkout/".concat(l.CHECKOUT.FAST_ORDER_UPD), {
+    item: h,
+    pharmacyID: v,
+    city: this.fastOrderCity,
+    isRare: this.isRare
+  }), this.$router.push({
+    name: "checkout"
+  })
+}
+
+function openPopup(t) {
+  var e = screen.width / 2 - 300,
+      o = screen.height / 2 - 200;
+  window.open(t, "", "width=".concat(600, ", height=").concat(400, ", top=").concat(o, ", left=").concat(e))
+}
+
+function openShareLinks() {
+  this.isOpenedShare = !0, document.addEventListener("keydown", this.esc), document.addEventListener("click", this.outside)
+}
+
+function outside(t) {
+  var menu = this.$refs.menu,
+      button = this.$refs.button,
+      e = t.target;
+  menu.contains(e) || button.contains(e) || this.closeShareLinks()
+}
+
+const preparedProducts = uPrepared
+
+function repeatGettingProduct() {
+  var t, e, o = this;
+  this.getProduct().then((function () {
+    return o.updateBreadcrumbs(), Promise.all([o.getReplacements(), o.getTrademarkProducts(), o.getRecommend()])
+  })), 0 === Object.keys(this.propertyTypes).length ? this.loadPropertyTypes().catch((function () {
+    v.p.request(o.loadPropertyTypes, 3, 5e3)
+  })) : Promise.resolve(), 0 === this.restrictTypes.length ? this.getRestrictTypes().catch((function () {
+    v.p.request(o.getRestrictTypes, 3, 5e3)
+  })) : Promise.resolve(), this.getTotalCountReviews(), this.getReviews(), 0 === this.pharmacyStock.length ? this.getPharmacyStock().catch((function () {
+    v.p.request(o.getPharmacyStock, 3, 5e3)
+  })) : Promise.resolve(), (null === (t = this.pharmacies[0]) || void 0 === t ? void 0 : t.cityID) !== (null === (e = this.city) || void 0 === e ? void 0 : e.ID) ? this.getPharmacy().catch((function () {
+    v.p.request(o.getPharmacy, 3, 5e3)
+  })) : Promise.resolve(), this.setViewedProductID()
+}
+
+function routeProperty(t, e, o) {
+  var r = (o ? this.routePropertyKey.includes(t) : this.routePropertyIDs.includes(e.typeID)) ? this.routeProperties["".concat(o ? t : e.typeID)] : "";
+  return o ? {
+    name: r
+  } : {
+    name: r,
+    params: {
+      propertyID: "".concat(e.ID),
+      propertyName: e.name.trim(),
+      propertyTypeID: "".concat(e.typeID),
+      propertyTypeName: t.trim(),
+      propertySlug: "".concat(e.slug)
+    }
+  }
+}
+
+function setViewedProductID() {
+  var t, e = v.c.clone(JSON.parse(null !== (t = localStorage.getItem("viewedProductsIDs")) && void 0 !== t ? t : "[]"));
+  e.length > 0 && e.includes(product.value.ID) && e.splice(e.indexOf(product.value.ID), 1), e.length >= 30 && e.splice(29, 1), e.unshift(product.value.ID), localStorage.setItem("viewedProductsIDs", JSON.stringify(e))
+}
+
+function share() {
+  this.isOpenedShare ? this.closeShareLinks() : this.openShareLinks()
+}
+
+function startTimer() {
+  var t = this;
+  this.intervalID = window.setInterval((function () {
+    Object.keys(t.$data.product).length > 0 && void 0 !== window && (t.ecommerce("detail", [t.$data.product]), clearInterval(t.intervalID))
+  }), 1e3)
+}
+
+function updateBasketItem(t) {
+  this.addToBasket(t, !0)
+}
+
+function updateBasketStore(t) {
+  this.$store.commit("basket/".concat(l.BASKET.UPD), t)
+}
+
+
+function updateFavoritesStore(t) {
+  this.$store.commit("favorites/".concat(l.FAVORITES.UPD), t)
+}
+
+function updateReview(t) {
+  var e = this;
+  this.isLoadingReviewAside = !0, f.a.reviews.update(t).then((function () {
+    e.getTotalCountReviews(), e.getReviews().finally((function () {
+      e.isLoadingReviewAside = !1
+    }))
+  })).catch((function (t) {
+    e.isLoadingReviewAside = !1, e.error(t)
+  }))
+}
+
+//END FUNCTIONS
+
+//HEAD props
+let y = product.value.properties!.find((p: any) => {
+  return 13 === p.typeID
+}).name.replace('"', "«").replace('"', "»")
+let urlHead = "" + params.value.siteURL + "/product/" + props.productID + "-" + product.value.slug + (isProductReviews.value ? "/otzyvy" : "")
+let titleHead = isProductReviews.value ? "Отзывы " + product.value.name + (y ? " " + y : "") : "" + product.value.name + " цена от " + (product.value.price.withPeriod ? product.value.price.withPeriod : "") + " руб. купить в магазинах YComsmetic, инструкция по применению"
+let descHead = isProductReviews.value ? "Ознакомьтесь с отзывами покупателей о " + product.value.name + ", ценой и наличием в магазинах YCosmetic. " + (y ? "Производитель: " + y + ". " : "") + "Оформите заказ онлайн и заберите в ближайшем магазине." : "Купить " + product.value.name + " по цене от " + product.value.price.withPeriod + " руб. в магазинах YCosmetic. Инструкция по применению, аналоги и отзывы покупателей. Закажите на сайте и заберите в ближайшем магазине."
+useHead(() => ({
+  link: [
+    {
+      rel: 'canonical',
+      href: urlHead,
+    },
+  ],
+}))
+useSeoMeta({
+  title: titleHead,
+  description: descHead,
+  ogType: 'website',
+  ogUrl: urlHead,
+  ogImage: product.value.images ? "" + product.value.images[0] : "https://pictures.apteka-april.ru/generic/pharmacy_logo.png",
+  ogTitle: product.value.name ? product.value.name : "",
+  ogDescription: descHead
+})
 </script>
 
 <template>
-  <main class="v-product container">
-    vProduct {{ props }}
+  <main ref="vProductRef" :class='["v-product", "container", { mobile: isMobile }]' itemscope=""
+        itemtype="http://schema.org/Product">
+    <div v-if="isFailedGettingProduct && hasProduct && isGlobalLoading" class="no-product-in-city">
+      <p>К сожалению, товар отсутствует в Вашем городе</p>
+      <span>
+        Пожалуйста, воспользуйтесь нашим
+        <NuxtLink class="hover-bottom-line" :to='{ name: "catalog" }'>
+          каталогом
+        </NuxtLink>
+      </span>
+    </div>
+    <div v-if="!isMobile" class="header">
+      <h1 itemprop="name">{{ isProductReviews ? "Отзывы о " + product.name : product.name }}</h1>
+      <span>Артикул: {{ productID }}</span>
+    </div>
+    <div
+        :class='["header-fixed", { show: isShowFixedHeader, mobile: isMobile, "need-padding": isOpenStockSidebar || needPaddingHeader }]'>
+      <template v-if="isMobile">
+        <div class="product-info">
+          <h2>{{ productName }}</h2>
+          <ul>
+            <li :class='["favorites", "unselect", { active: isProductFavoriteActive, disabled: isFavoritesLoading }]'>
+              <!--              mousedown: t.favoriteMouseDown,-->
+              <!--              mouseout: t.favoriteMouseOut,-->
+              <!--              mouseup: t.favoriteMouseUp,-->
+              <!--              click(e) {-->
+              <!--              return e.preventDefault(), t.addToFavorites(t.product.ID, !0)-->
+              <!--              }-->
+              <span
+                  :class='["icon", { heart2: isInFavorites || isAddingToFavorites, "heart-outline2": !isInFavorites || isDeletionFromFavorites }]'/>
+            </li>
+            <li class="share" @click="share">
+              <span :class='["icon", { share: isOpenedShare, "share-outline": !isOpenedShare }]'/>
+            </li>
+          </ul>
+        </div>
+      </template>
+      <template v-else>
+        <div class="top">
+          <div class="product-info">
+            <img :src='image(SIZE_XS)' alt="" width="100%" height="100%"/>
+            <div>
+              <div class="name">{{ product.name }}</div>
+              <ul>
+                <li v-if='hasRating && product.isAvailable && !isRare'>
+                  <ReviewsCRating :rating="product.rating"/>
+                </li>
+                <li v-if="hasDescription" @click="goToProduct">
+                  <NuxtLink class="hover-bottom-line"
+                            :to='{ name: "Product", params: { productID: "" + product.ID, productSlug: "" + product.slug, needScrollToInstruction: "true" }, hash: isMobile ? void 0 : "#instrukciya-po-primeneniyu" }'>
+                    Инструкция
+                  </NuxtLink>
+                </li>
+                <li :class='["favorites", { active: isProductFavoriteActive, disabled: isFavoritesLoading }]'>
+                  <!--                  mousedown: t.favoriteMouseDown,-->
+                  <!--                  mouseout: t.favoriteMouseOut,-->
+                  <!--                  mouseup: t.favoriteMouseUp,-->
+                  <!--                  click: function (e) {-->
+                  <!--                  return e.preventDefault(), t.addToFavorites(t.product.ID, !0)-->
+                  <!--                  }-->
+                  <span
+                      :class='["icon", { heart2: isInFavorites || isAddingToFavorites, "heart-outline2": !isInFavorites || isDeletionFromFavorites }]'/>
+                </li>
+                <li ref="comparisonRef" :class='["comparison", { disabled: isComparisonLoading }]'>
+                  <div @click.prevent="addToComparison">
+                    <span :class='["icon compare", { "add-compare": isInComparison }]'/>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div v-if="product.isAvailable" class="prices">
+            <section>
+              <template v-if="isLoyal">
+                <div class="with-card">
+                  <span>По акции</span>
+                  <span>
+                    <span>{{ product.price.withCard }} ₽</span>
+                  </span>
+                </div>
+              </template>
+              <template v-if="isRank">
+                <div class="with-period">
+                  <span>Клубная цена</span>
+                  <span>
+                    <span>{{ product.price.withPeriod }} ₽</span>
+                  </span>
+                </div>
+              </template>
+              <template v-if="hasProduct">
+                <div class="without-card">
+                  <span>Цена</span>
+                  <span>
+                    <span>{{ product.price.withoutCard }} ₽</span>
+                  </span>
+                </div>
+              </template>
+            </section>
+            <template v-if="!isRare">
+              ButtonBasket
+              <!--              TODO-->
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="action-list">
+      <ul>
+        <li v-if="!isMobile && hasRating && product.isAvailable && !isRare" class="rating">
+
+        </li>
+        <li v-if="!isMobile && !isRecipe" @click="goToReviews(!hasReviews)">
+          <NuxtLink
+              :to='{ name: "ProductReviews", params: { productID: "" + product.ID, productSlug: "" + product.slug, needOpenReviews: "" + !hasReviews } }'>
+            <template v-if="hasReviews">
+              <span class="icon star2"/>
+              <span class="average hover-bottom-line">Читать отзывы</span>
+              <span class="review-count">({{ totalCountReviews }})</span>
+            </template>
+            <template v-else>
+              <span class="icon star2"/>
+              <span class="hover-bottom-line">Написать отзыв</span>
+            </template>
+          </NuxtLink>
+        </li>
+        <li v-if="hasDescription" @click="goToProduct">
+          <NuxtLink
+              :to='{ name: "Product", params: { productID: "" + product.ID, productSlug: "" + product.slug, needScrollToInstruction: "true" }, hash: isMobile ? void 0 : "#instrukciya-po-primeneniyu" }'>
+            <span class="icon instruction"/>
+            <span class="hover-bottom-line">Инструкция</span>
+          </NuxtLink>
+        </li>
+        <li :class='["favorites", { active: isProductFavoriteActive, disabled: isFavoritesLoading }]'>
+          <!--          mousedown: t.favoriteMouseDown,-->
+          <!--          mouseout: t.favoriteMouseOut,-->
+          <!--          mouseup: t.favoriteMouseUp,-->
+          <!--          click: function (e) {-->
+          <!--          return e.preventDefault(), t.addToFavorites(t.product.ID, !0)-->
+          <!--          }-->
+          <span
+              :class='["icon", { heart2: isInFavorites || isAddingToFavorites, "heart-outline2": !isInFavorites || isDeletionFromFavorites }]'/>
+          <span class="hover-bottom-line">{{ favoritesCaption }}</span>
+        </li>
+        <li ref="comparisonRef" :class='["comparison", { disabled: isComparisonLoading }]'>
+          <div @click.prevent="addToComparison">
+            <span :class='["icon compare", { "add-compare": isInComparison }]'/>
+            <span class="hover-bottom-line">
+              {{ comparisonCaption }}
+            </span>
+            <div v-if='!isInComparison && showDisposableHintCompared && !isMobile' class="disposable-hint-compared">
+              <div>
+                <span class="icon close2" @click.prevent="closeDisposableHintCompared">
+                  Вы можете добавить
+                  <br>
+                  товар к сравнению
+                </span>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="share" @click="share">
+          <span :class='["icon", { share: isOpenedShare, "share-outline": !isOpenedShare }]'/>
+          <span class="hover-bottom-line">
+            Поделиться
+          </span>
+          <ul v-if="!isMobile" ref="menuRef" :class='["share-links", { opened: isOpenedShare && !isMobile }]'>
+            <li v-for="(e,i) in shareLinks" :key="i" @click="openPopup(e.link)">
+              <span :class='["icon", e.icon]'/>
+              {{ e.name }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <section class="product">
+      <div class="summary">
+        <div class="images">
+
+          <div class="image-list flex-vertical-nowrap">
+            cZoomImage
+          </div>
+
+          <div class="buy">
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
   </main>
 </template>
 

@@ -58,7 +58,7 @@ const preparedComparisonProducts: any = computed(() => {
 })
 
 function image(product: any) {
-  return Object(uPrepareProduct)(product, SIZE_XS, props.params?.cdnURL.url).images[0]
+  return Object(uPrepareProduct)(product, uSIZE_XS, props.params?.cdnURL.url).images[0]
 }
 
 function remove(item: any) {

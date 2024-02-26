@@ -69,6 +69,12 @@ class ApiProductsModule {
                 method: 'GET',
             })
         }
+        if (filter.includes('=327211')) {
+            return await $fetch(`catalog/products/327211.json`, {
+                ...this.$opts,
+                method: 'GET',
+            })
+        }
 
         return await $fetch(`catalog/products/product.json`, {
             ...this.$opts,

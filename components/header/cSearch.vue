@@ -260,7 +260,7 @@ onUnmounted(() => {
 })
 
 function image(item: any) {
-  return uPrepareProduct(item, SIZE_XS, props.cdnUrl).images[0]
+  return uPrepareProduct(item, uSIZE_XS, props.cdnUrl).images[0]
 }
 
 

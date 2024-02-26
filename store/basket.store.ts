@@ -140,7 +140,7 @@ export const useBasketStore = defineStore('basket', {
                 }).then((res: any) => {
                     useAppStore().isMobile || null === res || res.forEach((p: any) => {
                         if (f.includes(p.productID)) {
-                            let image = uPrepareProduct({...p}, SIZE_XS, useAppStore().params.cdnURL.url).images[0]
+                            let image = uPrepareProduct({...p}, uSIZE_XS, useAppStore().params.cdnURL.url).images[0]
                             useNotificationsStore().NOTIFICATIONS_UPD({
                                 status: "basket",
                                 image: image

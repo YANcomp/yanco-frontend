@@ -86,7 +86,7 @@ function openBasket(item: any) {
 }
 
 function image(p: any) {
-  return Object(uPrepareProduct)(p, SIZE_XS, props.params?.cdnURL.url).images[0]
+  return Object(uPrepareProduct)(p, uSIZE_XS, props.params?.cdnURL.url).images[0]
 }
 </script>
 
