@@ -90,7 +90,7 @@ const preparedPharmaciesFilter = ref([])
 const preparedfavoritePharmacies = ref([])
 const propertyLimit = ref(5)
 const resetID = ref(0)
-const selectedFilters = ref([])
+const selectedFilters = ref(<any>[])
 const sortType = ref("Популярное")
 const SORT_TYPES = ref(uSortTypes)
 const isOpened = ref(false)
@@ -126,15 +126,15 @@ const countSelectedFilters = computed(() => {
 })
 const directorySelectedFilter = computed(() => {
   return selectedFilters.value.reduce((e: any, t: any) => {
-    void 0 !== t.subtypeID && (void 0 === e[666] && (e[666] = {}), e[666][t.subtypeID] = t)
-    void 0 !== t.pharmacyID && (void 0 === e[777] && (e[777] = {}), e[777][t.pharmacyID] = t)
-    void 0 !== t.categoryID && (void 0 === e[888] && (e[888] = {}), e[888][t.categoryID] = t)
-    void 0 !== t.typeID && (void 0 === e[t.typeID] && (e[t.typeID] = {}), e[t.typeID][t.ID] = t)
+    undefined !== t.subtypeID && (undefined === e[666] && (e[666] = {}), e[666][t.subtypeID] = t)
+    undefined !== t.pharmacyID && (undefined === e[777] && (e[777] = {}), e[777][t.pharmacyID] = t)
+    undefined !== t.categoryID && (undefined === e[888] && (e[888] = {}), e[888][t.categoryID] = t)
+    undefined !== t.typeID && (undefined === e[t.typeID] && (e[t.typeID] = {}), e[t.typeID][t.ID] = t)
     return e
   }, {})
 })
 const showButtonReset = computed(() => {
-  return selectedFilters.value.length > (isNaN(props.propertyID) || isNaN(props.propertyTypeID) || props.isBrandAnalogs ? 1 : 2) || selectedFilters.value.length > (isNaN(props.propertyID) || isNaN(props.propertyTypeID) || props.isBrandAnalogs ? 0 : 1) && (void 0 !== currentMin.value && currentMin.value !== props.min || void 0 !== currentMax.value && currentMax.value !== props.max)
+  return selectedFilters.value.length > (isNaN(props.propertyID) || isNaN(props.propertyTypeID) || props.isBrandAnalogs ? 1 : 2) || selectedFilters.value.length > (isNaN(props.propertyID) || isNaN(props.propertyTypeID) || props.isBrandAnalogs ? 0 : 1) && (undefined !== currentMin.value && currentMin.value !== props.min || undefined !== currentMax.value && currentMax.value !== props.max)
 })
 const hasFavoritePharmacies = computed(() => {
   return preparedfavoritePharmacies.value.length > 0
@@ -143,14 +143,20 @@ const preparedPharmacies = computed(() => {
   return "all" === pharamciesMode.value ? preparedPharmaciesFilter.value : preparedfavoritePharmacies.value
 })
 const showPricesFilter = computed(() => {
-  return !(void 0 === currentMin.value && void 0 === currentMax.value || currentMin.value === props.min && currentMax.value === props.max)
+  return !(undefined === currentMin.value && undefined === currentMax.value || currentMin.value === props.min && currentMax.value === props.max)
 })
 const isFiltersSelected = computed(() => {
-  return selectedFilters.value.length > (isNaN(props.propertyID) || isNaN(props.propertyTypeID) || props.isBrandAnalogs ? 0 : 1) || void 0 !== currentMin.value && currentMin.value !== props.min || void 0 !== currentMax.value && currentMax.value !== props.max
+  return selectedFilters.value.length > (isNaN(props.propertyID) || isNaN(props.propertyTypeID) || props.isBrandAnalogs ? 0 : 1) || undefined !== currentMin.value && currentMin.value !== props.min || undefined !== currentMax.value && currentMax.value !== props.max
 })
 
-watch(() => openedSortBar.value, () => {
-
+watch(() => openedSortBar.value, (value) => {
+  if (value) {
+    var header = document.querySelector(".c-header");
+    null !== header && (header.style.zIndex = "0")
+  } else {
+    var t = document.querySelector(".c-header");
+    null !== t && (t.style.zIndex = "998")
+  }
 })
 watch(() => isDraggingPrice.value, () => {
 
@@ -159,7 +165,8 @@ watch(() => pharamciesMode.value, () => {
 
 })
 watch(() => sortType.value, () => {
-
+  console.log("sort change")
+  //TODO
 })
 watch(() => props.preparedProductSubtypes, () => {
 
@@ -175,7 +182,11 @@ watch(() => route.path, () => {
 })
 
 onBeforeMount(() => {
-
+  isNaN(props.propertyID) || isNaN(props.propertyTypeID) || props.isBrandAnalogs || (selectedFilters.value.push({
+    ID: props.propertyID,
+    typeID: props.propertyTypeID,
+    name: props.propertyName
+  }), sortActiveProperties(props.propertyTypeID))
 })
 onMounted(() => {
   let r: any = document.querySelector("#product-list")
@@ -199,7 +210,8 @@ onMounted(() => {
   hasStockCategories.value && !props.isMobile && checkCategories()
 })
 onBeforeUnmount(() => {
-
+  window.removeEventListener("resize", resize)
+  document.removeEventListener("scroll", checkScroll)
 })
 
 
@@ -220,8 +232,7 @@ function dragging(b: any) {
   isDraggingPrice.value = b
 }
 
-function emitPropertiesChanged() {
-  var t = !(arguments.length > 0 && void 0 !== arguments[0]) || arguments[0];
+function emitPropertiesChanged(t?: any) {
   emit("properties-changed", props.isBrandAnalogs || isNaN(props.propertyTypeID) ? selectedFilters.value : selectedFilters.value.filter((t: any) => {
     return t.typeID !== props.propertyTypeID
   }), t)
@@ -257,7 +268,7 @@ function checkScroll() {
     isScrollTop.value = true
     filterTop.value = (props.isMobile ? 0 : <any>document.querySelector(".c-header")?.clientHeight) - 2 - (categoriesRef.value?.clientHeight ? categoriesRef.value.clientHeight : 0)
   } else {
-    isScrollTop.value = !1
+    isScrollTop.value = false
     filterTop.value = -cFilterRef.value.clientHeight
   }
   lastScrollTop.value = window.scrollY
@@ -321,39 +332,37 @@ function resize() {
 }
 
 function filteringValues(e: any, s: any) {
-  // 666 === e ? (this.isShowAllFreeShip = !0, this.preparedPropertySubtypes.forEach((function (e) {
-  //   0 !== e.name.toLocaleLowerCase().indexOf(s.toLocaleLowerCase()) ? e.isShow = !1 : e.isShow = !0
-  // }))) : 777 === e ? (this.isShowAllPharamcy = !0, this.preparedPharmacies.forEach((function (e) {
-  //   0 !== e.address.toLocaleLowerCase().replace("ё", "е").indexOf(s.toLocaleLowerCase().replace("ё", "е")) ? e.isShow = !1 : e.isShow = !0
-  // }))) : (this.preparedProperty[e].isShowAll = !0, this.preparedProperty[e].uniqueValue.forEach((function (e) {
-  //   0 !== e.name.toLocaleLowerCase().indexOf(s.toLocaleLowerCase()) ? e.isShow = !1 : e.isShow = !0
-  // })))
+  666 === e ? (isShowAllFreeShip.value = !0, preparedPropertySubtypes.value.forEach((e: any) => {
+    0 !== e.name.toLocaleLowerCase().indexOf(s.toLocaleLowerCase()) ? e.isShow = !1 : e.isShow = !0
+  })) : (preparedProperty.value[e].isShowAll = !0, preparedProperty.value[e].uniqueValue.forEach((e: any) => {
+    0 !== e.name.toLocaleLowerCase().indexOf(s.toLocaleLowerCase()) ? e.isShow = !1 : e.isShow = !0
+  }))
 }
 
 function removeFilter(e?: any, t?: any) {
-  // var t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
-  // if (void 0 !== e.typeID) {
+  // var t = !(arguments.length > 1 && undefined !== arguments[1]) || arguments[1];
+  // if (undefined !== e.typeID) {
   //   this.selectingFilter(e, !1, !0, t);
   //   var r = this.preparedProperty[e.typeID].uniqueValue.find((function (t) {
   //     return t.ID === e.ID
   //   }));
   //   r.isSelectedFilter = !1
   // }
-  // if (void 0 !== e.subtypeID) {
+  // if (undefined !== e.subtypeID) {
   //   this.selectingFilter(e, !1, !0, t);
   //   var o = this.preparedPropertySubtypes.find((function (t) {
   //     return t.ID === e.subtypeID
   //   }));
   //   o.isSelectedFilter = !1
   // }
-  // if (void 0 !== e.categoryID) {
+  // if (undefined !== e.categoryID) {
   //   this.selectingFilter(e, !1, !0, t);
   //   var n = this.stockBabyProductCategories.find((function (t) {
   //     return t.ID === e.categoryID
   //   }));
   //   n.isSelectedFilter = !1
   // }
-  // if (void 0 !== e.pharmacyID) {
+  // if (undefined !== e.pharmacyID) {
   //   this.selectingFilter(e, !1, !0, t);
   //   var c = this.preparedPharmacies.find((function (t) {
   //     return t.ID === e.pharmacyID
@@ -362,16 +371,18 @@ function removeFilter(e?: any, t?: any) {
   // }
 }
 
-function changeRange(e: any, t: any) {
-  // var r, o, n = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2],
-  //     c = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3];
-  // this.productListOffset = null !== (o = null === (r = document.querySelector("#product-list")) || void 0 === r ? void 0 : r.offsetTop) && void 0 !== o ? o : 0, this.currentMin = e, this.currentMax = t, n && this.$emit("prices-changed", e, t, c)
+function changeRange(e: any, t: any, n?: any, c?: any) {
+  productListOffset.value = document.querySelector("#product-list")!.offsetTop ? document.querySelector("#product-list")!.offsetTop : 0
+  currentMin.value = e
+  currentMax.value = t
+  n && emit("prices-changed", e, t, c)
 }
 
 function resetPrices(e?: any, t?: any) {
-  // var e = !(arguments.length > 0 && void 0 !== arguments[0]) || arguments[0],
-  //     t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
-  // this.currentMin = void 0, this.currentMax = void 0, this.resetID += 1, e && this.$emit("prices-changed", void 0, void 0, t)
+  currentMin.value = undefined
+  currentMax.value = undefined
+  resetID.value += 1
+  e && emit("prices-changed", undefined, undefined, t)
 }
 
 function resetFilterType(e: any) {
@@ -388,7 +399,7 @@ function resetFilterType(e: any) {
   //     r.f()
   //   }
   //   this.selectedFilters = this.selectedFilters.filter((function (e) {
-  //     return void 0 === e.subtypeID
+  //     return undefined === e.subtypeID
   //   }))
   // } else if (777 === e) {
   //   this.countSelectedPharmacy = 0;
@@ -403,7 +414,7 @@ function resetFilterType(e: any) {
   //     n.f()
   //   }
   //   this.selectedFilters = this.selectedFilters.filter((function (e) {
-  //     return void 0 === e.pharmacyID
+  //     return undefined === e.pharmacyID
   //   }))
   // } else {
   //   this.preparedProperty[e].countSelected = 0;
@@ -418,7 +429,7 @@ function resetFilterType(e: any) {
   //     l.f()
   //   }
   //   this.selectedFilters = this.selectedFilters.filter((function (e) {
-  //     return void 0 === e.typeID
+  //     return undefined === e.typeID
   //   }))
   // }
   // isNaN(this.propertyID) || isNaN(this.propertyTypeID) || this.isBrandAnalogs || this.selectedFilters.push({
@@ -430,7 +441,7 @@ function resetFilterType(e: any) {
 
 function resetFilters() {
   // var e, t;
-  // this.currentMin = void 0, this.currentMax = void 0, this.resetID += 1, this.countSelectedPharmacy = 0, this.countSelectedSubtype = 0;
+  // this.currentMin = undefined, this.currentMax = undefined, this.resetID += 1, this.countSelectedPharmacy = 0, this.countSelectedSubtype = 0;
   // var r = [];
   // if (this.selectedFilters.length > 0) {
   //   var o, n = x(this.selectedFilters);
@@ -438,7 +449,7 @@ function resetFilters() {
   //     for (n.s(); !(o = n.n()).done;) {
   //       var c = o.value;
   //       if (!(r.includes(c.typeID) || r.includes(c.subtypeID) || r.includes(c.categoryID) || r.includes(c.pharmacyID))) {
-  //         if (void 0 !== c.subtypeID && r.push(c.subtypeID), void 0 !== c.categoryID && r.push(c.categoryID), void 0 !== c.pharmacyID && r.push(c.pharmacyID), void 0 !== c.typeID && r.push(c.typeID), r.includes(c.subtypeID)) {
+  //         if (undefined !== c.subtypeID && r.push(c.subtypeID), undefined !== c.categoryID && r.push(c.categoryID), undefined !== c.pharmacyID && r.push(c.pharmacyID), undefined !== c.typeID && r.push(c.typeID), r.includes(c.subtypeID)) {
   //           var l, d = x(this.preparedPropertySubtypes);
   //           try {
   //             for (d.s(); !(l = d.n()).done;) {
@@ -501,8 +512,8 @@ function resetFilters() {
   //   })
   // }
   // this.snapshotSelectedFilters = JSON.stringify(this.directorySelectedFilter), this.snapshotSelectedPrices = JSON.stringify({
-  //   min: null !== (e = this.currentMin) && void 0 !== e ? e : this.min,
-  //   max: null !== (t = this.currentMax) && void 0 !== t ? t : this.max
+  //   min: null !== (e = this.currentMin) && undefined !== e ? e : this.min,
+  //   max: null !== (t = this.currentMax) && undefined !== t ? t : this.max
   // }), this.$emit("reset")
 }
 
@@ -513,23 +524,20 @@ function clickCategory(e: any) {
   // }, e.isSelectedFilter, !0)
 }
 
-function selectingFilter(i: any, e: any) {
-  // var t, r, o = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2],
-  //     n = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3];
-  // this.productListOffset = null !== (r = null === (t = document.querySelector("#product-list")) || void 0 === t ? void 0 : t.offsetTop) && void 0 !== r ? r : 0, e ? (this.selectedFilters.push(i), void 0 !== i.typeID && this.preparedProperty[i.typeID].countSelected++, void 0 !== i.subtypeID && this.countSelectedSubtype++, void 0 !== i.pharmacyID && this.countSelectedPharmacy++) : (void 0 !== i.typeID && this.preparedProperty[i.typeID].countSelected--, void 0 !== i.subtypeID && this.countSelectedSubtype--, void 0 !== i.pharmacyID && this.countSelectedPharmacy--, this.selectedFilters.splice(this.selectedFilters.findIndex((function (e) {
-  //   return void 0 !== i.subtypeID ? e.subtypeID === i.subtypeID : void 0 !== i.categoryID ? e.categoryID === i.categoryID : void 0 !== i.pharmacyID ? e.pharmacyID === i.pharmacyID : e.ID === i.ID && e.typeID === i.typeID
-  // })), 1)), o && this.emitPropertiesChanged(n)
+function selectingFilter(i: any, e: any, o?: any, n?: any) {
+  var t, r;
+  productListOffset.value = null !== (r = null === (t = document.querySelector("#product-list")) || undefined === t ? undefined : t.offsetTop) && undefined !== r ? r : 0, e ? (selectedFilters.value.push(i), undefined !== i.typeID && preparedProperty.value[i.typeID].countSelected++, undefined !== i.subtypeID && countSelectedSubtype.value++, undefined !== i.pharmacyID && countSelectedPharmacy.value++) : (undefined !== i.typeID && preparedProperty.value[i.typeID].countSelected--, undefined !== i.subtypeID && countSelectedSubtype.value--, undefined !== i.pharmacyID && countSelectedPharmacy.value--, selectedFilters.value.splice(selectedFilters.value.findIndex((function (e: any) {
+    return undefined !== i.subtypeID ? e.subtypeID === i.subtypeID : undefined !== i.categoryID ? e.categoryID === i.categoryID : undefined !== i.pharmacyID ? e.pharmacyID === i.pharmacyID : e.ID === i.ID && e.typeID === i.typeID
+  })), 1)), o && emitPropertiesChanged(n)
 }
 
 function sortActiveProperties(e: any) {
-  // var t;
-  // 666 === e ? this.preparedPropertySubtypes.sort((function (a, b) {
-  //   return Number(b.isSelectedFilter) - Number(a.isSelectedFilter)
-  // })) : 777 === e ? this.preparedPharmacies.sort((function (a, b) {
-  //   return Number(b.isSelectedFilter) - Number(a.isSelectedFilter)
-  // })) : null === (t = this.preparedProperty[e]) || void 0 === t || t.uniqueValue.sort((function (a, b) {
-  //   return Number(b.isSelectedFilter) - Number(a.isSelectedFilter)
-  // }))
+  var t;
+  666 === e ? preparedPropertySubtypes.value.sort((a: any, b: any) => {
+    return Number(b.isSelectedFilter) - Number(a.isSelectedFilter)
+  }) : null === (t = preparedProperty.value[e]) || undefined === t || t.uniqueValue.sort((a: any, b: any) => {
+    return Number(b.isSelectedFilter) - Number(a.isSelectedFilter)
+  })
 }
 </script>
 
@@ -537,6 +545,7 @@ function sortActiveProperties(e: any) {
   <div v-if="!isSearchEmpty" ref="cFilterRef"
        :class='["c-filter", { mobile: isMobile, opened: isOpened, header: isFilterInHeader }]'
        :style='{ top: filterTop + "px" }'>
+
     <div :class='["filter-side-bar", { opened: isOpened }]'>
       <div class="overlay" @click="closeFilter"/>
       <div class="side-bar">
@@ -564,12 +573,12 @@ function sortActiveProperties(e: any) {
               <li v-if="showPricesFilter" class="prices">
                 <span class="name">
                   <span>от {{ currentMin }}</span>
-                  <span>до {{ currentMax }} ₽</span>
+                  <span> до {{ currentMax }} ₽</span>
                 </span>
                 <span class="icon close" @click="resetPrices(true, false)"/>
               </li>
               <li v-for="(t,o) in selectedFilters" :key="o"
-                  v-show="t.ID !== propertyID && t.typeID !== propertyTypeID || void 0 !== t.subtypeID || void 0 !== t.categoryID">
+                  v-show="t.ID !== propertyID && t.typeID !== propertyTypeID || undefined !== t.subtypeID || undefined !== t.categoryID">
                 <span class="name" :data-tooltip="t.name">
                   {{ t.name }}
                 </span>
@@ -590,7 +599,9 @@ function sortActiveProperties(e: any) {
                   Сбросить
                 </span>
               </span>
-              cPriceRange
+              <FilterCPriceRange :max="max" :min-range="minRange" :min="min" :internal-max="currentMax"
+                                 :internal-min="currentMin" :reset-i-d="resetID"
+                                 v-on:change="(t,r)=>{changeRange(t, r, true, false)}"/>
             </li>
             <li v-if="isShowCategories" ref="showCategoriesRef">
               <span class="property-name">
@@ -616,10 +627,24 @@ function sortActiveProperties(e: any) {
               </span>
               <div class="search">
                 <span class="icon search-mobile"/>
-                cEdit
+                <UiCEdit is-clear placeholder="Я ищу..." v-model:value="p.search"
+                         @input="()=>{filteringValues(t, p.search)}"/>
               </div>
               <div :class='["scrollbar", { show: p.isShowAll }]'>
-                checkbox v-for p.uniqueValue
+                <UiCCheckbox v-for="(t,o) in p.uniqueValue" :key="o" v-show="t.isShow"
+                             :class='{ disabled: t.typeID === propertyTypeID && !isBrandAnalogs }'
+                             :data-tooltip="t.name" mode="default" size="sm" v-model:checked="t.isSelectedFilter"
+                             @change="(r:any)=>{
+                               return selectingFilter({
+                                  ID: t.ID,
+                                  typeID: t.typeID,
+                                  name: t.name
+                                }, r, !1)
+                             }">
+                  <span class="property-value">
+                    {{ t.name }}
+                  </span>
+                </UiCCheckbox>
               </div>
             </li>
           </ul>
@@ -646,8 +671,19 @@ function sortActiveProperties(e: any) {
             Сортировка
             <span class="icon arrow-down2"/>
           </span>
-
-          <!--          TODO -->
+          <UiCDropDown position="center">
+            <div class="values">
+              <UiCRadioGroup class="radio-group" v-model:value="sortType">
+                <template v-for="(s,i) in SORT_TYPES" :key="i">
+                  <UiCRadio :value="s.name">
+                    <span :class="{ actived: sortType === s.name }">
+                      {{ s.name }}
+                    </span>
+                  </UiCRadio>
+                </template>
+              </UiCRadioGroup>
+            </div>
+          </UiCDropDown>
         </li>
         <li v-if="!isMobile && !isNoPrices" :class='{ opened: isOpenedFilterPrice || isDraggingPrice }'
             v-on:mouseenter="onFilterPrices" v-on:mouseleave="leaveFilterPrices">
@@ -656,8 +692,11 @@ function sortActiveProperties(e: any) {
             <span v-if="showPricesFilter" class="badge">(1)</span>
             <span class="icon arrow-down2"/>
           </span>
-
-          <!--          TODO -->
+          <UiCDropDown position="center">
+            <FilterCPriceRange :max="max" :min-range="minRange" :min="min" :internal-max="currentMax"
+                               :internal-min="currentMin" :reset-i-d="resetID" :is-no-prices="isNoPrices"
+                               v-on:change="(t,r)=>{changeRange(t, r, true, false)}" v-on:drag="dragging"/>
+          </UiCDropDown>
         </li>
         <li v-if="isShowCategories && preparedPropertySubtypes.length > 0 && !isMobile" class="property"
             v-on:mouseleave="leaveFilterType(666)" v-on:mouseenter="onFilterType(666)">
@@ -668,9 +707,7 @@ function sortActiveProperties(e: any) {
             </span>
             <span class="icon arrow-down2"/>
           </span>
-
           <!--          TODO -->
-
         </li>
         <li v-for="(p,t) in preparedProperty" v-show="!isMobile" :key="t" ref="t" class="property"
             v-on:mouseleave="leaveFilterType(t)"
@@ -680,8 +717,31 @@ function sortActiveProperties(e: any) {
             <span v-if="p.countSelected > 0" class="badge">({{ p.countSelected }})</span>
             <span class="icon arrow-down2"/>
           </span>
-          <!--          TODO -->
-
+          <UiCDropDown position="center">
+            <div class="values">
+              <div class="search">
+                <span class="icon search-mobile"/>
+                <UiCEdit is-clear placeholder="Я ищу..." v-model:value="p.search"
+                         @input="()=>{filteringValues(t, p.search)}"/>
+              </div>
+              <div class="list scrollbar">
+                <UiCCheckbox v-for="(t,o) in p.uniqueValue" :key="o" v-show="t.isShow"
+                             :class='{ disabled: t.typeID === propertyTypeID && !isBrandAnalogs }'
+                             :data-tooltip="t.name" mode="default" size="sm" v-model:checked="t.isSelectedFilter"
+                             @change="(r:any)=>{
+                               return selectingFilter({
+                                  ID: t.ID,
+                                  typeID: t.typeID,
+                                  name: t.name
+                                }, r, !1)
+                             }">
+                  <span class="property-value">
+                    {{ t.name }}
+                  </span>
+                </UiCCheckbox>
+              </div>
+            </div>
+          </UiCDropDown>
         </li>
 
         <li class="all-filters" @click="openFilter">
@@ -710,12 +770,12 @@ function sortActiveProperties(e: any) {
         <li v-if="showPricesFilter" class="prices">
           <span class="name">
             <span>от {{ currentMin }}</span>
-            <span>до {{ currentMax }} ₽</span>
+            <span> до {{ currentMax }} ₽</span>
           </span>
           <span class="icon close" @click="resetPrices"/>
         </li>
         <li v-for="(t,o) in selectedFilters"
-            v-show="t.ID !== propertyID && t.typeID !== propertyTypeID || void 0 !== t.subtypeID || void 0 !== t.categoryID"
+            v-show="t.ID !== propertyID && t.typeID !== propertyTypeID || undefined !== t.subtypeID || undefined !== t.categoryID"
             :key="o">
           <span class="name" :data-tooltip="t.name">
             {{ t.name }}
@@ -734,9 +794,16 @@ function sortActiveProperties(e: any) {
         <span :class='["icon grid-horizontal", { actived: isHorizontalCardsMode }]' @click="changeCardsMode(true)"/>
       </div>
     </div>
-    <div v-if="isMobile">
-      <!--      cBottomBar-->
-    </div>
+    <LazyUiCBottomBar v-if="isMobile" class="sort-bar" :is-opened="openedSortBar" title="Сортировка"
+                      @close="openCloseSort">
+      <div class="values">
+        <UiCRadioGroup class="radio-group" v-model:value="sortType">
+          <UiCRadio v-for="(s,i) in SORT_TYPES" :key="i" :class='[{ actived: sortType === s.name }]' :value="s.name">
+            <span>{{ s.name }}</span>
+          </UiCRadio>
+        </UiCRadioGroup>
+      </div>
+    </LazyUiCBottomBar>
   </div>
 </template>
 
@@ -749,22 +816,22 @@ function sortActiveProperties(e: any) {
   transition: all .4s ease-in-out
 }
 
-.c-filter > .sort-bar .bar {
+.c-filter > :deep(.sort-bar) .bar {
   max-width: unset;
   padding: 20px 0
 }
 
-.c-filter > .sort-bar .bar > .top {
+.c-filter > :deep(.sort-bar) .bar > .top {
   padding: 0 20px
 }
 
-.c-filter > .sort-bar .bar > .values > .radio-group > .c-radio-button {
+.c-filter > :deep(.sort-bar) .bar > .values > .radio-group > .c-radio-button {
   flex-direction: row-reverse;
   justify-content: space-between;
   padding: 10px 20px
 }
 
-.c-filter > .sort-bar .bar > .values > .radio-group > .c-radio-button.actived {
+.c-filter > :deep(.sort-bar) .bar > .values > .radio-group > .c-radio-button.actived {
   background-color: #ebf0f9;
   font-weight: 500
 }
@@ -1008,25 +1075,25 @@ function sortActiveProperties(e: any) {
   justify-content: space-between
 }
 
-.c-filter > .filter-side-bar > .side-bar > section > ul > li.stock > .radio-group * {
+.c-filter > .filter-side-bar > .side-bar > section > ul > li.stock > :deep(.radio-group) * {
   margin-bottom: 0;
   font-weight: 400
 }
 
-.c-filter > .filter-side-bar > .side-bar > section > ul > li.stock > .radio-group :hover {
+.c-filter > .filter-side-bar > .side-bar > section > ul > li.stock > :deep(.radio-group) :hover {
   color: #4960df
 }
 
-.c-filter > .filter-side-bar > .side-bar > section > ul > li.stock > .radio-group * .actived {
+.c-filter > .filter-side-bar > .side-bar > section > ul > li.stock > :deep(.radio-group) * .actived {
   font-weight: 500
 }
 
-.c-filter > .filter-side-bar > .side-bar > section > ul > li.stock > .radio-group * .radio {
+.c-filter > .filter-side-bar > .side-bar > section > ul > li.stock > :deep(.radio-group) * .radio {
   width: 15px;
   height: 15px
 }
 
-.c-filter > .filter-side-bar > .side-bar > section > ul > li.stock > .radio-group * .radio:after {
+.c-filter > .filter-side-bar > .side-bar > section > ul > li.stock > :deep(.radio-group) * .radio:after {
   width: 8px;
   height: 8px;
   left: 3.5px;
@@ -1108,17 +1175,17 @@ function sortActiveProperties(e: any) {
   background-color: #3f51b5
 }
 
-.c-filter > .filter-side-bar > .side-bar > section > ul > li > .search > .c-edit {
+.c-filter > .filter-side-bar > .side-bar > section > ul > li > .search > :deep(.c-edit) {
   width: 100%
 }
 
-.c-filter > .filter-side-bar > .side-bar > section > ul > li > .search > .c-edit input {
+.c-filter > .filter-side-bar > .side-bar > section > ul > li > .search > :deep(.c-edit) input {
   height: 38px;
   width: 100%;
   padding-left: 40px
 }
 
-.c-filter > .filter-side-bar > .side-bar > section > ul > li > .search > .c-edit .placeholder {
+.c-filter > .filter-side-bar > .side-bar > section > ul > li > .search > :deep(.c-edit) .placeholder {
   left: 40px
 }
 
@@ -1366,34 +1433,34 @@ function sortActiveProperties(e: any) {
   border-radius: 5px
 }
 
-.c-filter > .filters > ul > li.sort > .c-drop-down .values .radio-group > * {
+.c-filter > .filters > ul > li.sort > .c-drop-down .values :deep(.radio-group) > * {
   padding: 10px 21px;
   font-weight: 400;
   font-size: 14px
 }
 
-.c-filter > .filters > ul > li.sort > .c-drop-down .values .radio-group > * .actived {
+.c-filter > .filters > ul > li.sort > .c-drop-down .values :deep(.radio-group) > * .actived {
   font-weight: 500
 }
 
-.c-filter > .filters > ul > li.sort > .c-drop-down .values .radio-group > * .radio {
+.c-filter > .filters > ul > li.sort > .c-drop-down .values :deep(.radio-group) > * .radio {
   width: 15px;
   height: 15px
 }
 
-.c-filter > .filters > ul > li.sort > .c-drop-down .values .radio-group > * .radio:after {
+.c-filter > .filters > ul > li.sort > .c-drop-down .values :deep(.radio-group) > * .radio:after {
   width: 8px;
   height: 8px;
   left: 3.5px;
   top: 3.5px
 }
 
-.c-filter > .filters > ul > li.sort > .c-drop-down .values .radio-group > :hover {
+.c-filter > .filters > ul > li.sort > .c-drop-down .values :deep(.radio-group) > :hover {
   background-color: #ebf0f9;
   color: #4960df
 }
 
-.c-filter > .filters > ul > li.sort > .c-drop-down .values .radio-group > :last-of-type {
+.c-filter > .filters > ul > li.sort > .c-drop-down .values :deep(.radio-group) > :last-of-type {
   margin: 0
 }
 
@@ -1420,17 +1487,17 @@ function sortActiveProperties(e: any) {
   background-color: #3f51b5
 }
 
-.c-filter > .filters > ul > li.property > .c-drop-down .values > .search > .c-edit {
+.c-filter > .filters > ul > li.property > .c-drop-down .values > .search > :deep(.c-edit) {
   width: 100%
 }
 
-.c-filter > .filters > ul > li.property > .c-drop-down .values > .search > .c-edit input {
+.c-filter > .filters > ul > li.property > .c-drop-down .values > .search > :deep(.c-edit) input {
   height: 38px;
   width: 100%;
   padding-left: 40px
 }
 
-.c-filter > .filters > ul > li.property > .c-drop-down .values > .search > .c-edit .placeholder {
+.c-filter > .filters > ul > li.property > .c-drop-down .values > .search > :deep(.c-edit) .placeholder {
   left: 40px
 }
 
@@ -1441,21 +1508,21 @@ function sortActiveProperties(e: any) {
   justify-content: space-between
 }
 
-.c-filter > .filters > ul > li.property > .c-drop-down .values > .radio-group * {
+.c-filter > .filters > ul > li.property > .c-drop-down .values > :deep(.radio-group) * {
   margin-bottom: 0;
   font-weight: 400
 }
 
-.c-filter > .filters > ul > li.property > .c-drop-down .values > .radio-group * .actived {
+.c-filter > .filters > ul > li.property > .c-drop-down .values > :deep(.radio-group) * .actived {
   font-weight: 500
 }
 
-.c-filter > .filters > ul > li.property > .c-drop-down .values > .radio-group * .radio {
+.c-filter > .filters > ul > li.property > .c-drop-down .values > :deep(.radio-group) * .radio {
   width: 15px;
   height: 15px
 }
 
-.c-filter > .filters > ul > li.property > .c-drop-down .values > .radio-group * .radio:after {
+.c-filter > .filters > ul > li.property > .c-drop-down .values > :deep(.radio-group) * .radio:after {
   width: 8px;
   height: 8px;
   left: 3.5px;
@@ -1651,7 +1718,7 @@ function sortActiveProperties(e: any) {
   max-width: unset
 }
 
-.c-filter.mobile > .filter-side-bar > .side-bar > *{
+.c-filter.mobile > .filter-side-bar > .side-bar > * {
   padding: 0 5px
 }
 
@@ -1707,7 +1774,7 @@ function sortActiveProperties(e: any) {
 .c-filter.mobile > .filter-side-bar > .side-bar > section > ul > li > div {
   max-height: 271px;
   margin: 10px 0;
-  overflow: auto
+  /*overflow: auto*/
 }
 
 .c-filter.mobile > .filter-side-bar > .side-bar > section > ul > li > div > .c-checkbox {

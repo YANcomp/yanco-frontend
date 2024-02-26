@@ -82,7 +82,7 @@ const props = defineProps({
     }
   },
   value: {
-    type: <any>String,
+    type: String,
     default: ""
   },
   codeLength: {
@@ -351,7 +351,7 @@ function showPassword() {
     <div :class='{ "has-left-icon": iconName }'>
       <span v-if="iconName" :class='["icon", iconName]' :style='{ left: "10px", backgroundColor: iconColor }'/>
       <span v-if="placeholder || required"
-            :class='["placeholder", { hide: isFocus || value.length > 0|| formattedPhone.length > 0, phone: isPhone, "search-left": isSearchLeft }]'>
+            :class='["placeholder", { hide: isFocus || value.length > 0 || formattedPhone.length > 0, phone: isPhone, "search-left": isSearchLeft }]'>
           {{ placeholder }}
           <span v-if="required && !isHideRequired">*</span>
         </span>

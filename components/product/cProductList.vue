@@ -503,8 +503,7 @@ function updateFavoritesStore(e: any) {
       <div v-if="void 0 !== currentPopularCategory && void 0 !== currentPopularCategory.infoMessage && !isClosedAlert">
         cAlert
       </div>
-
-      <ProductCFilter v-if="hasFilterList && !isFailedGettingProducts" :is-brand-analogs="isBrandAnalogs"
+      <FilterCFilter v-if="hasFilterList && !isFailedGettingProducts" :is-brand-analogs="isBrandAnalogs"
                       :is-free-ship="isFreeShip" :is-mobile="isMobile"
                       :is-opened="isOpened" :is-stock="isStock" :item-count="totalCount"
                       :prepared-product-subtypes="preparedProductSubtypes" :product-filters="productFilters"

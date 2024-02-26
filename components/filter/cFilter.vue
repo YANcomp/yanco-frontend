@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const ProductCFilters = resolveComponent('ProductCFilters')
+const ProductCFilters = resolveComponent('FilterCFilters')
 
 const props = defineProps({
   isBrandAnalogs: {
@@ -75,6 +75,109 @@ const props = defineProps({
 
 const listener = useAttrs()
 
+const properties = computed(() => {
+  var r, o, n, c, d, k, m, v = <any>{};
+  if (Object.keys(props.summary).length > 0) {
+    var f: any, C = E(props.summary.properties);
+    try {
+      var S = function () {
+        var p = f.value;
+        if (void 0 === v[p.typeID] && (null === (r = props.productPropertyType[p.typeID]) || void 0 === r ? void 0 : r.isVisible)) return v[p.typeID] = {
+          uniqueValue: p.typeID === props.propertyTypeID && p.ID === props.propertyID ? [{
+            ...p,
+            isSelectedFilter: !0,
+            isShow: !0
+          }] : [{
+            ...p,
+            isSelectedFilter: !1,
+            isShow: !0
+          }],
+          isShowAll: !0,
+          search: "",
+          countSelected: 0
+        }, "continue";
+        (null === (o = props.productPropertyType[p.typeID]) || void 0 === o ? void 0 : o.isVisible) && !v[p.typeID].uniqueValue.find((function (e: any) {
+          return e.ID === p.ID
+        })) && v[p.typeID].uniqueValue.push(p.typeID === props.propertyTypeID && p.ID === props.propertyID ? {
+          ...p,
+          isSelectedFilter: !0,
+          isShow: !0
+        } : {
+          ...p,
+          isSelectedFilter: !1,
+          isShow: !0
+        })
+      };
+      for (C.s(); !(f = C.n()).done;) S()
+    } catch (e) {
+      C.e(e)
+    } finally {
+      C.f()
+    }
+
+  } else {
+    var _, I = E(props.productFilters);
+    try {
+      for (I.s(); !(_ = I.n()).done;) {
+        var D = _.value;
+        if (void 0 !== D.properties) {
+          var w: any, P = E(D.properties);
+          try {
+            var M = function () {
+              var p = w.value;
+              if (void 0 === v[p.typeID] && (null === (n = props.productPropertyType[p.typeID]) || void 0 === n ? void 0 : n.isVisible)) return v[p.typeID] = {
+                uniqueValue: p.typeID !== props.propertyTypeID || p.ID !== props.propertyID || props.isBrandAnalogs ? [{
+                  ...p,
+                  isSelectedFilter: !1,
+                  isShow: !0
+                }] : [{
+                  ...p,
+                  isSelectedFilter: !0,
+                  isShow: !0
+                }],
+                isShowAll: !0,
+                search: "",
+                countSelected: 0
+              }, "continue";
+              (null === (c = props.productPropertyType[p.typeID]) || void 0 === c ? void 0 : c.isVisible) && !v[p.typeID].uniqueValue.find((function (e: any) {
+                return e.ID === p.ID
+              })) && v[p.typeID].uniqueValue.push(p.typeID !== props.propertyTypeID || p.ID !== props.propertyID || props.isBrandAnalogs ? {
+                ...p,
+                isSelectedFilter: !1,
+                isShow: !0
+              } : {
+                ...p,
+                isSelectedFilter: !0,
+                isShow: !0
+              })
+            };
+            for (P.s(); !(w = P.n()).done;) M()
+          } catch (e) {
+            P.e(e)
+          } finally {
+            P.f()
+          }
+        }
+      }
+    } catch (e) {
+      I.e(e)
+    } finally {
+      I.f()
+    }
+  }
+
+  return v
+})
+
+onMounted(async () => {
+  for (let F = 0, k = Object.keys(properties.value); F < k.length; F++) {
+    var i = k[F];
+    properties.value[Number(i)].uniqueValue.sort((a: any, b: any) => {
+      return a.name?.localeCompare(b.name)
+    })
+  }
+})
+
 function z(e?: any, t?: any) {
   (null == t || t > e.length) && (t = e.length);
   for (var i = 0, r = new Array(t); i < t; i++) r[i] = e[i];
@@ -139,99 +242,6 @@ function E(e?: any, t?: any) {
 
 const render = () => {
   var r, o, n, c, d, k, m, v = <any>{};
-  if (Object.keys(props.summary).length > 0) {
-    var f: any, C = E(props.summary.properties);
-    try {
-      var S = function () {
-        var p = f.value;
-        if (void 0 === v[p.typeID] && (null === (r = props.productPropertyType[p.typeID]) || void 0 === r ? void 0 : r.isVisible)) return v[p.typeID] = {
-          uniqueValue: p.typeID === props.propertyTypeID && p.ID === props.propertyID ? [{
-            ...p,
-            isSelectedFilter: !0,
-            isShow: !0
-          }] : [{
-            ...p,
-            isSelectedFilter: !1,
-            isShow: !0
-          }],
-          isShowAll: !0,
-          search: "",
-          countSelected: 0
-        }, "continue";
-        (null === (o = props.productPropertyType[p.typeID]) || void 0 === o ? void 0 : o.isVisible) && !v[p.typeID].uniqueValue.find((function (e: any) {
-          return e.ID === p.ID
-        })) && v[p.typeID].uniqueValue.push(p.typeID === props.propertyTypeID && p.ID === props.propertyID ? {
-          ...p,
-          isSelectedFilter: !0,
-          isShow: !0
-        } : {
-          ...p,
-          isSelectedFilter: !1,
-          isShow: !0
-        })
-      };
-      for (C.s(); !(f = C.n()).done;) S()
-    } catch (e) {
-      C.e(e)
-    } finally {
-      C.f()
-    }
-  } else {
-    var _, I = E(props.productFilters);
-    try {
-      for (I.s(); !(_ = I.n()).done;) {
-        var D = _.value;
-        if (void 0 !== D.properties) {
-          var w: any, P = E(D.properties);
-          try {
-            var M = function () {
-              var p = w.value;
-              if (void 0 === v[p.typeID] && (null === (n = props.productPropertyType[p.typeID]) || void 0 === n ? void 0 : n.isVisible)) return v[p.typeID] = {
-                uniqueValue: p.typeID !== props.propertyTypeID || p.ID !== props.propertyID || props.isBrandAnalogs ? [{
-                  ...p,
-                  isSelectedFilter: !1,
-                  isShow: !0
-                }] : [{
-                  ...p,
-                  isSelectedFilter: !0,
-                  isShow: !0
-                }],
-                isShowAll: !0,
-                search: "",
-                countSelected: 0
-              }, "continue";
-              (null === (c = props.productPropertyType[p.typeID]) || void 0 === c ? void 0 : c.isVisible) && !v[p.typeID].uniqueValue.find((function (e: any) {
-                return e.ID === p.ID
-              })) && v[p.typeID].uniqueValue.push(p.typeID !== props.propertyTypeID || p.ID !== props.propertyID || props.isBrandAnalogs ? {
-                ...p,
-                isSelectedFilter: !1,
-                isShow: !0
-              } : {
-                ...p,
-                isSelectedFilter: !0,
-                isShow: !0
-              })
-            };
-            for (P.s(); !(w = P.n()).done;) M()
-          } catch (e) {
-            P.e(e)
-          } finally {
-            P.f()
-          }
-        }
-      }
-    } catch (e) {
-      I.e(e)
-    } finally {
-      I.f()
-    }
-  }
-  for (let F = 0, k = Object.keys(v); F < k.length; F++) {
-    var i = k[F];
-    v[Number(i)].uniqueValue.sort((function (a: any, b: any) {
-      return a.name?.localeCompare(b.name)
-    }))
-  }
   if (void 0 !== props.summary.prices) k = props.summary.prices.withoutCard.min, m = props.summary.prices.withoutCard.max;
   else {
     var x: any = props.productFilters.reduce((function (e: any, t: any) {
@@ -245,38 +255,7 @@ const render = () => {
       T = "".concat(B, " ") + props.itemCount + " ".concat(A),
       L = "Показать " + props.itemCount + " ".concat(A),
       z = !isFinite(k) && !isFinite(m),
-      H = (props.isFreeShip || props.isStock) && (null !== (d = props.preparedProductSubtypes) && void 0 !== d ? d : []).length > 0,
-      j = {
-        "is-brand-analogs": props.isBrandAnalogs,
-        "is-mobile": props.isMobile,
-        "is-horizontal-cards-mode": props.isHorizontalCardsMode,
-        "property-name": props.propertyName,
-        "is-no-prices": z,
-        "is-show-categories": H,
-        max: m,
-        "min-range": O,
-        min: k,
-        "prepared-product-subtypes": props.preparedProductSubtypes,
-        "stock-baby-product-categories": props.stockBabyProductCategories,
-        "product-count": T,
-        "product-count-button": L,
-        "product-property-type": props.productPropertyType,
-        properties: v,
-        pharmacies: props.pharmacies,
-        "total-count": props.itemCount,
-        "favorites-pharmacies": props.favoritesPharmacies,
-        "property-i-d": props.propertyID,
-        "property-type-i-d": props.propertyTypeID,
-        "is-search-empty": props.isSearchEmpty,
-        "is-opened": props.isOpened
-      },
-      R = {
-        // "prices-changed": t.listeners["prices-changed"],
-        // "change-cards-mode": t.listeners["change-cards-mode"],
-        // "properties-changed": t.listeners["properties-changed"],
-        // "sort-type-change": t.listeners["sort-type-change"],
-        // reset: t.listeners.reset
-      };
+      H = (props.isFreeShip || props.isStock) && (null !== (d = props.preparedProductSubtypes) && void 0 !== d ? d : []).length > 0
   return h(ProductCFilters, {
     "is-brand-analogs": props.isBrandAnalogs,
     "is-mobile": props.isMobile,
@@ -292,7 +271,7 @@ const render = () => {
     "product-count": T,
     "product-count-button": L,
     "product-property-type": props.productPropertyType,
-    properties: v,
+    properties: properties.value,
     pharmacies: props.pharmacies,
     "total-count": props.itemCount,
     "favorites-pharmacies": props.favoritesPharmacies,
