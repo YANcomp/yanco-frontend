@@ -12,7 +12,7 @@ export const useProductsStore = defineStore('products', {
         recommendations: <any>[],
         replacements: <any>[],
         reviews: <any>[],
-        totalCountReviews: <any>undefined,
+        totalCountReviews: <any>0,
         trademarkProducts: <any>[],
     }),
     //CHECK 90%

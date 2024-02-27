@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import {uRestrictAccess} from "~/utils/uPrepareProduct";
+
 const props = defineProps({
   productID: {
     type: Number,
@@ -40,6 +42,7 @@ const favoritesStore = useFavoritesStore()
 const comparisonProductsStore = useComparisonProductsStore()
 const bannersStore = useBannersStore()
 const viewedProductsStore = useViewedProductStore()
+const notificationsStore = useNotificationsStore()
 
 const emit = defineEmits(["reviews-form-open", "open-product-curtain"])
 
@@ -64,7 +67,7 @@ const W = ref(productPropertyTypesStore.list)
 const V = ref(restrictTypesStore.list! ? restrictTypesStore.list : [])
 const Z = ref(false)
 const allGrades = ref([])
-const totalCountReviews = ref(0)
+const totalCountReviews = ref(<any>productsStore.totalCountReviews)
 const activeTab = ref(isProductReviews.value ? 2 : 0)
 const K = ref(<any>catalogStore.categoryDirectory)
 const articleCategories = ref(<any>articlesStore.categories)
@@ -99,7 +102,7 @@ if (articleCategories.value.length < 1) {
 const vProductRef = ref(<any>undefined)
 const comparisonRef = ref(<any>undefined)
 const menuRef = ref(<any>undefined)
-const buttonRef = ref(<any>undefined)
+const propertiesRef = ref(<any>undefined)
 
 const needPaddingHeader = ref(false)
 const isShowDescription = ref(false)
@@ -127,8 +130,8 @@ const isLoadingRecommend = ref(false)
 const isLoadingReviews = ref(false)
 const isOpenedShare = ref(false)
 const showDisposableHintCompared = ref(false)
-const loadingBasketProductIDs = ref([])
-const loadingFavoritesProductIDs = ref([])
+const loadingBasketProductIDs = ref(<any>[])
+const loadingFavoritesProductIDs = ref(<any>[])
 const pharmacyStock = ref([])
 const routeCatalogParams = ref({})
 const routeProperties = ref(<any>{
@@ -140,8 +143,8 @@ const routeProperties = ref(<any>{
   "Действующее вещество": "ActiveSubstances"
 })
 const routePropertyIDs = ref([10, 13, 6])
-const routePropertyKey = ref(["Производитель", "Бренд", "Действующее вещество"])
-const updatingBasketProductIDs = ref([])
+const routePropertyKey = ref(<any>["Производитель", "Бренд", "Действующее вещество"])
+const updatingBasketProductIDs = ref(<any>[])
 const intervalID = ref(<any>undefined)
 const isActiveMap = ref(false)
 const isProductFavoriteActive = ref(false)
@@ -397,18 +400,16 @@ const regions = computed(() => {
   return regionsStore.regions
 })
 const preparedRestricts = computed(() => {
-  //TODO
-  // return product.value.restricts.reduce((t: any, o: any) => {
-  //   let r = preparedRestrictTypes.value.get(o.typeID),
-  //       n = m.l[o.level];
-  //   undefined !== r && undefined !== n && t.push({
-  //     ...o,
-  //     icon: r.icon,
-  //     caption: "".concat(n, " ").concat(r.name.toLowerCase())
-  //   })
-  //   return t
-  // }, [])
-  return []
+  return product.value.restricts.reduce((t: any, o: any) => {
+    let r = preparedRestrictTypes.value.get(o.typeID),
+        n = uRestrictAccess[o.level];
+    undefined !== r && undefined !== n && t.push({
+      ...o,
+      icon: r.icon,
+      caption: "" + n + " " + r.name.toLowerCase()
+    })
+    return t
+  }, [])
 })
 const preparedRestrictTypes = computed(() => {
   let t = new Map;
@@ -421,11 +422,9 @@ const preparedRestrictTypes = computed(() => {
   return t
 })
 const productCardProjects = computed(() => {
-  // let t = this;
-  // return this.cardProjects.filter((function (e) {
-  //   let o;
-  //   return (null !== (o = t.$data.product.cardProjects) && undefined !== o ? o : []).indexOf(e.code) > -1
-  // }))
+  return cardProjects.value.filter((e: any) => {
+    return (product.value.cardProjects ? product.value.cardProjects : []).indexOf(e.code) > -1
+  })
 })
 const productCharity = computed(() => {
   // let t = this;
@@ -457,28 +456,28 @@ const preparedCheckItems = computed(() => {
   return <any>{}
 })
 const properties = computed(() => {
-  // if (0 !== Object.keys(propertyTypes.value).length) {
-  //   let o = product.value.properties.reduce((t: any, p: any) => {
-  //     if (!propertyTypes.value[p.typeID] || !propertyTypes.value[p.typeID].isVisible) return t;
-  //     let o = propertyTypes.value[p.typeID].name;
-  //     return undefined === t[o] && (t[o] = []), t[o].push(p), t
-  //   }, {});
-  //   isMobile.value && (o["Артикул"] = [{
-  //     name: props.productID
-  //   }]);
-  //   var n = 0
-  //   let r = <any>{}
-  //   let c = ["Действующее вещество", "Рецептурность", "Форма выпуска", "Бренд", "Производитель", "Страна", "Способ хранения", "Артикул"]
-  //   for (n < c.length; n++) {
-  //     let p = c[n];
-  //     undefined !== o[p] && (r[p] = o[p])
-  //   }
-  //   return r
-  // }
+  if (0 !== Object.keys(propertyTypes.value).length) {
+    let o = product.value.properties.reduce((t: any, p: any) => {
+      if (!propertyTypes.value[p.typeID] || !propertyTypes.value[p.typeID].isVisible) return t;
+      let o = propertyTypes.value[p.typeID].name;
+      return undefined === t[o] && (t[o] = []), t[o].push(p), t
+    }, {});
+    isMobile.value && (o["Артикул"] = [{
+      name: props.productID
+    }]);
+    let r = <any>{}
+    let c = ["Действующее вещество", "Рецептурность", "Форма выпуска", "Бренд", "Производитель", "Страна", "Способ хранения", "Артикул"]
+    for (let n = 0; n < c.length; n++) {
+      let p = c[n];
+      undefined !== o[p] && (r[p] = o[p])
+    }
+    return r
+  }
 })
 const propertyTypes = computed(() => {
   return productPropertyTypesStore.list.reduce((t: any, p: any) => {
-    return t[p.ID] = p, t
+    t[p.ID] = p
+    return t
   }, {})
 })
 const restrictTypes = computed(() => {
@@ -551,6 +550,12 @@ const isRare = computed(() => {
 const productOnlyInPharmacies = computed(() => {
   return product.value.isSiteSellRemains || product.value.isWaitingArrive || product.value.isOrderRcNoRc
 })
+const averageRating = computed(() => {
+  return product.value.averageRating ? product.value.averageRating : 0
+})
+const rateWidth = computed(() => {
+  return "" + (20 * averageRating.value) + "px"
+})
 //END COMPUTED
 
 onBeforeRouteUpdate((to, from, next) => {
@@ -588,7 +593,7 @@ const getPreparedCheckItems = uPreparedCheckItems
 // }
 
 
-// const translit: uTransliter // TODO
+const translit = uTransliter
 
 function trademarkProductCountry(p: any) {
   let prop = p.properties.find((t: any) => {
@@ -726,49 +731,57 @@ function checkScroll() {
 }
 
 function addToBasket(t: any, e: any) {
-  // let o, r, n, c = this;
-  // if (e || (this.reachGoal("addbasket"), this.ecommerce("add", [product.value])), this.isAuthorized) e ? this.updatingBasketProductIDs.push(t.productID) : this.loadingBasketProductIDs.push(t.productID), this.$store.dispatch("basket/".concat(l.BASKET.ADD), {
-  //   item: t,
-  //   cityID: null === (o = this.city) || undefined === o ? undefined : o.ID,
-  //   isUpdate: e
-  // }).finally((function () {
-  //   c.loadingBasketProductIDs = [], e && (c.updatingBasketProductIDs = [])
-  // }));
-  // else {
-  //   let d = v.c.clone(this.basketItems);
-  //   d.push({
-  //     productID: product.value.ID,
-  //     productSlug: product.value.slug,
-  //     images: product.value.images,
-  //     name: product.value.name,
-  //     price: product.value.price,
-  //     priceZakaz: product.value.priceZakaz,
-  //     count: 1,
-  //     isRemoved: false,
-  //     isInStock: product.value.isInStock,
-  //     allowDelivery: product.value.allowDelivery,
-  //     allowOnlinePayment: product.value.allowOnlinePayment,
-  //     discountID: product.value.discountID,
-  //     isWithdrawn: product.value.isWithdrawn,
-  //     limitWithCard: product.value.limitWithCard,
-  //     limitWithoutCard: product.value.limitWithoutCard,
-  //     deliveryDaysMax: product.value.deliveryDaysMax,
-  //     isRecipe: null !== (n = null === (r = product.value) || undefined === r ? undefined : r.isRecipe) && undefined !== n && n,
-  //     isAvailable: product.value.isAvailable,
-  //     deliveryAmount: product.value.deliveryAmount,
-  //     discountTemplate: product.value.discountTemplate,
-  //     mightNeedID: product.value.mightNeedID,
-  //     imagesSizeXS: product.value.imagesSizeXS,
-  //     imagesSizeS: product.value.imagesSizeS,
-  //     isSelected: false,
-  //     isSiteSellRemains: product.value.isSiteSellRemains,
-  //     isWaitingArrive: product.value.isWaitingArrive,
-  //     isOrderRcNoRc: product.value.isOrderRcNoRc
-  //   }), this.hasBonuses && !this.isStock && (d[d.length - 1].bonuses = product.value.bonuses), undefined !== product.value.sticker && (d[d.length - 1].sticker = product.value.sticker), undefined !== product.value.deliveryRuleID && (d[d.length - 1].deliveryRuleID = product.value.deliveryRuleID), this.isMobile || this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-  //     status: "basket",
-  //     image: this.image(h.SIZE_XS)
-  //   }), localStorage.setItem("basket", JSON.stringify(d)), this.$store.commit("basket/".concat(l.BASKET.UPD), d)
-  // }
+  if (isAuthorized.value) {
+    e ? updatingBasketProductIDs.value.push(t.productID) : loadingBasketProductIDs.value.push(t.productID)
+    basketStore.BASKET_ADD({
+      item: t,
+      cityID: city.value.ID,
+      isUpdate: e
+    }).finally(() => {
+      loadingBasketProductIDs.value = []
+      e && (updatingBasketProductIDs.value = [])
+    })
+  } else {
+    let d = [...basketItems.value]
+    d.push({
+      productID: product.value.ID,
+      productSlug: product.value.slug,
+      images: product.value.images,
+      name: product.value.name,
+      price: product.value.price,
+      priceZakaz: product.value.priceZakaz,
+      count: 1,
+      isRemoved: false,
+      isInStock: product.value.isInStock,
+      allowDelivery: product.value.allowDelivery,
+      allowOnlinePayment: product.value.allowOnlinePayment,
+      discountID: product.value.discountID,
+      isWithdrawn: product.value.isWithdrawn,
+      limitWithCard: product.value.limitWithCard,
+      limitWithoutCard: product.value.limitWithoutCard,
+      deliveryDaysMax: product.value.deliveryDaysMax,
+      isRecipe: product.value.isRecipe ? product.value.isRecipe : false,
+      isAvailable: product.value.isAvailable,
+      deliveryAmount: product.value.deliveryAmount,
+      discountTemplate: product.value.discountTemplate,
+      mightNeedID: product.value.mightNeedID,
+      imagesSizeXS: product.value.imagesSizeXS,
+      imagesSizeS: product.value.imagesSizeS,
+      isSelected: false,
+      isSiteSellRemains: product.value.isSiteSellRemains,
+      isWaitingArrive: product.value.isWaitingArrive,
+      isOrderRcNoRc: product.value.isOrderRcNoRc
+    })
+    hasBonuses.value && !isStock.value && (d[d.length - 1].bonuses = product.value.bonuses)
+    undefined !== product.value.sticker && (d[d.length - 1].sticker = product.value.sticker)
+    undefined !== product.value.deliveryRuleID && (d[d.length - 1].deliveryRuleID = product.value.deliveryRuleID)
+    isMobile.value || notificationsStore.NOTIFICATIONS_UPD({
+      status: "basket",
+      image: image(SIZE_XS.value)
+    })
+    localStorage.setItem("basket", JSON.stringify(d))
+    basketStore.COMMIT_BASKET_UPD(d)
+  }
 }
 
 function checkHeight() {
@@ -845,42 +858,47 @@ function sendNoticeCompare() {
 }
 
 function addToFavorites(t: any, e: any) {
-  // let o, r, n, c = this;
-  // if (!e || !this.isFavoritesLoading)
-  //   if (this.isAuthorized) this.loadingFavoritesProductIDs.push(t), this.loadingFavoritesProductIDs.includes(product.value.ID) && (this.isFavoritesLoading = true), this.$store.dispatch("favorites/".concat(l.FAVORITES.ADD), {
-  //     itemID: t,
-  //     cityID: null !== (r = null === (o = this.city) || undefined === o ? undefined : o.ID) && undefined !== r ? r : 41
-  //   }).catch((function (t) {
-  //     c.error(t)
-  //   })).finally((function () {
-  //     c.loadingFavoritesProductIDs.includes(c.$data.product.ID) && (c.isFavoritesLoading = false), c.loadingFavoritesProductIDs = []
-  //   }));
-  //   else {
-  //     let d = v.c.clone(null !== (n = this.$store.state.favorites.items) && undefined !== n ? n : []);
-  //     if (this.isInFavorites) {
-  //       let m = d.findIndex((function (t) {
-  //         return t.ID === c.$data.product.ID
-  //       }));
-  //       d.splice(m, 1)
-  //     } else {
-  //       if (d.length >= this.params.maxCountFavorites) return void this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-  //         title: "Внимание!",
-  //         desc: "В разделе «�?збранное» добавлено максимальное количество товаров – ".concat(this.params.maxCountFavorites, " шт."),
-  //         status: "warning"
-  //       });
-  //       this.isMobile || this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-  //         status: "favorites",
-  //         image: this.image(h.SIZE_XS)
-  //       }), d.push(product.value)
-  //     }
-  //     localStorage.setItem("favorites", JSON.stringify(d)), this.$store.commit("favorites/".concat(l.FAVORITES.UPD), d)
-  //   }
+  if (!e || !isFavoritesLoading.value)
+    if (isAuthorized.value) {
+      loadingFavoritesProductIDs.value.push(t)
+      loadingFavoritesProductIDs.value.includes(product.value.ID) && (isFavoritesLoading.value = true)
+      favoritesStore.FAVORITES_ADD({
+        itemID: t,
+        cityID: city.value.ID
+      }).catch((err) => {
+        console.log(err)
+      }).finally(() => {
+        loadingFavoritesProductIDs.value.includes(product.value.ID) && (isFavoritesLoading.value = false)
+        loadingFavoritesProductIDs.value = []
+      })
+    } else {
+      let d = [...favoritesStore.items]
+      if (isInFavorites.value) {
+        let m = d.findIndex((t) => {
+          return t.ID === product.value.ID
+        })
+        d.splice(m, 1)
+      } else {
+        if (d.length >= params.value.maxCountFavorites) return void notificationsStore.NOTIFICATIONS_UPD({
+          title: "Внимание!",
+          desc: "В разделе «Избранное» добавлено максимальное количество товаров – " + params.value.maxCountFavorites + " шт.",
+          status: "warning"
+        });
+        isMobile.value || notificationsStore.NOTIFICATIONS_UPD({
+          status: "favorites",
+          image: image(SIZE_XS.value)
+        })
+        d.push(product.value)
+      }
+      localStorage.setItem("favorites", JSON.stringify(d))
+      favoritesStore.COMMIT_FAVORITES_UPD(d)
+    }
 }
 
 function closeShareLinks() {
   isOpenedShare.value = false
   document.removeEventListener("keydown", esc)
-  document.removeEventListener("click", outside)
+  // document.removeEventListener("click", outside)
 }
 
 function copyText() {
@@ -1162,15 +1180,13 @@ function openPopup(t: any) {
 function openShareLinks() {
   isOpenedShare.value = true
   document.addEventListener("keydown", esc)
-  document.addEventListener("click", outside)
 }
 
-function outside(t: any) {
-  let menu = menuRef.value,
-      button = buttonRef.value,
-      e = t.target;
-  menu.contains(e) || button.contains(e) || closeShareLinks()
-}
+// function outside(t: any) {
+//   let menu = menuRef.value,
+//       e = t.target;
+//   menu.contains(e) || closeShareLinks()
+// }
 
 const preparedProducts = uPrepared
 
@@ -1189,7 +1205,7 @@ function repeatGettingProduct() {
   // })) : Promise.resolve(), this.setViewedProductID()
 }
 
-function routeProperty(t: any, e: any, o: any) {
+function routeProperty(t: any, e: any, o?: any) {
   let r = (o ? routePropertyKey.value.includes(t) : routePropertyIDs.value.includes(e.typeID)) ? routeProperties.value[o ? t : e.typeID] : "";
   return o ? {
     name: r
@@ -1300,8 +1316,11 @@ useSeoMeta({
         <div class="product-info">
           <h2>{{ productName }}</h2>
           <ul>
-            <li :class='["favorites", "unselect", { active: isProductFavoriteActive, disabled: isFavoritesLoading }]'>
-              <!--              TODO -->
+            <li :class='["favorites", "unselect", { active: isProductFavoriteActive, disabled: isFavoritesLoading }]'
+                v-on:mousedown="favoriteMouseDown"
+                v-on:mouseout="favoriteMouseOut"
+                v-on:mouseup="favoriteMouseUp"
+                v-on:click.prevent="addToFavorites(product.ID, !0)">
               <span
                   :class='["icon", { heart2: isInFavorites || isAddingToFavorites, "heart-outline2": !isInFavorites || isDeletionFromFavorites }]'/>
             </li>
@@ -1318,16 +1337,21 @@ useSeoMeta({
             <div>
               <div class="name">{{ product.name }}</div>
               <ul>
-                <li v-if='hasRating && product.isAvailable && !isRare'>
-                  <!--                  <ReviewsCRating :rating="product.rating"/>-->
+                <li v-if='hasRating' class="rating">
+                  <LazyReviewsCRating v-if="hasRating" :rate-width="rateWidth" :rating="averageRating"
+                                      :review-count="product.reviewsNumber"/>
                 </li>
                 <li v-if="hasDescription" @click="goToProduct">
                   <NuxtLink class="hover-bottom-line"
-                            :to='{ name: "Product", params: { productID: "" + product.ID, productSlug: "" + product.slug, needScrollToInstruction: "true" }, hash: isMobile ? undefined : "#instrukciya-po-primeneniyu" }'>
+                            :to='{ name: "Product", params: { productID: "" + product.ID, productSlug: "" + product.slug }, hash: isMobile ? undefined : "#instrukciya-po-primeneniyu" }'>
                     Инструкция
                   </NuxtLink>
                 </li>
-                <li :class='["favorites", { active: isProductFavoriteActive, disabled: isFavoritesLoading }]'>
+                <li :class='["favorites", { active: isProductFavoriteActive, disabled: isFavoritesLoading }]'
+                    v-on:mousedown="favoriteMouseDown"
+                    v-on:mouseout="favoriteMouseOut"
+                    v-on:mouseup="favoriteMouseUp"
+                    v-on:click.prevent="addToFavorites(product.ID, !0)">
                   <span
                       :class='["icon", { heart2: isInFavorites || isAddingToFavorites, "heart-outline2": !isInFavorites || isDeletionFromFavorites }]'/>
                 </li>
@@ -1377,12 +1401,15 @@ useSeoMeta({
     </div>
     <div class="action-list">
       <ul>
-        <li v-if="!isMobile && !isRecipe" @click="goToReviews(!hasReviews)">
+        <li v-if="hasReviews && !isMobile" class="rating">
+          <LazyReviewsCRating v-if="hasReviews" :rate-width="rateWidth" :rating="averageRating"
+                              :review-count="product.reviewsNumber"/>
+        </li>
+        <li v-if="!isMobile" @click="goToReviews(!hasReviews)">
           <NuxtLink
-              :to='{ name: "ProductReviews", params: { productID: "" + product.ID, productSlug: "" + product.slug, needOpenReviews: "" + !hasReviews } }'>
+              :to='{ name: "ProductReviews", params: { productID: "" + product.ID, productSlug: "" + product.slug } }'>
             <template v-if="hasReviews">
-              <span class="icon star2"/>
-              <span class="average hover-bottom-line">Читать отзывы</span>
+              <span class="average hover-bottom-line">Читать отзывы </span>
               <span class="review-count">({{ totalCountReviews }})</span>
             </template>
             <template v-else>
@@ -1392,19 +1419,17 @@ useSeoMeta({
           </NuxtLink>
         </li>
         <li v-if="hasDescription" @click="goToProduct">
+          <span class="icon instruction"/>
           <NuxtLink
-              :to='{ name: "Product", params: { productID: "" + product.ID, productSlug: "" + product.slug, needScrollToInstruction: "true" }, hash: isMobile ? undefined : "#instrukciya-po-primeneniyu" }'>
-            <span class="icon instruction"/>
+              :to='{ name: "Product", params: { productID: "" + product.ID, productSlug: "" + product.slug }, hash: isMobile ? undefined : "#instrukciya-po-primeneniyu" }'>
             <span class="hover-bottom-line">Инструкция</span>
           </NuxtLink>
         </li>
-        <li :class='["favorites", { active: isProductFavoriteActive, disabled: isFavoritesLoading }]'>
-          <!--          mousedown: t.favoriteMouseDown,-->
-          <!--          mouseout: t.favoriteMouseOut,-->
-          <!--          mouseup: t.favoriteMouseUp,-->
-          <!--          click: function (e) {-->
-          <!--          return e.preventDefault(), t.addToFavorites(t.product.ID, true)-->
-          <!--          }-->
+        <li :class='["favorites", { active: isProductFavoriteActive, disabled: isFavoritesLoading }]'
+            v-on:mousedown="favoriteMouseDown"
+            v-on:mouseout="favoriteMouseOut"
+            v-on:mouseup="favoriteMouseUp"
+            v-on:click.prevent="addToFavorites(product.ID, !0)">
           <span
               :class='["icon", { heart2: isInFavorites || isAddingToFavorites, "heart-outline2": !isInFavorites || isDeletionFromFavorites }]'/>
           <span class="hover-bottom-line">{{ favoritesCaption }}</span>
@@ -1444,15 +1469,313 @@ useSeoMeta({
     <section class="product">
       <div class="summary">
         <div class="images">
-
           <div class="image-list flex-vertical-nowrap">
-            cZoomImage
+            <ProductCZoomImage class="zoom-image" :disabled="!hasImages || isMobile"
+                               :image="image(isMobile ? SIZE_S : SIZE_M)"
+                               :image-title='product.images ? product.name : "Изображение отсутствует"'
+                               :is-mobile="isMobile" :scale="2" :zoomed-image="image(SIZE_L)"/>
+            <h1 v-if="isMobile" itemprop="name">{{ product.name }}</h1>
+            <UiCButton class="replacement-scroll-button" mode="gradient" @click='scrollTo("replacements")'
+                       v-if="isMobile && replacements.length > 0 && (product.replacementsTitle || {}).isBenefit">
+              {{ replacementButtonText }}
+            </UiCButton>
+            <div v-if="hasRating && isMobile && product.isAvailable && !isRare" class="reviews unselect">
+              <div class="c-rating mobile internal-card">
+                <LazyReviewsCRating v-if="hasRating" :is-card="true" :rate-width="rateWidth" :rating="averageRating"
+                                    :review-count="product.reviewsNumber"/>
+              </div>
+              <NuxtLink
+                  :to='{ name: "ProductReviews", params: { productID: "" + product.ID, productSlug: "" + product.slug } }'>
+                <template v-if="hasReviews">
+                  <span class="average">Читать отзывы </span>
+                  <span class="review-count">({{ totalCountReviews }})</span>
+                </template>
+                <template v-else>
+                  <span class="icon star2"/>
+                  <span class="">Написать отзыв</span>
+                </template>
+              </NuxtLink>
+            </div>
+            <ul v-show="hasRestricts && !isMobile" class="restrict-list">
+              <li v-for="(e,r) in preparedRestricts" :key="r" class="restrict"
+                  :data-tooltip='e.caption + (e.minimalAge ? " от " + e.minimalAge + " " + pluralizeRestrictAge(e) : "")'>
+                <div :class="e.level">
+                  <span class="restrict-icon" :style='{ "background-image": e.icon }'/>
+                </div>
+                <span :class='["icon", e.level]'/>
+              </li>
+            </ul>
           </div>
 
           <div class="buy">
+            <template v-if="product.isAvailable">
+              <div v-if="!product.isInStock" class="on-order">
+                <span class="icon warning"/>
+                {{ isRare ? "Редкий препарат." : "" }}
+                Товар под заказ
+                <span class="question">
+                  <UiCTooltipIcon mobile-bottom-tooltip-name="on-order" position="top-center"
+                                  :is-mobile-tooltip="isMobile" :size='isMobile ? "s" : "l"' @click.stop
+                                  v-on:show-mobile-tooltip="setQuestion">
+                    <template v-slot:icon>
+                      <span class="icon">
+                        <span class="icon question2"/>
+                      </span>
+                    </template>
+                    <template v-if="isRare" v-slot:text>
+                      С вами свяжется наш менеджер для согласования стоимости товара и условий доставки.
+                    </template>
+                    <template v-else v-slot:text>
+                      Придётся подождать...
+                      <br>
+                      Оформите товар под заказ, и его доставят в удобный для вас магазин
+                    </template>
+                  </UiCTooltipIcon>
+                </span>
+              </div>
+            </template>
+            <template v-else>
+              <div class="not-available">
+                <span class="icon error"/>
+                {{ product.isWaitingArrive ? "Ожидается." : "Временно отсутствует" }}
+              </div>
+            </template>
 
+            <div v-if="product.isDietarySupplement && !isMobile" class="alert">
+              <span class="icon info2"/>
+              БАД. Не является лекарственным средством!
+            </div>
+
+            <div v-if="product.discountDescription" class="discount-warning">
+              <span class="icon warning"/>
+              Окончательный расчет скидки будет произведен при покупке.
+            </div>
+
+            <div :class='["details", { stock: isStock }]'>
+              <div v-if="product.isAvailable" class="prices product-prices-fixed">
+                <section itemprop="offers" itemscope="" itemtype="http://schema.org/AggregateOffer">
+                  <template v-if="isLoyal">
+                    <div class="with-card">
+                      <span>По акции</span>
+                      <span>
+                        <meta :content="product.price.withCard" itemprop="lowPrice">
+                        {{ product.price.withCard + " ₽" }}
+                      </span>
+                    </div>
+                  </template>
+                  <template v-if="isRank">
+                    <div class="with-period">
+                      <span>Клубная цена</span>
+                      <span>
+                        <meta :content="product.price.withPeriod" itemprop="lowPrice">
+                        {{ product.price.withPeriod + " ₽" }}
+                      </span>
+                    </div>
+                  </template>
+                  <template v-if="hasProduct">
+                    <div class="without-card">
+                      <span>Цена</span>
+                      <span>
+                        <meta :content="product.price.withoutCard" itemprop="highPrice">
+                        {{ " | " + product.price.withoutCard + " ₽" }}
+                      </span>
+                    </div>
+                  </template>
+                  <meta content="RUB" itemprop="priceCurrency">
+                  <link v-if="product.isAvailable" href="http://schema.org/InStock" itemprop="availability"/>
+                </section>
+
+                <template v-if="isRare && !isMobile">
+                  <div class="rare-product">
+                    <span class="icon warning"/>
+                    Редкий препарат
+                  </div>
+                </template>
+
+                <BasketCButtonBasket :basket-items="basketItems"
+                                     :has-loyal-card="hasLoyalCard"
+                                     :has-product="hasProduct" :is-authorized="isAuthorized"
+                                     :is-basket-updating="updatingBasketProductIDs.includes(product.ID)"
+                                     :is-in-basket="isInBasket"
+                                     :is-loading="loadingBasketProductIDs.includes(product.ID)"
+                                     :is-mobile="isMobile"
+                                     :product="product" v-on:basket-item-update="updateBasketItem"
+                                     v-on:basket-store-update="updateBasketStore" v-on:is-max="updateIsMax"
+                                     v-on:add-to-basket="addToBasket"/>
+              </div>
+
+              <div v-if="hasDiscount" class="discount-success">
+                <span class="icon success-alert"/>
+                Ура! Вы воспользовались акцией!
+              </div>
+
+              <ul v-if="hasFilteredDiscountDescription" class="discount-descriptions">
+                <li v-for="(e,i) in filteredDiscountDescription" :key="i">
+                  {{ e }}
+                </li>
+              </ul>
+
+              <ul v-if="productCardProjects.length > 0" class="card-projects">
+                productCardProjects
+              </ul>
+
+              <div v-if="hasAttributes" class="attributes">
+                <div v-if="hasBonuses && !isStock && !hasPaidPeriod && product.isAvailable" class="bonuses">
+                  <span class="icon discont-card2"/>
+                  <div>
+                    <span class="text">
+                      {{ product.bonuses + " " + pluralizeBonuses }}
+                      <template v-if="isMobile">
+                        <br>
+                        на карту
+                      </template>
+                      <template v-else>
+                        <span class="card">на карту</span>
+                      </template>
+                    </span>
+                  </div>
+                </div>
+
+                <div v-if="product.allowDelivery"
+                     :class='["free-ship", { delivery: product.allowDelivery && !product.deliveryRuleID }]'>
+                  <div class="icons">
+                    <span :class='["icon", product.deliveryRuleID && isCityAllowDelivery ? "free-ship" : "truck"]'/>
+                    <span v-if="product.deliveryAmount" class="amount">
+                      {{ product.deliveryAmount || "" }}
+                    </span>
+                  </div>
+                  <div class="text">
+                    <span>
+                      <template v-if="product.deliveryRuleID && isCityAllowDelivery">
+                        <span v-if="product.deliveryAmount">
+                          Бесплатная
+                          <br v-if="isMobile">
+                          доставка от {{ product.deliveryAmount || "" }} шт
+                        </span>
+                        <span v-else>
+                          Бесплатная
+                          <br v-if="isMobile">
+                          доставка от {{ productSumFreeShip }}₽
+                        </span>
+                      </template>
+                      <template v-else>
+                        Доставка
+                        <br v-if="isMobile">
+                        по адресу
+                        <span class="question">
+                          <UiCTooltipIcon mobile-bottom-tooltip-name="delivery" position="top-center" size="l"
+                                          @click.prevent v-on:show-mobile-tooltip="setQuestion">
+                            <template v-slot:icon>
+                              <span class="icon">
+                                <span class="icon question2"/>
+                              </span>
+                            </template>
+                            <template v-slot:text>
+                              <div v-if="product.deliveryRuleID && isCityAllowDelivery" class="promotion-description">
+                                В акции «Бесплатная доставка» участвуют товары, отмеченные знаком
+                                <span class="orange">с оранжевой машинкой</span>.
+                                Закажите любые позиции
+                                <span v-if="product.deliveryAmount">
+                                  {{ "от " + product.deliveryAmount + " шт." }}
+                                </span>
+                                <span v-else>
+                                  {{ "на сумму от " + productSumFreeShip + " ₽" }}
+                                </span>
+                                и вам доставят товары в день заказа бесплатно с 8:00 до 20:00. Доставка
+                                заказов, принятых после {{ params.deliveryMaxTimeOrderToday }} выполняется на следующий день.
+                                <br><br>
+                                Оплата заказа производится онлайн.
+                              </div>
+                              <div v-else>
+                                Доставка товаров осуществляется {{
+                                  params.deliveryTimePeriod
+                                }} по единому тарифу {{ params.deliveryCost || 0 }}₽.
+                                Доставка заказов, принятых после {{ params.deliveryMaxTimeOrderToday }}, выполняется на следующий день.
+                                Оплата заказа производится онлайн.
+                              </div>
+                            </template>
+                          </UiCTooltipIcon>
+                        </span>
+                      </template>
+                    </span>
+                  </div>
+                </div>
+
+                <div v-if="isRecipe" class="recipe">
+                  <div class="icons">
+                    <span class="icon prescription"/>
+                  </div>
+                  <div class="text">
+                    <span>Отпускается по рецепту</span>
+                  </div>
+                </div>
+              </div>
+
+              <div v-if="product.isAvailable" class="fast-order">
+                <UiCButton mode="white-to-crimson" @click="openFastOrder">
+                  <span class="icon thunder"/>
+                  Заказать в 1 клик
+                </UiCButton>
+              </div>
+
+              <div class="message">
+                Производитель оставляет за собой право изменять внешний вид и описание товара. Цена {{ productName }} в
+                аптеках может отличаться от цены, указанной на сайте. Товары из оформленного заказа отпускаются по
+                наименьшей из цен на сайте или в магазине.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="properties" ref="propertiesRef">
+          <table v-if="!isMobile" class="property-list">
+            <tbody>
+            <tr v-for="(p,e,r) in properties" :key="e" v-show="!isMobile || r < limitProperty"
+                class="property unselect">
+              <td class="name">
+                <NuxtLink v-if="routePropertyKey.includes(e)" class="hover-bottom-line" :to="routeProperty(e, p, !0)">
+                  {{ e }}
+                </NuxtLink>
+                <span v-else>
+                  {{ e }}
+                </span>
+              </td>
+              <td class="values">
+                <span v-for="(r,n) in p" :key="n" class="value unselect">
+                  <template v-if="routePropertyIDs.includes(r.typeID) && void 0 !== r.slug">
+                    <NuxtLink class="search" :to="routeProperty(e, r)">
+                      <span class="hover-bottom-line" :data-tooltip="r.name">
+                        {{ r.name }}
+                      </span>
+                    </NuxtLink>
+                  </template>
+                  <template v-else-if="routePropertyIDs.includes(r.typeID) && null == r.slug">
+                    <span>
+                      <span :data-tooltip="r.name">{{ r.name }}</span>
+                    </span>
+                  </template>
+                  <template v-else>
+                    <span :class='{ country: "Страна" === e }'>
+                      {{ r.name }}
+                    </span>
+                  </template>
+                </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div v-if="product.isDietarySupplement && isMobile" class="alert">
+            <span class="icon info2"/>
+            БАД. Не является лекарственным средством!
           </div>
 
+          <div v-if="isMobile" class="all-property unselect" @click="openClosePropertybar">
+            <h2>
+              <span>Все характеристики {{ productName }}</span>
+            </h2>
+            <span :class='["icon", "arrow-right2", { opened: isOpenedPropertyBar }]'/>
+          </div>
         </div>
       </div>
     </section>
@@ -3353,11 +3676,11 @@ useSeoMeta({
   max-width: unset
 }
 
-.v-product > .product > .summary > .images > .buy > .details > .rare-item-order > .c-button .caption {
+.v-product > .product > .summary > .images > .buy > .details > .rare-item-order > :deep(.c-button) .caption {
   justify-content: center
 }
 
-.v-product > .product > .summary > .images > .buy > .details > .rare-item-order > .c-button .caption > .icon {
+.v-product > .product > .summary > .images > .buy > .details > .rare-item-order > :deep(.c-button) .caption > .icon {
   margin-right: 5px
 }
 
@@ -3368,12 +3691,14 @@ useSeoMeta({
   gap: 2%
 }
 
-.v-product > .product > .summary > .images > .buy > .details > .fast-order > .с-button-basket {
-  width: 49%
+.v-product > .product > .summary > .images > .buy > .details > .fast-order > .с-button-basket, .v-product > .product > .summary > .images > .buy > .details > .prices > .с-button-basket {
+  height: unset;
+  flex: unset;
+  width: 49%;
 }
 
 .v-product > .product > .summary > .images > .buy > .details > .fast-order > .c-button {
-  width: 49%;
+  /*width: 49%;*/
   height: 48px;
   max-width: unset
 }
@@ -3382,7 +3707,7 @@ useSeoMeta({
   background-color: #fff
 }
 
-.v-product > .product > .summary > .images > .buy > .details > .fast-order > .c-button .caption {
+.v-product > .product > .summary > .images > .buy > .details > .fast-order > :deep(.c-button) .caption {
   justify-content: center
 }
 
@@ -4126,13 +4451,13 @@ useSeoMeta({
   display: flex;
   width: 100%;
   align-items: center;
+  margin-left: 10px;
   color: #1a1a1a
 }
 
 .v-product.mobile > .product > .summary > .images > .image-list > .reviews > a > .average {
   font-weight: 600;
   font-size: 14px;
-  color: #3f51b5
 }
 
 .v-product.mobile > .product > .summary > .images > .image-list > .reviews > a > .icon {
