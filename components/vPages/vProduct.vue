@@ -24,6 +24,7 @@ const props = defineProps({
   }
 })
 const route = useRoute()
+const router = useRouter()
 const appStore = useAppStore()
 const citiesStore = useCitiesStore()
 const regionsStore = useRegionsStore()
@@ -37,31 +38,35 @@ const sessionsStore = useSessionsStore()
 const basketStore = useBasketStore()
 const favoritesStore = useFavoritesStore()
 const comparisonProductsStore = useComparisonProductsStore()
+const bannersStore = useBannersStore()
+const viewedProductsStore = useViewedProductStore()
+
+const emit = defineEmits(["reviews-form-open", "open-product-curtain"])
 
 const city = computed(() => {
   return citiesStore.currentCity
 })
 
 //async data
-const currentCityID = city.value.ID! ? city.value.ID : 41
+// const currentCityID = city.value.ID! ? city.value.ID : 41
 
 const isProductReviews = ref("ProductReviews" === route.name)
 const isFailedGettingProduct = ref(false)
 const isFailedGettingReplacements = ref(false)
 const isFailedGettingRecommend = ref(false)
 const isFailedGettingReviews = ref(false)
-const product = ref(productsStore.item)
-const replacements = ref(productsStore.replacements)
-const recommendations = ref(productsStore.recommendations)
-const reviews = ref(productsStore.reviews)
-const trademarkProducts = ref(productsStore.trademarkProducts)
+const product = ref(<any>productsStore.item)
+const replacements = ref(<any>productsStore.replacements)
+const recommendations = ref(<any>productsStore.recommendations)
+const reviews = ref(<any>productsStore.reviews)
+const trademarkProducts = ref(<any>productsStore.trademarkProducts)
 const W = ref(productPropertyTypesStore.list)
 const V = ref(restrictTypesStore.list! ? restrictTypesStore.list : [])
 const Z = ref(false)
 const allGrades = ref([])
 const totalCountReviews = ref(0)
 const activeTab = ref(isProductReviews.value ? 2 : 0)
-const K = ref(catalogStore.categoryDirectory)
+const K = ref(<any>catalogStore.categoryDirectory)
 const articleCategories = ref(<any>articlesStore.categories)
 const et = ref(10)
 
@@ -94,7 +99,7 @@ if (articleCategories.value.length < 1) {
 const vProductRef = ref(<any>undefined)
 const comparisonRef = ref(<any>undefined)
 const menuRef = ref(<any>undefined)
-
+const buttonRef = ref(<any>undefined)
 
 const needPaddingHeader = ref(false)
 const isShowDescription = ref(false)
@@ -104,7 +109,7 @@ const SIZE_S = ref(uSIZE_S)
 const SIZE_M = ref(uSIZE_M)
 const SIZE_L = ref(uSIZE_L)
 const isHorizontalCardMode = ref(false)
-const isLoadingReviewAside = ref(false)
+const isLoadingReviewAside = ref(<any>false)
 const isLoadingMoreReviews = ref(false)
 const lastScrollTop = ref(0)
 const isScrollTop = ref(false)
@@ -126,7 +131,7 @@ const loadingBasketProductIDs = ref([])
 const loadingFavoritesProductIDs = ref([])
 const pharmacyStock = ref([])
 const routeCatalogParams = ref({})
-const routeProperties = ref({
+const routeProperties = ref(<any>{
   10: "Brand",
   13: "Manufacturer",
   6: "ActiveSubstance",
@@ -137,7 +142,7 @@ const routeProperties = ref({
 const routePropertyIDs = ref([10, 13, 6])
 const routePropertyKey = ref(["Производитель", "Бренд", "Действующее вещество"])
 const updatingBasketProductIDs = ref([])
-const intervalID = ref(undefined)
+const intervalID = ref(<any>undefined)
 const isActiveMap = ref(false)
 const isProductFavoriteActive = ref(false)
 const isMouseDown = ref(false)
@@ -181,7 +186,7 @@ const rareItemCount = ref(1)
 //COMPUTED
 
 const categoryRoute = computed(() => {
-  return void 0 === product.value ? {} : {
+  return undefined === product.value ? {} : {
     name: "SelectInCategory",
     params: {
       productID: "".concat(product.value.ID)
@@ -189,56 +194,54 @@ const categoryRoute = computed(() => {
   }
 })
 const titleReplacementSlider = computed(() => {
-  var t, e, o;
-  return null !== (o = null === (e = null === (t = product.value) || void 0 === t ? void 0 : t.replacementsTitle) || void 0 === e ? void 0 : e.title) && void 0 !== o ? o : ""
+  let t, e, o;
+  return null !== (o = null === (e = null === (t = product.value) || undefined === t ? undefined : t.replacementsTitle) || undefined === e ? undefined : e.title) && undefined !== o ? o : ""
 })
 const replacementButtonText = computed(() => {
-  var p = product.value,
+  let p = product.value,
       rt = p.replacementsTitle,
-      t = "".concat(this.hasPaidPeriod ? rt.rank : rt.loyal, " ");
+      t = "".concat(hasPaidPeriod.value ? rt.rank : rt.loyal, " ");
   return p.isAvailable || p.isWaitingArrive || (t = ""), "".concat("" === t ? rt.title : rt.buttonTitle, " ").concat(t).concat(rt.remarks)
 })
 const isShowBannerCard = computed(() => {
-  return this.$data.recommendations.length > 0 && void 0 !== this.bannerYouMayNeed
+  return recommendations.value.length > 0 && undefined !== bannerYouMayNeed.value
 })
 const bannerYouMayNeed = computed(() => {
-  var t;
-  return (null !== (t = this.$store.state.banners.youMayNeed) && void 0 !== t ? t : [])[0]
+  return bannersStore.youMayNeed[0]!
 })
 const hasAttributes = computed(() => {
-  return this.hasBonuses && !this.isStock && !this.hasPaidPeriod || product.value.allowDelivery || this.isRecipe || this.productCategory.name || this.isRare && (this.isMobile || !product.value.isAvailable)
+  return hasBonuses.value && !isStock.value && !hasPaidPeriod.value || product.value.allowDelivery || isRecipe.value || productCategory.value.name || isRare.value && (isMobile.value || !product.value.isAvailable)
 })
 const isSwapReplacementSlider = computed(() => {
-  return !this.$data.isFailedGettingReplacements && !this.hasReplacements && this.hasRecommend
+  return !isFailedGettingReplacements.value && !hasReplacements.value && hasRecommend.value
 })
 const viewedProducts = computed(() => {
-  var t, e, o = this;
-  return null !== (e = null === (t = this.$store.state.viewedProducts.items) || void 0 === t ? void 0 : t.filter((function (i) {
-    return i.ID !== o.productID
-  }))) && void 0 !== e ? e : []
+  return viewedProductsStore.items.filter((i: any) => {
+    return i.ID !== props.productID
+  })
 })
 const hasViewedProducts = computed(() => {
   return viewedProductsIDs.value.length > 0
 })
 const viewedProductsIDs = computed(() => {
-  var t;
-  return null !== (t = this.$store.state.viewedProducts.viewedProductsIDs) && void 0 !== t ? t : []
+  return viewedProductsStore.viewedProductsIDs
 })
 const deliveryDate = computed(() => {
-  var t, e = new Date;
-  return e.setDate(e.getDate() + (null !== (t = product.value.deliveryDaysMax) && void 0 !== t ? t : 1)), v.s.format(e, "j FG")
+  // let e = new Date;
+  // e.setDate(e.getDate() + (product.value.deliveryDaysMax ? product.value.deliveryDaysMax : 1))
+  // return uFormat(e, "j FG")
 })
 const isOpenedQuestion = computed(() => {
-  return void 0 !== question.value
+  return undefined !== question.value
 })
 const hasFilteredDiscountDescription = computed(() => {
   return filteredDiscountDescription.value.length > 0
 })
 const filteredDiscountDescription = computed(() => {
-  var t, e;
-  return (null !== (e = null === (t = product.value) || void 0 === t ? void 0 : t.discountDescription) && void 0 !== e ? e : []).filter((function (t) {
+  let t, e;
+  return (null !== (e = null === (t = product.value) || undefined === t ? undefined : t.discountDescription) && undefined !== e ? e : []).filter((t: any) => {
     return !t.includes("Бесплатная доставка")
-  }))
+  })
 })
 const filterReviews = computed(() => {
   return "productID=" + props.productID
@@ -264,7 +267,9 @@ const comparisonProducts = computed(() => {
   return comparisonProductsStore.list
 })
 const favorites = computed(() => {
-  return null !== (t = this.$store.state.favorite.products) && void 0 !== t ? t : []
+  //TODO
+  // return null !== (t = this.$store.state.favorite.products) && undefined !== t ? t : []
+  return []
 })
 const favoritesCaption = computed(() => {
   return isInFavorites.value ? "В избранном" : "В избранное"
@@ -285,20 +290,19 @@ const hasRemarks = computed(() => {
   return !!product.value.replacementsTitle.remarks && !!product.value.replacementsTitle.remarksHint
 })
 const hasReplacements = computed(() => {
-  return this.$data.replacements.length > 0
+  return replacements.value.length > 0
 })
 const hasTrademarkProducts = computed(() => {
-  return this.$data.trademarkProducts.length > 0
+  return trademarkProducts.value.length > 0
 })
 const hasBonuses = computed(() => {
-  return void 0 !== product.value.bonuses
+  return undefined !== product.value.bonuses
 })
 const hasDeliveryRuleID = computed(() => {
-  return void 0 !== product.value.deliveryRuleID
+  return undefined !== product.value.deliveryRuleID
 })
 const hasImages = computed(() => {
-  var t;
-  return (null !== (t = product.value.images) && void 0 !== t ? t : []).length > 0
+  return product.value.images.length > 0
 })
 const hasLoyalCard = computed(() => {
   return meStore.hasLoyalCard
@@ -322,8 +326,7 @@ const isAuthorized = computed(() => {
   return sessionsStore.isAuthorized
 })
 const isCityAllowDelivery = computed(() => {
-  var t, e;
-  return null !== (e = null === (t = this.city) || void 0 === t ? void 0 : t.allowDelivery) && void 0 !== e && e
+  return city.value.allowDelivery
 })
 const isDeletionFromFavorites = computed(() => {
   return isInFavorites.value && isFavoritesLoading.value
@@ -332,7 +335,7 @@ const isGlobalLoading = computed(() => {
   return appStore.getIsLoading
 })
 const isInBasket = computed(() => {
-  return !0 === basketStore.inBasket[props.productID]
+  return true === basketStore.inBasket[props.productID]
 })
 const isInComparison = computed(() => {
   return comparisonProducts.value.find((t: any) => {
@@ -343,21 +346,19 @@ const description = computed(() => {
   return product.value.description ? product.value.description : []
 })
 const isInFavorites = computed(() => {
-  return !0 === favoritesStore.inFavorites[props.productID]
+  return true === favoritesStore.inFavorites[props.productID]
 })
 const isLoyal = computed(() => {
-  var t, e, o, r;
-  return (null === (e = null === (t = product.value) || void 0 === t ? void 0 : t.price) || void 0 === e ? void 0 : e.withCard) !== (null === (r = null === (o = product.value) || void 0 === o ? void 0 : o.price) || void 0 === r ? void 0 : r.withoutCard)
+  return product.value.price.withCard! !== product.value.price.withoutCard!
 })
 const isMobile = computed(() => {
   return appStore.isMobile
 })
 const isNotAvailable = computed(() => {
-  return 0 === this.pharmacyStock.length
+  return 0 === pharmacyStock.value.length
 })
 const isRank = computed(() => {
-  var t, e, o, r;
-  return !isLoyal.value && (null === (e = null === (t = product.value) || void 0 === t ? void 0 : t.price) || void 0 === e ? void 0 : e.withPeriod) !== (null === (r = null === (o = product.value) || void 0 === o ? void 0 : o.price) || void 0 === r ? void 0 : r.withoutCard)
+  return !isLoyal.value && product.value.price.withPeriod !== product.value.price.withoutCard
 })
 const isRecipe = computed(() => {
   return product.value.isRecipe
@@ -366,131 +367,114 @@ const allowOnlinePayment = computed(() => {
   return product.value.allowOnlinePayment
 })
 const isStock = computed(() => {
-  return void 0 !== product.value.sticker
+  return undefined !== product.value.sticker
 })
-const preparedPharmacies = computed(() => {
-  var t = this,
-      e = (this.isGetRegionPharmacies ? this.regionPharmacies : this.pharmacies).map((function (p) {
-        var e = void 0 !== t.preparedPharmacyStock[p.ID] ? t.preparedPharmacyStock[p.ID].name : m.u;
-        return z(z({}, p), {}, {
-          availability: e,
-          sort: "Много" === e ? 4 : "Достаточно" === e ? 3 : "Мало" === e ? 2 : 1
-        })
-      })).sort((function (a, b) {
-        return a.sort === b.sort ? 0 : Number(a.sort) > Number(b.sort) ? -1 : 1
-      })).filter((function (p) {
-        var e = !0;
-        return t.isRare && (e = p.isRareProduct), e
-      }));
-  return product.value.isWithdrawn || product.value.isSiteSellRemains || product.value.isOrderRcNoRc ? e.filter((function (p) {
-    return "Под заказ" !== p.availability && "Отсутствует" !== p.availability
-  })) : e
-})
+
 const linkFreeDelivery = computed(() => {
-  var t, e, o, r, n;
-  return {
-    name: "PopularCategories",
-    params: {
-      popularCategory: null !== (n = null === (r = (null !== (o = null === (e = null !== (t = this.params) && void 0 !== t ? t : {}) || void 0 === e ? void 0 : e.deliveryRules) && void 0 !== o ? o : {})[product.value.deliveryRuleID]) || void 0 === r ? void 0 : r.code) && void 0 !== n ? n : void 0 !== product.value.deliveryAmount ? "free_ship_pack" : "free_ship"
-    }
-  }
+  //TODO
+  // return {
+  //   name: "PopularCategories",
+  //   params: {
+  //     popularCategory: null !== (n = null === (r = (null !== (o = null === (e = null !== (t = this.params) && undefined !== t ? t : {}) || undefined === e ? undefined : e.deliveryRules) && undefined !== o ? o : {})[product.value.deliveryRuleID]) || undefined === r ? undefined : r.code) && undefined !== n ? n : undefined !== product.value.deliveryAmount ? "free_ship_pack" : "free_ship"
+  //   }
+  // }
 })
 const me = computed(() => {
   return meStore.getMe ? meStore.getMe : {}
 })
 const params = computed(() => {
-  return appStore.params
+  return <any>appStore.params
 })
 const productSumFreeShip = computed(() => {
-  var t, e;
-  return null !== (e = null === (t = this.params.deliveryRules[product.value.deliveryRuleID]) || void 0 === t ? void 0 : t.productAmount) && void 0 !== e ? e : 0
+  return params.value.deliveryRules[product.value.deliveryRuleID] ? params.value.deliveryRules[product.value.deliveryRuleID].productAmount : 0
 })
 
 const pluralizeBonuses = computed(() => {
-  return void 0 === product.value.bonuses ? "" : v.r.pluralize(product.value.bonuses, ["балл", "балла", "баллов"])
+  return undefined === product.value.bonuses ? "" : uPluralize(product.value.bonuses, ["балл", "балла", "баллов"])
 })
-const preparedPharmacyStock = computed(() => {
-  return (this.isGetRegionPharmacies ? this.regionPharmacyStock : this.pharmacyStock).reduce((function (t, e) {
-    return t[e.pharmacyID] = e, t
-  }), {})
-})
+
 const regions = computed(() => {
   return regionsStore.regions
 })
 const preparedRestricts = computed(() => {
-  var t, e = this;
-  return (null !== (t = product.value.restricts) && void 0 !== t ? t : []).reduce((function (t, o) {
-    var r = e.preparedRestrictTypes.get(o.typeID),
-        n = m.l[o.level];
-    return void 0 !== r && void 0 !== n && t.push(z(z({}, o), {}, {
-      icon: r.icon,
-      caption: "".concat(n, " ").concat(r.name.toLowerCase())
-    })), t
-  }), [])
+  //TODO
+  // return product.value.restricts.reduce((t: any, o: any) => {
+  //   let r = preparedRestrictTypes.value.get(o.typeID),
+  //       n = m.l[o.level];
+  //   undefined !== r && undefined !== n && t.push({
+  //     ...o,
+  //     icon: r.icon,
+  //     caption: "".concat(n, " ").concat(r.name.toLowerCase())
+  //   })
+  //   return t
+  // }, [])
+  return []
 })
 const preparedRestrictTypes = computed(() => {
-  var t = new Map;
-  return this.restrictTypes.forEach((function (e) {
-    t.set(e.ID, z(z({}, e), {}, {
+  let t = new Map;
+  restrictTypes.value.forEach((e: any) => {
+    t.set(e.ID, {
+      ...e,
       icon: "url(".concat(e.icon, ")")
-    }))
-  })), t
+    })
+  })
+  return t
 })
 const productCardProjects = computed(() => {
-  var t = this;
-  return this.cardProjects.filter((function (e) {
-    var o;
-    return (null !== (o = t.$data.product.cardProjects) && void 0 !== o ? o : []).indexOf(e.code) > -1
-  }))
+  // let t = this;
+  // return this.cardProjects.filter((function (e) {
+  //   let o;
+  //   return (null !== (o = t.$data.product.cardProjects) && undefined !== o ? o : []).indexOf(e.code) > -1
+  // }))
 })
 const productCharity = computed(() => {
-  var t = this;
-  return this.charity.filter((function (e) {
-    var o;
-    return (null !== (o = t.$data.product.charity) && void 0 !== o ? o : []).indexOf(e.code) > -1
-  }))
+  // let t = this;
+  // return this.charity.filter((function (e) {
+  //   let o;
+  //   return (null !== (o = t.$data.product.charity) && undefined !== o ? o : []).indexOf(e.code) > -1
+  // }))
 })
 const productCategories = computed(() => {
-  var t, e;
-  return null !== (e = null === (t = this.catalog) || void 0 === t ? void 0 : t.categories) && void 0 !== e ? e : []
+  return catalog.value.categories
 })
 const productCategory = computed(() => {
-  var t, e = this;
-  return null !== (t = this.productCategories.find((function (t) {
-    return t.ID === e.$data.product.categoryID
-  }))) && void 0 !== t ? t : {}
+  return productCategories.value.find((t: any) => {
+    return t.ID === product.value.categoryID
+  })
 })
 const productSubtypes = computed(() => {
-  var t, e;
-  return null !== (e = null === (t = this.catalog) || void 0 === t ? void 0 : t.subtypes) && void 0 !== e ? e : []
+  return catalog.value.subtypes
 })
 const productTypes = computed(() => {
-  var t, e;
-  return null !== (e = null === (t = this.catalog) || void 0 === t ? void 0 : t.types) && void 0 !== e ? e : []
+  return catalog.value.types
 })
 const hasDiscount = computed(() => {
-  return "n+m" === product.value.discountTemplate && void 0 !== this.preparedCheckItems[this.productID] && void 0 !== this.preparedCheckItems[this.productID].ruleID
+  return "n+m" === product.value.discountTemplate && undefined !== preparedCheckItems.value[props.productID] && undefined !== preparedCheckItems.value[props.productID].ruleID
 })
 const preparedCheckItems = computed(() => {
-  return getPreparedCheckItems()
+  //TODO
+  // return getPreparedCheckItems()
+  return <any>{}
 })
 const properties = computed(() => {
-  var t, e = this;
-  if (0 !== Object.keys(this.propertyTypes).length) {
-    var o = (null !== (t = product.value.properties) && void 0 !== t ? t : []).reduce((function (t, p) {
-      if (!e.propertyTypes[p.typeID] || !e.propertyTypes[p.typeID].isVisible) return t;
-      var o = e.propertyTypes[p.typeID].name;
-      return void 0 === t[o] && (t[o] = []), t[o].push(p), t
-    }), {});
-    isMobile.value && (o["Артикул"] = [{
-      name: props.productID
-    }]);
-    for (var r = {}, n = 0, c = ["Действующее вещество", "� ецептурность", "Форма выпуска", "Бренд", "Производитель", "Страна", "Способ хранения", "Артикул"]; n < c.length; n++) {
-      var p = c[n];
-      void 0 !== o[p] && (r[p] = o[p])
-    }
-    return r
-  }
+  // if (0 !== Object.keys(propertyTypes.value).length) {
+  //   let o = product.value.properties.reduce((t: any, p: any) => {
+  //     if (!propertyTypes.value[p.typeID] || !propertyTypes.value[p.typeID].isVisible) return t;
+  //     let o = propertyTypes.value[p.typeID].name;
+  //     return undefined === t[o] && (t[o] = []), t[o].push(p), t
+  //   }, {});
+  //   isMobile.value && (o["Артикул"] = [{
+  //     name: props.productID
+  //   }]);
+  //   var n = 0
+  //   let r = <any>{}
+  //   let c = ["Действующее вещество", "Рецептурность", "Форма выпуска", "Бренд", "Производитель", "Страна", "Способ хранения", "Артикул"]
+  //   for (n < c.length; n++) {
+  //     let p = c[n];
+  //     undefined !== o[p] && (r[p] = o[p])
+  //   }
+  //   return r
+  // }
 })
 const propertyTypes = computed(() => {
   return productPropertyTypesStore.list.reduce((t: any, p: any) => {
@@ -501,7 +485,7 @@ const restrictTypes = computed(() => {
   return restrictTypesStore.list
 })
 const shareLinks = computed(() => {
-  var imageShare = image(uSIZE_M),
+  let imageShare = image(SIZE_M),
       title = product.value.name,
       t = "".concat(params.value.siteURL, "/product/").concat(product.value.ID, "-").concat(product.value.slug);
   return [{
@@ -523,45 +507,43 @@ const shareLinks = computed(() => {
   }]
 })
 const preparedArticles = computed(() => {
-  var t = this;
-  return void 0 === this.$data.articleCategories ? [] : this.articles.map((function (a) {
-    var e, o, r = (null !== (e = t.$data.articleCategories) && void 0 !== e ? e : []).find((function (t) {
-          return t.ID === a.categoryID
-        })),
-        n = z(z({}, a), {}, {
-          image: "url(".concat(a.image.endsWith(h.SIZE_S) ? a.image.slice(0, -h.SIZE_S.length) + h.SIZE_L : a.image, ")"),
-          route: {
-            name: "Article",
-            params: {
-              ID: "".concat(a.ID),
-              slug: a.slug,
-              sectionName: "blog"
-            }
-          }
-        });
-    return void 0 !== r && void 0 !== r.parentID && ((null === (o = n.route) || void 0 === o ? void 0 : o.params).categoryName = r.slug), n
-  }))
+  // let t = this;
+  // return undefined === this.$data.articleCategories ? [] : this.articles.map((function (a) {
+  //   let e, o, r = (null !== (e = t.$data.articleCategories) && undefined !== e ? e : []).find((function (t) {
+  //         return t.ID === a.categoryID
+  //       })),
+  //       n = z(z({}, a), {}, {
+  //         image: "url(".concat(a.image.endsWith(h.SIZE_S) ? a.image.slice(0, -h.SIZE_S.length) + h.SIZE_L : a.image, ")"),
+  //         route: {
+  //           name: "Article",
+  //           params: {
+  //             ID: "".concat(a.ID),
+  //             slug: a.slug,
+  //             sectionName: "blog"
+  //           }
+  //         }
+  //       });
+  //   return undefined !== r && undefined !== r.parentID && ((null === (o = n.route) || undefined === o ? undefined : o.params).categoryName = r.slug), n
+  // }))
 })
 const hasRegionsStock = computed(() => {
-  var t;
-  return Object.keys(null !== (t = this.regionsStock) && void 0 !== t ? t : {}).length > 0
+  // let t;
+  // return Object.keys(null !== (t = this.regionsStock) && undefined !== t ? t : {}).length > 0
 })
 const productName = computed(() => {
-  var t, e;
-  return null !== (e = null === (t = product.value.properties.find((function (p) {
-    return 10 === p.typeID
-  }))) || void 0 === t ? void 0 : t.name) && void 0 !== e ? e : product.value.name
+  return product.value.name
 })
 const selectedRegion = computed(() => {
-  var t = this;
-  return this.regions.find((function (e) {
-    var o;
-    return e.ID === (null === (o = t.city) || void 0 === o ? void 0 : o.regionID)
-  }))
+  // let t = this;
+  // return this.regions.find((function (e) {
+  //   let o;
+  //   return e.ID === (null === (o = t.city) || undefined === o ? undefined : o.regionID)
+  // }))
 })
 const hasStockInHomeRegion = computed(() => {
-  var t;
-  return "".concat(null === (t = this.selectedRegion) || void 0 === t ? void 0 : t.ID) in this.regionsStock
+  return false
+  // let t;
+  // return "".concat(null === (t = this.selectedRegion) || undefined === t ? undefined : t.ID) in this.regionsStock
 })
 const isRare = computed(() => {
   return product.value.isRare
@@ -586,615 +568,629 @@ onUnmounted(() => {
 
 
 //FUNCTIONS
-function onStorageChanged(t) {
-  var e;
-  "viewedProductsIDs" === t.key && (JSON.parse(null !== (e = t.newValue) && void 0 !== e ? e : "[]").includes(product.value.ID) || this.setViewedProductID())
+function onStorageChanged(t: any) {
+  "viewedProductsIDs" === t.key && (JSON.parse(t.newValue ? t.newValue : "[]").includes(product.value.ID) || setViewedProductID())
 }
 
 
 const getPreparedCheckItems = uPreparedCheckItems
 
-function getCharity() {
-  this.$store.dispatch("charity/".concat(l.CHARITY.GET))
-}
+// function getCharity() {
+//   this.$store.dispatch("charity/".concat(l.CHARITY.GET))
+// }
 
-function getCardProjects() {
-  this.$store.dispatch("cardProjects/".concat(l.CARD_PROJECTS.GET))
-}
+// function getCardProjects() {
+// this.$store.dispatch("cardProjects/".concat(l.CARD_PROJECTS.GET))
+// }
 
-function getBannerYouMayNeed() {
-  void 0 === this.bannerYouMayNeed && this.$store.dispatch("banners/".concat(l.BANNERS.GET_YOU_MAY_NEED))
-}
+// function getBannerYouMayNeed() {
+//   undefined === this.bannerYouMayNeed && this.$store.dispatch("banners/".concat(l.BANNERS.GET_YOU_MAY_NEED))
+// }
 
 
 // const translit: uTransliter // TODO
 
-function trademarkProductCountry(p) {
-  var t, e;
-  return null !== (e = null === (t = p.properties.find((function (t) {
+function trademarkProductCountry(p: any) {
+  let prop = p.properties.find((t: any) => {
     return 15 === t.typeID
-  }))) || void 0 === t ? void 0 : t.name) && void 0 !== e ? e : ""
+  })
+  return prop.name ? prop.name : ""
 }
 
-function trademarkProductHasCountry(p) {
-  return product.value.typeIDs.includes(396070) && void 0 !== p.properties.find((function (t) {
+function trademarkProductHasCountry(p: any) {
+  return product.value.typeIDs.includes(396070) && undefined !== p.properties.find((t: any) => {
     return 15 === t.typeID
-  }))
-}
-
-function closeDisposableHintCompared() {
-  localStorage.setItem("disposable-hint-compared", "false"), this.showDisposableHintCompared = !1
-}
-
-function changePaddingHeader() {
-  this.needPaddingHeader = !this.needPaddingHeader
-}
-
-function showHideDescription() {
-  this.isShowDescription = !this.isShowDescription
-}
-
-function showHideReviews() {
-  this.isMobile && (this.isShowReviews = !this.isShowReviews)
-}
-
-function image(t: any, e: any) {
-  return uPrepareProduct(product.value, t, params.value.cdnURL.url).images[0]
-}
-
-function loadViewedProducts() {
-  var t;
-  void 0 !== (null === (t = this.city) || void 0 === t ? void 0 : t.ID) && this.hasViewedProducts && this.$store.dispatch("viewedProducts/".concat(l.VIEWED_PRODUCTS.GET), {
-    IDs: this.viewedProductsIDs,
-    cityID: this.city.ID
   })
 }
 
-function setQuestion(q) {
-  this.question = q
+function closeDisposableHintCompared() {
+  localStorage.setItem("disposable-hint-compared", "false")
+  showDisposableHintCompared.value = false
 }
 
-function updateIsMax(t, e) {
-  this.isLimitProduct = t, this.limitProduct = e
+function changePaddingHeader() {
+  needPaddingHeader.value = !needPaddingHeader.value
+}
+
+function showHideDescription() {
+  isShowDescription.value = !isShowDescription.value
+}
+
+function showHideReviews() {
+  isMobile.value && (isShowReviews.value = !isShowReviews.value)
+}
+
+function image(t: any, e?: any) {
+  return uPrepareProduct({...product.value}, t, params.value.cdnURL.url).images[0]
+}
+
+function loadViewedProducts() {
+  // let t;
+  // undefined !== (null === (t = this.city) || undefined === t ? undefined : t.ID) && this.hasViewedProducts && this.$store.dispatch("viewedProducts/".concat(l.VIEWED_PRODUCTS.GET), {
+  //   IDs: this.viewedProductsIDs,
+  //   cityID: this.city.ID
+  // })
+}
+
+function setQuestion(q: any) {
+  question.value = q
+}
+
+function updateIsMax(t: any, e: any) {
+  isLimitProduct.value = t
+  limitProduct.value = e
 }
 
 function openReviewsForm() {
-  var t = this;
-  setTimeout((function () {
-    t.$nuxt.$emit("reviews-form-open")
-  }), 500)
+  setTimeout(() => {
+    emit("reviews-form-open")
+  }, 500)
 }
 
 function openClosePropertybar() {
-  this.isOpenedPropertyBar = !this.isOpenedPropertyBar
+  isOpenedPropertyBar.value = !isOpenedPropertyBar.value
 }
 
 function closeQuestionbar() {
-  this.question = void 0
+  question.value = undefined
 }
 
 function openStockSidebar() {
-  this.$nuxt.$emit("open-product-curtain", product.value.ID, product.value.slug, !1, !this.hasStockInHomeRegion && !this.isRare), this.isOpenStockSidebar = !0
+  emit("open-product-curtain", product.value.ID, product.value.slug, false, !hasStockInHomeRegion.value && !isRare.value)
+  isOpenStockSidebar.value = true
 }
 
-function formattedCreationTime(s) {
-  var t = v.r.toDate(s);
-  return void 0 !== t ? v.s.format(t, "d.m.Y") : "Не известно"
+function formattedCreationTime(s: any) {
+  // let t = v.r.toDate(s);
+  // return undefined !== t ? v.s.format(t, "d.m.Y") : "Не известно"
 }
 
-function getArticlesRandom(t) {
-  var e = this,
-      o = this.$data.articleCategories.reduce((function (t, e) {
-        return "news" !== e.slug && t.push(e.ID), t
-      }), []),
-      filter = "categoryID={".concat(o.join(), "}").concat(t ? "" : "&products=".concat(product.value.ID), "[0:2]");
-  f.a.articles.get(filter, ["ID", "categoryID", "slug", "title", "image", "creationTime", "views", "readingTime", "commentsCount"], "random").then((function (a) {
-    e.articles = null != a ? a : [], null === a && e.getArticlesRandom(!0)
-  })).catch((function (o) {
-    t || e.getArticlesRandom(!0), e.error(o)
-  })).finally((function () {
-    e.$nextTick((function () {
-      e.checkHeight()
-    }))
-  }))
+function getArticlesRandom(t: any) {
+  // let e = this,
+  //     o = this.$data.articleCategories.reduce((function (t, e) {
+  //       return "news" !== e.slug && t.push(e.ID), t
+  //     }), []),
+  //     filter = "categoryID={".concat(o.join(), "}").concat(t ? "" : "&products=".concat(product.value.ID), "[0:2]");
+  // f.a.articles.get(filter, ["ID", "categoryID", "slug", "title", "image", "creationTime", "views", "readingTime", "commentsCount"], "random").then((function (a) {
+  //   e.articles = null != a ? a : [], null === a && e.getArticlesRandom(true)
+  // })).catch((function (o) {
+  //   t || e.getArticlesRandom(true), e.error(o)
+  // })).finally((function () {
+  //   e.$nextTick((function () {
+  //     e.checkHeight()
+  //   }))
+  // }))
 }
 
 function pluralizeRestrictAge(t: any) {
-  var e = t.minimalAge,
+  let e = t.minimalAge,
       o = "Месяц" === t.minimalAgeType;
   return uPluralize(e, o ? ["месяца", "месяцев", "месяцев"] : ["года", "лет", "лет"])
 }
 
 function favoriteMouseDown() {
-  this.isMouseDown = !0, this.isProductFavoriteActive = !0
+  isMouseDown.value = true
+  isProductFavoriteActive.value = true
 }
 
 function favoriteMouseUp() {
-  var t = this;
-  this.isMouseDown = !1, this.isMouseUp = !0, setTimeout((function () {
-    t.isProductFavoriteActive = !1, t.isMouseUp = !1
-  }), 300)
+  isMouseDown.value = false
+  isMouseUp.value = true
+  setTimeout(() => {
+    isProductFavoriteActive.value = false
+    isMouseUp.value = false
+  }, 300)
 }
 
 function favoriteMouseOut() {
-  this.isMouseDown && !this.isMouseUp && (this.isProductFavoriteActive = !1)
+  isMouseDown.value && !isMouseUp.value && (isProductFavoriteActive.value = false)
 }
 
-function addReview(t) {
-  var e = this;
-  this.isLoadingReviewAside = !0, f.a.reviews.new(t).then((function () {
-    e.getTotalCountReviews(), e.getReviews().finally((function () {
-      e.isLoadingReviewAside = !1
-    }))
-  })).catch((function (t) {
-    e.isLoadingReviewAside = !1, e.error(t)
-  }))
+function addReview(t: any) {
+  // isLoadingReviewAside.value = true
+  // useNuxtApp().$api.reviews.new(t).then(() => {
+  //   getTotalCountReviews()
+  //   getReviews().finally(() => {
+  //     isLoadingReviewAside.value = false
+  //   })
+  // }).catch((t: any) => {
+  //   isLoadingReviewAside.value = false
+  //   console.log(t)
+  // })
 }
 
 function checkScroll() {
-  this.lastScrollTop > window.scrollY ? this.isScrollTop = !0 : (this.isScrollTop = !1, this.headerTop = -60), this.lastScrollTop = window.scrollY;
-  var t = this.$refs["v-product"];
-  this.isShowFixedHeader = window.scrollY > .2 * t.clientHeight
+  lastScrollTop.value > window.scrollY ? isScrollTop.value = true : (isScrollTop.value = false, headerTop.value = -60), lastScrollTop.value = window.scrollY;
+  let t = vProductRef.value
+  isShowFixedHeader.value = window.scrollY > .2 * t.clientHeight
 }
 
-function addToBasket(t, e) {
-  var o, r, n, c = this;
-  if (e || (this.reachGoal("addbasket"), this.ecommerce("add", [product.value])), this.isAuthorized) e ? this.updatingBasketProductIDs.push(t.productID) : this.loadingBasketProductIDs.push(t.productID), this.$store.dispatch("basket/".concat(l.BASKET.ADD), {
-    item: t,
-    cityID: null === (o = this.city) || void 0 === o ? void 0 : o.ID,
-    isUpdate: e
-  }).finally((function () {
-    c.loadingBasketProductIDs = [], e && (c.updatingBasketProductIDs = [])
-  }));
-  else {
-    var d = v.c.clone(this.basketItems);
-    d.push({
-      productID: product.value.ID,
-      productSlug: product.value.slug,
-      images: product.value.images,
-      name: product.value.name,
-      price: product.value.price,
-      priceZakaz: product.value.priceZakaz,
-      count: 1,
-      isRemoved: !1,
-      isInStock: product.value.isInStock,
-      allowDelivery: product.value.allowDelivery,
-      allowOnlinePayment: product.value.allowOnlinePayment,
-      discountID: product.value.discountID,
-      isWithdrawn: product.value.isWithdrawn,
-      limitWithCard: product.value.limitWithCard,
-      limitWithoutCard: product.value.limitWithoutCard,
-      deliveryDaysMax: product.value.deliveryDaysMax,
-      isRecipe: null !== (n = null === (r = product.value) || void 0 === r ? void 0 : r.isRecipe) && void 0 !== n && n,
-      isAvailable: product.value.isAvailable,
-      deliveryAmount: product.value.deliveryAmount,
-      discountTemplate: product.value.discountTemplate,
-      mightNeedID: product.value.mightNeedID,
-      imagesSizeXS: product.value.imagesSizeXS,
-      imagesSizeS: product.value.imagesSizeS,
-      isSelected: !1,
-      isSiteSellRemains: product.value.isSiteSellRemains,
-      isWaitingArrive: product.value.isWaitingArrive,
-      isOrderRcNoRc: product.value.isOrderRcNoRc
-    }), this.hasBonuses && !this.isStock && (d[d.length - 1].bonuses = product.value.bonuses), void 0 !== product.value.sticker && (d[d.length - 1].sticker = product.value.sticker), void 0 !== product.value.deliveryRuleID && (d[d.length - 1].deliveryRuleID = product.value.deliveryRuleID), this.isMobile || this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-      status: "basket",
-      image: this.image(h.SIZE_XS)
-    }), localStorage.setItem("basket", JSON.stringify(d)), this.$store.commit("basket/".concat(l.BASKET.UPD), d)
-  }
+function addToBasket(t: any, e: any) {
+  // let o, r, n, c = this;
+  // if (e || (this.reachGoal("addbasket"), this.ecommerce("add", [product.value])), this.isAuthorized) e ? this.updatingBasketProductIDs.push(t.productID) : this.loadingBasketProductIDs.push(t.productID), this.$store.dispatch("basket/".concat(l.BASKET.ADD), {
+  //   item: t,
+  //   cityID: null === (o = this.city) || undefined === o ? undefined : o.ID,
+  //   isUpdate: e
+  // }).finally((function () {
+  //   c.loadingBasketProductIDs = [], e && (c.updatingBasketProductIDs = [])
+  // }));
+  // else {
+  //   let d = v.c.clone(this.basketItems);
+  //   d.push({
+  //     productID: product.value.ID,
+  //     productSlug: product.value.slug,
+  //     images: product.value.images,
+  //     name: product.value.name,
+  //     price: product.value.price,
+  //     priceZakaz: product.value.priceZakaz,
+  //     count: 1,
+  //     isRemoved: false,
+  //     isInStock: product.value.isInStock,
+  //     allowDelivery: product.value.allowDelivery,
+  //     allowOnlinePayment: product.value.allowOnlinePayment,
+  //     discountID: product.value.discountID,
+  //     isWithdrawn: product.value.isWithdrawn,
+  //     limitWithCard: product.value.limitWithCard,
+  //     limitWithoutCard: product.value.limitWithoutCard,
+  //     deliveryDaysMax: product.value.deliveryDaysMax,
+  //     isRecipe: null !== (n = null === (r = product.value) || undefined === r ? undefined : r.isRecipe) && undefined !== n && n,
+  //     isAvailable: product.value.isAvailable,
+  //     deliveryAmount: product.value.deliveryAmount,
+  //     discountTemplate: product.value.discountTemplate,
+  //     mightNeedID: product.value.mightNeedID,
+  //     imagesSizeXS: product.value.imagesSizeXS,
+  //     imagesSizeS: product.value.imagesSizeS,
+  //     isSelected: false,
+  //     isSiteSellRemains: product.value.isSiteSellRemains,
+  //     isWaitingArrive: product.value.isWaitingArrive,
+  //     isOrderRcNoRc: product.value.isOrderRcNoRc
+  //   }), this.hasBonuses && !this.isStock && (d[d.length - 1].bonuses = product.value.bonuses), undefined !== product.value.sticker && (d[d.length - 1].sticker = product.value.sticker), undefined !== product.value.deliveryRuleID && (d[d.length - 1].deliveryRuleID = product.value.deliveryRuleID), this.isMobile || this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+  //     status: "basket",
+  //     image: this.image(h.SIZE_XS)
+  //   }), localStorage.setItem("basket", JSON.stringify(d)), this.$store.commit("basket/".concat(l.BASKET.UPD), d)
+  // }
 }
 
 function checkHeight() {
-  var t, e, o, r, n, c, d, l = this,
-      v = null !== (t = this.$refs.recommendations) && void 0 !== t ? t : {},
-      h = (null !== (o = null === (e = this.$refs.description) || void 0 === e ? void 0 : e.clientHeight) && void 0 !== o ? o : 0) + 50,
-      m = null !== (c = (null !== (r = v.clientHeight) && void 0 !== r ? r : 0) + (null !== (n = this.$refs.articles) && void 0 !== n ? n : {}).clientHeight) && void 0 !== c ? c : 0;
-  h < m && (this.$refs.articles.style.display = "none", h < (null !== (d = v.clientHeight) && void 0 !== d ? d : 0) && Array.from(v.children[1].children).forEach((function (t, i) {
-    i > 1 && (t.style.display = "none")
-  })), this.$nextTick((function () {
-    var t, e;
-    h < (null !== (e = (null !== (t = l.$refs.recommendations) && void 0 !== t ? t : {}).clientHeight) && void 0 !== e ? e : 0) && (Array.from(v.children[1].children).forEach((function (t, i) {
-      i > 0 && (t.style.display = "none")
-    })), l.isHorizontalCardMode = !0)
-  })))
+  // let t, e, o, r, n, c, d, l = this,
+  //     v = null !== (t = this.$refs.recommendations) && undefined !== t ? t : {},
+  //     h = (null !== (o = null === (e = this.$refs.description) || undefined === e ? undefined : e.clientHeight) && undefined !== o ? o : 0) + 50,
+  //     m = null !== (c = (null !== (r = v.clientHeight) && undefined !== r ? r : 0) + (null !== (n = this.$refs.articles) && undefined !== n ? n : {}).clientHeight) && undefined !== c ? c : 0;
+  // h < m && (this.$refs.articles.style.display = "none", h < (null !== (d = v.clientHeight) && undefined !== d ? d : 0) && Array.from(v.children[1].children).forEach((function (t, i) {
+  //   i > 1 && (t.style.display = "none")
+  // })), this.$nextTick((function () {
+  //   let t, e;
+  //   h < (null !== (e = (null !== (t = l.$refs.recommendations) && undefined !== t ? t : {}).clientHeight) && undefined !== e ? e : 0) && (Array.from(v.children[1].children).forEach((function (t, i) {
+  //     i > 0 && (t.style.display = "none")
+  //   })), l.isHorizontalCardMode = true)
+  // })))
 }
 
 function addToComparison() {
-  var t, e = this;
-  if (!this.isComparisonLoading) {
-    this.isComparisonLoading = !0;
-    var o = v.c.clone(this.comparisonProducts);
-    if (this.isInComparison) {
-      var r = null !== (t = o.find((function (p) {
-        return p.categoryID === e.productCategory.ID
-      }))) && void 0 !== t ? t : {};
-      o = 1 === r.productIDs.length ? o.filter((function (p) {
-        return p.categoryID !== e.productCategory.ID
-      })) : o.filter((function (p) {
-        return p.categoryID === e.productCategory.ID && (p.productIDs = p.productIDs.filter((function (t) {
-          return t !== e.productID
-        }))), p
-      }))
-    } else void 0 === o.find((function (t) {
-      return t.categoryID === e.productCategory.ID
-    })) ? (o.push({
-      categoryID: this.productCategory.ID,
-      productIDs: [this.productID]
-    }), this.sendNoticeCompare()) : o.map((function (t) {
-      return t.categoryID === e.productCategory.ID && (t.productIDs.length < 6 ? (t.productIDs.push(e.productID), e.sendNoticeCompare(), 6 !== t.productIDs.length || e.isMobile || e.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-        status: "compare-limited",
-        productCategoryName: e.productCategory.name.length > 21 && !e.isMobile ? "".concat(e.productCategory.name.slice(0, 21), "...") : e.productCategory.name
-      })) : e.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-        title: "Ошибка",
-        desc: 'В сравнении может быть только <br> 6 товаров данной категории.<br><br><a href="/compare" class="hover-bottom-line">Перейти в сравнение</a>',
-        status: "error"
-      })), t
-    }));
-    this.$store.dispatch("comparisonProducts/".concat(l.COMPARISON_PRODUCTS.UPD), o).finally((function () {
-      e.isComparisonLoading = !1
-    }))
-  }
+  // let t, e = this;
+  // if (!this.isComparisonLoading) {
+  //   this.isComparisonLoading = true;
+  //   let o = v.c.clone(this.comparisonProducts);
+  //   if (this.isInComparison) {
+  //     let r = null !== (t = o.find((function (p) {
+  //       return p.categoryID === e.productCategory.ID
+  //     }))) && undefined !== t ? t : {};
+  //     o = 1 === r.productIDs.length ? o.filter((function (p) {
+  //       return p.categoryID !== e.productCategory.ID
+  //     })) : o.filter((function (p) {
+  //       return p.categoryID === e.productCategory.ID && (p.productIDs = p.productIDs.filter((function (t) {
+  //         return t !== e.productID
+  //       }))), p
+  //     }))
+  //   } else undefined === o.find((function (t) {
+  //     return t.categoryID === e.productCategory.ID
+  //   })) ? (o.push({
+  //     categoryID: this.productCategory.ID,
+  //     productIDs: [this.productID]
+  //   }), this.sendNoticeCompare()) : o.map((function (t) {
+  //     return t.categoryID === e.productCategory.ID && (t.productIDs.length < 6 ? (t.productIDs.push(e.productID), e.sendNoticeCompare(), 6 !== t.productIDs.length || e.isMobile || e.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+  //       status: "compare-limited",
+  //       productCategoryName: e.productCategory.name.length > 21 && !e.isMobile ? "".concat(e.productCategory.name.slice(0, 21), "...") : e.productCategory.name
+  //     })) : e.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+  //       title: "Ошибка",
+  //       desc: 'В сравнении может быть только <br> 6 товаров данной категории.<br><br><a href="/compare" class="hover-bottom-line">Перейти в сравнение</a>',
+  //       status: "error"
+  //     })), t
+  //   }));
+  //   this.$store.dispatch("comparisonProducts/".concat(l.COMPARISON_PRODUCTS.UPD), o).finally((function () {
+  //     e.isComparisonLoading = false
+  //   }))
+  // }
 }
 
-function goToReviews() {
-  var t = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
-  this.$data.isProductReviews && (this.scrollTo("reviews"), !0 === t && this.openReviewsForm())
+function goToReviews(t?: any) {
+  isProductReviews.value && (scrollTo("reviews"), true === t && openReviewsForm())
 }
 
 function goToProduct() {
-  this.$data.isProductReviews || (this.scrollTo("description"), this.isShowDescription = !0)
+  isProductReviews.value || (scrollTo("description"), isShowDescription.value = true)
 }
 
 function goToLoyal() {
-  this.$router.push({
+  router.push({
     name: "loyal"
   })
 }
 
 function sendNoticeCompare() {
-  this.isMobile || this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+  isMobile.value || useNotificationsStore().NOTIFICATIONS_UPD({
     status: "compare",
-    image: this.image(h.SIZE_XS)
+    image: image(SIZE_XS)
   })
 }
 
-function addToFavorites(t, e) {
-  var o, r, n, c = this;
-  if (!e || !this.isFavoritesLoading)
-    if (this.isAuthorized) this.loadingFavoritesProductIDs.push(t), this.loadingFavoritesProductIDs.includes(product.value.ID) && (this.isFavoritesLoading = !0), this.$store.dispatch("favorites/".concat(l.FAVORITES.ADD), {
-      itemID: t,
-      cityID: null !== (r = null === (o = this.city) || void 0 === o ? void 0 : o.ID) && void 0 !== r ? r : 41
-    }).catch((function (t) {
-      c.error(t)
-    })).finally((function () {
-      c.loadingFavoritesProductIDs.includes(c.$data.product.ID) && (c.isFavoritesLoading = !1), c.loadingFavoritesProductIDs = []
-    }));
-    else {
-      var d = v.c.clone(null !== (n = this.$store.state.favorites.items) && void 0 !== n ? n : []);
-      if (this.isInFavorites) {
-        var m = d.findIndex((function (t) {
-          return t.ID === c.$data.product.ID
-        }));
-        d.splice(m, 1)
-      } else {
-        if (d.length >= this.params.maxCountFavorites) return void this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-          title: "Внимание!",
-          desc: "В разделе «�?збранное» добавлено максимальное количество товаров – ".concat(this.params.maxCountFavorites, " шт."),
-          status: "warning"
-        });
-        this.isMobile || this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-          status: "favorites",
-          image: this.image(h.SIZE_XS)
-        }), d.push(product.value)
-      }
-      localStorage.setItem("favorites", JSON.stringify(d)), this.$store.commit("favorites/".concat(l.FAVORITES.UPD), d)
-    }
+function addToFavorites(t: any, e: any) {
+  // let o, r, n, c = this;
+  // if (!e || !this.isFavoritesLoading)
+  //   if (this.isAuthorized) this.loadingFavoritesProductIDs.push(t), this.loadingFavoritesProductIDs.includes(product.value.ID) && (this.isFavoritesLoading = true), this.$store.dispatch("favorites/".concat(l.FAVORITES.ADD), {
+  //     itemID: t,
+  //     cityID: null !== (r = null === (o = this.city) || undefined === o ? undefined : o.ID) && undefined !== r ? r : 41
+  //   }).catch((function (t) {
+  //     c.error(t)
+  //   })).finally((function () {
+  //     c.loadingFavoritesProductIDs.includes(c.$data.product.ID) && (c.isFavoritesLoading = false), c.loadingFavoritesProductIDs = []
+  //   }));
+  //   else {
+  //     let d = v.c.clone(null !== (n = this.$store.state.favorites.items) && undefined !== n ? n : []);
+  //     if (this.isInFavorites) {
+  //       let m = d.findIndex((function (t) {
+  //         return t.ID === c.$data.product.ID
+  //       }));
+  //       d.splice(m, 1)
+  //     } else {
+  //       if (d.length >= this.params.maxCountFavorites) return void this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+  //         title: "Внимание!",
+  //         desc: "В разделе «�?збранное» добавлено максимальное количество товаров – ".concat(this.params.maxCountFavorites, " шт."),
+  //         status: "warning"
+  //       });
+  //       this.isMobile || this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+  //         status: "favorites",
+  //         image: this.image(h.SIZE_XS)
+  //       }), d.push(product.value)
+  //     }
+  //     localStorage.setItem("favorites", JSON.stringify(d)), this.$store.commit("favorites/".concat(l.FAVORITES.UPD), d)
+  //   }
 }
 
 function closeShareLinks() {
-  this.isOpenedShare = !1, document.removeEventListener("keydown", this.esc), document.removeEventListener("click", this.outside)
+  isOpenedShare.value = false
+  document.removeEventListener("keydown", esc)
+  document.removeEventListener("click", outside)
 }
 
 function copyText() {
-  var t, text = window.getSelection(),
-      e = text + "<br /><br />�?сточник: ".concat(this.params.siteURL).concat(this.$route.path),
+  let t, text = window.getSelection(),
+      e = text + "<br /><br />Источник: ".concat(params.value.siteURL).concat(route.path),
       div = document.createElement("div");
-  div.style.position = "absolute", div.style.left = "-99999px", div.innerHTML = "".concat(e).replace(/\n/g, "<br />"), null === (t = document.getElementById("app")) || void 0 === t || t.appendChild(div), null == text || text.selectAllChildren(div), setTimeout((function () {
-    var t;
-    null === (t = document.getElementById("app")) || void 0 === t || t.removeChild(div)
-  }), 100)
+  div.style.position = "absolute"
+  div.style.left = "-99999px"
+  div.innerHTML = "".concat(e).replace(/\n/g, "<br />")
+  null === (t = document.getElementById("app")) || undefined === t || t.appendChild(div)
+  null == text || text.selectAllChildren(div), setTimeout(() => {
+    let t;
+    null === (t = document.getElementById("app")) || undefined === t || t.removeChild(div)
+  }, 100)
 }
 
-function deleteReview(t) {
-  var e = this;
-  this.isLoadingReviews = !0, f.a.reviews.del(t).then((function () {
-    e.getTotalCountReviews(), e.getReviews().finally((function () {
-      e.isLoadingReviews = !1
-    })), t.isActive && e.getProduct()
-  })).catch((function (t) {
-    e.isLoadingReviews = !1, e.error(t)
-  }))
+function deleteReview(t: any) {
+  // let e = this;
+  // this.isLoadingReviews = true, f.a.reviews.del(t).then((function () {
+  //   e.getTotalCountReviews(), e.getReviews().finally((function () {
+  //     e.isLoadingReviews = false
+  //   })), t.isActive && e.getProduct()
+  // })).catch((function (t) {
+  //   e.isLoadingReviews = false, e.error(t)
+  // }))
 }
 
-function scrollTodescription(t) {
-  if ("#instrukciya-po-primeneniyu" !== t) {
-    var e = document.querySelector(t);
-    this.descriptionHash = t, v.q.smooth(e, -150)
-  } else this.goToProduct()
+function scrollTodescription(t: any) {
+  // if ("#instrukciya-po-primeneniyu" !== t) {
+  //   let e = document.querySelector(t);
+  //   descriptionHash.value = t
+  //   smooth(e, -150)
+  // } else goToProduct()
 }
 
-function scrollTo(t) {
-  var e, o = null !== (e = this.$refs[t].$el) && void 0 !== e ? e : this.$refs[t];
-  v.q.smooth(o, this.isMobile ? -60 : -150)
+function scrollTo(t: any) {
+  // let e, o = null !== (e = this.$refs[t].$el) && undefined !== e ? e : this.$refs[t];
+  // v.q.smooth(o, this.isMobile ? -60 : -150)
 }
 
-function error(t) {
-  this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-    title: "Произошла ошибка",
-    desc: t,
-    status: "error"
-  })
+function error(t: any) {
+  // this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+  //   title: "Произошла ошибка",
+  //   desc: t,
+  //   status: "error"
+  // })
 }
 
-function esc(t) {
-  "Escape" === t.code && this.closeShareLinks()
+function esc(t: any) {
+  "Escape" === t.code && closeShareLinks()
 }
 
-function getReplacements(t) {
-  var e, o, r, n, c = this;
-  if (0 === (null !== (e = product.value.replacements) && void 0 !== e ? e : []).length) return Promise.resolve();
-  t && (this.isLoadingReplacements = !0);
-  var d = null !== (n = null === (r = null === (o = this.$store.state.cities) || void 0 === o ? void 0 : o.currentCity) || void 0 === r ? void 0 : r.ID) && void 0 !== n ? n : 41,
-      v = {
-        filter: 'isNotFound="false"&ID={'.concat(product.value.replacements.join(), "}&cityID=").concat(d, "&isInStock=true&saveSort=true"),
-        fields: m.k,
-        listName: "replacements"
-      },
-      h = this.$store.dispatch("products/".concat(l.PRODUCT.GET_LIST), v);
-  return h.then((function (p) {
-    c.$data.replacements = [], c.$data.product.replacements.forEach((function (t) {
-      p.find((function (e) {
-        e.ID === t && c.$data.replacements.push(e)
-      }))
-    })), c.$data.isFailedGettingReplacements = !1
-  })).catch((function (t) {
-    c.$data.isFailedGettingReplacements = !0, c.error(t)
-  })).finally((function () {
-    t && (c.isLoadingReplacements = !1)
-  })), h
+function getReplacements(t: any) {
+  // let e, o, r, n, c = this;
+  // if (0 === (null !== (e = product.value.replacements) && undefined !== e ? e : []).length) return Promise.resolve();
+  // t && (this.isLoadingReplacements = true);
+  // let d = null !== (n = null === (r = null === (o = this.$store.state.cities) || undefined === o ? undefined : o.currentCity) || undefined === r ? undefined : r.ID) && undefined !== n ? n : 41,
+  //     v = {
+  //       filter: 'isNotFound="false"&ID={'.concat(product.value.replacements.join(), "}&cityID=").concat(d, "&isInStock=true&saveSort=true"),
+  //       fields: m.k,
+  //       listName: "replacements"
+  //     },
+  //     h = this.$store.dispatch("products/".concat(l.PRODUCT.GET_LIST), v);
+  // return h.then((function (p) {
+  //   c.$data.replacements = [], c.$data.product.replacements.forEach((function (t) {
+  //     p.find((function (e) {
+  //       e.ID === t && c.$data.replacements.push(e)
+  //     }))
+  //   })), c.$data.isFailedGettingReplacements = false
+  // })).catch((function (t) {
+  //   c.$data.isFailedGettingReplacements = true, c.error(t)
+  // })).finally((function () {
+  //   t && (c.isLoadingReplacements = false)
+  // })), h
 }
 
 function getTrademarkProducts() {
-  var t, e, o, r, n, c = this,
-      d = null === (t = product.value.properties.find((function (p) {
-        return 10 === p.typeID
-      }))) || void 0 === t ? void 0 : t.ID;
-  if (0 === (null !== (e = product.value.trademarkProducts) && void 0 !== e ? e : []).length || void 0 === d) return Promise.resolve();
-  var v = null !== (n = null === (r = null === (o = this.$store.state.cities) || void 0 === o ? void 0 : o.currentCity) || void 0 === r ? void 0 : r.ID) && void 0 !== n ? n : 41,
-      h = ["ID", "images", "name", "price", "slug", "isRecipe", "imagesSizeXS"];
-  product.value.typeIDs.includes(396070) && h.push("properties");
-  var m = {
-        filter: "ID!=".concat(this.productID, "&properties={typeID=10,ID=").concat(d, "}&categoryID=").concat(product.value.categoryID, "&cityID=").concat(v, "&isInStock=true&isAvailable=true[0:20]"),
-        fields: h,
-        path: "random",
-        listName: "trademarkProducts"
-      },
-      f = this.$store.dispatch("products/".concat(l.PRODUCT.GET_LIST), m);
-  return f.then((function (p) {
-    c.$data.trademarkProducts = null != p ? p : []
-  })).catch((function (t) {
-    c.error(t)
-  })), f
+  // let t, e, o, r, n, c = this,
+  //     d = null === (t = product.value.properties.find((function (p) {
+  //       return 10 === p.typeID
+  //     }))) || undefined === t ? undefined : t.ID;
+  // if (0 === (null !== (e = product.value.trademarkProducts) && undefined !== e ? e : []).length || undefined === d) return Promise.resolve();
+  // let v = null !== (n = null === (r = null === (o = this.$store.state.cities) || undefined === o ? undefined : o.currentCity) || undefined === r ? undefined : r.ID) && undefined !== n ? n : 41,
+  //     h = ["ID", "images", "name", "price", "slug", "isRecipe", "imagesSizeXS"];
+  // product.value.typeIDs.includes(396070) && h.push("properties");
+  // let m = {
+  //       filter: "ID!=".concat(this.productID, "&properties={typeID=10,ID=").concat(d, "}&categoryID=").concat(product.value.categoryID, "&cityID=").concat(v, "&isInStock=true&isAvailable=true[0:20]"),
+  //       fields: h,
+  //       path: "random",
+  //       listName: "trademarkProducts"
+  //     },
+  //     f = this.$store.dispatch("products/".concat(l.PRODUCT.GET_LIST), m);
+  // return f.then((function (p) {
+  //   c.$data.trademarkProducts = null != p ? p : []
+  // })).catch((function (t) {
+  //   c.error(t)
+  // })), f
 }
 
-function getPharmacy() {
-  return this.$store.dispatch("pharmacies/".concat(l.PHARMACIES.GET), {
-    city: this.city
-  })
-}
+// function getPharmacy() {
+//   return this.$store.dispatch("pharmacies/".concat(l.PHARMACIES.GET), {
+//     city: this.city
+//   })
+// }
 
-function getPharmacyStock() {
-  var t = this;
-  if (void 0 !== this.city && product.value.isAvailable) {
-    var e = f.a.pharmacies.getStock({
-      productID: [this.productID],
-      city: this.city,
-      isRareProduct: this.isRare
-    });
-    return this.isGetRegionPharmacies = !1, e.then((function (p) {
-      t.pharmacyStock = null != p ? p : []
-    })).catch((function (t) {
-      console.log(t)
-    })), e
-  }
-  return void 0 !== this.city && (this.pharmacyStock = [], this.isOpenStockSidebar = !1, this.isGetRegionPharmacies = !0), Promise.resolve()
-}
+// function getPharmacyStock() {
+//   let t = this;
+//   if (undefined !== this.city && product.value.isAvailable) {
+//     let e = f.a.pharmacies.getStock({
+//       productID: [this.productID],
+//       city: this.city,
+//       isRareProduct: this.isRare
+//     });
+//     return this.isGetRegionPharmacies = false, e.then((function (p) {
+//       t.pharmacyStock = null != p ? p : []
+//     })).catch((function (t) {
+//       console.log(t)
+//     })), e
+//   }
+//   return undefined !== this.city && (this.pharmacyStock = [], this.isOpenStockSidebar = false, this.isGetRegionPharmacies = true), Promise.resolve()
+// }
 
 function getProduct() {
-  var t, e, o = this,
-      r = this.$store.dispatch("products/".concat(l.PRODUCT.GET), "ID=".concat(this.productID, '&slug="').concat(this.productSlug, '"&cityID=').concat(null !== (e = null === (t = this.city) || void 0 === t ? void 0 : t.ID) && void 0 !== e ? e : 41));
-  return r.then((function (p) {
-    o.$data.product = p, o.$data.isFailedGettingProduct = !1
-  })).catch((function (t) {
-    o.$data.isFailedGettingProduct = !0, o.error(t)
-  })), r
+  // let t, e, o = this,
+  //     r = this.$store.dispatch("products/".concat(l.PRODUCT.GET), "ID=".concat(this.productID, '&slug="').concat(this.productSlug, '"&cityID=').concat(null !== (e = null === (t = this.city) || undefined === t ? undefined : t.ID) && undefined !== e ? e : 41));
+  // return r.then((function (p) {
+  //   o.$data.product = p, o.$data.isFailedGettingProduct = false
+  // })).catch((function (t) {
+  //   o.$data.isFailedGettingProduct = true, o.error(t)
+  // })), r
 }
 
-function getRecommend(t) {
-  var e, o, r, n, c = this;
-  if (0 === (null !== (e = product.value.recommend) && void 0 !== e ? e : []).length) return Promise.resolve();
-  t && (this.isLoadingRecommend = !0);
-  var d = null !== (n = null === (r = null === (o = this.$store.state.cities) || void 0 === o ? void 0 : o.currentCity) || void 0 === r ? void 0 : r.ID) && void 0 !== n ? n : 41,
-      v = {
-        filter: 'isNotFound="false"&ID={'.concat(product.value.recommend.join(), "}&cityID=").concat(d, "&isInStock=true"),
-        fields: m.k,
-        listName: "recommendations"
-      },
-      h = this.$store.dispatch("products/".concat(l.PRODUCT.GET_LIST), v);
-  return h.then((function (p) {
-    var t, e = null != p ? p : [],
-        o = null !== (t = c.$data.product.recommend) && void 0 !== t ? t : [],
-        r = [];
-    o.forEach((function (t) {
-      var o = e.find((function (e) {
-        return e.ID === t
-      }));
-      void 0 !== o && r.push(o)
-    })), c.$data.recommendations = r, c.$data.isFailedGettingRecommend = !1
-  })).catch((function (t) {
-    c.$data.isFailedGettingRecommend = !0, c.error(t)
-  })).finally((function () {
-    t && (c.isLoadingRecommend = !1)
-  })), h
+function getRecommend(t: any) {
+  // let e, o, r, n, c = this;
+  // if (0 === (null !== (e = product.value.recommend) && undefined !== e ? e : []).length) return Promise.resolve();
+  // t && (this.isLoadingRecommend = true);
+  // let d = null !== (n = null === (r = null === (o = this.$store.state.cities) || undefined === o ? undefined : o.currentCity) || undefined === r ? undefined : r.ID) && undefined !== n ? n : 41,
+  //     v = {
+  //       filter: 'isNotFound="false"&ID={'.concat(product.value.recommend.join(), "}&cityID=").concat(d, "&isInStock=true"),
+  //       fields: m.k,
+  //       listName: "recommendations"
+  //     },
+  //     h = this.$store.dispatch("products/".concat(l.PRODUCT.GET_LIST), v);
+  // return h.then((function (p) {
+  //   let t, e = null != p ? p : [],
+  //       o = null !== (t = c.$data.product.recommend) && undefined !== t ? t : [],
+  //       r = [];
+  //   o.forEach((function (t) {
+  //     let o = e.find((function (e) {
+  //       return e.ID === t
+  //     }));
+  //     undefined !== o && r.push(o)
+  //   })), c.$data.recommendations = r, c.$data.isFailedGettingRecommend = false
+  // })).catch((function (t) {
+  //   c.$data.isFailedGettingRecommend = true, c.error(t)
+  // })).finally((function () {
+  //   t && (c.isLoadingRecommend = false)
+  // })), h
 }
 
 function getRestrictTypes() {
-  return 0 !== this.restrictTypes.length ? Promise.resolve() : this.$store.dispatch("restrictTypes/".concat(l.RESTRICT_TYPES.GET))
+  // return 0 !== this.restrictTypes.length ? Promise.resolve() : this.$store.dispatch("restrictTypes/".concat(l.RESTRICT_TYPES.GET))
 }
 
 function getTotalCountReviews() {
-  var t = this;
-  if (this.isRecipe) return this.$data.allGrades = [], this.$data.totalCountReviews = 0, Promise.resolve();
-  var e = f.a.reviews.get("productID=".concat(this.productID), ["ID", "rate"]);
-  return e.then((function (e) {
-    t.$data.allGrades = null != e ? e : [], t.$data.totalCountReviews = t.$data.allGrades.length
-  })).catch((function (e) {
-    t.error(e)
-  })), e
+  // let t = this;
+  // if (this.isRecipe) return this.$data.allGrades = [], this.$data.totalCountReviews = 0, Promise.resolve();
+  // let e = f.a.reviews.get("productID=".concat(this.productID), ["ID", "rate"]);
+  // return e.then((function (e) {
+  //   t.$data.allGrades = null != e ? e : [], t.$data.totalCountReviews = t.$data.allGrades.length
+  // })).catch((function (e) {
+  //   t.error(e)
+  // })), e
 }
 
 function getRegionPharmacies() {
-  var t = this;
-  return Object(c.a)(regeneratorRuntime.mark((function e() {
-    var o, r;
-    return regeneratorRuntime.wrap((function (e) {
-      for (; ;) switch (e.prev = e.next) {
-        case 0:
-          return t.$store.commit("app/".concat(l.APP.LOADING_UPD), !0), t.isGetRegionPharmacies || (t.isGetRegionPharmacies = !0), t.isLoadingRegionPharmacies = !0, o = function () {
-            var e;
-            f.a.pharmacies.get({
-              regionID: null === (e = t.region) || void 0 === e ? void 0 : e.ID
-            }).then((function (p) {
-              t.regionPharmacies = null != p ? p : []
-            })).catch((function (t) {
-              console.error(t)
-            }))
-          }, r = function () {
-            var e;
-            f.a.pharmacies.getStock({
-              productID: [t.productID],
-              regionID: null === (e = t.region) || void 0 === e ? void 0 : e.ID,
-              isRareProduct: t.isRare
-            }).then((function (p) {
-              t.regionPharmacyStock = null != p ? p : []
-            })).catch((function (t) {
-              console.error(t)
-            }))
-          }, e.next = 7, Promise.all([o(), r()]).finally((function () {
-            t.$store.commit("app/".concat(l.APP.LOADING_UPD), !1), t.isLoadingRegionPharmacies = !1, t.isOpenStockSidebar || t.openStockSidebar()
-          }));
-        case 7:
-        case "end":
-          return e.stop()
-      }
-    }), e)
-  })))()
+  // let t = this;
+  // return Object(c.a)(regeneratorRuntime.mark((function e() {
+  //   let o, r;
+  //   return regeneratorRuntime.wrap((function (e) {
+  //     for (; ;) switch (e.prev = e.next) {
+  //       case 0:
+  //         return t.$store.commit("app/".concat(l.APP.LOADING_UPD), true), t.isGetRegionPharmacies || (t.isGetRegionPharmacies = true), t.isLoadingRegionPharmacies = true, o = function () {
+  //           let e;
+  //           f.a.pharmacies.get({
+  //             regionID: null === (e = t.region) || undefined === e ? undefined : e.ID
+  //           }).then((function (p) {
+  //             t.regionPharmacies = null != p ? p : []
+  //           })).catch((function (t) {
+  //             console.error(t)
+  //           }))
+  //         }, r = function () {
+  //           let e;
+  //           f.a.pharmacies.getStock({
+  //             productID: [t.productID],
+  //             regionID: null === (e = t.region) || undefined === e ? undefined : e.ID,
+  //             isRareProduct: t.isRare
+  //           }).then((function (p) {
+  //             t.regionPharmacyStock = null != p ? p : []
+  //           })).catch((function (t) {
+  //             console.error(t)
+  //           }))
+  //         }, e.next = 7, Promise.all([o(), r()]).finally((function () {
+  //           t.$store.commit("app/".concat(l.APP.LOADING_UPD), false), t.isLoadingRegionPharmacies = false, t.isOpenStockSidebar || t.openStockSidebar()
+  //         }));
+  //       case 7:
+  //       case "end":
+  //         return e.stop()
+  //     }
+  //   }), e)
+  // })))()
 }
 
-function getReviews(t) {
-  var e = this;
-  if (this.isRecipe) return this.$data.reviews = [], Promise.resolve();
-  var o = t ? "".concat(this.filterReviews, "[").concat(this.$data.reviews.length, ":").concat(this.limitReviews, "]") : "".concat(this.filterReviews, "[0:").concat(this.limitReviews, "]"),
-      n = f.a.reviews.get(o);
-  return t ? this.isLoadingMoreReviews = !0 : this.isLoadingReviews = !0, n.then((function (o) {
-    e.$data.isFailedGettingReviews = !1, e.$data.reviews = t ? [].concat(Object(r.a)(e.$data.reviews), Object(r.a)(o)) : null != o ? o : []
-  })).catch((function (t) {
-    e.$data.isFailedGettingReviews = !0, e.error(t)
-  })).finally((function () {
-    t ? e.isLoadingMoreReviews = !1 : e.isLoadingReviews = !1
-  })), n
+function getReviews(t?: any) {
+  // let e = this;
+  // if (this.isRecipe) return this.$data.reviews = [], Promise.resolve();
+  // let o = t ? "".concat(this.filterReviews, "[").concat(this.$data.reviews.length, ":").concat(this.limitReviews, "]") : "".concat(this.filterReviews, "[0:").concat(this.limitReviews, "]"),
+  //     n = f.a.reviews.get(o);
+  // return t ? this.isLoadingMoreReviews = true : this.isLoadingReviews = true, n.then((function (o) {
+  //   e.$data.isFailedGettingReviews = false, e.$data.reviews = t ? [].concat(Object(r.a)(e.$data.reviews), Object(r.a)(o)) : null != o ? o : []
+  // })).catch((function (t) {
+  //   e.$data.isFailedGettingReviews = true, e.error(t)
+  // })).finally((function () {
+  //   t ? e.isLoadingMoreReviews = false : e.isLoadingReviews = false
+  // })), n
 }
 
 function init() {
-  var t, e, o = this;
-  return this.$store.commit("app/".concat(l.APP.LOADING_UPD), !0), this.region = this.regions.find((function (t) {
-    var e;
-    return t.ID === (null === (e = o.city) || void 0 === e ? void 0 : e.regionID)
-  })), Promise.all([0 === Object.keys(this.propertyTypes).length ? this.loadPropertyTypes().catch((function () {
-    v.p.request(o.loadPropertyTypes, 3, 5e3)
-  })) : Promise.resolve(), 0 === this.restrictTypes.length ? this.getRestrictTypes().catch((function () {
-    v.p.request(o.getRestrictTypes, 3, 5e3)
-  })) : Promise.resolve(), 0 === this.pharmacyStock.length ? this.getPharmacyStock().catch((function () {
-    v.p.request(o.getPharmacyStock, 3, 5e3)
-  })) : Promise.resolve(), (null === (t = this.pharmacies[0]) || void 0 === t ? void 0 : t.cityID) !== (null === (e = this.city) || void 0 === e ? void 0 : e.ID) ? this.getPharmacy().catch((function () {
-    v.p.request(o.getPharmacy, 3, 5e3)
-  })) : Promise.resolve(), this.setViewedProductID(), this.cardProjects.length < 1 ? this.getCardProjects() : Promise.resolve(), this.charity.length < 1 ? this.getCharity() : Promise.resolve()]).finally((function () {
-    o.$store.commit("app/".concat(l.APP.LOADING_UPD), !1)
-  }))
+  // let t, e, o = this;
+  // return this.$store.commit("app/".concat(l.APP.LOADING_UPD), true), this.region = this.regions.find((function (t) {
+  //   let e;
+  //   return t.ID === (null === (e = o.city) || undefined === e ? undefined : e.regionID)
+  // })), Promise.all([0 === Object.keys(this.propertyTypes).length ? this.loadPropertyTypes().catch((function () {
+  //   v.p.request(o.loadPropertyTypes, 3, 5e3)
+  // })) : Promise.resolve(), 0 === this.restrictTypes.length ? this.getRestrictTypes().catch((function () {
+  //   v.p.request(o.getRestrictTypes, 3, 5e3)
+  // })) : Promise.resolve(), 0 === this.pharmacyStock.length ? this.getPharmacyStock().catch((function () {
+  //   v.p.request(o.getPharmacyStock, 3, 5e3)
+  // })) : Promise.resolve(), (null === (t = this.pharmacies[0]) || undefined === t ? undefined : t.cityID) !== (null === (e = this.city) || undefined === e ? undefined : e.ID) ? this.getPharmacy().catch((function () {
+  //   v.p.request(o.getPharmacy, 3, 5e3)
+  // })) : Promise.resolve(), this.setViewedProductID(), this.cardProjects.length < 1 ? this.getCardProjects() : Promise.resolve(), this.charity.length < 1 ? this.getCharity() : Promise.resolve()]).finally((function () {
+  //   o.$store.commit("app/".concat(l.APP.LOADING_UPD), false)
+  // }))
 }
 
 function loadPropertyTypes() {
-  return this.$store.dispatch("productPropertyTypes/".concat(l.PRODUCT_PROPERTY_TYPES.GET))
+  // return this.$store.dispatch("productPropertyTypes/".concat(l.PRODUCT_PROPERTY_TYPES.GET))
 }
 
 function openFastOrder() {
-  var t, e, o, r, n, c, d, v = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : void 0;
-  this.reachGoal("oneclick");
-  var h = {
-    productID: null === (t = product.value) || void 0 === t ? void 0 : t.ID,
-    productSlug: null === (e = product.value) || void 0 === e ? void 0 : e.slug,
-    name: null === (o = product.value) || void 0 === o ? void 0 : o.name,
-    count: this.isRare ? this.rareItemCount : 1,
-    price: null === (r = product.value) || void 0 === r ? void 0 : r.price,
-    images: null === (n = product.value) || void 0 === n ? void 0 : n.images,
-    isSiteSellRemains: null === (c = product.value) || void 0 === c ? void 0 : c.isSiteSellRemains,
-    isOrderRcNoRc: null === (d = product.value) || void 0 === d ? void 0 : d.isOrderRcNoRc
-  };
-  this.$store.commit("checkout/".concat(l.CHECKOUT.FAST_ORDER_UPD), {
-    item: h,
-    pharmacyID: v,
-    city: this.fastOrderCity,
-    isRare: this.isRare
-  }), this.$router.push({
-    name: "checkout"
-  })
+  // let t, e, o, r, n, c, d, v = arguments.length > 0 && undefined !== arguments[0] ? arguments[0] : undefined;
+  // this.reachGoal("oneclick");
+  // let h = {
+  //   productID: null === (t = product.value) || undefined === t ? undefined : t.ID,
+  //   productSlug: null === (e = product.value) || undefined === e ? undefined : e.slug,
+  //   name: null === (o = product.value) || undefined === o ? undefined : o.name,
+  //   count: this.isRare ? this.rareItemCount : 1,
+  //   price: null === (r = product.value) || undefined === r ? undefined : r.price,
+  //   images: null === (n = product.value) || undefined === n ? undefined : n.images,
+  //   isSiteSellRemains: null === (c = product.value) || undefined === c ? undefined : c.isSiteSellRemains,
+  //   isOrderRcNoRc: null === (d = product.value) || undefined === d ? undefined : d.isOrderRcNoRc
+  // };
+  // this.$store.commit("checkout/".concat(l.CHECKOUT.FAST_ORDER_UPD), {
+  //   item: h,
+  //   pharmacyID: v,
+  //   city: this.fastOrderCity,
+  //   isRare: this.isRare
+  // }), this.$router.push({
+  //   name: "checkout"
+  // })
 }
 
-function openPopup(t) {
-  var e = screen.width / 2 - 300,
+function openPopup(t: any) {
+  let e = screen.width / 2 - 300,
       o = screen.height / 2 - 200;
-  window.open(t, "", "width=".concat(600, ", height=").concat(400, ", top=").concat(o, ", left=").concat(e))
+  window.open(t, "", "width=" + 600 + ", height=" + 400 + ", top=" + o + ", left=" + e)
 }
 
 function openShareLinks() {
-  this.isOpenedShare = !0, document.addEventListener("keydown", this.esc), document.addEventListener("click", this.outside)
+  isOpenedShare.value = true
+  document.addEventListener("keydown", esc)
+  document.addEventListener("click", outside)
 }
 
-function outside(t) {
-  var menu = this.$refs.menu,
-      button = this.$refs.button,
+function outside(t: any) {
+  let menu = menuRef.value,
+      button = buttonRef.value,
       e = t.target;
-  menu.contains(e) || button.contains(e) || this.closeShareLinks()
+  menu.contains(e) || button.contains(e) || closeShareLinks()
 }
 
 const preparedProducts = uPrepared
 
 function repeatGettingProduct() {
-  var t, e, o = this;
-  this.getProduct().then((function () {
-    return o.updateBreadcrumbs(), Promise.all([o.getReplacements(), o.getTrademarkProducts(), o.getRecommend()])
-  })), 0 === Object.keys(this.propertyTypes).length ? this.loadPropertyTypes().catch((function () {
-    v.p.request(o.loadPropertyTypes, 3, 5e3)
-  })) : Promise.resolve(), 0 === this.restrictTypes.length ? this.getRestrictTypes().catch((function () {
-    v.p.request(o.getRestrictTypes, 3, 5e3)
-  })) : Promise.resolve(), this.getTotalCountReviews(), this.getReviews(), 0 === this.pharmacyStock.length ? this.getPharmacyStock().catch((function () {
-    v.p.request(o.getPharmacyStock, 3, 5e3)
-  })) : Promise.resolve(), (null === (t = this.pharmacies[0]) || void 0 === t ? void 0 : t.cityID) !== (null === (e = this.city) || void 0 === e ? void 0 : e.ID) ? this.getPharmacy().catch((function () {
-    v.p.request(o.getPharmacy, 3, 5e3)
-  })) : Promise.resolve(), this.setViewedProductID()
+  // let t, e, o = this;
+  // this.getProduct().then((function () {
+  //   return o.updateBreadcrumbs(), Promise.all([o.getReplacements(), o.getTrademarkProducts(), o.getRecommend()])
+  // })), 0 === Object.keys(this.propertyTypes).length ? this.loadPropertyTypes().catch((function () {
+  //   v.p.request(o.loadPropertyTypes, 3, 5e3)
+  // })) : Promise.resolve(), 0 === this.restrictTypes.length ? this.getRestrictTypes().catch((function () {
+  //   v.p.request(o.getRestrictTypes, 3, 5e3)
+  // })) : Promise.resolve(), this.getTotalCountReviews(), this.getReviews(), 0 === this.pharmacyStock.length ? this.getPharmacyStock().catch((function () {
+  //   v.p.request(o.getPharmacyStock, 3, 5e3)
+  // })) : Promise.resolve(), (null === (t = this.pharmacies[0]) || undefined === t ? undefined : t.cityID) !== (null === (e = this.city) || undefined === e ? undefined : e.ID) ? this.getPharmacy().catch((function () {
+  //   v.p.request(o.getPharmacy, 3, 5e3)
+  // })) : Promise.resolve(), this.setViewedProductID()
 }
 
-function routeProperty(t, e, o) {
-  var r = (o ? this.routePropertyKey.includes(t) : this.routePropertyIDs.includes(e.typeID)) ? this.routeProperties["".concat(o ? t : e.typeID)] : "";
+function routeProperty(t: any, e: any, o: any) {
+  let r = (o ? routePropertyKey.value.includes(t) : routePropertyIDs.value.includes(e.typeID)) ? routeProperties.value[o ? t : e.typeID] : "";
   return o ? {
     name: r
   } : {
@@ -1210,43 +1206,47 @@ function routeProperty(t, e, o) {
 }
 
 function setViewedProductID() {
-  var t, e = v.c.clone(JSON.parse(null !== (t = localStorage.getItem("viewedProductsIDs")) && void 0 !== t ? t : "[]"));
-  e.length > 0 && e.includes(product.value.ID) && e.splice(e.indexOf(product.value.ID), 1), e.length >= 30 && e.splice(29, 1), e.unshift(product.value.ID), localStorage.setItem("viewedProductsIDs", JSON.stringify(e))
+  let e = [...JSON.parse(localStorage.getItem("viewedProductsIDs") !== undefined ? <any>localStorage.getItem("viewedProductsIDs") : "[]")];
+  e.length > 0 && e.includes(product.value.ID) && e.splice(e.indexOf(product.value.ID), 1)
+  e.length >= 30 && e.splice(29, 1)
+  e.unshift(product.value.ID)
+  localStorage.setItem("viewedProductsIDs", JSON.stringify(e))
 }
 
 function share() {
-  this.isOpenedShare ? this.closeShareLinks() : this.openShareLinks()
+  isOpenedShare.value ? closeShareLinks() : openShareLinks()
 }
 
 function startTimer() {
-  var t = this;
-  this.intervalID = window.setInterval((function () {
-    Object.keys(t.$data.product).length > 0 && void 0 !== window && (t.ecommerce("detail", [t.$data.product]), clearInterval(t.intervalID))
-  }), 1e3)
+  intervalID.value = window.setInterval(() => {
+    Object.keys(product.value).length > 0 && undefined !== window && (clearInterval(intervalID.value))
+  }, 1e3)
 }
 
-function updateBasketItem(t) {
-  this.addToBasket(t, !0)
+function updateBasketItem(t: any) {
+  addToBasket(t, true)
 }
 
-function updateBasketStore(t) {
-  this.$store.commit("basket/".concat(l.BASKET.UPD), t)
+function updateBasketStore(t: any) {
+  basketStore.COMMIT_BASKET_UPD(t)
 }
 
 
-function updateFavoritesStore(t) {
-  this.$store.commit("favorites/".concat(l.FAVORITES.UPD), t)
+function updateFavoritesStore(t: any) {
+  favoritesStore.COMMIT_FAVORITES_UPD(t)
 }
 
-function updateReview(t) {
-  var e = this;
-  this.isLoadingReviewAside = !0, f.a.reviews.update(t).then((function () {
-    e.getTotalCountReviews(), e.getReviews().finally((function () {
-      e.isLoadingReviewAside = !1
-    }))
-  })).catch((function (t) {
-    e.isLoadingReviewAside = !1, e.error(t)
-  }))
+function updateReview(t: any) {
+  // isLoadingReviewAside.value = true
+  // useNuxtApp().$api.reviews.update(t).then(() => {
+  //   getTotalCountReviews()
+  //   getReviews().finally(() => {
+  //     isLoadingReviewAside.value = false
+  //   })
+  // }).catch((t: any) => {
+  //   isLoadingReviewAside.value = false
+  //   console.log(t)
+  // })
 }
 
 //END FUNCTIONS
@@ -1289,6 +1289,7 @@ useSeoMeta({
         </NuxtLink>
       </span>
     </div>
+
     <div v-if="!isMobile" class="header">
       <h1 itemprop="name">{{ isProductReviews ? "Отзывы о " + product.name : product.name }}</h1>
       <span>Артикул: {{ productID }}</span>
@@ -1300,12 +1301,7 @@ useSeoMeta({
           <h2>{{ productName }}</h2>
           <ul>
             <li :class='["favorites", "unselect", { active: isProductFavoriteActive, disabled: isFavoritesLoading }]'>
-              <!--              mousedown: t.favoriteMouseDown,-->
-              <!--              mouseout: t.favoriteMouseOut,-->
-              <!--              mouseup: t.favoriteMouseUp,-->
-              <!--              click(e) {-->
-              <!--              return e.preventDefault(), t.addToFavorites(t.product.ID, !0)-->
-              <!--              }-->
+              <!--              TODO -->
               <span
                   :class='["icon", { heart2: isInFavorites || isAddingToFavorites, "heart-outline2": !isInFavorites || isDeletionFromFavorites }]'/>
             </li>
@@ -1323,21 +1319,15 @@ useSeoMeta({
               <div class="name">{{ product.name }}</div>
               <ul>
                 <li v-if='hasRating && product.isAvailable && !isRare'>
-                  <ReviewsCRating :rating="product.rating"/>
+                  <!--                  <ReviewsCRating :rating="product.rating"/>-->
                 </li>
                 <li v-if="hasDescription" @click="goToProduct">
                   <NuxtLink class="hover-bottom-line"
-                            :to='{ name: "Product", params: { productID: "" + product.ID, productSlug: "" + product.slug, needScrollToInstruction: "true" }, hash: isMobile ? void 0 : "#instrukciya-po-primeneniyu" }'>
+                            :to='{ name: "Product", params: { productID: "" + product.ID, productSlug: "" + product.slug, needScrollToInstruction: "true" }, hash: isMobile ? undefined : "#instrukciya-po-primeneniyu" }'>
                     Инструкция
                   </NuxtLink>
                 </li>
                 <li :class='["favorites", { active: isProductFavoriteActive, disabled: isFavoritesLoading }]'>
-                  <!--                  mousedown: t.favoriteMouseDown,-->
-                  <!--                  mouseout: t.favoriteMouseOut,-->
-                  <!--                  mouseup: t.favoriteMouseUp,-->
-                  <!--                  click: function (e) {-->
-                  <!--                  return e.preventDefault(), t.addToFavorites(t.product.ID, !0)-->
-                  <!--                  }-->
                   <span
                       :class='["icon", { heart2: isInFavorites || isAddingToFavorites, "heart-outline2": !isInFavorites || isDeletionFromFavorites }]'/>
                 </li>
@@ -1349,6 +1339,7 @@ useSeoMeta({
               </ul>
             </div>
           </div>
+
           <div v-if="product.isAvailable" class="prices">
             <section>
               <template v-if="isLoyal">
@@ -1386,9 +1377,6 @@ useSeoMeta({
     </div>
     <div class="action-list">
       <ul>
-        <li v-if="!isMobile && hasRating && product.isAvailable && !isRare" class="rating">
-
-        </li>
         <li v-if="!isMobile && !isRecipe" @click="goToReviews(!hasReviews)">
           <NuxtLink
               :to='{ name: "ProductReviews", params: { productID: "" + product.ID, productSlug: "" + product.slug, needOpenReviews: "" + !hasReviews } }'>
@@ -1405,7 +1393,7 @@ useSeoMeta({
         </li>
         <li v-if="hasDescription" @click="goToProduct">
           <NuxtLink
-              :to='{ name: "Product", params: { productID: "" + product.ID, productSlug: "" + product.slug, needScrollToInstruction: "true" }, hash: isMobile ? void 0 : "#instrukciya-po-primeneniyu" }'>
+              :to='{ name: "Product", params: { productID: "" + product.ID, productSlug: "" + product.slug, needScrollToInstruction: "true" }, hash: isMobile ? undefined : "#instrukciya-po-primeneniyu" }'>
             <span class="icon instruction"/>
             <span class="hover-bottom-line">Инструкция</span>
           </NuxtLink>
@@ -1415,7 +1403,7 @@ useSeoMeta({
           <!--          mouseout: t.favoriteMouseOut,-->
           <!--          mouseup: t.favoriteMouseUp,-->
           <!--          click: function (e) {-->
-          <!--          return e.preventDefault(), t.addToFavorites(t.product.ID, !0)-->
+          <!--          return e.preventDefault(), t.addToFavorites(t.product.ID, true)-->
           <!--          }-->
           <span
               :class='["icon", { heart2: isInFavorites || isAddingToFavorites, "heart-outline2": !isInFavorites || isDeletionFromFavorites }]'/>
