@@ -1,5 +1,9 @@
-body::-webkit-scrollbar {
-    width: 0 !important
+/*body::-webkit-scrollbar {*/
+/*    width: 0 !important*/
+/*}*/
+
+html {
+    overflow-y: scroll;
 }
 
 #__layout, #__nuxt {

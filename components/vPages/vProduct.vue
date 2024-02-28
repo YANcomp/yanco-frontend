@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import {uRestrictAccess} from "~/utils/uPrepareProduct";
-
 const props = defineProps({
   productID: {
     type: Number,
@@ -66,7 +64,7 @@ const trademarkProducts = ref(<any>productsStore.trademarkProducts)
 const W = ref(productPropertyTypesStore.list)
 const V = ref(restrictTypesStore.list! ? restrictTypesStore.list : [])
 const Z = ref(false)
-const allGrades = ref([])
+const allGrades = ref(productsStore.reviews)
 const totalCountReviews = ref(<any>productsStore.totalCountReviews)
 const activeTab = ref(isProductReviews.value ? 2 : 0)
 const K = ref(<any>catalogStore.categoryDirectory)
@@ -124,7 +122,7 @@ const isShowFixedHeader = ref(false)
 const activeAccordion = ref(undefined)
 const BONUSES_TITLE = ref(uBONUSES_TITLE)
 const descriptionHash = ref(undefined)
-const internalItems = ref([])
+const internalItems = ref(<any>[])
 const isComparisonLoading = ref(false)
 const isFavoritesLoading = ref(false)
 const isFromCatalog = ref(false)
@@ -565,17 +563,74 @@ const rateWidth = computed(() => {
 })
 //END COMPUTED
 
-onBeforeRouteUpdate((to, from, next) => {
+useListen("change-padding-header-product", () => {
+  changePaddingHeader()
+})
 
+onBeforeRouteUpdate((to, from, next) => {
+  isProductReviews.value = "ProductReviews" === to.name
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth"
+  })
+  next()
 })
 onMounted(() => {
+  isMounted.value = !0
+  let disposableHintCompared = localStorage.getItem("disposable-hint-compared");
+  // this.getBannerYouMayNeed()
+  window.addEventListener("storage", onStorageChanged)
+  showDisposableHintCompared.value = "false" !== disposableHintCompared
 
+  // this.$store.dispatch("viewedProducts/".concat(l.VIEWED_PRODUCTS.GET_ID))
+  // this.loadViewedProducts()
+  document.addEventListener("scroll", checkScroll)
+  // this.getArticlesRandom()
+  // this.$store.dispatch("viewedProducts/".concat(l.VIEWED_PRODUCTS.GET_ID))
+
+  internalItems.value = [...basketItems.value]
+
+  // city.value.ID && init().finally( ()=> {
+  //   isProductReviews.value && scrollTo("reviews")
+  // })
+
+  startTimer()
+
+  !isProductReviews.value && product.value.description && nextTick(() => {
+    descriptionRef.value.addEventListener("copy", copyText)
+  })
+
+  "true" === props.needOpenSidebar && setTimeout(() => {
+    return openStockSidebar()
+  }, 300)
+
+  isRare.value && !isNaN(Number(props.itemCount)) && (rareItemCount.value = Number(props.itemCount))
 })
-onBeforeUnmount(() => {
 
+onBeforeUnmount(() => {
+  window.removeEventListener("storage", onStorageChanged)
+  // productsStore.COMMIT_PRODUCT_GET({})
+  // productsStore.COMMIT_PRODUCT_GET_REVIEWS([])
+  // productsStore.PRODUCT_GET_LIST({
+  //   listName: "analogs",
+  //   products: []
+  // })
+  // productsStore.PRODUCT_GET_LIST({
+  //   listName: "replacements",
+  //   products: []
+  // })
+  // productsStore.PRODUCT_GET_LIST({
+  //   listName: "recommendations",
+  //   products: []
+  // })
+  // productsStore.PRODUCT_GET_LIST({
+  //   listName: "trademarkProducts",
+  //   products: []
+  // })
 })
 onUnmounted(() => {
-
+  document.removeEventListener("scroll", checkScroll)
 })
 
 
@@ -934,11 +989,11 @@ function deleteReview(t: any) {
 }
 
 function scrollTodescription(t: any) {
-  // if ("#instrukciya-po-primeneniyu" !== t) {
-  //   let e = document.querySelector(t);
-  //   descriptionHash.value = t
-  //   smooth(e, -150)
-  // } else goToProduct()
+  if ("#instrukciya-po-primeneniyu" !== t) {
+    let e = document.querySelector(t);
+    descriptionHash.value = t
+    // smooth(e, -150)
+  } else goToProduct()
 }
 
 function scrollTo(t: any) {
@@ -1348,6 +1403,9 @@ useSeoMeta({
                   <ReviewsCRating :rate-width="rateWidth" :rating="averageRating"
                                   :review-count="product.reviewsNumber"/>
                 </li>
+                <li @click='scrollTo("properties")'>
+                  <span class="hover-bottom-line">Характеристики</span>
+                </li>
                 <li v-if="hasDescription" @click="goToProduct">
                   <NuxtLink class="hover-bottom-line"
                             :to='{ name: "Product", params: { productID: "" + product.ID, productSlug: "" + product.slug }, hash: isMobile ? undefined : "#instrukciya-po-primeneniyu" }'>
@@ -1393,14 +1451,22 @@ useSeoMeta({
                 <div class="without-card">
                   <span>Цена</span>
                   <span>
-                    <span>{{ product.price.withoutCard }} ₽</span>
+                    <span>| {{ product.price.withoutCard }} ₽</span>
                   </span>
                 </div>
               </template>
             </section>
             <template v-if="!isRare">
-              ButtonBasket
-              <!--              TODO-->
+              <BasketCButtonBasket :basket-items="basketItems"
+                                   :has-loyal-card="hasLoyalCard"
+                                   :has-product="hasProduct" :is-authorized="isAuthorized"
+                                   :is-basket-updating="updatingBasketProductIDs.includes(product.ID)"
+                                   :is-in-basket="isInBasket"
+                                   :is-loading="loadingBasketProductIDs.includes(product.ID)"
+                                   :is-mobile="isMobile"
+                                   :product="product" v-on:basket-item-update="updateBasketItem"
+                                   v-on:basket-store-update="updateBasketStore" v-on:is-max="updateIsMax"
+                                   v-on:add-to-basket="addToBasket"/>
             </template>
           </div>
         </div>
@@ -1447,16 +1513,16 @@ useSeoMeta({
             <span class="hover-bottom-line">
               {{ comparisonCaption }}
             </span>
-            <div v-if='!isInComparison && showDisposableHintCompared && !isMobile' class="disposable-hint-compared">
-              <div>
-                <span class="icon close2" @click.prevent="closeDisposableHintCompared">
-                  Вы можете добавить
-                  <br>
-                  товар к сравнению
-                </span>
-              </div>
-            </div>
           </div>
+          <!--          <div v-if='!isInComparison && showDisposableHintCompared && !isMobile' class="disposable-hint-compared">-->
+          <!--            <div>-->
+          <!--                <span class="icon close2" @click.prevent="closeDisposableHintCompared">-->
+          <!--                  Вы можете добавить-->
+          <!--                  <br>-->
+          <!--                  товар к сравнению-->
+          <!--                </span>-->
+          <!--            </div>-->
+          <!--          </div>-->
         </li>
         <li class="share" @click="share">
           <span :class='["icon", { share: isOpenedShare, "share-outline": !isOpenedShare }]'/>
@@ -1840,9 +1906,24 @@ useSeoMeta({
 
           <span v-if="isMobile" :class='["icon", "arrow-right2", { opened: isShowReviews }]'/>
         </h2>
-        <div v-if="isShowReviews">
-          cReviews
-        </div>
+
+        <ReviewsCReviews v-if="isShowReviews" :all-grades="allGrades" :average-rating="product.averageRating"
+                         :is-authorized="isAuthorized" :is-loading="isLoadingReviews"
+                         :is-loading-more-reviews="isLoadingMoreReviews" :is-loading-review-aside="isLoadingReviewAside"
+                         :is-product-reviews="isProductReviews" :is-mobile="isMobile" :me="me" :product-i-d="productID"
+                         :product-name="product.name" :reviews="reviews" :total-count="totalCountReviews"
+                         v-on:error="error"
+                         v-on:review-add="addReview"
+                         v-on:review-delete="deleteReview"
+                         v-on:review-update="updateReview"
+                         v-on:get-more-reviews="getReviews(!0)"
+                         v-on:go-to-reviews="goToReviews"
+                         v-on:open-close-sidebar="changePaddingHeader"/>
+
+        <NuxtLink v-if="!isProductReviews && totalCountReviews > 2 && isShowReviews && !isRecipe" class="reviews-link"
+                  :to='{ name: "ProductReviews", params: { productID: "" + product.ID, productSlug: "" + product.slug } }'>
+          Читать все отзывы
+        </NuxtLink>
       </section>
     </section>
 
