@@ -37,10 +37,10 @@ export const useMeStore = defineStore('me', {
             }
         },
         loyalCard: function (state) {
-            return state.me ? state.me.loyalCard : undefined
+            return state.me.loyalCard ? state.me.loyalCard : false
         },
         hasLoyalCard: function (state) {
-            return state.me.loyalCard
+            return !!state.me.loyalCard
         },
         hasPaidPeriod: function (state) {
             return state.me.loyalCard === undefined ? undefined : state.me.loyalCard.periodBlockDate

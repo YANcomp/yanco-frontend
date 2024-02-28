@@ -185,39 +185,30 @@ const listeners = computed(() => {
   })
 })
 const multilineBinds = computed(() => {
-  let t = <any>[{
-    style: props.resize
-  }, {
-    required: props.required
-  }, {
-    disabled: props.disabled
-  }, {
-    readonly: props.readonly
-  }, {
-    rows: props.rows
-  }, {
-    cols: props.cols
-  }, {
+  let t = <any>{
+    required: props.required,
+    disabled: props.disabled,
+    readonly: props.readonly,
+    rows: props.rows,
+    cols: props.cols,
     class: {
       error: props.isError,
       warning: props.isWarning
-    }
-  }, {
-    autocomplete: props.autocomplete
-  }, {
-    ref: inputRef
-  }, {
-    inputmode: props.inputmode
-  }, {
+    },
+    autocomplete: props.autocomplete,
+    ref: inputRef,
+    inputmode: props.inputmode,
     style: {
       "--paddingRight": props.isShowIcon || props.isClear || props.isPassword ? props.isClear && props.isShowIcon ? "60px" : "35px" : "10px"
-    }
-  }];
-  return props.isLazy || t.push({
+    },
+  }
+  props.isLazy || t.push({
     value: props.value
-  }), void 0 !== props.maxlength && t.push({
+  })
+  void 0 !== props.maxlength && t.push({
     maxlength: props.maxlength
-  }), t
+  })
+  return t
 })
 const singlelineBinds = computed(() => {
   let t = <any>{

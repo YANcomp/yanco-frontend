@@ -113,6 +113,10 @@ function checkScroll() {
   padding: 0
 }
 
+.c-types.mobile::-webkit-scrollbar {
+  display: none
+}
+
 .c-types.mobile {
   overflow-x: auto;
   padding: 10px

@@ -393,9 +393,9 @@ function search(filter: any) {
 }
 
 .c-header > .container > .top > a > .logo {
-  height: 40px;
-  width: 170px;
-  margin-right: 20px
+  height: 43px;
+  width: 220px;
+  margin-right: 10px
 }
 
 .c-header > .container > .top > a > .logo:active {
@@ -511,7 +511,7 @@ function search(filter: any) {
 }
 
 .c-header.mobile > .container > .top > a > .logo {
-  width: 40px
+  width: 45px
 }
 
 @media screen and (max-width: 1367px) {

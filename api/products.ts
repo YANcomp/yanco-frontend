@@ -39,6 +39,12 @@ class ApiProductsModule {
         void 0 !== filter && (e += "?" + filter)
         // return o.a.get(e)
 
+        if (filter.includes('categoryID=374')) {
+            return await $fetch(`catalog/products/374.json`, {
+                ...this.$opts,
+                method: 'GET',
+            })
+        }
         if (filter.includes('our_products')) {
             return await $fetch(`catalog/products/ourProducts.json`, {
                 ...this.$opts,

@@ -30,13 +30,11 @@ const props = defineProps({
 })
 
 const binds = computed(() => {
-  return props.isCard || props.reviewCount < 1 ? [] : [{
-    itemscope: true
-  }, {
-    itemprop: props.isReview ? "reviewRating" : "aggregateRating"
-  }, {
-    itemtype: props.isReview ? "https://schema.org/Rating" : "https://schema.org/AggregateRating"
-  }]
+  return props.isCard || props.reviewCount < 1 ? {} : {
+    itemscope: true,
+    itemprop: props.isReview ? "reviewRating" : "aggregateRating",
+    itemtype: props.isReview ? "https://schema.org/Rating" : "https://schema.org/AggregateRating",
+  }
 })
 </script>
 

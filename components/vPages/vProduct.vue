@@ -103,6 +103,9 @@ const vProductRef = ref(<any>undefined)
 const comparisonRef = ref(<any>undefined)
 const menuRef = ref(<any>undefined)
 const propertiesRef = ref(<any>undefined)
+const replacementsRef = ref(<any>undefined)
+const descriptionRef = ref(<any>undefined)
+const reviewsRef = ref(<any>undefined)
 
 const needPaddingHeader = ref(false)
 const isShowDescription = ref(false)
@@ -210,7 +213,7 @@ const isShowBannerCard = computed(() => {
   return recommendations.value.length > 0 && undefined !== bannerYouMayNeed.value
 })
 const bannerYouMayNeed = computed(() => {
-  return bannersStore.youMayNeed[0]!
+  return bannersStore.youMayNeed.length > 0 ? bannersStore.youMayNeed[0] : {}
 })
 const hasAttributes = computed(() => {
   return hasBonuses.value && !isStock.value && !hasPaidPeriod.value || product.value.allowDelivery || isRecipe.value || productCategory.value.name || isRare.value && (isMobile.value || !product.value.isAvailable)
@@ -400,16 +403,20 @@ const regions = computed(() => {
   return regionsStore.regions
 })
 const preparedRestricts = computed(() => {
-  return product.value.restricts.reduce((t: any, o: any) => {
-    let r = preparedRestrictTypes.value.get(o.typeID),
-        n = uRestrictAccess[o.level];
-    undefined !== r && undefined !== n && t.push({
-      ...o,
-      icon: r.icon,
-      caption: "" + n + " " + r.name.toLowerCase()
-    })
-    return t
-  }, [])
+  if (product.value.restricts) {
+    return product.value.restricts.reduce((t: any, o: any) => {
+      let r = preparedRestrictTypes.value.get(o.typeID),
+          n = uRestrictAccess[o.level];
+      undefined !== r && undefined !== n && t.push({
+        ...o,
+        icon: r.icon,
+        caption: "" + n + " " + r.name.toLowerCase()
+      })
+      return t
+    }, [])
+  }
+
+  return []
 })
 const preparedRestrictTypes = computed(() => {
   let t = new Map;
@@ -1213,9 +1220,9 @@ function routeProperty(t: any, e: any, o?: any) {
     name: r,
     params: {
       propertyID: "".concat(e.ID),
-      propertyName: e.name.trim(),
-      propertyTypeID: "".concat(e.typeID),
-      propertyTypeName: t.trim(),
+      // propertyName: e.name.trim(),
+      // propertyTypeID: "".concat(e.typeID),
+      // propertyTypeName: t.trim(),
       propertySlug: "".concat(e.slug)
     }
   }
@@ -1338,8 +1345,8 @@ useSeoMeta({
               <div class="name">{{ product.name }}</div>
               <ul>
                 <li v-if='hasRating' class="rating">
-                  <LazyReviewsCRating v-if="hasRating" :rate-width="rateWidth" :rating="averageRating"
-                                      :review-count="product.reviewsNumber"/>
+                  <ReviewsCRating :rate-width="rateWidth" :rating="averageRating"
+                                  :review-count="product.reviewsNumber"/>
                 </li>
                 <li v-if="hasDescription" @click="goToProduct">
                   <NuxtLink class="hover-bottom-line"
@@ -1402,8 +1409,8 @@ useSeoMeta({
     <div class="action-list">
       <ul>
         <li v-if="hasReviews && !isMobile" class="rating">
-          <LazyReviewsCRating v-if="hasReviews" :rate-width="rateWidth" :rating="averageRating"
-                              :review-count="product.reviewsNumber"/>
+          <ReviewsCRating :rate-width="rateWidth" :rating="averageRating"
+                          :review-count="product.reviewsNumber"/>
         </li>
         <li v-if="!isMobile" @click="goToReviews(!hasReviews)">
           <NuxtLink
@@ -1481,8 +1488,8 @@ useSeoMeta({
             </UiCButton>
             <div v-if="hasRating && isMobile && product.isAvailable && !isRare" class="reviews unselect">
               <div class="c-rating mobile internal-card">
-                <LazyReviewsCRating v-if="hasRating" :is-card="true" :rate-width="rateWidth" :rating="averageRating"
-                                    :review-count="product.reviewsNumber"/>
+                <ReviewsCRating :rate-width="rateWidth" :rating="averageRating"
+                                :review-count="product.reviewsNumber"/>
               </div>
               <NuxtLink
                   :to='{ name: "ProductReviews", params: { productID: "" + product.ID, productSlug: "" + product.slug } }'>
@@ -1776,8 +1783,67 @@ useSeoMeta({
             </h2>
             <span :class='["icon", "arrow-right2", { opened: isOpenedPropertyBar }]'/>
           </div>
+
+          <div v-if="!isFailedGettingReplacements && hasReplacements" ref="replacementsRef">
+            cProductsSlider
+          </div>
         </div>
       </div>
+
+      <div class="details">
+        <div :class='["content", { border: hasRecommend }]'>
+          <div v-if="hasTrademarkProducts" class="trademark-products">
+            <h2>{{ "Другие формы выпуска " + productName }}</h2>
+            cSlider
+          </div>
+
+          <section v-if="product.description && !isProductReviews" ref="descriptionRef"
+                   :class='["description", { hide: !isShowDescription && isMobile, border: isRecipe }]'>
+            <h2 @click="showHideDescription">
+              Инструкция по применению {{ productName }}
+              <span v-if="isMobile" :class='["icon", "arrow-right2", { opened: isShowDescription }]'/>
+            </h2>
+            <div>
+              <div v-if="!isMobile" class="tags">
+                <NuxtLink v-for="(desc, e) in product.description" :key="e"
+                          :class='["hover-bottom-line", "unselect", { selected: translit(desc.name, !0) === descriptionHash }]'
+                          :to='{ name: "Product", params: { productID: product.ID, productSlug: product.slug }, hash: "#" + translit(desc.name, !0) }'>
+                  {{ desc.name }}
+                </NuxtLink>
+              </div>
+              <ul itemprop="description">
+                <li v-for="(desc, e) in product.description" :key="e"
+                    :class='{ selected: translit(desc.name, !0) === descriptionHash, literature: 666 === desc.typeID }'>
+                  <h3 :id='"" + translit(desc.name, !0)'>{{ desc.name }}</h3>
+                  <section v-html="desc.description"/>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+
+        <aside v-if="!isProductReviews && hasDescription">
+          t.isFailedGettingRecommend || !t.hasRecommend || t.isSwapReplacementSlider
+        </aside>
+      </div>
+
+      <section ref="reviewsRef" class="reviews">
+        <LazyUiCSpinner v-if="isLoadingReviews" class="loading" :position='isMobile ? "fixed" : "absolute"'/>
+        <h2 @click="showHideReviews">
+          <span v-if="totalCountReviews > 0">
+            Отзывы
+            <span class="count">({{ totalCountReviews }})</span>
+          </span>
+          <span v-else>
+            Отзывов пока нет
+          </span>
+
+          <span v-if="isMobile" :class='["icon", "arrow-right2", { opened: isShowReviews }]'/>
+        </h2>
+        <div v-if="isShowReviews">
+          cReviews
+        </div>
+      </section>
     </section>
 
 
@@ -4387,6 +4453,10 @@ useSeoMeta({
   padding-bottom: 5px
 }
 
+.v-product.mobile > .action-list::-webkit-scrollbar {
+  display: none
+}
+
 .v-product.mobile > .action-list > ul {
   flex-flow: row nowrap;
   padding: 0
@@ -4458,6 +4528,12 @@ useSeoMeta({
 .v-product.mobile > .product > .summary > .images > .image-list > .reviews > a > .average {
   font-weight: 600;
   font-size: 14px;
+}
+
+.v-product.mobile > .product > .summary > .images > .image-list > .reviews > a > .review-count {
+  font-weight: 600;
+  font-size: 13px;
+  margin-left: 3px;
 }
 
 .v-product.mobile > .product > .summary > .images > .image-list > .reviews > a > .icon {

@@ -85,7 +85,7 @@ function addToBasket() {
   flex: 1 1
 }
 
-.с-button-basket .caption {
+.с-button-basket :deep(.caption) {
   justify-content: center;
   grid-column-gap: .25vw;
   -moz-column-gap: .25vw;
@@ -94,7 +94,7 @@ function addToBasket() {
 
 .с-button-basket > .c-button {
   width: 100%;
-  height: 48px
+  height: 48px !important;
 }
 
 .с-button-basket > .c-button.m {
@@ -127,10 +127,10 @@ function addToBasket() {
 
 .с-button-basket.mobile {
   margin: 17px 10px 20px;
-  height: 38px
+  height: 38px !important;
 }
 
 .с-button-basket.mobile > :deep(.c-basket-product), .с-button-basket.mobile > :deep(.c-basket-product) .quantity button, .с-button-basket.mobile > :deep(.c-basket-product) .quantity input, .с-button-basket.mobile > .c-button {
-  height: 38px
+  height: 38px !important;
 }
 </style>
