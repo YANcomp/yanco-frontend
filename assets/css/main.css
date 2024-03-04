@@ -1,10 +1,10 @@
-/*body::-webkit-scrollbar {*/
-/*    width: 0 !important*/
-/*}*/
-
-html {
-    overflow-y: scroll;
+body::-webkit-scrollbar {
+    width: 0 !important
 }
+
+/*html {*/
+/*    overflow-y: scroll;*/
+/*}*/
 
 #__layout, #__nuxt {
     height: 100%

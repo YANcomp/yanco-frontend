@@ -3,35 +3,42 @@ import type {RouteRecordRaw} from "vue-router";
 import {merge} from "lodash-es";
 
 export default <RouterConfig>{
-    // TODO
-    // scrollBehavior: async (to, from, savedPosition) => {
-    //     return new Promise(async (resolve, reject) => {
-    //         const nuxtApp = useNuxtApp()
-    //
-    //         if (to.hash) {
-    //             setTimeout(
-    //                 () => {
-    //                     resolve({el: to.hash, top: 60, behavior: 'smooth'})
-    //                 },
-    //                 !from || to.path != from.path ? 500 : 1
-    //             )
-    //         } else if (savedPosition) {
-    //             nuxtApp.hooks.hook('page:finish', async () => {
-    //                 await nextTick()
-    //                 setTimeout(() => {
-    //                     resolve({...savedPosition, behavior: 'smooth'})
-    //                 }, 200)
-    //             })
-    //         } else {
-    //             nuxtApp.hooks.hook('page:finish', async () => {
-    //                 await nextTick()
-    //                 setTimeout(() => {
-    //                     resolve({top: 0, behavior: 'smooth'})
-    //                 }, 130)
-    //             })
-    //         }
-    //     })
-    // },
+    scrollBehavior: async (t, e, n) => {
+        const nuxtApp = useNuxtApp()
+        let o: any = navigator.userAgent.toLowerCase(),
+            r: any = false,
+            c: any = [t];
+        r = {
+            left: 0,
+            top: 0,
+            behavior: "smooth"
+        }
+        n && (r = n)
+        let d: any = void 0 !== t.params.productID && void 0 !== e.params.productID;
+
+        t.path === e.path && t.hash !== e.hash && await nextTick(() => {
+            // return this!.$emit("triggerScroll")
+        })
+        console.log(r)
+        return new Promise(async (resolve) => {
+            nuxtApp.hooks.hookOnce('page:finish', () => {
+                if (t.hash) {
+                    let c = t.hash;
+                    void 0 !== window.CSS && void 0 !== window.CSS.escape && (c = "#" + window.CSS.escape(c.substr(1)));
+                    try {
+                        document.querySelector(c) && (r = {
+                            selector: c
+                        })
+                    } catch (t) {
+                        console.warn("Failed to save scroll position. Please add CSS.escape() polyfill (https://github.com/mathiasbynens/CSS.escape).")
+                    }
+                }
+                d && (+t.params.productID != +e.params.productID && ("Product" === t.name && "ProductReviews" === e.name || "ProductReviews" === t.name && "Product" === e.name) ? resolve(r) : resolve()), /firefox/.test(o) ? setTimeout(() => {
+                    resolve(r)
+                }, 100) : resolve(r)
+            })
+        })
+    },
     mode: "history",
     base:
         "/",

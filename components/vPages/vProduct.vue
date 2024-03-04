@@ -228,7 +228,9 @@ const hasViewedProducts = computed(() => {
   return viewedProductsIDs.value.length > 0
 })
 const viewedProductsIDs = computed(() => {
-  return viewedProductsStore.viewedProductsIDs
+  return viewedProductsStore.viewedProductsIDs.filter((i: any) => {
+    return i !== props.productID
+  })
 })
 const deliveryDate = computed(() => {
   // let e = new Date;
@@ -583,17 +585,21 @@ onMounted(() => {
   window.addEventListener("storage", onStorageChanged)
   showDisposableHintCompared.value = "false" !== disposableHintCompared
 
-  // this.$store.dispatch("viewedProducts/".concat(l.VIEWED_PRODUCTS.GET_ID))
-  // this.loadViewedProducts()
+  viewedProductsStore.VIEWED_PRODUCTS_GET_ID()
+  loadViewedProducts()
+
   document.addEventListener("scroll", checkScroll)
   // this.getArticlesRandom()
   // this.$store.dispatch("viewedProducts/".concat(l.VIEWED_PRODUCTS.GET_ID))
 
   internalItems.value = [...basketItems.value]
 
-  // city.value.ID && init().finally( ()=> {
-  //   isProductReviews.value && scrollTo("reviews")
-  // })
+
+  if (city.value.ID) {
+    init().finally(() => {
+      isProductReviews.value && scrollTo("reviews")
+    })
+  }
 
   startTimer()
 
@@ -692,11 +698,12 @@ function image(t: any, e?: any) {
 }
 
 function loadViewedProducts() {
-  // let t;
-  // undefined !== (null === (t = this.city) || undefined === t ? undefined : t.ID) && this.hasViewedProducts && this.$store.dispatch("viewedProducts/".concat(l.VIEWED_PRODUCTS.GET), {
-  //   IDs: this.viewedProductsIDs,
-  //   cityID: this.city.ID
-  // })
+  if (hasViewedProducts.value) {
+    viewedProductsStore.VIEWED_PRODUCTS_GET({
+      IDs: viewedProductsIDs.value,
+      cityID: city.value.ID
+    })
+  }
 }
 
 function setQuestion(q: any) {
@@ -1188,7 +1195,7 @@ function getReviews(t?: any) {
   // })), n
 }
 
-function init() {
+async function init() {
   // let t, e, o = this;
   // return this.$store.commit("app/".concat(l.APP.LOADING_UPD), true), this.region = this.regions.find((function (t) {
   //   let e;
@@ -1204,6 +1211,10 @@ function init() {
   // })) : Promise.resolve(), this.setViewedProductID(), this.cardProjects.length < 1 ? this.getCardProjects() : Promise.resolve(), this.charity.length < 1 ? this.getCharity() : Promise.resolve()]).finally((function () {
   //   o.$store.commit("app/".concat(l.APP.LOADING_UPD), false)
   // }))
+  return new Promise((resolve) => {
+    setViewedProductID()
+    resolve("")
+  })
 }
 
 function loadPropertyTypes() {
@@ -1284,7 +1295,7 @@ function routeProperty(t: any, e: any, o?: any) {
 }
 
 function setViewedProductID() {
-  let e = [...JSON.parse(localStorage.getItem("viewedProductsIDs") !== undefined ? <any>localStorage.getItem("viewedProductsIDs") : "[]")];
+  let e = [...JSON.parse(localStorage.getItem("viewedProductsIDs") !== null ? <any>localStorage.getItem("viewedProductsIDs") : "[]")];
   e.length > 0 && e.includes(product.value.ID) && e.splice(e.indexOf(product.value.ID), 1)
   e.length >= 30 && e.splice(29, 1)
   e.unshift(product.value.ID)
@@ -1927,7 +1938,83 @@ useSeoMeta({
       </section>
     </section>
 
+    <UiCBottomBar v-if="isMobile" class="share-bar" :is-opened="isOpenedShare" title="Поделиться" @close="share">
+      <ul class="share-links" ref="menuRef">
+        <li v-for="(e,i) in shareLinks" :key="i" @click="openPopup(e.link)">
+          <span :class='["icon", e.icon]'/>
+          {{ e.name }}
+        </li>
+      </ul>
+    </UiCBottomBar>
+    <UiCBottomBar v-if="isMobile" class="property-bar" :is-opened="isOpenedPropertyBar" title="Все характеристики"
+                  @close="openClosePropertybar">
+      <div class="properties">
+        <table class="property-list">
+          <tbody>
+          <tr v-for="(p,e) in properties" :key="e" class="property">
+            <td class="name">
+              <NuxtLink v-if="routePropertyKey.includes(e)" class="unselect" :to="routeProperty(e, p, !0)">
+                {{ e }}
+              </NuxtLink>
+              <span v-else>{{ e }}</span>
+            </td>
+            <td class="values">
+              <span v-for="(r,n) in p" :key="n" class="value unselect">
+                  <template v-if="routePropertyIDs.includes(r.typeID) && void 0 !== r.slug">
+                    <NuxtLink class="search" :to="routeProperty(e, r)">
+                      <span>
+                        {{ r.name }}
+                      </span>
+                    </NuxtLink>
+                  </template>
+                  <template v-else-if="routePropertyIDs.includes(r.typeID) && null == r.slug">
+                    <span>
+                      <span>{{ r.name }}</span>
+                    </span>
+                  </template>
+                  <template v-else>
+                    <span :class='{ country: "Страна" === e }'>
+                      {{ r.name }}
+                    </span>
+                  </template>
+                </span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div v-if="product.isDietarySupplement" class="alert">
+          <span class="icon info2"/>
+          БАД. Не является лекарственным средством!
+        </div>
+        <ul v-show="hasRestricts" class="restrict-list">
+          <li v-for="(e,r) in preparedRestricts" :key="r" class="restrict">
+            <div :class="e.level">
+              <span class="restrict-icon" :style='{ "background-image": e.icon }'/>
+            </div>
+            <span :class='["icon", e.level]'/>
+            <span class="name">
+              {{ e.caption + (e.minimalAge ? " от " + e.minimalAge + " " + pluralizeRestrictAge(e) : "") }}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </UiCBottomBar>
 
+    <ProductCProductsSlider v-if="hasViewedProducts" class="viewed-products" :basket-items="basketItems"
+                            :favorites-items="favoritesItems" :city="city" :has-loyal-card="hasLoyalCard"
+                            :is-authorized="isAuthorized" :is-mobile="isMobile"
+                            :loading-basket-product-i-ds="loadingBasketProductIDs"
+                            :loading-favorites-product-i-ds="loadingFavoritesProductIDs"
+                            :updating-basket-product-i-ds="updatingBasketProductIDs"
+                            :product-categories="productCategories" :product-subtypes="productSubtypes"
+                            :product-types="productTypes"
+                            :products="preparedProducts(viewedProducts, PREPARED_PRODUCTS_FIELDS)" no-microdata-needed
+                            title="Вы смотрели"
+                            v-on:add-to-basket="addToBasket"
+                            v-on:add-to-favorites="addToFavorites"
+                            v-on:basket-item-update="updateBasketItem"
+                            v-on:basket-store-update="updateBasketStore"
+                            v-on:favorites-store-update="updateFavoritesStore"/>
   </main>
 </template>
 
@@ -1993,7 +2080,7 @@ useSeoMeta({
   left: 0
 }
 
-.v-product > .c-bottom-bar.property-bar .bar {
+.v-product > .c-bottom-bar.property-bar :deep(.bar) {
   padding: 10px;
   max-width: unset
 }
@@ -2178,7 +2265,7 @@ useSeoMeta({
   mask-size: contain
 }
 
-.v-product > .c-bottom-bar.share-bar .bar {
+.v-product > .c-bottom-bar.share-bar :deep(.bar) {
   padding: 10px;
   max-width: unset
 }
@@ -3842,6 +3929,7 @@ useSeoMeta({
   height: unset;
   flex: unset;
   width: 49%;
+  align-self: flex-end;
 }
 
 .v-product > .product > .summary > .images > .buy > .details > .fast-order > .c-button {

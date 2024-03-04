@@ -24,6 +24,7 @@ import ApiSummaryModule from "~/api/summary";
 import ApiProductPropertyTypesModule from "~/api/productPropertyTypes";
 import ApiRestrictTypesModule from "~/api/restrictTypes";
 import ApiReviewsModule from "~/api/reviews";
+import ApiViewedProductsModule from "~/api/viewedProducts";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -87,7 +88,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         // surveys: ct,
         // users: lt,
         // vacancies: ut,
-        // viewedProducts: pt
+        viewedProducts: new ApiViewedProductsModule(opts)
     };
 
     return {

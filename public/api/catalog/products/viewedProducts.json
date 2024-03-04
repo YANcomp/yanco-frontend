@@ -1,0 +1,423 @@
+[
+  {
+    "ID": 327211,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2557,
+      2558,
+      2566,
+      3872
+    ],
+    "categoryID": 374,
+    "slug": "trekrezan_tab_200mg_10",
+    "name": "Трекрезан таблетки 200мг №10 Гротекс",
+    "rating": 80,
+    "price": {
+      "withCard": 720.0,
+      "withPeriod": 576.0,
+      "withoutCard": 720.0
+    },
+    "priceZakaz": {
+      "withCard": 720.0,
+      "withPeriod": 576.0,
+      "withoutCard": 720.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "images": [
+      "327211.webp"
+    ],
+    "reviewsNumber": 10,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/327211/80/327211.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/327211/208/327211.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "80%",
+      "internalCard": "80% покупателей выбирают",
+      "internalCardHint": "80% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 263129,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      2557
+    ],
+    "categoryID": 275,
+    "slug": "veldeksal_tabletki_25mg_10",
+    "name": "Велдексал таблетки 25мг №10",
+    "rating": 83,
+    "price": {
+      "withCard": 468.0,
+      "withPeriod": 299.0,
+      "withoutCard": 468.0
+    },
+    "priceZakaz": {
+      "withCard": 468.0,
+      "withPeriod": 299.0,
+      "withoutCard": 468.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "images": [
+      "bd96d9dc2d5bcf3f57964492499b63cc.webp"
+    ],
+    "reviewsNumber": 15,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 4.93,
+    "bonuses": 31,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/263129/80/bd96d9dc2d5bcf3f57964492499b63cc.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/263129/208/bd96d9dc2d5bcf3f57964492499b63cc.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "83%",
+      "internalCard": "83% покупателей выбирают",
+      "internalCardHint": "83% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 263145,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 463,
+    "slug": "drotaverin_tabletki_40mg_30",
+    "name": "Дротаверин таблетки 40мг №30",
+    "rating": 89,
+    "price": {
+      "withCard": 120.0,
+      "withPeriod": 107.0,
+      "withoutCard": 120.0
+    },
+    "priceZakaz": {
+      "withCard": 120.0,
+      "withPeriod": 107.0,
+      "withoutCard": 120.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "images": [
+      "a783e5334fcccb3bd35d70da3c240198.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "bonuses": 4,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/263145/80/a783e5334fcccb3bd35d70da3c240198.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/263145/208/a783e5334fcccb3bd35d70da3c240198.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 326878,
+    "typeIDs": [
+      400226
+    ],
+    "subtypeIDs": [
+      110
+    ],
+    "categoryID": 190,
+    "slug": "paket_aprel_3050",
+    "name": "Пакет-майка «Апрель» 30*50",
+    "rating": 89,
+    "price": {
+      "withCard": 6.0,
+      "withPeriod": 4.0,
+      "withoutCard": 6.0
+    },
+    "priceZakaz": {
+      "withCard": 6.0,
+      "withPeriod": 4.0,
+      "withoutCard": 6.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "images": [
+      "326878a.webp"
+    ],
+    "reviewsNumber": 4,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/326878/80/326878a.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/326878/208/326878a.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "89%",
+      "internalCard": "89% покупателей выбирают",
+      "internalCardHint": "89% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 322174,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552,
+      3872
+    ],
+    "categoryID": 225,
+    "slug": "flyufajt_por_limon_pak_10",
+    "name": "Флюфайт порошок Лимон пакеты №10",
+    "rating": 66,
+    "price": {
+      "withCard": 426.0,
+      "withPeriod": 338.0,
+      "withoutCard": 426.0
+    },
+    "priceZakaz": {
+      "withCard": 426.0,
+      "withPeriod": 338.0,
+      "withoutCard": 426.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "images": [
+      "322174t.webp"
+    ],
+    "reviewsNumber": 2,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/322174/80/322174t.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/322174/208/322174t.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "66%",
+      "internalCard": "66% покупателей выбирают",
+      "internalCardHint": "66% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 236220,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2557,
+      2558,
+      2566,
+      3872
+    ],
+    "categoryID": 374,
+    "slug": "oseltamivir_kapsuly_75mg_10",
+    "name": "Осельтамивир капсулы 75мг №10",
+    "rating": 68,
+    "price": {
+      "withCard": 896.0,
+      "withPeriod": 762.0,
+      "withoutCard": 896.0
+    },
+    "priceZakaz": {
+      "withCard": 896.0,
+      "withPeriod": 762.0,
+      "withoutCard": 896.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "images": [
+      "dbd63fdcf7b67c573e4b2e96e6c221bb.webp"
+    ],
+    "reviewsNumber": 5,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 5,
+    "bonuses": 55,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/236220/80/dbd63fdcf7b67c573e4b2e96e6c221bb.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/236220/208/dbd63fdcf7b67c573e4b2e96e6c221bb.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "68%",
+      "internalCard": "68% покупателей выбирают",
+      "internalCardHint": "68% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 292704,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2552
+    ],
+    "categoryID": 520,
+    "slug": "paracetamol_tab_500mg_20",
+    "name": "Парацетамол таблетки 500мг №20 Усолье-Сибирский ХФЗ",
+    "rating": 84,
+    "price": {
+      "withCard": 64.0,
+      "withPeriod": 56.0,
+      "withoutCard": 64.0
+    },
+    "priceZakaz": {
+      "withCard": 64.0,
+      "withPeriod": 56.0,
+      "withoutCard": 64.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "images": [
+      "292704.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/292704/80/292704.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/292704/208/292704.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "84%",
+      "internalCard": "84% покупателей выбирают",
+      "internalCardHint": "84% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 334932,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2559
+    ],
+    "categoryID": 277,
+    "slug": "allvit_koenzim_q10_100mg_kapsuly_30",
+    "name": "Gold'n Apotheka Коэнзим Q10 капсулы №30",
+    "rating": 50,
+    "price": {
+      "withCard": 1393.0,
+      "withPeriod": 1393.0,
+      "withoutCard": 1990.0
+    },
+    "priceZakaz": {
+      "withCard": 1393.0,
+      "withPeriod": 1393.0,
+      "withoutCard": 1990.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "sticker": "-30%",
+    "images": [
+      "86a404f180be07cc5d68d55a3c98bf54.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": false,
+    "discountTemplate": "discount_size_percent",
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/334932/80/86a404f180be07cc5d68d55a3c98bf54.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/334932/208/86a404f180be07cc5d68d55a3c98bf54.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "50%",
+      "internalCard": "50% покупателей выбирают",
+      "internalCardHint": "50% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  }
+]
