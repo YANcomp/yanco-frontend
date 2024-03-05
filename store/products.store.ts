@@ -7,6 +7,7 @@ export const useProductsStore = defineStore('products', {
         productOfDay: <any>{},
         specialOffers: <any>[],
         ourProduction: <any>[],
+        productTheMightNeed: <any>[],
 
         item: <any>{},
         recommendations: <any>[],

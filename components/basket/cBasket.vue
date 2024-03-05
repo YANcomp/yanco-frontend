@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const emit = defineEmits(["modal-electronic-check-show", "basket-store-update", "basket-item-select", "basket-item-update", "basket-update", "add-to-basket", "add-to-favorites", "basket-changing"])
 const props = defineProps({
   basketCount: {
     type: Number
@@ -85,17 +86,24 @@ const props = defineProps({
     type: Object
   }
 })
-
+const route = useRoute()
+const router = useRouter()
+const appStore = useAppStore()
+const meStore = useMeStore()
+const productsStore = useProductsStore()
 const overlayRef = ref(<any>undefined)
+const checkoutButtonRef = ref(<any>undefined)
+const preparedProducts = uPrepared
+const rounding = uRounding
 
 const isHideAlert = ref(!1)
-const internalItems = ref([])
-const changeID = ref(0)
+const internalItems = ref(<any>[])
+const changeID = ref(<any>0)
 const internalCityID = ref(void 0)
 const isShowAlert = ref(!0)
 const isClosedAlert = ref(!1)
 const isOpenLoyalPrices = ref(!1)
-const needClosedMobileBottomTooltip = ref(!1)
+const needClosedMobileBottomTooltip = ref(<any>false)
 const isWidthForPhone = ref(!1)
 const isOpenPromocode = ref(!1)
 const currentWidth = ref(0)
@@ -110,11 +118,597 @@ const basketOfferedProducts = ref([])
 const isGettingBasketOferredProducts = ref(!1)
 const productsTheMightNeed = ref([])
 const lastDraggedItemIndex = ref(null)
+const B = ref(["isLoyal", "isRank", "isInFavorites", "isLimitReached", "route"])
+
+const buyForButtonRoute = computed(() => {
+  if (props.isAuthorized) {
+    if ("block" === props.me?.loyalCardStatus) return "account-card";
+    if (!props.hasPaidPeriod) return "none"
+  }
+  return props.isAuthorized && props.hasPaidPeriod ? "loyal" : "account-subscription"
+})
+
+// isSelectedAll
+const isSelectedAll = computed(() => {
+  return false
+})
+const hasDeliveryRuleIDs = computed(() => {
+  return selectedBasketItems.value.some((t: any) => {
+    return t.deliveryRuleID
+  })
+})
+const isNoItems = computed(() => {
+  return internalItems.value.length < 1
+})
+const isOpenMobileBottomTooltip = computed(() => {
+  return isOpenLoyalPrices.value || (isOpenedModal.value || isOpenPromocode.value) && isWidthForPhone.value
+})
+const isShowAlertDelivery = computed(() => {
+  return !props.isDeniedDelivery && hasDeliveryRuleIDs.value && props.isAllowDelivery
+})
+const isShowModalElectronicCheck = computed(() => {
+  var t, e: any = new Date(null !== (t = props.me?.lastElectronicCheckAdTime) && void 0 !== t ? t : "");
+  return e.setMonth(e.getMonth() + 3), !props.me?.isElectronicCheckAgree && Date.parse("".concat(e)) < Date.parse("" + new Date)
+})
+const mobileBottomTooltipName = computed(() => {
+  return isOpenedModal.value && isWidthForPhone.value ? "isOpenedModal" : isOpenLoyalPrices.value ? "isOpenLoyalPrices" : isOpenPromocode.value ? "isOpenPromocode" : ""
+})
+const mobileBottomTooltipTitle = computed(() => {
+  return isOpenedModal.value && isWidthForPhone.value ? "".concat(isModalTargetBindings.value ? "Нет банковской карты" : "Удаление товаров") : isOpenLoyalPrices.value ? "Клубные цены" : isOpenPromocode.value ? "Применение промокода" : ""
+})
+const preparedBasketProducts = computed(() => {
+  return preparedProducts(props.basketItems, B.value)
+})
+const subscribePeriods = computed(() => {
+  return (subscribeStore.periods ? subscribeStore.periods : []).sort((a: any, b: any) => {
+    return b.duration - a.duration
+  })
+})
+const bindings = computed(() => {
+  return bindingsStore.bindings
+})
+const activeBindings = computed(() => {
+  return (bindings.value ? bindings.value : []).find((b: any) => {
+    return b.isDefault
+  })
+})
+const activeSubscribe = computed(() => {
+  return subscribeStore.subscribe
+})
+const isHideMobileFooter = computed(() => {
+  return appStore.isHideMobileFooter
+})
+const hasSubscription = computed(() => {
+  return meStore.hasSubscription
+})
+const hasActiveBindings = computed(() => {
+  return void 0 !== activeBindings.value
+})
+const productTheMightNeed = computed(() => {
+  return productsStore.productTheMightNeed
+})
+const productsForOffer = computed(() => {
+  return basketOfferedProducts.value.filter((p: any) => {
+    return !hasBasketOffered(p.ID)
+  })
+})
+const selectedBasketItems = computed(() => {
+  return (props.basketItems ? props.basketItems : []).filter((i: any) => {
+    return i.isSelected
+  })
+})
+
+watch(() => isHideMobileFooter.value, () => {
+})
+watch(() => isModeBuyPeriods.value, () => {
+})
+watch(() => periods.value, () => {
+})
+watch(() => route.path, () => {
+})
+watch(() => isSubscribePeriods.value, () => {
+})
+watch(() => props.favoritesItems, () => {
+})
+watch(() => internalItems.value, () => {
+})
+watch(() => props.basketItems, () => {
+})
+watch(() => productsTheMightNeed.value, () => {
+})
+watch(() => props.isAuthorized, () => {
+})
+watch(() => isOpenMobileBottomTooltip.value, () => {
+})
+watch(() => isOpenedModal.value, () => {
+})
+watch(() => isWidthForPhone.value, () => {
+})
+watch(() => preparedBasketProducts.value, () => {
+})
+watch(() => props.me, () => {
+})
+
+internalItems.value = [...preparedBasketProducts.value]
+internalCityID.value = props.city?.ID
+internalItems.value.some((i: any) => {
+  return void 0 !== i.mightNeedID
+}) && getProductsTheMightNeed()
+
+onMounted(() => {
+  window.addEventListener("resize", resize)
+  resize()
+  void 0 !== props.me && (isElectronicCheckAgree.value = props.me.isElectronicCheckAgree)
+  internalItems.value.length > 0 && basketOfferedProducts.value.length < props.params?.basketOfferedProductsIDs.length && !isGettingBasketOferredProducts.value && getBasketOfferedProducts()
+  // props.isAuthorized && (void 0 === bindings.value && getBindings(), hasSubscription.value && void 0 === activeSubscribe.value && getActiveSubscribe(), subscribePeriods.value.length < 1 && getSubscribePeriods(), periods.value.length < 1 && getPeriods())
+  props.isMobile && document.addEventListener("scroll", onScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", resize)
+  props.isMobile && document.removeEventListener("scroll", onScroll)
+})
+
+//METHODS
+function addToBasketProductMightNeed() {
+  addBasketOfferedProduct(productTheMightNeed.value)
+}
+
+function dragItem(t: any) {
+  lastDraggedItemIndex.value = t
+}
+
+function getProductsTheMightNeed() {
+  // let t, e,
+  //     o = internalItems.value.reduce( (t, e, i, n)=> {
+  //       return e.isRemoved || void 0 === e.mightNeedID || n.map( (i)=> {
+  //         return i.productID
+  //       }).includes(e.mightNeedID) || t.includes(e.mightNeedID) || t.push(e.mightNeedID), t
+  //     }, []);
+  // if (o.length > 0) {
+  //   d.a.products.get("ID={".concat(o.join(","), "}&cityID=").concat(null !== (e = null === (t = this.city) || void 0 === t ? void 0 : t.ID) && void 0 !== e ? e : 41), ["ID", "slug", "price", "name", "images", "isInStock", "isAvailable", "allowDelivery", "allowOnlinePayment", "averageRating", "reviewsNumber", "imagesSizeXS", "imagesSizeS", "rating", "ratingText", "limitWithCard", "limitWithoutCard"]).then((function (p) {
+  //     n.productsTheMightNeed = n.preparedProducts(p)
+  //   }))
+  // } else this.productsTheMightNeed = []
+  productsTheMightNeed.value = []
+}
+
+function addBasketOfferedProduct(p: any) {
+  let t = internalItems.value.find((i: any) => {
+    return i.productID === p.ID
+  });
+  t ? restore(t) : emit("add-to-basket", {
+    productID: p.ID,
+    productSlug: p.slug,
+    images: p.images,
+    name: p.name,
+    price: p.price,
+    count: 1,
+    isRemoved: !1,
+    isInStock: p.isInStock,
+    allowDelivery: p.allowDelivery,
+    allowOnlinePayment: p.allowOnlinePayment,
+    discountID: p.discountID,
+    isWithdrawn: p.isWithdrawn,
+    limitWithCard: p.limitWithCard,
+    limitWithoutCard: p.limitWithoutCard,
+    deliveryDaysMax: p.deliveryDaysMax,
+    isRecipe: p.isRecipe,
+    isAvailable: p.isAvailable,
+    deliveryAmount: p.deliveryAmount,
+    discountTemplate: p.discountTemplate,
+    mightNeedID: p.mightNeedID,
+    imagesSizeXS: p.imagesSizeXS,
+    imagesSizeS: p.imagesSizeS,
+    isSelected: !0,
+    isSiteSellRemains: p.isSiteSellRemains,
+    isWaitingArrive: p.isWaitingArrive,
+    isOrderRcNoRc: p.isOrderRcNoRc
+  })
+}
+
+function preparedImage(p: any) {
+  return uPrepareProduct({...p}, uSIZE_XS, props.params?.cdnURL.url).images[0]
+}
+
+function hasBasketOffered(t: any) {
+  return internalItems.value.some((i: any) => {
+    return i.productID === t && !i.isRemoved
+  })
+}
+
+function getBasketOfferedProducts() {
+  // var t, e, n = this,
+  //     o = this.internalItems.map((function (i) {
+  //       return i.productID
+  //     })),
+  //     r = this.params.basketOfferedProductsIDs.filter((function (i) {
+  //       return !o.includes(i)
+  //     }));
+  // if (r.length > 0) {
+  //   this.isGettingBasketOferredProducts = !0, d.a.products.get("ID={".concat(r.join(","), "}&cityID=").concat(null !== (e = null === (t = this.city) || void 0 === t ? void 0 : t.ID) && void 0 !== e ? e : 41), ["ID", "name", "slug", "price", "isInStock", "images", "isAvailable", "allowDelivery", "allowOnlinePayment", "limitWithCard", "limitWithoutCard", "discountTemplate", "imagesSizeXS", "imagesSizeS", "rating", "ratingText", "isSiteSellRemains", "isWaitingArrive", "isOrderRcNoRc"]).then((function (p) {
+  //     n.basketOfferedProducts = n.preparedProducts(p)
+  //   })).finally((function () {
+  //     n.isGettingBasketOferredProducts = !1
+  //   }))
+  // }
+}
+
+function closeModal(t: any) {
+  isWidthForPhone.value ? (needClosedMobileBottomTooltip.value = !0, setTimeout(() => {
+    needClosedMobileBottomTooltip.value = !1
+  }, 600)) : openCloseModal("boolean" == typeof t && t)
+}
+
+function openCloseModal(t: any) {
+  isModalTargetBindings.value = Boolean(t)
+  isOpenedModal.value = !isOpenedModal.value
+}
+
+function selectPeriod(p: any) {
+  // this.selectedPeriod = p, this.isMobile && this.$refs["checkout-button"].scrollIntoView({
+  //   block: "center",
+  //   behavior: "smooth"
+  // })
+}
+
+function getActiveSubscribe() {
+  // this.$store.commit("app/".concat(r.APP.LOADING_UPD), !0), this.$store.dispatch("subscribe/".concat(r.SUBSCRIBE.GET)).finally((function () {
+  //   t.$store.commit("app/".concat(r.APP.LOADING_UPD), !1)
+  // }))
+}
+
+function getBindings() {
+  // var t = this;
+  // this.$store.commit("app/".concat(r.APP.LOADING_UPD), !0), this.$store.dispatch("bindings/".concat(r.BINDINGS.GET)).finally((function () {
+  //   t.$store.commit("app/".concat(r.APP.LOADING_UPD), !1)
+  // }))
+}
+
+function getSubscribePeriods() {
+  // var t = this;
+  // this.$store.dispatch("subscribe/".concat(r.SUBSCRIBE.GET_PERIODS)).catch((function (e) {
+  //   t.error(e)
+  // }))
+}
+
+function getPeriods() {
+  // var t = this;
+  // this.$store.commit("app/".concat(r.APP.LOADING_UPD), !0), d.a.periods.get().then((function (p) {
+  //   t.periods = (null != p ? p : []).sort((function (a, b) {
+  //     return b.duration - a.duration
+  //   }))
+  // })).finally((function () {
+  //   t.$store.commit("app/".concat(r.APP.LOADING_UPD), !1)
+  // }))
+}
+
+function addToFavoritesProductMightNeed() {
+  addToFavorites(productTheMightNeed.value)
+}
+
+function addToFavorites(t: any) {
+  emit("add-to-favorites", t)
+}
+
+function closeAlert() {
+  isClosedAlert.value || (isClosedAlert.value = !0, setTimeout(() => {
+    isShowAlert.value = !1
+    isHideAlert.value = !0
+  }, 450))
+}
+
+function closeOverlay() {
+  if (isWidthForPhone.value && (isOpenLoyalPrices.value || isOpenPromocode.value || isOpenedModal.value)) return isOpenedModal.value ? closeModal(isModalTargetBindings.value) : (needClosedMobileBottomTooltip.value = !0, setTimeout(() => {
+    needClosedMobileBottomTooltip.value = !1
+  }, 600)), void setTimeout(() => {
+    isOpenLoyalPrices.value = !1
+    isOpenPromocode.value = !1
+  }, 600);
+  isOpenedModal.value && closeModal(isModalTargetBindings.value)
+  isOpenLoyalPrices.value = !1
+  isOpenPromocode.value = !1
+}
+
+function commit(e?: any) {
+  if (emit("basket-changing"), e) {
+    changeID.value++;
+    let n = changeID.value;
+    setTimeout(() => {
+      changeID.value == n && update()
+    }, 1e3)
+  } else update()
+}
+
+function error(t: any) {
+  useNotificationsStore().NOTIFICATIONS_UPD({
+    title: "Произошла ошибка",
+    desc: t,
+    status: "error"
+  })
+}
+
+function payPeriods() {
+  // var t, e, n, o, c, l, h, m, f = this;
+  // this.$store.commit("app/".concat(r.APP.LOADING_UPD), !0);
+  // var data = {
+  //   clientName: "".concat(null !== (e = null === (t = this.me) || void 0 === t ? void 0 : t.sname) && void 0 !== e ? e : "", " ").concat(null !== (o = null === (n = this.me) || void 0 === n ? void 0 : n.name) && void 0 !== o ? o : "").trim(),
+  //   clientPhone: null === (c = this.me) || void 0 === c ? void 0 : c.phone,
+  //   services: [{
+  //     periodID: this.selectedPeriod.ID,
+  //     count: 1
+  //   }],
+  //   cityID: null !== (h = null === (l = this.city) || void 0 === l ? void 0 : l.ID) && void 0 !== h ? h : 41
+  // };
+  // void 0 !== (null === (m = this.me) || void 0 === m ? void 0 : m.email) && this.me.email.length > 0 && (data.clientEmail = this.me.email), d.a.orders.new(data).then((function (t) {
+  //   f.reachGoal("card".concat(14 === f.selectedPeriod.duration ? 12 : 7 === f.selectedPeriod.duration ? 6 : f.selectedPeriod.duration)), setTimeout((function () {
+  //     location.href = t[0].paymentURL
+  //   }), 100)
+  // })).catch((function (t) {
+  //   f.error(t)
+  // })).finally((function () {
+  //   f.$store.commit("app/".concat(r.APP.LOADING_UPD), !1)
+  // }))
+}
+
+// reachGoal: c.l.reachGoal,
+function buySubscription() {
+  // var t, e, n, o, c = this;
+  // if (this.hasActiveBindings)
+  //   if (this.hasSubscription) {
+  //     var data = {
+  //       ID: null === (t = this.activeSubscribe) || void 0 === t ? void 0 : t.ID,
+  //       services: [{
+  //         periodID: this.selectedPeriod.ID,
+  //         count: 1,
+  //         price: this.selectedPeriod.price,
+  //         name: this.selectedPeriod.name
+  //       }]
+  //     };
+  //     this.$store.commit("app/".concat(r.APP.LOADING_UPD), !0), d.a.subscribe.upd(data).then((function () {
+  //       c.reachGoal("subscription".concat(c.selectedPeriod.durationBase)), c.getActiveSubscribe(), c.$store.dispatch("notifications/".concat(r.NOTIFICATIONS.UPD), {
+  //         title: "�?зменен срок подписки",
+  //         desc: "Вы успешно изменили срок подписки",
+  //         status: "success"
+  //       }), c.isModeBuyPeriods = !1, c.goToRoute("Checkout")
+  //     })).catch((function (t) {
+  //       c.error(t)
+  //     })).finally((function () {
+  //       c.$store.commit("app/".concat(r.APP.LOADING_UPD), !1)
+  //     }))
+  //   } else {
+  //     var l = {
+  //       cityID: null !== (n = null === (e = this.city) || void 0 === e ? void 0 : e.ID) && void 0 !== n ? n : 41,
+  //       services: [{
+  //         periodID: this.selectedPeriod.ID,
+  //         count: 1,
+  //         price: this.selectedPeriod.price,
+  //         name: this.selectedPeriod.name
+  //       }],
+  //       binding: {
+  //         ID: null === (o = this.activeBindings) || void 0 === o ? void 0 : o.ID
+  //       }
+  //     };
+  //     this.$store.commit("app/".concat(r.APP.LOADING_UPD), !0), d.a.subscribe.add(l).then((function (u) {
+  //       c.reachGoal("subscription".concat(c.selectedPeriod.durationBase)), c.$store.commit("me/".concat(r.ME.GET), u), c.$store.dispatch("notifications/".concat(r.NOTIFICATIONS.UPD), {
+  //         title: "Подписка оформлена",
+  //         desc: "Вы успешно оформили подписку",
+  //         status: "success"
+  //       })
+  //     })).catch((function (t) {
+  //       c.error(t)
+  //     })).finally((function () {
+  //       c.$store.commit("app/".concat(r.APP.LOADING_UPD), !1)
+  //     }))
+  //   }
+  // else openCloseModal(!0)
+}
+
+// ecommerce: c.h.e,
+function goToRoute(t: any) {
+  if ("none" !== t)
+    if ("buy-period" !== t) {
+      // "checkout" === t && this.$store.commit("checkout/".concat(r.CHECKOUT.ONLY_SELECTED_ITEMS_UPD), !0);
+      let n = isOpenLoyalPrices.value || isOpenPromocode.value || isOpenedModal.value || isOpenMobileBottomTooltip.value ? isOpenMobileBottomTooltip.value ? 600 : 450 : 0;
+      closeOverlay()
+      setTimeout(() => {
+        "checkout" === t && isShowModalElectronicCheck.value ? emit("modal-electronic-check-show") : router.push("string" != typeof t ? t : {
+          name: t
+        })
+      }, n)
+    } else router.push({
+      name: "basket",
+      query: {
+        periods: null
+      }
+    })
+}
+
+function onScroll() {
+  lastDraggedItemIndex.value = null
+}
+
+function openCloseMobileBottomTooltip(t: any) {
+  isOpenedModal.value && isModalTargetBindings.value && (isModalTargetBindings.value = !1)
+  // this.$data[t] = !this.$data[t]
+  //TODO
+}
+
+function openPromocode() {
+  isOpenPromocode.value = !0
+}
+
+
+function remove(t: any) {
+  t.isRemoved = true
+  t.isRestored = false
+  // this.$set(t, "isRemoved", !0), this.$set(t, "isRestored", !1), this.commit(!1)
+}
+
+function removeSelected(e?: any) {
+  if ("boolean" == typeof e && e) return closeModal(), internalItems.value = internalItems.value.filter((i: any) => {
+    return !selectedBasketItems.value.map((t: any) => {
+      return t.productID
+    }).includes(i.productID)
+  }), void update();
+  openCloseModal()
+}
+
+function resize() {
+  isWidthForPhone.value = window.innerWidth <= 510
+  currentWidth.value = window.innerWidth
+}
+
+function restore(t: any) {
+  t.isRemoved = false
+  t.isRestored = true
+  // this.$set(t, "isRemoved", !1)
+  // this.$set(t, "isRestored", !0)
+  // this.commit(!1)
+}
+
+
+function update() {
+  emit("basket-update", internalItems.value)
+}
+
+function updateBasketItem(t: any) {
+  emit("basket-item-update", t)
+}
+
+function selectBasketItem(t: any) {
+  emit("basket-item-select", t)
+}
+
+function updateBasketStore(t: any) {
+  emit("basket-store-update", t)
+}
 </script>
 
 <template>
   <div ref="overlayRef" :class='["c-basket", { mobile: isMobile, "all-deleted": basketCount < 1 && !isNoItems }]'>
+    <div :class='{ mobile: isWidthForPhone || isMobile }'>
+      <div class="content">
+        <p>
+          Корзина
+          <span v-if="basketCount > 0" class="count">({{ basketCount }})</span>
+        </p>
+        <div v-if="!isHideAlert">cAlert</div>
+        <div class="top">
+          <div>
+            <UiCCheckbox mode="default" v-model:checked="isSelectedAll">
+              Выбрать все
+            </UiCCheckbox>
+          </div>
+          <div v-if="selectedBasketItems.length > 0" @click="removeSelected">
+            Удалить выбранные
+            <div v-if="currentWidth > 850">
+              <span class="icon trash-part1"/>
+              <span class="icon trash-part2"/>
+            </div>
+            <span v-else class="icon trash2"/>
+          </div>
+        </div>
 
+        <div class="products">
+          <BasketCBasketProductCard v-for="(p, i) in internalItems" :key="i" :basket-items="basketItems"
+                                    :can-be-dragged="i === lastDraggedItemIndex" :current-width="currentWidth"
+                                    :has-loyal-card="hasLoyalCard" :has-paid-period="hasPaidPeriod"
+                                    :is-authorized="isAuthorized"
+                                    :is-basket-updating="updatingBasketProductIDs.includes(p.productID)"
+                                    :is-city-allow-delivery="isCityAllowDelivery" :is-mobile="isMobile"
+                                    :favorites-items-i-ds="favoritesItems"
+                                    :is-quantity-vertical="currentWidth <= 520 || currentWidth <= 700 && currentWidth > 610 || currentWidth <= 1180 && currentWidth > 960"
+                                    :is-show-under-the-order="currentWidth > 1180 && !p.isInStock && !p.isRemoved"
+                                    :is-width-for-phone="currentWidth <= 420" :prepared-check-items="preparedCheckItems"
+                                    :product="p" :params="params" :is-select-product="p.isSelected" for-basket-page
+                                    v-on:add-to-favorites="addToFavorites"
+                                    v-on:basket-item-update="updateBasketItem"
+                                    v-on:basket-item-select="selectBasketItem"
+                                    v-on:basket-store-update="updateBasketStore"
+                                    v-on:drag="dragItem(i)"
+                                    v-on:remove="remove"
+                                    v-on:restore="restore"
+                                    v-on:route="(e)=>goToRoute(e)"
+                                    v-on:add-to-basket-product-might-need="addToBasketProductMightNeed"
+                                    v-on:add-to-favorites-product-might-need="addToFavoritesProductMightNeed"/>
+          <template v-if="productsForOffer.length > 0 && internalItems.length > 0">
+            <span v-if="basketOfferedProducts.length > 0" class="title">Добавить к заказу</span>
+            cBasketOfferedProduct
+          </template>
+        </div>
+      </div>
+
+      <div v-if="internalItems.length > 0" class="summary">
+        <div class="total">
+          <template v-if="isBasketChanging">
+            <div>
+              <LazyUiCSpinner v-if="isBasketChanging" position="relative"/>
+            </div>
+          </template>
+
+          <template v-else>
+            <p>Ваш заказ</p>
+            <div class="line flex-horizontal-nowrap">
+              <span>Стоимость по обычным ценам</span>
+              <span>{{ possiblePrices.withoutCard }} ₽</span>
+            </div>
+            <div v-if="totalPrice !== possiblePrices.withoutCard" class="line flex-horizontal-nowrap discount">
+              <span>Экономия по вашей карте</span>
+              <span>{{ rounding(possiblePrices.withoutCard - totalPrice) }} ₽</span>
+            </div>
+            <div class="line total-price flex-horizontal-nowrap">
+              <span>Итого к оплате:</span>
+              <span>{{ rounding(isAuthorized ? totalPrice : possiblePrices.withoutCard) }} ₽</span>
+            </div>
+            <div class="promocode">
+              cPromoCode
+            </div>
+
+            <div ref="checkoutButtonRef"
+                 :class='["checkout", { hide: isOpenedModal && !isWidthForPhone || isOpenMobileBottomTooltip }]'
+                 :style='{ bottom: isMobile ? "0" : "unset" }'>
+              <UiCButton :disabled="basketSelectedCount < 1" mode="primary" size="xl" @click="goToRoute('checkout')">
+                Оформить заказ
+                <UiCArrowSVG color="#fff" hover-color="#fff" size="s"/>
+              </UiCButton>
+              <div v-if="basketSelectedCount < 1" class="no-select-items">Выберите товары, чтобы продолжить</div>
+            </div>
+
+          </template>
+        </div>
+      </div>
+
+      <template v-if="!isWidthForPhone">
+        <!--        TODO cModalWindow-->
+      </template>
+
+      <template v-if="isOpenMobileBottomTooltip">
+        <UiCMobileBottomTooltip :closed="needClosedMobileBottomTooltip"
+                                :mobile-bottom-tooltip-name="mobileBottomTooltipName" is-hide-footer
+                                @close="openCloseMobileBottomTooltip">
+          <template v-slot:title>
+            {{ mobileBottomTooltipTitle }}
+          </template>
+          <template v-slot:text>
+            <template v-if="isOpenedModal && !isModalTargetBindings && isWidthForPhone">
+              <p>
+                Вы точно хотите удалить выбранные товары из корзины?
+                <br>
+                Отменить это действие будет невозможно.
+              </p>
+              <div class="buttons">
+                <UiCButton size="m" @click="closeModal">Отмена</UiCButton>
+                <UiCButton mode="primary" size="m" @click="removeSelected(!0)">Да, хочу</UiCButton>
+              </div>
+            </template>
+            <template v-if="isOpenPromocode">
+              cPromoCode
+            </template>
+          </template>
+        </UiCMobileBottomTooltip>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -351,15 +945,15 @@ const lastDraggedItemIndex = ref(null)
   margin-top: 10px
 }
 
-.c-basket > div > .no-items > .c-button > .caption {
+.c-basket > div > .no-items > :deep(.c-button) > .caption {
   justify-content: center
 }
 
-.c-basket > div > .no-items > .c-button:hover > .caption > .c-arrow-svg > div > span:first-of-type {
+.c-basket > div > .no-items > :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:first-of-type {
   opacity: 1
 }
 
-.c-basket > div > .no-items > .c-button:hover > .caption > .c-arrow-svg > div > span:last-of-type {
+.c-basket > div > .no-items > :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:last-of-type {
   transform: translateX(4px)
 }
 
@@ -866,11 +1460,11 @@ const lastDraggedItemIndex = ref(null)
   -webkit-tap-highlight-color: transparent
 }
 
-.c-basket > div > .summary > .total .c-button > .caption {
+.c-basket > div > .summary > .total :deep(.c-button) > .caption {
   justify-content: center
 }
 
-.c-basket > div > .summary > .total .c-button > .caption > s {
+.c-basket > div > .summary > .total :deep(.c-button) > .caption > s {
   transition: color .3s ease-in-out;
   color: #596175;
   margin: 0 5px
@@ -881,23 +1475,23 @@ const lastDraggedItemIndex = ref(null)
   line-height: 17px
 }
 
-.c-basket > div > .summary > .total .c-button.primary > .caption > .c-arrow-svg {
+.c-basket > div > .summary > .total :deep(.c-button.primary) > .caption > .c-arrow-svg {
   margin-left: 12px
 }
 
-.c-basket > div > .summary > .total .c-button:hover > .caption > s {
+.c-basket > div > .summary > .total :deep(.c-button:hover) > .caption > s {
   color: #fff
 }
 
-.c-basket > div > .summary > .total .c-button:hover > .caption > .c-arrow-svg > div > span:first-of-type {
+.c-basket > div > .summary > .total :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:first-of-type {
   opacity: 1
 }
 
-.c-basket > div > .summary > .total .c-button:hover > .caption > .c-arrow-svg > div > span:last-of-type {
+.c-basket > div > .summary > .total :deep(.c-button:hover) > .caption > .c-arrow-svg > div > span:last-of-type {
   transform: translateX(4px)
 }
 
-.c-basket > div > .summary > .total .c-button:active > .caption > s {
+.c-basket > div > .summary > .total :deep(.c-button:active) > .caption > s {
   color: #fff
 }
 
@@ -1177,11 +1771,11 @@ const lastDraggedItemIndex = ref(null)
     margin-right: 10px
   }
 
-  .c-basket > div > .c-mobile-bottom-tooltip > div > .content > .buttons > .c-button > .caption {
+  .c-basket > div > .c-mobile-bottom-tooltip > div > .content > .buttons > :deep(.c-button) > .caption {
     justify-content: center
   }
 
-  .c-basket > div > .c-mobile-bottom-tooltip > div > .content > .buttons > .c-button > .caption > .c-arrow-svg {
+  .c-basket > div > .c-mobile-bottom-tooltip > div > .content > .buttons > :deep(.c-button) > .caption > .c-arrow-svg {
     margin-left: 10px
   }
 
@@ -1229,7 +1823,7 @@ const lastDraggedItemIndex = ref(null)
     margin-right: 10px
   }
 
-  .c-basket > div > .c-mobile-bottom-tooltip > div > .content > .buttons > .c-button > .caption > .c-arrow-svg {
+  .c-basket > div > .c-mobile-bottom-tooltip > div > .content > .buttons > :deep(.c-button) > .caption > .c-arrow-svg {
     margin-left: 0
   }
 }
