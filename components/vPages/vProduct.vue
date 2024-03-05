@@ -49,13 +49,12 @@ const city = computed(() => {
 })
 
 //async data
-// const currentCityID = city.value.ID! ? city.value.ID : 41
 
 const isProductReviews = ref("ProductReviews" === route.name)
 const isFailedGettingProduct = ref(false)
 const isFailedGettingReplacements = ref(false)
 const isFailedGettingRecommend = ref(false)
-const isFailedGettingReviews = ref(false)
+// const isFailedGettingReviews = ref(false)
 const product = ref(<any>productsStore.item)
 const replacements = ref(<any>productsStore.replacements)
 const recommendations = ref(<any>productsStore.recommendations)
@@ -66,13 +65,12 @@ const V = ref(restrictTypesStore.list! ? restrictTypesStore.list : [])
 const Z = ref(false)
 const allGrades = ref(productsStore.reviews)
 const totalCountReviews = ref(<any>productsStore.totalCountReviews)
-const activeTab = ref(isProductReviews.value ? 2 : 0)
+// const activeTab = ref(isProductReviews.value ? 2 : 0)
 const K = ref(<any>catalogStore.categoryDirectory)
 const articleCategories = ref(<any>articlesStore.categories)
 const et = ref(10)
 
 if (articleCategories.value.length < 1) {
-  // TODO ARTICLES.GET_CATEGORIES
   await articlesStore.ARTICLES_GET_CATEGORIES().then((res: any) => {
     articleCategories.value = res
   }).catch((err) => {
@@ -101,8 +99,10 @@ const vProductRef = ref(<any>undefined)
 const comparisonRef = ref(<any>undefined)
 const menuRef = ref(<any>undefined)
 const propertiesRef = ref(<any>undefined)
+const recommendationsRef = ref(<any>{})
 const replacementsRef = ref(<any>undefined)
 const descriptionRef = ref(<any>undefined)
+const articlesRef = ref(<any>{})
 const reviewsRef = ref(<any>undefined)
 
 const needPaddingHeader = ref(false)
@@ -119,15 +119,15 @@ const lastScrollTop = ref(0)
 const isScrollTop = ref(false)
 const headerTop = ref(0)
 const isShowFixedHeader = ref(false)
-const activeAccordion = ref(undefined)
-const BONUSES_TITLE = ref(uBONUSES_TITLE)
+// const activeAccordion = ref(undefined)
+// const BONUSES_TITLE = ref(uBONUSES_TITLE)
 const descriptionHash = ref(undefined)
 const internalItems = ref(<any>[])
 const isComparisonLoading = ref(false)
 const isFavoritesLoading = ref(false)
 const isFromCatalog = ref(false)
-const isLoadingReplacements = ref(false)
-const isLoadingRecommend = ref(false)
+// const isLoadingReplacements = ref(false)
+// const isLoadingRecommend = ref(false)
 const isLoadingReviews = ref(false)
 const isOpenedShare = ref(false)
 const showDisposableHintCompared = ref(false)
@@ -147,44 +147,44 @@ const routePropertyIDs = ref([10, 13, 6])
 const routePropertyKey = ref(<any>["Производитель", "Бренд", "Действующее вещество"])
 const updatingBasketProductIDs = ref(<any>[])
 const intervalID = ref(<any>undefined)
-const isActiveMap = ref(false)
+// const isActiveMap = ref(false)
 const isProductFavoriteActive = ref(false)
 const isMouseDown = ref(false)
 const isMouseUp = ref(false)
 const articles = ref([])
-const limitReviews = ref(10)
+// const limitReviews = ref(10)
 const isOpenStockSidebar = ref(false)
 const isLimitProduct = ref(false)
 const limitProduct = ref(0)
 const limitProperty = ref(4)
 const isOpenedPropertyBar = ref(false)
 const question = ref(undefined)
-const questionTitle = ref({
-  charity: "Благотворительность",
-  bonuses: "Начисление баллов",
-  delivery: "Доставка",
-  stock: "Способ получения",
-  recipe: "Рецепт",
-  "with-period": "Клубная цена",
-  "on-order": "Под заказ",
-  country: "Страна",
-  manufacturer: "Производитель",
-  "replacement-additionally-info": "Информация"
-})
+// const questionTitle = ref({
+//   charity: "Благотворительность",
+//   bonuses: "Начисление баллов",
+//   delivery: "Доставка",
+//   stock: "Способ получения",
+//   recipe: "Рецепт",
+//   "with-period": "Клубная цена",
+//   "on-order": "Под заказ",
+//   country: "Страна",
+//   manufacturer: "Производитель",
+//   "replacement-additionally-info": "Информация"
+// })
 const PREPARED_PRODUCTS_FIELDS = ref(["isInBasket", "isInFavorites"])
-const TOOLTIP_TEXT = ref({
-  "Страна": "Страна производства может отличаться от указанной на сайте. Проверяйте, пожалуйста, при получении заказа.",
-  "Производитель": "Производитель может отличаться от указанного на сайте. Проверяйте, пожалуйста, при получении заказа."
-})
-const isGetRegionPharmacies = ref(false)
-const regionPharmacies = ref([])
-const regionPharmacyStock = ref([])
-const region = ref(undefined)
-const isLoadingRegionPharmacies = ref(false)
-const regionsStock = ref({})
-const fastOrderCity = ref(undefined)
+// const TOOLTIP_TEXT = ref({
+//   "Страна": "Страна производства может отличаться от указанной на сайте. Проверяйте, пожалуйста, при получении заказа.",
+//   "Производитель": "Производитель может отличаться от указанного на сайте. Проверяйте, пожалуйста, при получении заказа."
+// })
+// const isGetRegionPharmacies = ref(false)
+// const regionPharmacies = ref([])
+// const regionPharmacyStock = ref([])
+// const region = ref(undefined)
+// const isLoadingRegionPharmacies = ref(false)
+// const regionsStock = ref({})
+// const fastOrderCity = ref(undefined)
 const isMounted = ref(false)
-const positionTooltipAdditionallyInfo = ref("bottom")
+// const positionTooltipAdditionallyInfo = ref("bottom")
 const rareItemCount = ref(1)
 
 //COMPUTED
@@ -491,7 +491,7 @@ const restrictTypes = computed(() => {
   return restrictTypesStore.list
 })
 const shareLinks = computed(() => {
-  let imageShare = image(SIZE_M),
+  let imageShare = image(SIZE_M.value),
       title = product.value.name,
       t = "".concat(params.value.siteURL, "/product/").concat(product.value.ID, "-").concat(product.value.slug);
   return [{
@@ -513,24 +513,24 @@ const shareLinks = computed(() => {
   }]
 })
 const preparedArticles = computed(() => {
-  // let t = this;
-  // return undefined === this.$data.articleCategories ? [] : this.articles.map((function (a) {
-  //   let e, o, r = (null !== (e = t.$data.articleCategories) && undefined !== e ? e : []).find((function (t) {
-  //         return t.ID === a.categoryID
-  //       })),
-  //       n = z(z({}, a), {}, {
-  //         image: "url(".concat(a.image.endsWith(h.SIZE_S) ? a.image.slice(0, -h.SIZE_S.length) + h.SIZE_L : a.image, ")"),
-  //         route: {
-  //           name: "Article",
-  //           params: {
-  //             ID: "".concat(a.ID),
-  //             slug: a.slug,
-  //             sectionName: "blog"
-  //           }
-  //         }
-  //       });
-  //   return undefined !== r && undefined !== r.parentID && ((null === (o = n.route) || undefined === o ? undefined : o.params).categoryName = r.slug), n
-  // }))
+  return undefined === articleCategories.value ? [] : articles.value.map((a: any) => {
+    let o, r = articleCategories.value.find((t: any) => {
+          return t.ID === a.categoryID
+        }),
+        n = {
+          ...a,
+          image: "url(".concat(a.image.endsWith(uSIZE_S) ? a.image.slice(0, -uSIZE_S.length) + uSIZE_L : a.image, ")"),
+          route: {
+            name: "Article",
+            params: {
+              ID: "".concat(a.ID),
+              slug: a.slug,
+              sectionName: "blog"
+            }
+          }
+        }
+    return undefined !== r && undefined !== r.parentID && ((null === (o = n.route) || undefined === o ? undefined : o.params).categoryName = r.slug), n
+  })
 })
 const hasRegionsStock = computed(() => {
   // let t;
@@ -568,18 +568,34 @@ const rateWidth = computed(() => {
 useListen("change-padding-header-product", () => {
   changePaddingHeader()
 })
-
-onBeforeRouteUpdate((to, from, next) => {
-  isProductReviews.value = "ProductReviews" === to.name
-  window.scrollTo({
+router.afterEach((to, from, next) => {
+  to.hash.length > 0 ? scrollToDescription(to.hash) : window.scrollTo({
     top: 0,
     left: 0,
     behavior: "smooth"
   })
+  isFromCatalog.value = "CatalogCategory" === from.name
+  routeCatalogParams.value = from.params
+})
+
+onBeforeRouteUpdate((to, from, next) => {
+  isProductReviews.value = "ProductReviews" === to.name
+  // window.scrollTo({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth"
+  // })
   next()
 })
 onMounted(() => {
-  isMounted.value = !0
+  route.hash.length > 0 ? scrollToDescription(route.hash) : window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth"
+  })
+
+  isMounted.value = true
+
   let disposableHintCompared = localStorage.getItem("disposable-hint-compared");
   // this.getBannerYouMayNeed()
   window.addEventListener("storage", onStorageChanged)
@@ -589,11 +605,9 @@ onMounted(() => {
   loadViewedProducts()
 
   document.addEventListener("scroll", checkScroll)
-  // this.getArticlesRandom()
-  // this.$store.dispatch("viewedProducts/".concat(l.VIEWED_PRODUCTS.GET_ID))
+  getArticlesRandom()
 
   internalItems.value = [...basketItems.value]
-
 
   if (city.value.ID) {
     init().finally(() => {
@@ -735,25 +749,27 @@ function openStockSidebar() {
 }
 
 function formattedCreationTime(s: any) {
-  // let t = v.r.toDate(s);
-  // return undefined !== t ? v.s.format(t, "d.m.Y") : "Не известно"
+  let t = uToDate(s);
+  return undefined !== t ? uFormat(t, "d.m.Y") : "Не известно"
 }
 
-function getArticlesRandom(t: any) {
-  // let e = this,
-  //     o = this.$data.articleCategories.reduce((function (t, e) {
-  //       return "news" !== e.slug && t.push(e.ID), t
-  //     }), []),
-  //     filter = "categoryID={".concat(o.join(), "}").concat(t ? "" : "&products=".concat(product.value.ID), "[0:2]");
-  // f.a.articles.get(filter, ["ID", "categoryID", "slug", "title", "image", "creationTime", "views", "readingTime", "commentsCount"], "random").then((function (a) {
-  //   e.articles = null != a ? a : [], null === a && e.getArticlesRandom(true)
-  // })).catch((function (o) {
-  //   t || e.getArticlesRandom(true), e.error(o)
-  // })).finally((function () {
-  //   e.$nextTick((function () {
-  //     e.checkHeight()
-  //   }))
-  // }))
+function getArticlesRandom(t?: any) {
+  let o = articleCategories.value.reduce((t: any, e: any) => {
+        "news" !== e.slug && t.push(e.ID)
+        return t
+      }, []),
+      filter = "categoryID={".concat(o.join(), "}").concat(t ? "" : "&products=".concat(product.value.ID), "[0:2]");
+  useNuxtApp().$api.articles.get(filter, ["ID", "categoryID", "slug", "title", "image", "creationTime", "views", "readingTime", "commentsCount"], "random").then((a: any) => {
+    articles.value = null != a ? a : []
+    null === a && getArticlesRandom(true)
+  }).catch((o) => {
+    t || getArticlesRandom(true)
+    error(o)
+  }).finally(() => {
+    nextTick(() => {
+      checkHeight()
+    })
+  })
 }
 
 function pluralizeRestrictAge(t: any) {
@@ -854,55 +870,53 @@ function addToBasket(t: any, e: any) {
 }
 
 function checkHeight() {
-  // let t, e, o, r, n, c, d, l = this,
-  //     v = null !== (t = this.$refs.recommendations) && undefined !== t ? t : {},
-  //     h = (null !== (o = null === (e = this.$refs.description) || undefined === e ? undefined : e.clientHeight) && undefined !== o ? o : 0) + 50,
-  //     m = null !== (c = (null !== (r = v.clientHeight) && undefined !== r ? r : 0) + (null !== (n = this.$refs.articles) && undefined !== n ? n : {}).clientHeight) && undefined !== c ? c : 0;
-  // h < m && (this.$refs.articles.style.display = "none", h < (null !== (d = v.clientHeight) && undefined !== d ? d : 0) && Array.from(v.children[1].children).forEach((function (t, i) {
-  //   i > 1 && (t.style.display = "none")
-  // })), this.$nextTick((function () {
-  //   let t, e;
-  //   h < (null !== (e = (null !== (t = l.$refs.recommendations) && undefined !== t ? t : {}).clientHeight) && undefined !== e ? e : 0) && (Array.from(v.children[1].children).forEach((function (t, i) {
-  //     i > 0 && (t.style.display = "none")
-  //   })), l.isHorizontalCardMode = true)
-  // })))
+  let c, d,
+      v = recommendationsRef.value,
+      h = (descriptionRef.value.clientHeight ? descriptionRef.value.clientHeight : 0) + 50,
+      m = null !== (c = (v.clientHeight ? v.clientHeight : 0) + articlesRef.value.clientHeight) && undefined !== c ? c : 0;
+  h < m && (articlesRef.value.style.display = "none", h < (null !== (d = v.clientHeight) && undefined !== d ? d : 0) && Array.from(v.children[1].children).forEach((t: any, i: any) => {
+    i > 1 && (t.style.display = "none")
+  }), nextTick(() => {
+    h < (recommendationsRef.value.clientHeight ? recommendationsRef.value.clientHeight : 0) && (Array.from(v.children[1].children).forEach((t: any, i: any) => {
+      i > 0 && (t.style.display = "none")
+    }), isHorizontalCardMode.value = true)
+  }))
 }
 
 function addToComparison() {
-  // let t, e = this;
-  // if (!this.isComparisonLoading) {
-  //   this.isComparisonLoading = true;
-  //   let o = v.c.clone(this.comparisonProducts);
-  //   if (this.isInComparison) {
-  //     let r = null !== (t = o.find((function (p) {
-  //       return p.categoryID === e.productCategory.ID
-  //     }))) && undefined !== t ? t : {};
-  //     o = 1 === r.productIDs.length ? o.filter((function (p) {
-  //       return p.categoryID !== e.productCategory.ID
-  //     })) : o.filter((function (p) {
-  //       return p.categoryID === e.productCategory.ID && (p.productIDs = p.productIDs.filter((function (t) {
-  //         return t !== e.productID
-  //       }))), p
-  //     }))
-  //   } else undefined === o.find((function (t) {
-  //     return t.categoryID === e.productCategory.ID
-  //   })) ? (o.push({
-  //     categoryID: this.productCategory.ID,
-  //     productIDs: [this.productID]
-  //   }), this.sendNoticeCompare()) : o.map((function (t) {
-  //     return t.categoryID === e.productCategory.ID && (t.productIDs.length < 6 ? (t.productIDs.push(e.productID), e.sendNoticeCompare(), 6 !== t.productIDs.length || e.isMobile || e.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-  //       status: "compare-limited",
-  //       productCategoryName: e.productCategory.name.length > 21 && !e.isMobile ? "".concat(e.productCategory.name.slice(0, 21), "...") : e.productCategory.name
-  //     })) : e.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-  //       title: "Ошибка",
-  //       desc: 'В сравнении может быть только <br> 6 товаров данной категории.<br><br><a href="/compare" class="hover-bottom-line">Перейти в сравнение</a>',
-  //       status: "error"
-  //     })), t
-  //   }));
-  //   this.$store.dispatch("comparisonProducts/".concat(l.COMPARISON_PRODUCTS.UPD), o).finally((function () {
-  //     e.isComparisonLoading = false
-  //   }))
-  // }
+  if (!isComparisonLoading.value) {
+    isComparisonLoading.value = true;
+    let o: any = [...comparisonProducts.value];
+    if (isInComparison.value) {
+      let r = o.find((p: any) => {
+        return p.categoryID === productCategory.value.ID
+      })
+      o = 1 === r.productIDs.length ? o.filter((p: any) => {
+        return p.categoryID !== productCategory.value.ID
+      }) : o.filter((p: any) => {
+        return p.categoryID === productCategory.value.ID && (p.productIDs = p.productIDs.filter((t: any) => {
+          return t !== props.productID
+        })), p
+      })
+    } else undefined === o.find((t: any) => {
+      return t.categoryID === productCategory.value.ID
+    }) ? (o.push({
+      categoryID: productCategory.value.ID,
+      productIDs: [props.productID]
+    }), sendNoticeCompare()) : o.map((t: any) => {
+      return t.categoryID === productCategory.value.ID && (t.productIDs.length < 6 ? (t.productIDs.push(props.productID), sendNoticeCompare(), 6 !== t.productIDs.length || isMobile.value || notificationsStore.NOTIFICATIONS_UPD({
+        status: "compare-limited",
+        productCategoryName: productCategory.value.name.length > 21 && !isMobile.value ? "".concat(productCategory.value.name.slice(0, 21), "...") : productCategory.value.name
+      })) : notificationsStore.NOTIFICATIONS_UPD({
+        title: "Ошибка",
+        desc: 'В сравнении может быть только <br> 6 товаров данной категории.<br><br><a href="/compare" class="hover-bottom-line">Перейти в сравнение</a>',
+        status: "error"
+      })), t
+    });
+    comparisonProductsStore.COMPARISON_PRODUCTS_UPD(o).finally(() => {
+      isComparisonLoading.value = false
+    })
+  }
 }
 
 function goToReviews(t?: any) {
@@ -920,9 +934,9 @@ function goToLoyal() {
 }
 
 function sendNoticeCompare() {
-  isMobile.value || useNotificationsStore().NOTIFICATIONS_UPD({
+  isMobile.value || notificationsStore.NOTIFICATIONS_UPD({
     status: "compare",
-    image: image(SIZE_XS)
+    image: image(SIZE_XS.value)
   })
 }
 
@@ -995,25 +1009,41 @@ function deleteReview(t: any) {
   // }))
 }
 
-function scrollTodescription(t: any) {
+function scrollToDescription(t: any) {
   if ("#instrukciya-po-primeneniyu" !== t) {
     let e = document.querySelector(t);
     descriptionHash.value = t
-    // smooth(e, -150)
+    uSmooth(e, -150)
   } else goToProduct()
 }
 
 function scrollTo(t: any) {
-  // let e, o = null !== (e = this.$refs[t].$el) && undefined !== e ? e : this.$refs[t];
-  // v.q.smooth(o, this.isMobile ? -60 : -150)
+  let o = vProductRef.value;
+  switch (t) {
+    case "reviews":
+      o = reviewsRef.value
+      break;
+    case "description":
+      o = descriptionRef.value
+      break;
+    case "replacements":
+      o = replacementsRef.value
+      break;
+    case "properties":
+      o = propertiesRef.value
+      break;
+    default:
+      break;
+  }
+  uSmooth(o, isMobile.value ? -60 : -150)
 }
 
 function error(t: any) {
-  // this.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
-  //   title: "Произошла ошибка",
-  //   desc: t,
-  //   status: "error"
-  // })
+  notificationsStore.NOTIFICATIONS_UPD({
+    title: "Произошла ошибка",
+    desc: t,
+    status: "error"
+  })
 }
 
 function esc(t: any) {
@@ -1900,7 +1930,65 @@ useSeoMeta({
         </div>
 
         <aside v-if="!isProductReviews && hasDescription">
-          t.isFailedGettingRecommend || !t.hasRecommend || t.isSwapReplacementSlider
+          <template v-if="isFailedGettingRecommend || !hasRecommend || isSwapReplacementSlider"></template>
+          <template v-else>
+            <div ref="recommendationsRef" class="recommendations">
+              <h3>Вам может понадобиться</h3>
+              <div>
+                <ProductCProductCard v-for="(e,r) in preparedProducts(recommendations, PREPARED_PRODUCTS_FIELDS)"
+                                     v-show="isShowBannerCard ? r < 3 : r < 4" :key="r" :basket-items="basketItems"
+                                     :favorites-items="favoritesItems" :city="city" :has-loyal-card="hasLoyalCard"
+                                     :index="r" :is-authorized="isAuthorized"
+                                     :is-basket-loading="loadingBasketProductIDs.includes(e.ID)"
+                                     :is-basket-updating="updatingBasketProductIDs.includes(e.ID)"
+                                     :is-favorites-loading="loadingFavoritesProductIDs.includes(e.ID)"
+                                     :is-horizontal-mode="isHorizontalCardMode" :product="e"
+                                     :product-categories="productCategories" :product-subtypes="productSubtypes"
+                                     :product-types="productTypes" no-microdata-needed size="m"
+                                     v-on:add-to-basket="addToBasket"
+                                     v-on:add-to-favorites="addToFavorites"
+                                     v-on:basket-item-update="updateBasketItem"
+                                     v-on:basket-store-update="updateBasketStore"
+                                     v-on:favorites-store-update="updateFavoritesStore"/>
+                <div v-if="isShowBannerCard">
+                  cBannerCard
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <div ref="articlesRef" class="articles">
+            <h3>Полезные статьи</h3>
+            <NuxtLink v-for="(a,i) in preparedArticles" :key="i" :to="a.route">
+              <span class="image" :style="{ backgroundImage: a.image }"/>
+              <div class="flex-vertical-nowrap">
+                <span>{{ a.title }}</span>
+                <div class="meta-info">
+                  <div>
+                    <span>
+                      <span class="icon calendar2"/>
+                      {{ formattedCreationTime(a.creationTime) }}
+                    </span>
+                    <span>
+                      <span class="icon clock2"/>
+                      {{ a.readingTime }} мин. чтения
+                    </span>
+                  </div>
+                  <div>
+                    <span v-if="a.views > 0">
+                      <span class="icon eye-open2"/>
+                      {{ a.views }}
+                    </span>
+                    <span v-if="a.commentsCount > 0">
+                      <span class="icon comment2"/>
+                      {{ a.commentsCount }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </NuxtLink>
+          </div>
+
         </aside>
       </div>
 
@@ -1931,7 +2019,7 @@ useSeoMeta({
                          v-on:go-to-reviews="goToReviews"
                          v-on:open-close-sidebar="changePaddingHeader"/>
 
-        <NuxtLink v-if="!isProductReviews && totalCountReviews > 2 && isShowReviews && !isRecipe" class="reviews-link"
+        <NuxtLink v-if="!isProductReviews && totalCountReviews > 2 && isShowReviews" class="reviews-link"
                   :to='{ name: "ProductReviews", params: { productID: "" + product.ID, productSlug: "" + product.slug } }'>
           Читать все отзывы
         </NuxtLink>

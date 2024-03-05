@@ -1,4 +1,4 @@
-export default function (basket: any) {
+export default function (basket: any, i?: any) {
     const meStore = useMeStore()
     const basketStore = useBasketStore()
     if ("undefined" == typeof window) return {

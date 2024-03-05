@@ -9,17 +9,12 @@ export default <RouterConfig>{
             r: any = false,
             c: any = [t];
         r = {
-            left: 0,
             top: 0,
+            left: 0,
             behavior: "smooth"
         }
-        n && (r = n)
+        n && (r = {...n, behavior: "smooth"})
         let d: any = void 0 !== t.params.productID && void 0 !== e.params.productID;
-
-        t.path === e.path && t.hash !== e.hash && await nextTick(() => {
-            // return this!.$emit("triggerScroll")
-        })
-        console.log(r)
         return new Promise(async (resolve) => {
             nuxtApp.hooks.hookOnce('page:finish', () => {
                 if (t.hash) {
