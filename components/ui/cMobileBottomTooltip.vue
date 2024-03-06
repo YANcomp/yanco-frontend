@@ -48,7 +48,7 @@ const appStore = useAppStore()
 const emit = defineEmits(["close"])
 
 onMounted(() => {
-  props.isHideFooter && appStore.HIDE_MOBILE_FOOTER(true), setTimeout(() => {
+  props.isHideFooter && appStore.COMMIT_HIDE_MOBILE_FOOTER(true), setTimeout(() => {
     isClosed.value = false, isOpened.value = true
   }, timeoutOpenedDelay.value), setTimeout(() => {
     isOpenedContent.value = true
@@ -59,7 +59,7 @@ function close() {
   props.isForbiddenClose && !props.closed || (isClosed.value = true, setTimeout(() => {
     isOpened.value = false
   }, 300), setTimeout(() => {
-    props.isHideFooter && appStore.HIDE_MOBILE_FOOTER(false), emit("close", props.mobileBottomTooltipName)
+    props.isHideFooter && appStore.COMMIT_HIDE_MOBILE_FOOTER(false), emit("close", props.mobileBottomTooltipName)
   }, 600))
 }
 </script>

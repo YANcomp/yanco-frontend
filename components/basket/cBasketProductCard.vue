@@ -81,7 +81,8 @@ const isSelected = ref(props.product.isSelected)
 const lastTouchLeft = ref(0)
 const rounding = uRounding
 const preparedProducts = uPrepared
-const emit = defineEmits(["drag", "remove", "add-to-favorites", "add-to-favorites-product-might-need", "add-to-basket", "add-to-basket-product-might-need", "open-product-curtain", "basket-store-update", "basket-item-update", "restore"])
+const emit = defineEmits(["basket-item-select", "drag", "remove", "add-to-favorites", "add-to-favorites-product-might-need", "add-to-basket", "add-to-basket-product-might-need", "open-product-curtain", "basket-store-update", "basket-item-update", "restore"])
+
 const cardLeftPosPx = computed(() => {
   return "" + cardLeftPos.value + "px"
 })
@@ -98,11 +99,17 @@ const isFavorite = computed(() => {
   return props.favoritesItemsIDs.includes(props.product.productID)
 })
 
-watch(() => props.canBeDragged, () => {
+watch(() => props.canBeDragged, (value) => {
+  value || (cardLeftPos.value = 0)
 })
-watch(() => props.product, () => {
+watch(() => props.product, (value) => {
+  isSelected.value = value.isSelected
 })
-watch(() => isSelected.value, () => {
+watch(() => isSelected.value, (value) => {
+  emit("basket-item-select", {
+    ...props.product,
+    isSelected: value
+  })
 })
 
 function addToBasketProductMightNeed() {
@@ -191,11 +198,11 @@ function restore(t: any) {
 }
 
 function basketSticker(t: any) {
-  return V.c[t]
+  return uBasketSticker[t]
 }
 
 function sticker(t: any) {
-  return V.q[t]
+  return uDiscountTemplate[t]
 }
 
 function updateBasketItem(t: any) {
@@ -243,7 +250,14 @@ function openProductCurtain() {
         <div>
           <UiCCheckbox mode="default" v-model:checked="isSelected"/>
           <NuxtLink class="image" :to="product.route">
-            <!--            <span>sticker</span>-->
+            <template v-if="product.discountTemplate && void 0 !== basketSticker(product.discountTemplate)">
+              <span :class='["sticker", { text: ![1, 2, 3].includes(basketSticker(product.discountTemplate).ID) }]'
+                    :style='{ background: basketSticker(product.discountTemplate).background }'>
+                {{
+                  [1, 2, 3].includes(basketSticker(product.discountTemplate).ID) ? product.sticker : basketSticker(product.discountTemplate).text
+                }}
+              </span>
+            </template>
             <img :alt='product.images ? product.name : "Изображение отсутствует"' :src="image"
                  data-tooltip="Перейти на страницу товара" width="100%" height="100%"/>
           </NuxtLink>
@@ -259,10 +273,138 @@ function openProductCurtain() {
 
             <div v-if="void 0 !== product.price"
                  :class='["price", { "has-discount": product.isLoyal ? void 0 !== preparedCheckItems[product.productID] && preparedCheckItems[product.productID].discount > 0 : product.isRank ? hasDiscountByAction(product.productID) && preparedCheckItems[product.productID].discount > 0 : hasDiscountByAction(product.productID), "no-paid-period": !hasPaidPeriod, "one-count": 1 === productCount }]'>
-              <!--             TODO end [n("div", [t.product.isLoyal ? [n("span", [t._v("По акции")]), t._v(" "), n("span", {-->
+              <div>
+                <template v-if="product.isLoyal">
+                  <span>По акции</span>
+                  <span class="loyal">
+                    {{
+                      hasDiscountByAction(product.productID) ? rounding(preparedCheckItems[product.productID].price) : product.price.withCard * productCount
+                    }} ₽
+                  </span>
+                  <div v-if="productCount > 1 && hasPaidPeriod">
+                    {{ product.price.withCard }} ₽/уп.
+                  </div>
+                  <div
+                      v-if="void 0 !== preparedCheckItems[product.productID] && preparedCheckItems[product.productID].discount > 0"
+                      class="discount">
+                    {{ "Скидка " + rounding(preparedCheckItems[product.productID].discount) + " ₽" }}
+                  </div>
+                </template>
+                <template v-if="product.isRank">
+                  <span>{{ hasDiscountByAction(product.productID) ? "По акции" : "Клубная цена" }}</span>
+                  <span :class='{ loyal: hasDiscountByAction(product.productID) }'>
+                    {{
+                      hasDiscountByAction(product.productID) ? rounding(preparedCheckItems[product.productID].price) : product.price.withPeriod * productCount + " ₽"
+                    }}
+                  </span>
+                  <div v-if="productCount > 1 && hasPaidPeriod">
+                    {{ product.price.withPeriod }} ₽/уп.
+                  </div>
+                  <div
+                      v-if="void 0 !== preparedCheckItems[product.productID] && preparedCheckItems[product.productID].discount > 0"
+                      class="discount">
+                    {{ "Скидка " + rounding(preparedCheckItems[product.productID].discount) + " ₽" }}
+                  </div>
+                </template>
+              </div>
+              <div>
+                <span>Цена</span>
+                <span>{{ product.price.withoutCard * productCount + " ₽" }}</span>
+                <div v-if="productCount > 1">{{ product.price.withoutCard + " ₽/уп." }}</div>
+              </div>
+            </div>
+
+            <div v-if="product.isRecipe && currentWidth < 610" class="is-recipe">
+              <span class="icon prescription-mini"/>
+              Отпускается по рецепту
             </div>
           </div>
+          <div class="buttons">
+            <template v-if="isAdditional && isWidthForPhone">
+              <UiCButton :size='isMobile ? "s" : "m"' :is-loading="isBasketLoading" mode="primary"
+                         @click="addToBasket(product)">
+                <span v-if="!isBasketLoading" class="icon add-basket"/>
+                <span>В корзину</span>
+              </UiCButton>
+              <span v-if="product.isAvailable || !product.isAvailable && !isMobile"
+                    :data-tooltip='isFavorite ? "Удалить из избранного" : "Добавить в избранное"'
+                    :class='["icon favorite", { active: isProductFavoriteActive, heart2: isFavorite, "heart-outline3": !isFavorite || isFavorite }]'
+                    @click="addToFavorites" @mousedown="favoriteMouseDown" @mouseup="favoriteMouseUp"
+                    @mouseout="favoriteMouseOut"/>
+            </template>
+            <template v-if="isAdditional && !isWidthForPhone">
+              <div class="add-to-basket" data-tooltip="Добавить в корзину" @click="addToBasket(product)">
+                <span v-if="isBasketLoading" class="icon spinner"/>
+                <span v-else class="icon add-basket"/>
+              </div>
+              <span v-if="product.isAvailable || !product.isAvailable && !isMobile"
+                    :data-tooltip='isFavorite ? "Удалить из избранного" : "Добавить в избранное"'
+                    :class='["icon favorite", { active: isProductFavoriteActive, heart2: isFavorite, "heart-outline3": !isFavorite || isFavorite }]'
+                    @click="addToFavorites" @mousedown="favoriteMouseDown" @mouseup="favoriteMouseUp"
+                    @mouseout="favoriteMouseOut"/>
+            </template>
+          </div>
+
+          <template v-if="!isAdditional">
+            <template v-if="!isWidthForPhone">
+              <span v-if="product.deliveryRuleID && isCityAllowDelivery" class="icon free-ship"
+                    data-tooltip="Доставим бесплатно"/>
+              <span v-else-if="product.allowDelivery" class="icon truck" data-tooltip="Доставим на дом"/>
+              <span v-else class="icon2"/>
+            </template>
+
+            <div class="quantity">
+              <BasketCBasketProduct :basket-items="basketItems" :has-loyal-card="hasLoyalCard"
+                                    :is-authorized="isAuthorized" :product-i-d="product.productID"
+                                    :is-basket-updating="isBasketUpdating" :is-vertical="isQuantityVertical" is-basket
+                                    @basket-item-update="updateBasketItem" @basket-store-update="updateBasketStore"
+                                    @remove="remove(product)"/>
+            </div>
+
+            <div v-if="!isMobile" class="icons">
+              <span v-if="forBasketPage" :data-tooltip='isFavorite ? "Удалить из избранного" : "Добавить в избранное"'
+                    :class='["icon favorite", { active: isProductFavoriteActive, heart2: isFavorite, "heart-outline3": !isFavorite, mobile: isMobile }]'
+                    @click="addToFavorites" @mousedown="favoriteMouseDown" @mouseup="favoriteMouseUp"
+                    @mouseout="favoriteMouseOut"/>
+
+              <span class="icon trash2" data-tooltip="Удалить товар из корзины" @click="remove(product)"/>
+            </div>
+          </template>
         </div>
+
+        <template v-if="isAdditional || product.isRemoved"/>
+        <template v-else>
+          <div
+              v-if="product.discountTemplate && void 0 !== sticker(product.discountTemplate) && ![7, 8, 9, 10, 11, 12, 13].includes(sticker(product.discountTemplate).ID)"
+              :class='["alert", "discount", { used: hasDiscountByAction(product.productID) }]'>
+            <span v-if="hasDiscountByAction(product.productID)" class="icon success-alert"/>
+            {{ hasDiscountByAction(product.productID) ? "Ура! Вы воспользовались акцией." : product.sticker }}
+          </div>
+
+          <div v-if='"n+m" === product.discountTemplate'
+               :class='["alert", "discount", { used: hasDiscountByAction(product.productID) }]'>
+            <span v-if="hasDiscountByAction(product.productID)" class="icon success-alert"/>
+            {{
+              hasDiscountByAction(product.productID) ? "Ура! Вы воспользовались акцией." : "Хотите воспользоваться акцией? Положите в корзину " + discountByAction(product.sticker) + " уп."
+            }}
+          </div>
+
+          <div v-if="product.isLimitReached" class="alert limit-reached">
+            {{
+              "Достигнут лимит покупки товара. Допустимо: " + (hasLoyalCard ? product.limitWithCard : product.limitWithoutCard) + " уп."
+            }}
+          </div>
+
+          <div v-if="!product.isInStock && !product.isRemoved" class="alert under-the-order">
+            Под заказ
+          </div>
+
+          <template
+              v-if="product.isRemoved || void 0 === productTheMightNeed || product.productID !== productTheMightNeed.parentID"/>
+          <template v-else>
+            cBasketOfferedProduct
+          </template>
+        </template>
       </template>
 
     </div>

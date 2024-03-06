@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const emit = defineEmits(["modal-electronic-check-show", "basket-store-update", "basket-item-select", "basket-item-update", "basket-update", "add-to-basket", "add-to-favorites", "basket-changing"])
+const emit = defineEmits(["internal-items-count-change", "basket-select-all", "modal-electronic-check-show", "basket-store-update", "basket-item-select", "basket-item-update", "basket-update", "add-to-basket", "add-to-favorites", "basket-changing"])
 const props = defineProps({
   basketCount: {
     type: Number
@@ -8,7 +8,7 @@ const props = defineProps({
     type: Number
   },
   basketItems: {
-    type: Array
+    type: <any>Array
   },
   city: {
     type: Object
@@ -64,7 +64,7 @@ const props = defineProps({
     default: 0
   },
   params: {
-    type: Object
+    type: <any>Object
   },
   possiblePrices: {
     type: Object
@@ -128,10 +128,18 @@ const buyForButtonRoute = computed(() => {
   return props.isAuthorized && props.hasPaidPeriod ? "loyal" : "account-subscription"
 })
 
-// isSelectedAll
-const isSelectedAll = computed(() => {
-  return false
+
+const isSelectedAll = computed({
+  set: function (t: any) {
+    emit("basket-select-all", t)
+  },
+  get: function () {
+    return props.basketItems.every((i: any) => {
+      return i.isSelected
+    }) && 0 !== props.basketItems.length
+  }
 })
+
 const hasDeliveryRuleIDs = computed(() => {
   return selectedBasketItems.value.some((t: any) => {
     return t.deliveryRuleID
@@ -198,35 +206,115 @@ const selectedBasketItems = computed(() => {
   })
 })
 
-watch(() => isHideMobileFooter.value, () => {
+watch(() => isHideMobileFooter.value, (value) => {
+  value && (lastDraggedItemIndex.value = null)
 })
 watch(() => isModeBuyPeriods.value, () => {
 })
 watch(() => periods.value, () => {
 })
-watch(() => route.path, () => {
+watch(() => route.query, (value) => {
+  Object.keys(value).length > 0 && props.hasPaidPeriod && router.push({
+    name: "basket"
+  })
+  isModeBuyPeriods.value = Object.keys(value).length > 0 && !props.hasPaidPeriod
 })
 watch(() => isSubscribePeriods.value, () => {
 })
 watch(() => props.favoritesItems, () => {
+  internalItems.value = preparedProducts(internalItems.value, B.value)
 })
-watch(() => internalItems.value, () => {
+watch(() => internalItems.value, (value) => {
+  emit("internal-items-count-change", value.length)
+  value.length > 0 && basketOfferedProducts.value.length < props.params.basketOfferedProductsIDs.length && !isGettingBasketOferredProducts.value && getBasketOfferedProducts()
 })
-watch(() => props.basketItems, () => {
+watch(() => props.basketItems, (value) => {
+  setTimeout(() => {
+    value.length > 0 && value.some((i: any) => {
+      return void 0 !== i.mightNeedID
+    }) && getProductsTheMightNeed()
+  }, 0)
 })
 watch(() => productsTheMightNeed.value, () => {
 })
-watch(() => props.isAuthorized, () => {
+watch(() => props.isAuthorized, (value) => {
+  value || (internalItems.value = [])
 })
-watch(() => isOpenMobileBottomTooltip.value, () => {
+watch(() => isOpenMobileBottomTooltip.value, (value) => {
+  overlayRef.value.style.zIndex = value ? "999" : "997"
 })
-watch(() => isOpenedModal.value, () => {
+watch(() => isOpenedModal.value, (value) => {
+  let n = overlayRef.value;
+  setTimeout(() => {
+    n.style.zIndex = value ? "999" : currentWidth.value > 930 ? "998" : "997"
+  }, value ? 0 : 300)
 })
-watch(() => isWidthForPhone.value, () => {
+watch(() => isWidthForPhone.value, (value) => {
+  isOpenPromocode.value && value && (isOpenPromocode.value = !1)
+  props.isMobile || appStore.COMMIT_HIDE_CHAT_BOT(value)
 })
-watch(() => preparedBasketProducts.value, () => {
+watch(() => preparedBasketProducts.value, (t: any) => {
+  let isRemoved = <any>{}
+  internalItems.value.forEach((value: any) => {
+    value.isRemoved && (isRemoved[internalItems.value.findIndex((t: any) => {
+      return t === value
+    })] = value)
+  })
+
+  let isRestored = <any>{}
+  internalItems.value.forEach((value: any) => {
+    value.isRestored && (isRestored[internalItems.value.findIndex((t: any) => {
+      return t === value
+    })] = value)
+  })
+
+  if (internalCityID.value !== props.city?.ID) {
+    internalItems.value = [...t]
+    internalCityID.value = props.city?.ID;
+  } else {
+    t.forEach((i: any) => {
+      internalItems.value.findIndex((t: any) => {
+        return t.productID === i.productID
+      }) < 0 && internalItems.value.splice(t.findIndex((t: any) => {
+        return t === i
+      }), 0, i)
+      internalItems.value.some((t: any) => {
+        return t.productID === i.productID && (t.count !== i.count || t.isSelected !== i.isSelected)
+      }) && (internalItems.value = t.reduce((t: any, e: any) => {
+        e.isRemoved || t.push({...e})
+        return t
+      }, []))
+    })
+
+    if (internalItems.value.length !== t.length && (internalItems.value = t.reduce((t: any, e: any) => {
+      t.push({...e})
+      return t
+    }, [])), Object.keys(isRemoved).length > 0) {
+      let A = function (i: any) {
+        if (void 0 === t.find((t: any) => {
+          return t.productID === isRemoved[i].productID
+        })) internalItems.value.splice(Number(i), 0, isRemoved[i]);
+        else {
+          let e = internalItems.value.find((t: any) => {
+            return t.productID === isRemoved[i].productID
+          });
+          e && (e.isRemoved = !1)
+        }
+      };
+      for (let i in isRemoved) A(i)
+    }
+    if (Object.keys(isRestored).length > 0) {
+      let C = function (e: any) {
+        void 0 === t.find((t: any) => {
+          return t.productID === isRestored[e].productID
+        }) && internalItems.value.splice(Number(e), 0, isRestored[e])
+      };
+      for (let S in isRestored) C(S)
+    }
+  }
 })
-watch(() => props.me, () => {
+watch(() => props.me, (value) => {
+  void 0 !== value && (isElectronicCheckAgree.value = value.isElectronicCheckAgree)
 })
 
 internalItems.value = [...preparedBasketProducts.value]
@@ -334,13 +422,13 @@ function getBasketOfferedProducts() {
   // }
 }
 
-function closeModal(t: any) {
+function closeModal(t?: any) {
   isWidthForPhone.value ? (needClosedMobileBottomTooltip.value = !0, setTimeout(() => {
     needClosedMobileBottomTooltip.value = !1
   }, 600)) : openCloseModal("boolean" == typeof t && t)
 }
 
-function openCloseModal(t: any) {
+function openCloseModal(t?: any) {
   isModalTargetBindings.value = Boolean(t)
   isOpenedModal.value = !isOpenedModal.value
 }
@@ -530,8 +618,12 @@ function onScroll() {
 
 function openCloseMobileBottomTooltip(t: any) {
   isOpenedModal.value && isModalTargetBindings.value && (isModalTargetBindings.value = !1)
-  // this.$data[t] = !this.$data[t]
-  //TODO
+  switch (t) {
+    case "isOpenedModal":
+      isOpenedModal.value = !isOpenedModal.value
+    case "isOpenPromocode":
+      isOpenPromocode.value = !isOpenPromocode.value
+  }
 }
 
 function openPromocode() {
@@ -542,7 +634,7 @@ function openPromocode() {
 function remove(t: any) {
   t.isRemoved = true
   t.isRestored = false
-  // this.$set(t, "isRemoved", !0), this.$set(t, "isRestored", !1), this.commit(!1)
+  commit(true)
 }
 
 function removeSelected(e?: any) {
@@ -562,11 +654,8 @@ function resize() {
 function restore(t: any) {
   t.isRemoved = false
   t.isRestored = true
-  // this.$set(t, "isRemoved", !1)
-  // this.$set(t, "isRestored", !0)
-  // this.commit(!1)
+  commit(true)
 }
-
 
 function update() {
   emit("basket-update", internalItems.value)
@@ -593,7 +682,12 @@ function updateBasketStore(t: any) {
           Корзина
           <span v-if="basketCount > 0" class="count">({{ basketCount }})</span>
         </p>
-        <div v-if="!isHideAlert">cAlert</div>
+        <UiCAlert v-if="!isHideAlert" :class="{ opened: isShowAlert, closed: isClosedAlert }" closeable squeezing
+                  status="warning" @close="closeAlert">
+          <template v-slot:desc>
+            Цены в аптечных пунктах могут отличаться от цен, указанных на сайте.
+          </template>
+        </UiCAlert>
         <div class="top">
           <div>
             <UiCCheckbox mode="default" v-model:checked="isSelectedAll">
@@ -643,7 +737,7 @@ function updateBasketStore(t: any) {
         <div class="total">
           <template v-if="isBasketChanging">
             <div>
-              <LazyUiCSpinner v-if="isBasketChanging" position="relative"/>
+              <UiCSpinner v-if="isBasketChanging" position="relative"/>
             </div>
           </template>
 
@@ -662,9 +756,9 @@ function updateBasketStore(t: any) {
               <span>{{ rounding(isAuthorized ? totalPrice : possiblePrices.withoutCard) }} ₽</span>
             </div>
             <div class="promocode">
-              cPromoCode
+              <BasketCPromoCode :actived-promocode="(me || {}).promocode" :is-mobile="isWidthForPhone"
+                                @open="openPromocode"/>
             </div>
-
             <div ref="checkoutButtonRef"
                  :class='["checkout", { hide: isOpenedModal && !isWidthForPhone || isOpenMobileBottomTooltip }]'
                  :style='{ bottom: isMobile ? "0" : "unset" }'>
@@ -680,7 +774,16 @@ function updateBasketStore(t: any) {
       </div>
 
       <template v-if="!isWidthForPhone">
-        <!--        TODO cModalWindow-->
+        <UiCModalWindow :is-opened="isOpenedModal" :is-mobile="isMobile" @close="closeModal(isModalTargetBindings)">
+          <div class="modal-content">
+            <h3>{{ "Удаление товаров" }}</h3>
+            <p>Вы точно хотите удалить выбранные товары из корзины? Отменить это действие будет невозможно.</p>
+            <div>
+              <UiCButton @click="closeModal(isModalTargetBindings)">Отмена</UiCButton>
+              <UiCButton size="l" mode="primary" @click="removeSelected(!0)">Да, хочу</UiCButton>
+            </div>
+          </div>
+        </UiCModalWindow>
       </template>
 
       <template v-if="isOpenMobileBottomTooltip">
@@ -703,7 +806,8 @@ function updateBasketStore(t: any) {
               </div>
             </template>
             <template v-if="isOpenPromocode">
-              cPromoCode
+              <BasketCPromoCode :actived-promocode="(me || {}).promocode" is-mobile is-opened-mobile
+                                @close="closeOverlay"/>
             </template>
           </template>
         </UiCMobileBottomTooltip>
@@ -1218,63 +1322,63 @@ function updateBasketStore(t: any) {
   order: 1
 }
 
-.c-basket > div > .summary > .total > .c-alert {
+.c-basket > div > .summary > .total > :deep(.c-alert) {
   padding: 10px 9px;
   margin-bottom: 10px;
   align-items: center;
   order: 2
 }
 
-.c-basket > div > .summary > .total > .c-alert.info {
+.c-basket > div > .summary > .total > :deep(.c-alert.info) {
   background-color: #f7f8fc
 }
 
-.c-basket > div > .summary > .total > .c-alert.info .desc {
+.c-basket > div > .summary > .total > :deep(.c-alert.info) .desc {
   color: #1e1e1e
 }
 
-.c-basket > div > .summary > .total > .c-alert.info .desc > div {
+.c-basket > div > .summary > .total > :deep(.c-alert.info) .desc > div {
   display: inline-block;
   margin-bottom: -7px
 }
 
-.c-basket > div > .summary > .total > .c-alert.info .desc > a {
+.c-basket > div > .summary > .total > :deep(.c-alert.info) .desc > a {
   color: #3f51b5;
   margin-top: 2px
 }
 
-.c-basket > div > .summary > .total > .c-alert.info .desc > a:hover {
+.c-basket > div > .summary > .total > :deep(.c-alert.info) .desc > a:hover {
   color: #4960df
 }
 
-.c-basket > div > .summary > .total > .c-alert.info .desc > a:active {
+.c-basket > div > .summary > .total > :deep(.c-alert.info) .desc > a:active {
   color: #32408f
 }
 
-.c-basket > div > .summary > .total > .c-alert.success {
+.c-basket > div > .summary > .total > :deep(.c-alert.success) {
   background-color: #ebfef8
 }
 
-.c-basket > div > .summary > .total > .c-alert.success .desc {
+.c-basket > div > .summary > .total > :deep(.c-alert.success) .desc {
   color: #1e1e1e
 }
 
-.c-basket > div > .summary > .total > .c-alert.warning {
+.c-basket > div > .summary > .total > :deep(.c-alert.warning) {
   margin-bottom: 0
 }
 
-.c-basket > div > .summary > .total > .c-alert.warning .desc {
+.c-basket > div > .summary > .total > :deep(.c-alert.warning) .desc {
   color: #ff7a00;
   font-size: 11px;
   line-height: 13px
 }
 
-.c-basket > div > .summary > .total > .c-alert.warning > .warning-alert {
+.c-basket > div > .summary > .total > :deep(.c-alert.warning) > .warning-alert {
   margin-left: -16px;
   margin-right: 14px
 }
 
-.c-basket > div > .summary > .total > .c-alert > .close-alert {
+.c-basket > div > .summary > .total > :deep(.c-alert) > .close-alert {
   margin-left: 0;
   margin-right: -10px
 }
@@ -1417,7 +1521,7 @@ function updateBasketStore(t: any) {
   color: #ff0089
 }
 
-.c-basket > div > .summary > .total > .promocode {
+.c-basket > div > .summary > .total > :deep(.promocode) {
   display: flex;
   margin-top: 5px;
   margin-bottom: 20px;
@@ -1425,33 +1529,33 @@ function updateBasketStore(t: any) {
   -webkit-tap-highlight-color: transparent
 }
 
-.c-basket > div > .summary > .total > .promocode > .c-promo-code > .opened > div > .c-button {
+.c-basket > div > .summary > .total > :deep(.promocode) > .c-promo-code > .opened > div > .c-button {
   max-width: 150px;
   margin: 0;
   height: 40px
 }
 
-.c-basket > div > .summary > .total > .c-alert.info > .icon {
+.c-basket > div > .summary > .total > :deep(.c-alert.info) > .icon {
   margin-right: 5px
 }
 
-.c-basket > div > .summary > .total > .c-alert.info > .message {
+.c-basket > div > .summary > .total > :deep(.c-alert.info) > .message {
   max-width: calc(100% - 23px)
 }
 
-.c-basket > div > .summary > .total > .c-promo-code {
+.c-basket > div > .summary > .total > :deep(.c-promo-code) {
   order: 2
 }
 
-.c-basket > div > .summary > .total > .c-promo-code > .c-edit, .c-basket > div > .summary > .total > .c-promo-code > .c-edit > div > input {
+.c-basket > div > .summary > .total > :deep(.c-promo-code) > .c-edit, .c-basket > div > .summary > .total > :deep(.c-promo-code) > .c-edit > div > input {
   width: 100%
 }
 
-.c-basket > div > .summary > .total > .c-promo-code > .c-button {
+.c-basket > div > .summary > .total > :deep(.c-promo-code) > .c-button {
   margin-top: 0
 }
 
-.c-basket > div > .summary > .total .c-button {
+.c-basket > div > .summary > .total :deep(.c-button) {
   margin-top: 10px;
   max-width: unset;
   height: 46px;
@@ -1495,54 +1599,54 @@ function updateBasketStore(t: any) {
   color: #fff
 }
 
-.c-basket > div .c-alert {
+.c-basket > div :deep(.c-alert) {
   padding: 10px;
   align-items: center
 }
 
-.c-basket > div .c-alert .desc {
+.c-basket > div :deep(.c-alert) .desc {
   font-size: 13.5px;
   line-height: 17px
 }
 
-.c-basket > div .c-alert.info {
+.c-basket > div :deep(.c-alert.info) {
   background-color: #f7f8fc
 }
 
-.c-basket > div .c-alert.info .desc {
+.c-basket > div :deep(.c-alert.info) .desc {
   color: #1e1e1e
 }
 
-.c-basket > div .c-alert.info .desc > div {
+.c-basket > div :deep(.c-alert.info) .desc > div {
   display: inline-block;
   margin-bottom: -7px
 }
 
-.c-basket > div .c-alert.info .desc > div > .free-ship {
+.c-basket > div :deep(.c-alert.info) .desc > div > .free-ship {
   width: 26px;
   height: 26px;
   margin-top: -4px
 }
 
-.c-basket > div .c-alert.success {
+.c-basket > div :deep(.c-alert.success) {
   background-color: #ebfef8;
   padding-top: 18px;
   padding-bottom: 18px
 }
 
-.c-basket > div .c-alert.success .desc {
+.c-basket > div :deep(.c-alert.success) .desc {
   color: #1e1e1e
 }
 
-.c-basket > div .c-alert.warning {
+.c-basket > div :deep(.c-alert.warning) {
   margin-top: 8px
 }
 
-.c-basket > div .c-alert.warning .desc {
+.c-basket > div :deep(.c-alert.warning) .desc {
   color: #ff7a00
 }
 
-.c-basket > div .c-alert > .close-alert {
+.c-basket > div :deep(.c-alert) > .close-alert {
   margin: 0
 }
 
@@ -1603,21 +1707,21 @@ function updateBasketStore(t: any) {
 }
 
 @media screen and (max-width: 610px) {
-  .c-basket > div .c-alert {
+  .c-basket > div :deep(.c-alert) {
     padding: 10px 20px;
     margin: 8px -10px
   }
 
-  .c-basket > div .c-alert .desc {
+  .c-basket > div :deep(.c-alert) .desc {
     font-size: 11px;
     line-height: 13px
   }
 
-  .c-basket > div .c-alert:last-of-type {
+  .c-basket > div :deep(.c-alert:last-of-type) {
     margin-top: 0
   }
 
-  .c-basket > div .c-alert > .close-alert {
+  .c-basket > div :deep(.c-alert) > .close-alert {
     margin-right: -15px
   }
 
@@ -1629,12 +1733,12 @@ function updateBasketStore(t: any) {
     padding: 0 5px
   }
 
-  .c-basket > div > .content > .products > .c-basket-product-card > .card {
+  .c-basket > div > .content > .products > :deep(.c-basket-product-card) > .card {
     box-sizing: border-box;
     padding: 0 5px
   }
 
-  .c-basket > div > .content > .products > .c-basket-product-card > .card.removed {
+  .c-basket > div > .content > .products > :deep(.c-basket-product-card) > .card.removed {
     padding-left: 0
   }
 
@@ -1713,21 +1817,21 @@ function updateBasketStore(t: any) {
     padding: 0
   }
 
-  .c-basket > div > .summary > .total > .c-alert {
+  .c-basket > div > .summary > .total > :deep(.c-alert) {
     order: 1;
     padding: 10px 20px;
     margin: 10px -10px
   }
 
-  .c-basket > div > .summary > .total > .c-alert.warning {
+  .c-basket > div > .summary > .total > :deep(.c-alert.warning) {
     order: 2
   }
 
-  .c-basket > div > .summary > .total > .c-alert:last-of-type {
+  .c-basket > div > .summary > .total > :deep(.c-alert:last-of-type) {
     margin-top: 0
   }
 
-  .c-basket > div > .summary > .total > .c-alert > .close-alert {
+  .c-basket > div > .summary > .total > :deep(.c-alert) > .close-alert {
     margin-right: -15px
   }
 

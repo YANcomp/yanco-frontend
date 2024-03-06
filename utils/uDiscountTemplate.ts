@@ -1,4 +1,4 @@
-export default {
+export default <any>{
     coupon: {
         ID: 1,
         title: "Скидка по купону",
@@ -78,5 +78,40 @@ export default {
     action: {
         ID: 15,
         icon: "action.svg"
+    }
+}
+
+export const uBasketSticker = <any>{
+    discount_size_percent: {
+        ID: 1,
+        background: "linear-gradient(180deg, #FF48C2 0%, #FF407E 100%)"
+    },
+    discount_size_rub: {
+        ID: 2,
+        background: "linear-gradient(93.82deg, #FFB01C 6.86%, #F21448 96.57%)"
+    },
+    "n+m": {
+        ID: 3,
+        background: "linear-gradient(180deg, #9C40E9 0%, #DC56F2 100%)"
+    },
+    profit: {
+        ID: 4,
+        background: "linear-gradient(93.73deg, #DF94FF 7.35%, #FF6298 97.17%)",
+        text: "Выгодно!"
+    },
+    super_price: {
+        ID: 5,
+        background: "linear-gradient(93.52deg, #CA50FA 9.58%, #F77C9C 92.39%)",
+        text: "Супер цена!"
+    },
+    take_present: {
+        ID: 6,
+        background: "linear-gradient(188.24deg, #F46637 8.94%, #7243FD 96.3%)",
+        text: "Подарок!"
+    },
+    "n+present": {
+        ID: 7,
+        background: "linear-gradient(188.24deg, #F46637 8.94%, #7243FD 96.3%)",
+        text: "Подарок!"
     }
 }

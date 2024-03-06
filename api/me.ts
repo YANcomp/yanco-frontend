@@ -48,7 +48,7 @@ class ApiMeModule {
     async applyPromoCode(props: any) {
     }
 
-    async cancelPromoCode(props: any) {
+    async cancelPromoCode(props?: any) {
     }
 
     async getBarcode(props: any) {

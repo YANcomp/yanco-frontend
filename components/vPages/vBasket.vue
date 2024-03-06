@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import {debounce, isEqual} from "lodash-es";
+
 const route = useRoute()
 const router = useRouter()
 const appStore = useAppStore()
@@ -172,29 +174,103 @@ const viewedProductsIDs = computed(() => {
   return viewedProductsStore.viewedProductsIDs
 })
 
-watch(() => check.value, () => {
+watch(() => check.value, (value: any, oldValue: any) => {
+  // var o, n, r, c,
+  //     d = (null !== (n = null === (o = check.value.order) || void 0 === o ? void 0 : o.items) && void 0 !== n ? n : []).reduce((t: any, e: any) => {
+  //       return t[e.productID] || (t[e.productID] = 0), t[e.productID] += e.count, t
+  //     }, {}),
+  //     m = selectedInternalItems.value.reduce((t: any, e: any) => {
+  //       return t[e.productID] = e.count, t
+  //     }, {});
+  // isGettingNewCheck.value = !isEqual(d, m), void 0 === (null == oldValue ? void 0 : oldValue.order) && (null === (r = value.order) || void 0 === r ? void 0 : r.message) && notificationsStore.NOTIFICATIONS_UPD({
+  //   desc: null === (c = value.order) || void 0 === c ? void 0 : c.message,
+  //   status: "warning reverse",
+  //   duration: 0,
+  //   closeable: !0
+  // })
 })
-watch(() => favoritesItems.value, () => {
+watch(() => favoritesItems.value, (value, oldValue) => {
+  (!oldValue || 0 === oldValue.length && 0 === internalFavoritesItemsIDs.value.length) && (internalFavoritesItemsIDs.value = value.map((i: any) => {
+    return i.ID
+  }))
 })
-watch(() => internalItems.value, () => {
+watch(() => internalItems.value, (value) => {
+  value.length < 1 && recentPurchases.value.length < 1 && isAuthorized.value && !isLoading.value && getRecentPurchases(), isAuthorized.value ? (isChangingStore.value = !0, basketStore.BASKET_UPD({
+    items: value,
+    cityID: city.value.ID
+  }).catch((t: any) => {
+    console.log(t)
+    internalItems.value = basketItems.value
+  }).finally(() => {
+    isChangingStore.value = !1
+  })) : saveToLocalStorage(value)
 })
-watch(() => internalFavoritesItemsIDs.value, () => {
+watch(() => internalFavoritesItemsIDs.value, (value) => {
+  isAuthorized.value && favoritesStore.FAVORITES_UPD({
+    cityID: city.value.ID,
+    items: value
+  }).catch((t) => {
+    console.log(t)
+    internalFavoritesItemsIDs.value = favoritesItems.value.map((i: any) => {
+      return i.ID
+    })
+  })
 })
 watch(() => selectedInternalItemsLength.value, () => {
+  // if (isGettingNewCheck.value && nextTick(() => {
+  //   return isGettingNewCheck.value = !0
+  // }), isGettingNewCheck.value = !0, !isAllItemsSelected.value) {
+  //   var o = selectedInternalItems.value.map((t: any) => {
+  //     return {
+  //       productID: t.productID,
+  //       count: t.count
+  //     }
+  //   });
+  // debounce(() => {
+  //   isAllItemsSelected.value || (0 !== o.length ? useNuxtApp().$api.basket.newCheck({
+  //     cityID: city.value.ID,
+  //     items: o
+  //   }).then((t: any) => {
+  //     isAllItemsSelected.value || (check.value = 0 === selectedInternalItems.value.length ? {} : t)
+  //   }).catch((t) => {
+  //     console.log(t)
+  //   }) : check.value = {})
+  // }, 1200)
+  // }
 })
-watch(() => basketItemsLength.value, () => {
+watch(() => basketItemsLength.value, (value) => {
+  value !== internalItems.value.length && (getFromStore())
 })
-watch(() => basketItems.value, () => {
+watch(() => basketItems.value, (value) => {
+  var o = value.reduce((t: any, e: any) => {
+        return t[e.productID] = e.count, t
+      }, {}),
+      n = selectedInternalItems.value.reduce((t: any, e: any) => {
+        return t[e.productID] = e.count, t
+      }, {});
+  isEqual(o, n) && nextTick(() => {
+    return check.value = {...storeCheck}
+  }), isCityChanged.value && (internalItems.value = value, isCityChanged.value = !1)
 })
-watch(() => city.value, () => {
+watch(() => city.value, (value) => {
+  void 0 !== value && viewedProductsIDs.value.length > 0 && viewedProductsStore.VIEWED_PRODUCTS_GET({
+    IDs: viewedProductsIDs.value,
+    cityID: city.value.ID
+  })
+  // isGettingNewCheck.value = !0
+  isCityChanged.value = !0
 })
-watch(() => isAuthorized.value, () => {
+watch(() => isAuthorized.value, (value) => {
+  value && recentPurchases.value.length < 1 && isNoItems.value && isMounted.value && !isLoading.value && getRecentPurchases()
 })
-watch(() => isLoadingRecentProducts.value, () => {
+watch(() => isLoadingRecentProducts.value, (value) => {
+  !value && internalItems.value.length < 1 && buyTodayProducts.value.length < 1 && recentPurchases.value.length < 1 && viewedProductsIDs.value.length < 1 && loadBuyToday()
 })
-watch(() => viewedProductsIDs.value, () => {
+watch(() => viewedProductsIDs.value, (value) => {
+  !isAuthorized.value && internalItems.value.length < 1 && buyTodayProducts.value.length < 1 && value.length < 1 && loadBuyToday()
 })
-watch(() => storeCheck.value, () => {
+watch(() => storeCheck.value, (value) => {
+  isAllItemsSelected.value && (check.value = value)
 })
 
 onMounted(() => {
