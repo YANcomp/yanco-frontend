@@ -13,6 +13,7 @@ const meStore = useMeStore()
 const favoritesStore = useFavoritesStore()
 const catalogStore = useCatalogStore()
 const notificationsStore = useNotificationsStore()
+const viewedProductsStore = useViewedProductStore()
 
 const groupProducts = ref({})
 const groupProductsCount = ref({})
@@ -56,6 +57,15 @@ const productSubtypes = computed(() => {
 })
 const productTypes = computed(() => {
   return catalog.value.types
+})
+const viewedProducts = computed(() => {
+  return viewedProductsStore.items
+})
+const hasViewedProducts = computed(() => {
+  return viewedProductsIDs.value.length > 0
+})
+const viewedProductsIDs = computed(() => {
+  return viewedProductsStore.viewedProductsIDs
 })
 
 const homeBrands = computed(() => {
@@ -153,6 +163,9 @@ onMounted(() => {
       loadStories()
     })
   }
+
+  viewedProductsStore.VIEWED_PRODUCTS_GET_ID()
+  loadViewedProducts()
 })
 
 function loadStories() {
@@ -163,9 +176,23 @@ function loadProductGroups() {
   return productGroupsStore.GET()
 }
 
+function loadViewedProducts() {
+  void 0 !== (city.value.ID) && hasViewedProducts.value && (isLoadingViewedProducts.value = !0, viewedProductsStore.VIEWED_PRODUCTS_GET({
+    IDs: viewedProductsIDs.value,
+    cityID: city.value.ID
+  }).then( ()=> {
+    isFailedGettingViewedProducts.value = !1
+  }).catch( (t:any)=> {
+    isFailedGettingViewedProducts.value = !0
+    error(t)
+  }).finally( ()=> {
+    isLoadingViewedProducts.value = !1
+  }))
+}
+
 function loadSpecialOffers() {
   //TODO
-  let filter = 'groups="special_offer"&cityID='+city.value.ID + "&isAvailable=true[:20]"
+  let filter = 'groups="special_offer"&cityID=' + city.value.ID + "&isAvailable=true[:20]"
 
   return productsStore.PRODUCT_GET_LIST({
     filter: filter,
@@ -176,7 +203,7 @@ function loadSpecialOffers() {
 
 function loadOurProducts() {
   //TODO
-  let filter = 'groups="our_products"&cityID='+city.value.ID + "&isAvailable=true[:20]"
+  let filter = 'groups="our_products"&cityID=' + city.value.ID + "&isAvailable=true[:20]"
 
   return productsStore.PRODUCT_GET_LIST({
     filter: filter,
@@ -189,7 +216,13 @@ function loadOurProducts() {
 function loadProductOfDay() {
   return productsStore.PRODUCT_GET_PRODUCT_OF_DAY(city.value.ID)
 }
-
+function error(err:any) {
+  notificationsStore.NOTIFICATIONS_UPD({
+    title: "Произошла ошибка",
+    desc: err,
+    status: "error"
+  })
+}
 const preparedProducts = uPrepared
 
 function addToBasket(item: any, e: any) {
@@ -368,6 +401,24 @@ useSeoMeta({
                             v-on:favorites-store-update="updateFavoritesStore"/>
 
     <LazyUiCPharmacyChainAdvantages v-if="!isMobile" :pharmacies-count="7500" :regions-count="70"/>
+
+
+    <ProductCProductsSlider v-if="hasViewedProducts"
+                            :basket-items="basketItems"
+                            :favorites-items="favoritesItems" :city="city" :has-loyal-card="hasLoyalCard"
+                            :is-authorized="isAuthorized" :is-mobile="isMobile"
+                            :loading-basket-product-i-ds="loadingBasketProductIDs"
+                            :loading-favorites-product-i-ds="loadingFavoritesProductIDs"
+                            :updating-basket-product-i-ds="updatingBasketProductIDs"
+                            :product-categories="productCategories" :product-subtypes="productSubtypes"
+                            :product-types="productTypes"
+                            :products="viewedProducts.length > 0 ? preparedProducts(viewedProducts, PREPARED_PRODUCTS_FIELDS) : placeholderItems"
+                            title="Вы смотрели"
+                            v-on:add-to-basket="addToBasket"
+                            v-on:add-to-favorites="addToFavorites"
+                            v-on:basket-item-update="updateBasketItem"
+                            v-on:basket-store-update="updateBasketStore"
+                            v-on:favorites-store-update="updateFavoritesStore"/>
   </main>
 </template>
 

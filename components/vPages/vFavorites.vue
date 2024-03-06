@@ -7,6 +7,9 @@ const basketStore = useBasketStore()
 const favoritesStore = useFavoritesStore()
 const citiesStore = useCitiesStore()
 const notificationsStore = useNotificationsStore()
+const viewedProductsStore = useViewedProductStore()
+const meStore = useMeStore()
+const sessionsStore = useSessionsStore()
 
 const isMounted = ref(false)
 const loadingBasketProductIDs = ref(<any>[])
@@ -14,8 +17,6 @@ const loadingFavoritesProductIDs = ref(<any>[])
 const updatingBasketProductIDs = ref(<any>[])
 const isLoadingViewedProducts = ref(false)
 const isFailedGettingViewedProducts = ref(false)
-const isLoadingBuyToday = ref(false)
-const isFailedGettingBuyToday = ref(false)
 const placeholderItems = ref([{}, {}, {}, {}, {}, {}])
 const limit = ref(10)
 const offset = ref(10)
@@ -37,12 +38,10 @@ const hasFavorites = computed(() => {
   return products.value.length > 0
 })
 const hasLoyalCard = computed(() => {
-  //TODO return this.$store.getters["me/hasLoyalCard"]
-  return false
+  return meStore.hasLoyalCard
 })
 const isAuthorized = computed(() => {
-  //TODO return this.$store.getters["sessions/isAuthorized"]
-  return false
+  return sessionsStore.isAuthorized
 })
 const isLoading = computed(() => {
   return appStore.getIsLoading
@@ -66,21 +65,13 @@ const productTypes = computed(() => {
   return catalogStore.catalog.types
 })
 const viewedProducts = computed(() => {
-  // var t;
-  //TODO return null !== (t = this.$store.state.viewedProducts.items) && void 0 !== t ? t : []
-  return []
+  return viewedProductsStore.items
 })
 const hasViewedProducts = computed(() => {
-  //TODO return this.viewedProductsIDs.length > 0
-  return false
-})
-const buyTodayProducts = computed(() => {
-  //TODO return null !== (t = this.$store.state.products.buyToday) && void 0 !== t ? t : []
-  return []
+  return viewedProductsIDs.value.length > 0
 })
 const viewedProductsIDs = computed(() => {
-  //TODO return null !== (t = this.$store.state.viewedProducts.viewedProductsIDs) && void 0 !== t ? t : []
-  return []
+  return viewedProductsStore.viewedProductsIDs
 })
 const totalCount = computed(() => {
   return products.value.length
@@ -96,21 +87,13 @@ const countBarWidth = computed(() => {
 })
 
 watch(() => city.value, () => {
-  //TODO
-  // viewedProducts.value.length < 1 && hasViewedProducts.value && loadViewedProducts()
-  // buyTodayProducts.value.length < 1 && !hasViewedProducts.value && loadBuyToday()
-})
-watch(() => viewedProductsIDs.value, (value) => {
-  //TODO
-  // buyTodayProducts.value.length < 1 && value.length < 1 && loadBuyToday()
+  viewedProducts.value.length < 1 && hasViewedProducts.value && loadViewedProducts()
 })
 
 onMounted(() => {
   isMounted.value = true
-  // TODO
-  // this.$store.dispatch("viewedProducts/".concat(n.VIEWED_PRODUCTS.GET_ID))
-  // this.viewedProducts.length !== this.viewedProductsIDs.length && this.hasViewedProducts && this.loadViewedProducts()
-  // this.buyTodayProducts.length < 1 && !this.hasViewedProducts && this.loadBuyToday()
+  viewedProductsStore.VIEWED_PRODUCTS_GET_ID()
+  viewedProducts.value.length !== viewedProductsIDs.value.length && hasViewedProducts.value && loadViewedProducts()
 })
 
 
@@ -165,37 +148,17 @@ function goToHome() {
 }
 
 function loadViewedProducts() {
-  //TODO
-  // var t, e = this;
-  // void 0 !== (null === (t = this.city) || void 0 === t ? void 0 : t.ID) && this.hasViewedProducts && (this.isLoadingViewedProducts = !0, this.$store.dispatch("viewedProducts/".concat(n.VIEWED_PRODUCTS.GET), {
-  //   IDs: this.viewedProductsIDs,
-  //   cityID: this.city.ID
-  // }).then((function () {
-  //   e.isFailedGettingViewedProducts = !1
-  // })).catch((function (t) {
-  //   e.isFailedGettingViewedProducts = !0, e.error(t)
-  // })).finally((function () {
-  //   e.isLoadingViewedProducts = !1
-  // })))
-}
-
-function loadBuyToday(t: any) {
-  //todo
-  // var e, o, r = this,
-  //     filter = 'groups="buy_today"&cityID='.concat(null !== (o = null === (e = this.city) || void 0 === e ? void 0 : e.ID) && void 0 !== o ? o : 41, "[:23]"),
-  //     d = this.$store.dispatch("products/".concat(n.PRODUCT.GET_LIST), {
-  //       filter: filter,
-  //       fields: c.k,
-  //       path: "random",
-  //       listName: "buyToday"
-  //     });
-  // return t && (this.isLoadingBuyToday = !0), d.then((function () {
-  //   r.isFailedGettingBuyToday = !1
-  // })).catch((function (t) {
-  //   r.isFailedGettingBuyToday = !0, r.error(t)
-  // })).finally((function () {
-  //   t && (r.isLoadingBuyToday = !1)
-  // })), d
+  void 0 !== city.value.ID && hasViewedProducts.value && (isLoadingViewedProducts.value = !0, viewedProductsStore.VIEWED_PRODUCTS_GET({
+    IDs: viewedProductsIDs.value,
+    cityID: city.value.ID
+  }).then(() => {
+    isFailedGettingViewedProducts.value = !1
+  }).catch((t) => {
+    isFailedGettingViewedProducts.value = !0
+    error(t)
+  }).finally(() => {
+    isLoadingViewedProducts.value = !1
+  }))
 }
 
 const preparedProducts = uPrepared
@@ -277,9 +240,24 @@ useSeoMeta({
             Перейти на главную
             <UiCArrowSVG color="#fff" hover-color="#fff" size="s"/>
           </UiCButton>
-
         </div>
       </div>
+      <ProductCProductsSlider v-if="hasViewedProducts"
+                              :basket-items="basketItems"
+                              :favorites-items="favoritesItems" :city="city" :has-loyal-card="hasLoyalCard"
+                              :is-authorized="isAuthorized" :is-mobile="isMobile"
+                              :loading-basket-product-i-ds="loadingBasketProductIDs"
+                              :loading-favorites-product-i-ds="loadingFavoritesProductIDs"
+                              :updating-basket-product-i-ds="updatingBasketProductIDs"
+                              :product-categories="productCategories" :product-subtypes="productSubtypes"
+                              :product-types="productTypes"
+                              :products="viewedProducts.length > 0 ? preparedProducts(viewedProducts, PREPARED_PRODUCTS_FIELDS) : placeholderItems"
+                              title="Вы смотрели"
+                              v-on:add-to-basket="addToBasket"
+                              v-on:add-to-favorites="addToFavorites"
+                              v-on:basket-item-update="updateBasketItem"
+                              v-on:basket-store-update="updateBasketStore"
+                              v-on:favorites-store-update="updateFavoritesStore"/>
     </template>
   </main>
 </template>
