@@ -303,7 +303,6 @@ footer > .container > .columns > .menus > li > ul > li > a:active {
 
 footer > .container > .columns > .media {
   flex-basis: 285px;
-  //justify-content: center
 }
 
 footer > .container > .columns > .media > p {

@@ -162,7 +162,6 @@ function click(val: any) {
 .c-arrow-svg.l > div > span:last-of-type {
   -webkit-mask-size: 50%;
   mask-size: 50%;
-  //margin-top: -1px
 }
 
 .c-arrow-svg.prev.circle {

@@ -4340,7 +4340,7 @@ useSeoMeta({
   flex-flow: row wrap
 }
 
-.v-product > .product > .details > aside > .recommendations > div > {
+.v-product > .product > .details > aside > .recommendations > div > *{
   margin-right: 10px;
   margin-bottom: 15px
 }

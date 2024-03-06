@@ -100,7 +100,7 @@ async function loadPopularCategories() {
   overflow: hidden
 }
 
-.c-popular-categories.empty a > {
+.c-popular-categories.empty a > *{
   display: none
 }
 
