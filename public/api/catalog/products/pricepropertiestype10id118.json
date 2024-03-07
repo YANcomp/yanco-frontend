@@ -1,0 +1,566 @@
+[
+  {
+    "price": {
+      "withCard": 85.0,
+      "withPeriod": 66.0,
+      "withoutCard": 85.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 288,
+        "name": "500 мл",
+        "slug": "500_00_ml",
+        "typeID": 222
+      },
+      {
+        "ID": 2913,
+        "name": "Сок",
+        "slug": "sok",
+        "typeID": 8
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 40.0,
+      "withPeriod": 28.0,
+      "withoutCard": 40.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 643,
+        "name": "200 мл",
+        "slug": "200_00_ml",
+        "typeID": 222
+      },
+      {
+        "ID": 2913,
+        "name": "Сок",
+        "slug": "sok",
+        "typeID": 8
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 40.0,
+      "withPeriod": 28.0,
+      "withoutCard": 40.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 643,
+        "name": "200 мл",
+        "slug": "200_00_ml",
+        "typeID": 222
+      },
+      {
+        "ID": 2913,
+        "name": "Сок",
+        "slug": "sok",
+        "typeID": 8
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 36.0,
+      "withPeriod": 36.0,
+      "withoutCard": 47.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 570,
+        "name": "100 г",
+        "slug": "100_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 108.0,
+      "withPeriod": 83.0,
+      "withoutCard": 108.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 296,
+        "name": "80 г",
+        "slug": "80_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 36.0,
+      "withPeriod": 36.0,
+      "withoutCard": 47.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 570,
+        "name": "100 г",
+        "slug": "100_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 61.0,
+      "withPeriod": 44.0,
+      "withoutCard": 61.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 280,
+        "name": "90 г",
+        "slug": "90_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 59.0,
+      "withPeriod": 44.0,
+      "withoutCard": 59.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 296,
+        "name": "80 г",
+        "slug": "80_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 59.0,
+      "withPeriod": 44.0,
+      "withoutCard": 59.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 296,
+        "name": "80 г",
+        "slug": "80_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 103.0,
+      "withPeriod": 79.0,
+      "withoutCard": 103.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 296,
+        "name": "80 г",
+        "slug": "80_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 59.0,
+      "withPeriod": 44.0,
+      "withoutCard": 59.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 296,
+        "name": "80 г",
+        "slug": "80_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 61.0,
+      "withPeriod": 44.0,
+      "withoutCard": 61.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 280,
+        "name": "90 г",
+        "slug": "90_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 63.0,
+      "withPeriod": 44.0,
+      "withoutCard": 63.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 280,
+        "name": "90 г",
+        "slug": "90_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  },
+  {
+    "price": {
+      "withCard": 63.0,
+      "withPeriod": 44.0,
+      "withoutCard": 63.0
+    },
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 280,
+        "name": "90 г",
+        "slug": "90_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ]
+  }
+]

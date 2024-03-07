@@ -12,6 +12,18 @@ const {isMobile} = useAppStore()
 const preparedBreadcrumbs: any = computed(() => {
   return props.breadcrumbs
 })
+const mainRef = ref(<any>undefined)
+
+onUpdated(() => {
+  checkScroll()
+})
+onMounted(() => {
+  checkScroll()
+})
+
+function checkScroll() {
+  mainRef.value.scrollLeft = mainRef.value.scrollWidth
+}
 
 function routeTo(item: any) {
   return {
@@ -19,14 +31,15 @@ function routeTo(item: any) {
     params: preparedBreadcrumbs.value[item]?.params ? preparedBreadcrumbs.value[item].params : {}
   }
 }
+
 </script>
 
 <template>
-  <ol class="c-breadcrumbs container" itemscope itemtype="https://schema.org/BreadcrumbList"
+  <ol v-show="preparedBreadcrumbs.length > 0" class="c-breadcrumbs container" ref="mainRef" itemscope
+      itemtype="https://schema.org/BreadcrumbList"
       :style="isMobile && (route.name === 'CatalogSubtype' || route.name === 'CatalogCategory') ? {'margin-top': '10px' } : {}">
     <li v-for="(item,index) in preparedBreadcrumbs" :key="index" itemscope itemprop="itemListElement"
         itemtype="https://schema.org/ListItem">
-      <span class="icon arrow-forward"/>
       <template v-if="void 0 !== item.routeName">
         <NuxtLink class="route hover-bottom-line" :to="routeTo(index)" itemprop="item">
           <span itemprop="name">{{ item.name }}</span>
@@ -35,19 +48,29 @@ function routeTo(item: any) {
       <template v-else>
         <span itemprop="name">{{ item.name }}</span>
       </template>
+      <span class="icon arrow-forward"/>
       <meta itemprop="position" :content="index + 1">
     </li>
   </ol>
 </template>
 
 <style scoped>
+.c-breadcrumbs::-webkit-scrollbar {
+  display: none
+}
+
 .c-breadcrumbs {
   max-width: 1368px;
   width: 100%;
-  margin-bottom: 10px;
+  height: 31px;
   display: flex;
+  padding: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  /*display: flex;
+  margin-bottom: 10px;
   flex-wrap: wrap;
-  padding: 0
+  padding: 0*/
 }
 
 .c-breadcrumbs > li {
@@ -59,7 +82,8 @@ function routeTo(item: any) {
 }
 
 .c-breadcrumbs > li > a, .c-breadcrumbs > li > span {
-  color: #8e8e8e
+  color: #8e8e8e;
+  white-space: nowrap;
 }
 
 .c-breadcrumbs > li > a.icon, .c-breadcrumbs > li > span.icon {
@@ -81,14 +105,15 @@ function routeTo(item: any) {
 }
 
 .c-breadcrumbs > li:first-child {
-  align-items: center
+  /*align-items: center*/
 }
 
-.c-breadcrumbs > li:first-child > .icon {
+.c-breadcrumbs > li:nth-last-child(2) > .icon {
   display: none
 }
 
 .c-breadcrumbs.mobile {
+  height: auto;
   display: flex;
   margin-bottom: 0;
   padding: 0 10px;
@@ -96,12 +121,9 @@ function routeTo(item: any) {
   overflow-x: auto
 }
 
-.c-breadcrumbs.mobile::-webkit-scrollbar {
-  display: none
-}
-
-.c-breadcrumbs.mobile > li:last-child {
-  padding-right: 10px
+.c-breadcrumbs > li:last-child, .c-breadcrumbs.mobile > li:last-child {
+  display: none;
+  /*padding-right: 10px*/
 }
 
 .c-breadcrumbs.mobile > li > a, .c-breadcrumbs.mobile > li > span {

@@ -239,7 +239,6 @@ function E(e?: any, t?: any) {
     }
   }
 }
-
 const render = () => {
   var r, o, n, c, d, k, m, v = <any>{};
   if (void 0 !== props.summary.prices) k = props.summary.prices.withoutCard.min, m = props.summary.prices.withoutCard.max;

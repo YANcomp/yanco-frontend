@@ -116,12 +116,17 @@ const isManyCategories = ref(false)
 const isCategoriesView = ref(false)
 const isShowStockCategories = ref(!0)
 
+isNaN(props.propertyID) || isNaN(props.propertyTypeID) || props.isBrandAnalogs || (selectedFilters.value.push({
+  ID: props.propertyID,
+  typeID: props.propertyTypeID,
+  name: props.propertyName
+}), sortActiveProperties(props.propertyTypeID))
 
 const hasStockCategories = computed(() => {
   return props.stockBabyProductCategories.length > 0
 })
 const countSelectedFilters = computed(() => {
-  var e = selectedFilters.value.length;
+  let e = selectedFilters.value.length;
   return isNaN(props.propertyID) || isNaN(props.propertyTypeID) || props.isBrandAnalogs || (e -= 1), showPricesFilter.value && (e += 1), e
 })
 const directorySelectedFilter = computed(() => {
@@ -181,13 +186,9 @@ watch(() => route.path, () => {
 
 })
 
-onBeforeMount(() => {
-  isNaN(props.propertyID) || isNaN(props.propertyTypeID) || props.isBrandAnalogs || (selectedFilters.value.push({
-    ID: props.propertyID,
-    typeID: props.propertyTypeID,
-    name: props.propertyName
-  }), sortActiveProperties(props.propertyTypeID))
-})
+// onBeforeMount(() => {
+
+// })
 onMounted(() => {
   let r: any = document.querySelector("#product-list")
   productListOffset.value = r ? r.offsetTop : 0
@@ -748,7 +749,7 @@ function sortActiveProperties(e: any) {
           <span class="property-name">
             <span class="icon filter"/>
             Все фильтры
-            <span v-if="countSelectedFilters > 0 && isMobile">
+            <span v-if="countSelectedFilters > 0 && isMobile" class="badge">
               ({{ countSelectedFilters }})
             </span>
           </span>

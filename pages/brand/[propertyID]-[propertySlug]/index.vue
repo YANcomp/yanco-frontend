@@ -17,6 +17,11 @@ definePageMeta({
       })
     }
 
+    const productPropertyTypesStore = useProductPropertyTypesStore()
+    if (productPropertyTypesStore.list.length < 1) {
+      await productPropertyTypesStore.PRODUCT_PROPERTY_TYPES_GET()
+    }
+
     await COMMIT_BREADCRUMBS_UPD([{
       name: "Главная страница",
       routeName: "index"

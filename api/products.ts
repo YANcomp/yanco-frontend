@@ -39,6 +39,43 @@ class ApiProductsModule {
         void 0 !== filter && (e += "?" + filter)
         // return o.a.get(e)
 
+        if (e.includes('price,properties') && filter.includes('typeID=10,ID=3743')) {
+            return await $fetch(`catalog/products/pricepropertiestype10id3743.json`, {
+                ...this.$opts,
+                method: 'GET',
+            })
+        }
+        if (e.includes('{typeID=10,ID=3743,slug="abirateron"}')) {
+            return await $fetch(`catalog/products/type10id3743slugAbirateron.json`, {
+                ...this.$opts,
+                method: 'GET',
+            })
+        }
+        if (e.includes('price,properties') && filter.includes('typeID=10,ID=118')) {
+            return await $fetch(`catalog/products/pricepropertiestype10id118.json`, {
+                ...this.$opts,
+                method: 'GET',
+            })
+        }
+        if (e.includes('{typeID=10,ID=118,slug="agusha"}')) {
+            return await $fetch(`catalog/products/type10id118slugAgusha.json`, {
+                ...this.$opts,
+                method: 'GET',
+            })
+        }
+        if (e.includes('price,properties') && filter.includes('typeID=10,ID=11623')) {
+            return await $fetch(`catalog/products/pricepropertiestype10id11623.json`, {
+                ...this.$opts,
+                method: 'GET',
+            })
+        }
+        if (e.includes('{typeID=10,ID=11623,slug="okuoku"}')) {
+            return await $fetch(`catalog/products/type10id11623slugokuoku.json`, {
+                ...this.$opts,
+                method: 'GET',
+            })
+        }
+
         if (filter.includes('categoryID=374')) {
             return await $fetch(`catalog/products/374.json`, {
                 ...this.$opts,

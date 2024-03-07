@@ -52,17 +52,7 @@ const categoryDirectory = computed(() => {
 const city = computed(() => {
   return citiesStore.currentCity
 })
-const cityDefault = ref({
-  ID: 41,
-  regionID: 23,
-  name: "Краснодар",
-  slug: "krasnodar",
-  hasPharmacies: !0,
-  allowDelivery: !0,
-  coords: [45.05314, 38.99339],
-  districtID: 129,
-  isCity: !0
-})
+
 const notFound = ref(<any>true)
 const popularCategories = ref(popularCategoriesStore.categories)
 const findType = ref(<any>undefined)
@@ -85,7 +75,7 @@ const buyToday = ref(<any>productsStore.buyToday)
 // TODO FETCH DATA
 
 if (popularCategories.value.length < 1 && props.popularCategory !== undefined) {
-  await popularCategoriesStore.GET(city.value ? city.value : cityDefault.value).then((res: any) => {
+  await popularCategoriesStore.GET(city.value).then((res: any) => {
     popularCategories.value = res
   })
 }
@@ -221,15 +211,8 @@ function getPath() {
   return path
 }
 
-let sortProducts = {
-  "Популярное": "",
-  "Цена по возрастанию": "+price",
-  "Цена по убыванию": "-price",
-  "С лучшей оценкой": "-averageRating",
-  "С отзывами": "-reviewsNumber",
-  "Бесплатная доставка": "+deliveryRuleID"
-}
-let it = sortProducts["Популярное"]
+
+let it = uSortProducts["Популярное"]
 let at = <any>{
   filter: "" + getPath() + (it !== '' ? ':' + it : '') + "[0:" + limitProduct.value + "]",
   fields: fieldsProduct.value,
@@ -265,7 +248,7 @@ if (props.search === undefined) {
 }
 
 if (buyToday.value.length < 1) {
-  let st = 'groups="buy_today"&cityID=' + cityDefault.value.ID + "[:20]"
+  let st = 'groups="buy_today"&cityID=' + city.value.ID + "[:20]"
   await productsStore.PRODUCT_GET_LIST({
     filter: st,
     listName: "buyToday"

@@ -1,0 +1,107 @@
+[
+  {
+    "price": {
+      "withCard": 510.0,
+      "withPeriod": 337.0,
+      "withoutCard": 510.0
+    },
+    "properties": [
+      {
+        "ID": 0,
+        "name": "Без рецепта",
+        "slug": "bez_recepta",
+        "typeID": 17
+      },
+      {
+        "ID": 1,
+        "name": "10мг+10мг+10мг",
+        "slug": "10mg_10mg_10mg",
+        "typeID": 20
+      },
+      {
+        "ID": 6,
+        "name": "15-25 С",
+        "slug": "1525_s",
+        "typeID": 18
+      },
+      {
+        "ID": 52,
+        "name": "Капли глазные",
+        "slug": "kapli_glaznye",
+        "typeID": 16
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 565,
+        "name": "Дифенгидрамин",
+        "slug": "difengidramin",
+        "typeID": 6
+      },
+      {
+        "ID": 587,
+        "name": "10 мл",
+        "slug": "10_00_ml",
+        "typeID": 222
+      },
+      {
+        "ID": 1235,
+        "name": "Нафазолин",
+        "slug": "nafazolin",
+        "typeID": 6
+      },
+      {
+        "ID": 1502,
+        "name": "ООО \"Випс-Мед\"",
+        "slug": "ooo_vipsmed",
+        "typeID": 13
+      },
+      {
+        "ID": 2055,
+        "name": "Цинка сульфат",
+        "slug": "cinka_sulfat",
+        "typeID": 6
+      },
+      {
+        "ID": 3362,
+        "name": "Цинка сульфат+Дифенгидрамин+Нафазолин",
+        "slug": "cinka_sulfat_difengidramin_nafazolin",
+        "typeID": 19
+      },
+      {
+        "ID": 11623,
+        "name": "Оку-Оку",
+        "slug": "okuoku",
+        "typeID": 10
+      },
+      {
+        "ID": 15461,
+        "name": "Острый атопический (аллергический) конъюнктивит",
+        "slug": "ostryj_atopicheskij_allergicheskij_konyunktivit",
+        "typeID": 5
+      },
+      {
+        "ID": 15462,
+        "name": "Другие острые конъюнктивиты",
+        "slug": "drugie_ostrye_konyunktivity",
+        "typeID": 5
+      },
+      {
+        "ID": 15463,
+        "name": "Хронический конъюнктивит",
+        "slug": "hronicheskij_konyunktivit",
+        "typeID": 5
+      },
+      {
+        "ID": 15464,
+        "name": "Блефароконъюнктиви",
+        "slug": "blefarokonyunktivit",
+        "typeID": 5
+      }
+    ]
+  }
+]

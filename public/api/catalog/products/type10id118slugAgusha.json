@@ -1,0 +1,1186 @@
+[
+  {
+    "ID": 336449,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 6,
+    "slug": "frutonyanya_sok_yablokoosvetlennoe_500ml",
+    "name": "Агуша Сок яблоко осв. 500мл",
+    "rating": 18,
+    "price": {
+      "withCard": 85.0,
+      "withPeriod": 66.0,
+      "withoutCard": 85.0
+    },
+    "priceZakaz": {
+      "withCard": 85.0,
+      "withPeriod": 66.0,
+      "withoutCard": 85.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 288,
+        "name": "500 мл",
+        "slug": "500_00_ml",
+        "typeID": 222
+      },
+      {
+        "ID": 2913,
+        "name": "Сок",
+        "slug": "sok",
+        "typeID": 8
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "d7273e903dbb1ea0569476015f931b74.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/336449/80/d7273e903dbb1ea0569476015f931b74.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/336449/208/d7273e903dbb1ea0569476015f931b74.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "18%",
+      "internalCard": "18% покупателей выбирают",
+      "internalCardHint": "18% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 207371,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 6,
+    "slug": "agusha_sok_grusha_osv_200ml",
+    "name": "Агуша Сок груша осветленный 200мл",
+    "rating": 18,
+    "price": {
+      "withCard": 40.0,
+      "withPeriod": 28.0,
+      "withoutCard": 40.0
+    },
+    "priceZakaz": {
+      "withCard": 40.0,
+      "withPeriod": 28.0,
+      "withoutCard": 40.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 643,
+        "name": "200 мл",
+        "slug": "200_00_ml",
+        "typeID": 222
+      },
+      {
+        "ID": 2913,
+        "name": "Сок",
+        "slug": "sok",
+        "typeID": 8
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "2a59d395b6ae0b9d2263ffd24de006fd.webp"
+    ],
+    "reviewsNumber": 1,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 5,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/207371/80/2a59d395b6ae0b9d2263ffd24de006fd.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/207371/208/2a59d395b6ae0b9d2263ffd24de006fd.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "18%",
+      "internalCard": "18% покупателей выбирают",
+      "internalCardHint": "18% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 93920,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 6,
+    "slug": "agusha_sok_yabloko_200ml",
+    "name": "Агуша Сок яблоко осветленный 200мл",
+    "rating": 18,
+    "price": {
+      "withCard": 40.0,
+      "withPeriod": 28.0,
+      "withoutCard": 40.0
+    },
+    "priceZakaz": {
+      "withCard": 40.0,
+      "withPeriod": 28.0,
+      "withoutCard": 40.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 643,
+        "name": "200 мл",
+        "slug": "200_00_ml",
+        "typeID": 222
+      },
+      {
+        "ID": 2913,
+        "name": "Сок",
+        "slug": "sok",
+        "typeID": 8
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "c34ee4d09d27123381b645085ec9eb60.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/93920/80/c34ee4d09d27123381b645085ec9eb60.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/93920/208/c34ee4d09d27123381b645085ec9eb60.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "18%",
+      "internalCard": "18% покупателей выбирают",
+      "internalCardHint": "18% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 336442,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 45,
+    "slug": "agusha_pyure_yabloko_100g",
+    "name": "Агуша Пюре яблоко 100г",
+    "rating": 5,
+    "price": {
+      "withCard": 36.0,
+      "withPeriod": 36.0,
+      "withoutCard": 47.0
+    },
+    "priceZakaz": {
+      "withCard": 36.0,
+      "withPeriod": 36.0,
+      "withoutCard": 47.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "sticker": "-25%",
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 570,
+        "name": "100 г",
+        "slug": "100_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "ad159bc114759273490f6c1a49a63a35.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "discountTemplate": "discount_size_percent",
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/336442/80/ad159bc114759273490f6c1a49a63a35.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/336442/208/ad159bc114759273490f6c1a49a63a35.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "5%",
+      "internalCard": "5% покупателей выбирают",
+      "internalCardHint": "5% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 217814,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 45,
+    "slug": "agusha_pyure_govyadina_80g",
+    "name": "Агуша Пюре говядина 80г",
+    "rating": 5,
+    "price": {
+      "withCard": 108.0,
+      "withPeriod": 83.0,
+      "withoutCard": 108.0
+    },
+    "priceZakaz": {
+      "withCard": 108.0,
+      "withPeriod": 83.0,
+      "withoutCard": 108.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 296,
+        "name": "80 г",
+        "slug": "80_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "dc942313e8e4a72971bdf6927b866852.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/217814/80/dc942313e8e4a72971bdf6927b866852.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/217814/208/dc942313e8e4a72971bdf6927b866852.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "5%",
+      "internalCard": "5% покупателей выбирают",
+      "internalCardHint": "5% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 336441,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 45,
+    "slug": "agusha_pyure_grusha_100g",
+    "name": "Агуша Пюре груша 100г",
+    "rating": 5,
+    "price": {
+      "withCard": 36.0,
+      "withPeriod": 36.0,
+      "withoutCard": 47.0
+    },
+    "priceZakaz": {
+      "withCard": 36.0,
+      "withPeriod": 36.0,
+      "withoutCard": 47.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "sticker": "-25%",
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 570,
+        "name": "100 г",
+        "slug": "100_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "b7a40eb14d525e7dbff9f7ccc87db9c2.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "discountTemplate": "discount_size_percent",
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/336441/80/b7a40eb14d525e7dbff9f7ccc87db9c2.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/336441/208/b7a40eb14d525e7dbff9f7ccc87db9c2.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "5%",
+      "internalCard": "5% покупателей выбирают",
+      "internalCardHint": "5% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 336447,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 45,
+    "slug": "agusha_pyure_yablokomalinashipov_90g",
+    "name": "Агуша Пюре яблоко/малина/шипов. 90г",
+    "rating": 5,
+    "price": {
+      "withCard": 61.0,
+      "withPeriod": 44.0,
+      "withoutCard": 61.0
+    },
+    "priceZakaz": {
+      "withCard": 61.0,
+      "withPeriod": 44.0,
+      "withoutCard": 61.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 280,
+        "name": "90 г",
+        "slug": "90_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "26139427b8494bc8305aeb28ce124915.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/336447/80/26139427b8494bc8305aeb28ce124915.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/336447/208/26139427b8494bc8305aeb28ce124915.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "5%",
+      "internalCard": "5% покупателей выбирают",
+      "internalCardHint": "5% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 336439,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 45,
+    "slug": "agusha_pyure_cvetnaya_kapusta_80g",
+    "name": "Агуша Пюре цветная капуста 80г",
+    "rating": 5,
+    "price": {
+      "withCard": 59.0,
+      "withPeriod": 44.0,
+      "withoutCard": 59.0
+    },
+    "priceZakaz": {
+      "withCard": 59.0,
+      "withPeriod": 44.0,
+      "withoutCard": 59.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 296,
+        "name": "80 г",
+        "slug": "80_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "68651e853b777219a7e8efababbdd789.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/336439/80/68651e853b777219a7e8efababbdd789.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/336439/208/68651e853b777219a7e8efababbdd789.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "5%",
+      "internalCard": "5% покупателей выбирают",
+      "internalCardHint": "5% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 336438,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 45,
+    "slug": "agusha_pyure_brokkoli_80g",
+    "name": "Агуша Пюре брокколи 80г",
+    "rating": 5,
+    "price": {
+      "withCard": 59.0,
+      "withPeriod": 44.0,
+      "withoutCard": 59.0
+    },
+    "priceZakaz": {
+      "withCard": 59.0,
+      "withPeriod": 44.0,
+      "withoutCard": 59.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 296,
+        "name": "80 г",
+        "slug": "80_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "b5fb8e9fc6d1ed020dbfaca1d023640b.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/336438/80/b5fb8e9fc6d1ed020dbfaca1d023640b.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/336438/208/b5fb8e9fc6d1ed020dbfaca1d023640b.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "5%",
+      "internalCard": "5% покупателей выбирают",
+      "internalCardHint": "5% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 217815,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 45,
+    "slug": "agusha_pyure_indejka_80g",
+    "name": "Агуша Пюре индейка 80г",
+    "rating": 5,
+    "price": {
+      "withCard": 103.0,
+      "withPeriod": 79.0,
+      "withoutCard": 103.0
+    },
+    "priceZakaz": {
+      "withCard": 103.0,
+      "withPeriod": 79.0,
+      "withoutCard": 103.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 296,
+        "name": "80 г",
+        "slug": "80_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "6ecf41e2acb52abdf900acbdf0ab7cdb.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/217815/80/6ecf41e2acb52abdf900acbdf0ab7cdb.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/217815/208/6ecf41e2acb52abdf900acbdf0ab7cdb.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "5%",
+      "internalCard": "5% покупателей выбирают",
+      "internalCardHint": "5% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 336440,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 45,
+    "slug": "agusha_pyure_kabachok_80g",
+    "name": "Агуша Пюре кабачок 80г",
+    "rating": 5,
+    "price": {
+      "withCard": 59.0,
+      "withPeriod": 44.0,
+      "withoutCard": 59.0
+    },
+    "priceZakaz": {
+      "withCard": 59.0,
+      "withPeriod": 44.0,
+      "withoutCard": 59.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 296,
+        "name": "80 г",
+        "slug": "80_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "0cd505189923200ba2b62db8ef9d8f81.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/336440/80/0cd505189923200ba2b62db8ef9d8f81.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/336440/208/0cd505189923200ba2b62db8ef9d8f81.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "5%",
+      "internalCard": "5% покупателей выбирают",
+      "internalCardHint": "5% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 336446,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 45,
+    "slug": "agusha_pyure_yabloko_90g",
+    "name": "Агуша Пюре яблоко 90г",
+    "rating": 5,
+    "price": {
+      "withCard": 61.0,
+      "withPeriod": 44.0,
+      "withoutCard": 61.0
+    },
+    "priceZakaz": {
+      "withCard": 61.0,
+      "withPeriod": 44.0,
+      "withoutCard": 61.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 280,
+        "name": "90 г",
+        "slug": "90_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "b918df893112df9a5cc038ba0cb17ea7.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/336446/80/b918df893112df9a5cc038ba0cb17ea7.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/336446/208/b918df893112df9a5cc038ba0cb17ea7.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "5%",
+      "internalCard": "5% покупателей выбирают",
+      "internalCardHint": "5% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 336448,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 45,
+    "slug": "agusha_pyure_yablokobananpechene_90g",
+    "name": "Агуша Пюре яблоко/банан/печенье 90г",
+    "rating": 5,
+    "price": {
+      "withCard": 63.0,
+      "withPeriod": 44.0,
+      "withoutCard": 63.0
+    },
+    "priceZakaz": {
+      "withCard": 63.0,
+      "withPeriod": 44.0,
+      "withoutCard": 63.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 280,
+        "name": "90 г",
+        "slug": "90_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "336448.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/336448/80/336448.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/336448/208/336448.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "5%",
+      "internalCard": "5% покупателей выбирают",
+      "internalCardHint": "5% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  },
+  {
+    "ID": 336444,
+    "typeIDs": [
+      400221
+    ],
+    "subtypeIDs": [
+      69
+    ],
+    "categoryID": 45,
+    "slug": "agusha_pyure_grusha_90g",
+    "name": "Агуша Пюре груша 90г",
+    "rating": 5,
+    "price": {
+      "withCard": 63.0,
+      "withPeriod": 44.0,
+      "withoutCard": 63.0
+    },
+    "priceZakaz": {
+      "withCard": 63.0,
+      "withPeriod": 44.0,
+      "withoutCard": 63.0
+    },
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": true,
+    "properties": [
+      {
+        "ID": 4,
+        "name": "Не выше 25 С",
+        "slug": "ne_vyshe_25_s",
+        "typeID": 18
+      },
+      {
+        "ID": 108,
+        "name": "Россия",
+        "slug": "rossiya",
+        "typeID": 15
+      },
+      {
+        "ID": 118,
+        "name": "Агуша",
+        "slug": "agusha",
+        "typeID": 10
+      },
+      {
+        "ID": 280,
+        "name": "90 г",
+        "slug": "90_00_g",
+        "typeID": 222
+      },
+      {
+        "ID": 13883,
+        "name": "ОАО \"Вимм Биль Данн\"",
+        "slug": "oao_vimm_bil_dann",
+        "typeID": 13
+      }
+    ],
+    "images": [
+      "c41dddcfb21e05de5c26ae04c7ba70d2.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": true,
+    "allowOnlinePayment": true,
+    "averageRating": 0,
+    "isAvailable": true,
+    "isSiteSellRemains": true,
+    "isWaitingArrive": false,
+    "isRecipe": false,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/336444/80/c41dddcfb21e05de5c26ae04c7ba70d2.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/336444/208/c41dddcfb21e05de5c26ae04c7ba70d2.webp"
+    ],
+    "ratingText": {
+      "extraHint": "(являются статистическими данными)",
+      "externalCard": "5%",
+      "internalCard": "5% покупателей выбирают",
+      "internalCardHint": "5% покупателей выбирают данный товар"
+    },
+    "isRare": false,
+    "isOrderRcNoRc": false
+  }
+]

@@ -504,15 +504,15 @@ function updateFavoritesStore(e: any) {
         cAlert
       </div>
       <FilterCFilter v-if="hasFilterList && !isFailedGettingProducts" :is-brand-analogs="isBrandAnalogs"
-                      :is-free-ship="isFreeShip" :is-mobile="isMobile"
-                      :is-opened="isOpened" :is-stock="isStock" :item-count="totalCount"
-                      :prepared-product-subtypes="preparedProductSubtypes" :product-filters="productFilters"
-                      :product-property-type="productPropertyType" :property-i-d="propertyID"
-                      :property-type-i-d="propertyTypeID" :property-name="title" :summary="summary"
-                      :is-search-empty="isSearchEmpty" :is-horizontal-cards-mode="isHorizontalCardsMode"
-                      v-on:prices-changed="pricesChanged" v-on:change-cards-mode="changeCardsMode"
-                      v-on:properties-changed="propertiesChanged" v-on:sort-type-change="changeSortType"
-                      v-on:reset="resetFilter"/>
+                     :is-free-ship="isFreeShip" :is-mobile="isMobile"
+                     :is-opened="isOpened" :is-stock="isStock" :item-count="totalCount"
+                     :prepared-product-subtypes="preparedProductSubtypes" :product-filters="productFilters"
+                     :product-property-type="productPropertyType" :property-i-d="propertyID"
+                     :property-type-i-d="propertyTypeID" :property-name="title" :summary="summary"
+                     :is-search-empty="isSearchEmpty" :is-horizontal-cards-mode="isHorizontalCardsMode"
+                     v-on:prices-changed="pricesChanged" v-on:change-cards-mode="changeCardsMode"
+                     v-on:properties-changed="propertiesChanged" v-on:sort-type-change="changeSortType"
+                     v-on:reset="resetFilter"/>
 
 
       <div ref="catalogRef" class="catalog">

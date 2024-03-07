@@ -1,42 +1,42 @@
 [
   {
-    "ID": 544,
+    "ID": 552,
+    "backgroundImage": "https://pictures.apteka-april.ru/generic/popular-categories/march24_1/bg.webp",
+    "icon": "https://pictures.apteka-april.ru/generic/popular-categories/march24_1/photo.webp",
+    "isPopular": true,
     "name": "От боли в горле",
-    "url": "/search/Больное%20горло",
-    "icon": "https://pictures.apteka-april.ru/generic/popular-categories/feb24_1/photo.webp",
-    "backgroundImage": "https://pictures.apteka-april.ru/generic/popular-categories/feb24_1/bg.webp",
-    "isPopular": true
+    "url": "/brand/9129-strepsils?erid=LjN8K6m3B"
   },
   {
-    "ID": 545,
-    "name": "Средства от кашля",
-    "url": "/search/Лекарства%20от%20кашля",
-    "icon": "https://pictures.apteka-april.ru/generic/popular-categories/feb24_2/photo.webp",
-    "backgroundImage": "https://pictures.apteka-april.ru/generic/popular-categories/feb24_2/bg.webp",
-    "isPopular": true
+    "ID": 549,
+    "backgroundImage": "https://pictures.apteka-april.ru/generic/popular-categories/march24_2/bg.webp",
+    "icon": "https://pictures.apteka-april.ru/generic/popular-categories/march24_2/photo.webp",
+    "isPopular": true,
+    "name": "Мама и малыш",
+    "url": "/search/Мама%20и%20малыш?erid=LjN8Jv1dP"
   },
   {
-    "ID": 547,
-    "name": "Полезные витамины",
-    "url": "/search/Полезные%20витамины",
-    "icon": "https://pictures.apteka-april.ru/generic/popular-categories/feb24_3/photo.webp",
-    "backgroundImage": "https://pictures.apteka-april.ru/generic/popular-categories/feb24_3/bg.webp",
-    "isPopular": true
+    "ID": 553,
+    "backgroundImage": "https://pictures.apteka-april.ru/generic/popular-categories/march24_3/bg.webp",
+    "icon": "https://pictures.apteka-april.ru/generic/popular-categories/march24_3/photo.webp",
+    "isPopular": true,
+    "name": "Для здоровья суставов",
+    "url": "/brand/9654-terafleks?erid=LjN8K13rM"
   },
   {
-    "ID": 548,
-    "name": "Боремся с простудой и гриппом",
-    "url": "/search/Боремся%20с%20простудой%20и%20гриппом",
-    "icon": "https://pictures.apteka-april.ru/generic/popular-categories/feb24_4/photo.webp",
-    "backgroundImage": "https://pictures.apteka-april.ru/generic/popular-categories/feb24_4/bg.webp",
-    "isPopular": true
+    "ID": 550,
+    "backgroundImage": "https://pictures.apteka-april.ru/generic/popular-categories/march24_4/bg.webp",
+    "icon": "https://pictures.apteka-april.ru/generic/popular-categories/march24_4/photo.webp",
+    "isPopular": true,
+    "name": "Жизнь без боли",
+    "url": "/search/Жизнь%20без%20боли?erid=LjN8KD97T"
   },
   {
-    "ID": 546,
-    "name": "При насморке и заложенности носа",
-    "url": "/search/Заложенность%20носа%20и%20насморк",
-    "icon": "https://pictures.apteka-april.ru/generic/popular-categories/feb24_5/photo.webp",
-    "backgroundImage": "https://pictures.apteka-april.ru/generic/popular-categories/feb24_5/bg.webp",
-    "isPopular": true
+    "ID": 554,
+    "backgroundImage": "https://pictures.apteka-april.ru/generic/popular-categories/march24_5/bg.webp",
+    "icon": "https://pictures.apteka-april.ru/generic/popular-categories/march24_5/photo.webp",
+    "isPopular": true,
+    "name": " ",
+    "url": "/stock/mesyac_krasoty"
   }
 ]

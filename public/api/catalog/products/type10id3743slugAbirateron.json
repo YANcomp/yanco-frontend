@@ -1,0 +1,112 @@
+[
+  {
+    "ID": 294107,
+    "typeIDs": [
+      396070
+    ],
+    "subtypeIDs": [
+      2562
+    ],
+    "categoryID": 488,
+    "slug": "abirateron_tabletki_250mg_120",
+    "name": "Абиратерон таблетки 250мг №120",
+    "rating": 0,
+    "limitWithoutCard": 36,
+    "limitWithCard": 36,
+    "isInStock": false,
+    "properties": [
+      {
+        "ID": 1,
+        "name": "250мг",
+        "slug": "250mg",
+        "typeID": 20
+      },
+      {
+        "ID": 1,
+        "name": "Рецептурный",
+        "slug": "recepturnyj",
+        "typeID": 17
+      },
+      {
+        "ID": 9,
+        "name": "Не выше 30 С",
+        "slug": "ne_vyshe_30_s",
+        "typeID": 18
+      },
+      {
+        "ID": 16,
+        "name": "Таблетки",
+        "slug": "tabletki",
+        "typeID": 16
+      },
+      {
+        "ID": 91,
+        "name": "Канада",
+        "slug": "kanada",
+        "typeID": 15
+      },
+      {
+        "ID": 311,
+        "name": "120 шт",
+        "slug": "120_00_sht",
+        "typeID": 222
+      },
+      {
+        "ID": 2099,
+        "name": "Редкие",
+        "slug": "redkie",
+        "typeID": 8
+      },
+      {
+        "ID": 2438,
+        "name": "Абиратерона ацетат",
+        "slug": "abiraterona_acetat",
+        "typeID": 6
+      },
+      {
+        "ID": 3512,
+        "name": "Patheon UK Pharmaceuticals/ Патеон Фарм",
+        "slug": "patheon_uk_pharmaceuticals",
+        "typeID": 13
+      },
+      {
+        "ID": 3743,
+        "name": "Абиратерон",
+        "slug": "abirateron",
+        "typeID": 10
+      },
+      {
+        "ID": 6999,
+        "name": "Абиратерона ацетат",
+        "slug": "abiraterona_acetat",
+        "typeID": 19
+      },
+      {
+        "ID": 15834,
+        "name": "Злокачественное новообразование предстательной железы",
+        "slug": "zlokachestvennoe_novoobrazovanie_predstatelnoj_zhelezy",
+        "typeID": 5
+      }
+    ],
+    "images": [
+      "294107.webp"
+    ],
+    "reviewsNumber": 0,
+    "allowDelivery": false,
+    "allowOnlinePayment": false,
+    "averageRating": 0,
+    "isAvailable": false,
+    "isSiteSellRemains": false,
+    "isWaitingArrive": false,
+    "isRecipe": true,
+    "imagesSizeXS": [
+      "https://pictures.apteka-april.ru/products/294107/80/294107.webp"
+    ],
+    "imagesSizeS": [
+      "https://pictures.apteka-april.ru/products/294107/208/294107.webp"
+    ],
+    "ratingText": {},
+    "isRare": true,
+    "isOrderRcNoRc": false
+  }
+]

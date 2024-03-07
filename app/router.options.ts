@@ -359,7 +359,7 @@ export default <RouterConfig>{
         },
         {
             path: "/brand/:propertyID()-:propertySlug()",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vBrandProductList.vue').then(r => r.default || r),
             props: (t: any) => {
                 return {
                     ...t.params,
