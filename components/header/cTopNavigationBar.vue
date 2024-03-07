@@ -46,13 +46,9 @@ const isChanged = computed(() => {
           </li>
         </div>
 
+
         <li>
-          <NuxtLink class="hover-bottom-line" to="/">
-            Подписка «Янко»
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink class="hover-bottom-line" to="/">
+          <NuxtLink class="hover-bottom-line" :to="{name: 'loyal'}">
             Программа лояльности
           </NuxtLink>
         </li>

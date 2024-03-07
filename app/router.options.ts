@@ -154,7 +154,7 @@ export default <RouterConfig>{
         },
         {
             path: "/loyal",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vLoyal.vue').then(r => r.default || r),
             name: "loyal"
         },
         {

@@ -15,10 +15,10 @@ const preparedBreadcrumbs: any = computed(() => {
 const mainRef = ref(<any>undefined)
 
 onUpdated(() => {
-  checkScroll()
+  // checkScroll()
 })
 onMounted(() => {
-  checkScroll()
+  // checkScroll()
 })
 
 function checkScroll() {
@@ -35,7 +35,7 @@ function routeTo(item: any) {
 </script>
 
 <template>
-  <ol v-show="preparedBreadcrumbs.length > 0" class="c-breadcrumbs container" ref="mainRef" itemscope
+  <ol v-show="preparedBreadcrumbs.length > 2" class="c-breadcrumbs container" ref="mainRef" itemscope
       itemtype="https://schema.org/BreadcrumbList"
       :style="isMobile && (route.name === 'CatalogSubtype' || route.name === 'CatalogCategory') ? {'margin-top': '10px' } : {}">
     <li v-for="(item,index) in preparedBreadcrumbs" :key="index" itemscope itemprop="itemListElement"
