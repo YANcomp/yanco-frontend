@@ -50,7 +50,7 @@ export default <RouterConfig>{
         },
         {
             path: "/about",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vAbout.vue').then(r => r.default || r),
             name: "about"
         },
         {
@@ -159,7 +159,7 @@ export default <RouterConfig>{
         },
         {
             path: "/mobile",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vMobile.vue').then(r => r.default || r),
             name: "mobile"
         },
         {
@@ -179,7 +179,7 @@ export default <RouterConfig>{
         },
         {
             path: "/vacancies",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vVacancies.vue').then(r => r.default || r),
             name: "vacancies"
         },
         {
@@ -209,8 +209,8 @@ export default <RouterConfig>{
             name: "login-or-registration"
         },
         {
-            path: "/pages/:slug",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            path: "/pages/:slug()",
+            component: () => import('~/components/vPages/vPages.vue').then(r => r.default || r),
             props: !0,
             name: "Pages"
         },

@@ -1,0 +1,38 @@
+[
+  {
+    "ID": 282,
+    "categoryName": "mp-page",
+    "slug": "1",
+    "question": "1",
+    "answer": "Сократили путь оформления заказа и теперь вам не нужно делать лишние шаги, чтобы оформить заказ.",
+    "isMobile": false,
+    "isWebsite": true
+  },
+  {
+    "ID": 283,
+    "categoryName": "mp-page",
+    "slug": "2",
+    "question": "2",
+    "answer": "В нижней части меню добавили кнопку «Карта». Данная карта является альтернативой пластиковой карты программы лояльности нашей сети.",
+    "isMobile": false,
+    "isWebsite": true
+  },
+  {
+    "ID": 284,
+    "categoryName": "mp-page",
+    "slug": "3",
+    "question": "3",
+    "answer": "Добавили функцию отказа от бумажных чеков и получение их электронно на E‑mail.",
+    "isMobile": false,
+    "isWebsite": true
+  },
+  {
+    "ID": 285,
+    "categoryName": "mp-page",
+    "slug": "4",
+    "question": "4",
+    "answer": "Оптимизировали и усовершенствовали поиск товаров.",
+    "isMobile": false,
+    "isWebsite": true
+  }
+]

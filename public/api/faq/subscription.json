@@ -1,0 +1,47 @@
+[
+  {
+    "ID": 72,
+    "categoryName": "subscription",
+    "slug": "chto_takoe_period",
+    "question": "Что такое период?",
+    "answer": "Период — это временной отрезок, исчисление которого ведется для Участников, оплативших взнос, и в течение которого покупатели имеют возможность пользоваться клубными ценами.",
+    "isMobile": true,
+    "isWebsite": true
+  },
+  {
+    "ID": 73,
+    "categoryName": "subscription",
+    "slug": "chto_takoe_klubnye_ceny",
+    "question": "Что такое клубные цены?",
+    "answer": "Клубные цены — это специальные цены, доступные участникам программы лояльности «Апрель+Аптечный Клуб» с оплаченным периодом.",
+    "isMobile": true,
+    "isWebsite": true
+  },
+  {
+    "ID": 74,
+    "categoryName": "subscription",
+    "slug": "kak_oformit_podpisku_aprel",
+    "question": "Как оформить подписку «Апрель»?",
+    "answer": "1. Выберите удобный для вас период (1, 3, 6 или 12 месяцев).\n2. Сохраните данные вашей банковской карты.\n3. Подтвердите согласие на обработку персональных данных и правила оформления подписки.",
+    "isMobile": true,
+    "isWebsite": true
+  },
+  {
+    "ID": 75,
+    "categoryName": "subscription",
+    "slug": "obyazatelno_li_privyazyvat_bankovskuyu_kartu_chtoby_vospolzovatsya_podpiskoj",
+    "question": "Обязательно ли привязывать банковскую карту, чтобы воспользоваться подпиской?",
+    "answer": "Да, чтобы воспользоваться Подпиской необходимо привязать свою банковскую карту, так как списание средств  за следующий период действия Подписки происходит автоматически с банковской карты.",
+    "isMobile": true,
+    "isWebsite": true
+  },
+  {
+    "ID": 76,
+    "categoryName": "subscription",
+    "slug": "kak_otkazatsya_ot_podpiski",
+    "question": "Как отказаться от подписки?",
+    "answer": "Вы можете отменить подписку, нажав на кнопку «Отменить».",
+    "isMobile": true,
+    "isWebsite": true
+  }
+]

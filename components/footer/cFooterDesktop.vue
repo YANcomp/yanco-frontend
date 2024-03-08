@@ -52,16 +52,13 @@ const props = defineProps({
             <p>Про «Янко»</p>
             <ul>
               <li>
-                <NuxtLink to="/">О компании</NuxtLink>
-              </li>
-              <li>
-                <NuxtLink to="/">Партнеры</NuxtLink>
+                <NuxtLink :to="{name:'about'}">О компании</NuxtLink>
               </li>
               <li>
                 <NuxtLink to="/">Сотрудничество</NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/">Работа у нас</NuxtLink>
+                <NuxtLink :to="{name: 'vacancies'}">Работа у нас</NuxtLink>
               </li>
               <li>
                 <NuxtLink to="/">СМИ о нас</NuxtLink>

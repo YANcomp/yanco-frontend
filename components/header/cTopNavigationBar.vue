@@ -35,7 +35,7 @@ const isChanged = computed(() => {
             </NuxtLink>
           </li>
           <li>
-            <NuxtLink class="hover-bottom-line vacancies" to="/">
+            <NuxtLink class="hover-bottom-line vacancies" :to='{name: "vacancies"}'>
               Работа у нас
             </NuxtLink>
           </li>

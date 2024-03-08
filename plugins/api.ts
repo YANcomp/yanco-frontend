@@ -25,6 +25,8 @@ import ApiProductPropertyTypesModule from "~/api/productPropertyTypes";
 import ApiRestrictTypesModule from "~/api/restrictTypes";
 import ApiReviewsModule from "~/api/reviews";
 import ApiViewedProductsModule from "~/api/viewedProducts";
+import ApiFaqModule from "~/api/faq";
+import ApiPagesModule from "~/api/pages";
 
 export default defineNuxtPlugin((nuxtApp) => {
     const {csrf} = useCsrf()
@@ -57,14 +59,14 @@ export default defineNuxtPlugin((nuxtApp) => {
         // charity: P,
         cities: new ApiCitiesModule(opts),
         // companies: k,
-        // FAQ: T,
+        FAQ: new ApiFaqModule(opts),
         favorites: new ApiFavoritesModule(opts),
         // landlords: x,
         me: new ApiMeModule(opts),
         // metric: N.a,
         // orders: B,
         // orderStatuses: R,
-        // pages: j,
+        pages: new ApiPagesModule(opts),
         // partners: F,
         // periods: U,
         // pharmacies: G,

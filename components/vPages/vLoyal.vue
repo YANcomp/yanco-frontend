@@ -268,30 +268,7 @@ useSeoMeta({
     </section>
 
     <template v-if="isMobile">
-      <UiCMobileBottomTooltip v-if="isOpenedMobileBottomTooltip" is-hide-footer
-                              :mobile-bottom-tooltip-name="isOpenedMobileBottomTooltip"
-                              @close="closeMobileBottomTooltip">
-        <!--        <template v-if="1 === tooltipTarget">-->
-        <!--          <template v-slot:title>-->
-        <!--            Информация-->
-        <!--          </template>-->
-        <!--          <template v-slot:text>-->
-        <!--            <div>Клубные цены — это специальные низкие цены, по которым товары доступны участникам программы лояльности-->
-        <!--              с оплаченным периодом.-->
-        <!--            </div>-->
-        <!--          </template>-->
-        <!--        </template>-->
-        <!--        <template v-else-if="2 === tooltipTarget">-->
-        <!--          <template v-slot:title>-->
-        <!--            Информация-->
-        <!--          </template>-->
-        <!--          <template v-slot:text>-->
-        <!--            <div>Помимо лекарственных препаратов и БАДов, в сети аптек «Апрель» широкий выбор товаров для детей и мам,-->
-        <!--              средств для красоты и гигиены, медицинской техники и других категорий товаров.-->
-        <!--            </div>-->
-        <!--          </template>-->
-        <!--        </template>-->
-      </UiCMobileBottomTooltip>
+
     </template>
     <template v-else>
       <UiCModalWindow :is-opened="popupOpened" @close="closePopup">
@@ -395,13 +372,21 @@ useSeoMeta({
             </section>
             <section>
               <h3>Преимущества подписки «Апрель»</h3>
-              <div class="advantage"><img src="https://pictures.apteka-april.ru/generic/loyal/advantage1.svg"> <span>Постоянный доступ к клубным ценам</span>
+              <div class="advantage">
+                <img src="https://pictures.apteka-april.ru/generic/loyal/advantage1.svg" alt="">
+                <span>Постоянный доступ к клубным ценам</span>
               </div>
-              <div class="advantage"><img src="https://pictures.apteka-april.ru/generic/loyal/advantage2.svg"> <span>Больше не надо помнить о дате завершения периода</span>
+              <div class="advantage">
+                <img src="https://pictures.apteka-april.ru/generic/loyal/advantage2.svg" alt="">
+                <span>Больше не надо помнить о дате завершения периода</span>
               </div>
-              <div class="advantage"><img src="https://pictures.apteka-april.ru/generic/loyal/advantage3.svg"> <span>Стоимость оплаченного периода окупается в среднем за 1-2 покупки</span>
+              <div class="advantage">
+                <img src="https://pictures.apteka-april.ru/generic/loyal/advantage3.svg" alt="">
+                <span>Стоимость оплаченного периода окупается в среднем за 1-2 покупки</span>
               </div>
-              <div class="advantage"><img src="https://pictures.apteka-april.ru/generic/loyal/advantage4.svg"> <span>Уникальные предложения для пользователей подписки</span>
+              <div class="advantage">
+                <img src="https://pictures.apteka-april.ru/generic/loyal/advantage4.svg" alt="">
+                <span>Уникальные предложения для пользователей подписки</span>
               </div>
             </section>
           </template>
@@ -472,9 +457,10 @@ useSeoMeta({
                   Лекарственные препараты и БАДы
                 </a>.
               </li>
-              <li><a href="catalog/396198-medicinskaya_tehnika" class="hover-bottom-line">
-                Медицинская техника
-              </a>.
+              <li>
+                <a href="catalog/396198-medicinskaya_tehnika" class="hover-bottom-line">
+                  Медицинская техника
+                </a>.
               </li>
               <li>Товары
                 <a href="catalog/400010-mat_i_ditya" class="hover-bottom-line">
@@ -542,13 +528,21 @@ useSeoMeta({
           </section>
           <section>
             <h3>Преимущества подписки «Апрель»</h3>
-            <div class="advantage"><img src="https://pictures.apteka-april.ru/generic/loyal/advantage1.svg"> <span>Постоянный доступ к клубным ценам</span>
+            <div class="advantage">
+              <img src="https://pictures.apteka-april.ru/generic/loyal/advantage1.svg" alt="">
+              <span>Постоянный доступ к клубным ценам</span>
             </div>
-            <div class="advantage"><img src="https://pictures.apteka-april.ru/generic/loyal/advantage2.svg"> <span>Больше не надо помнить о дате завершения периода</span>
+            <div class="advantage">
+              <img src="https://pictures.apteka-april.ru/generic/loyal/advantage2.svg" alt="">
+              <span>Больше не надо помнить о дате завершения периода</span>
             </div>
-            <div class="advantage"><img src="https://pictures.apteka-april.ru/generic/loyal/advantage3.svg"> <span>Стоимость оплаченного периода окупается в среднем за 1-2 покупки</span>
+            <div class="advantage">
+              <img src="https://pictures.apteka-april.ru/generic/loyal/advantage3.svg" alt="">
+              <span>Стоимость оплаченного периода окупается в среднем за 1-2 покупки</span>
             </div>
-            <div class="advantage"><img src="https://pictures.apteka-april.ru/generic/loyal/advantage4.svg"> <span>Уникальные предложения для пользователей подписки</span>
+            <div class="advantage">
+              <img src="https://pictures.apteka-april.ru/generic/loyal/advantage4.svg" alt="">
+              <span>Уникальные предложения для пользователей подписки</span>
             </div>
           </section>
         </template>
