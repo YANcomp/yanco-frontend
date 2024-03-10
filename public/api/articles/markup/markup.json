@@ -1,0 +1,18 @@
+{
+  "ID": 428,
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Акция от сети аптек «Апрель» и Яндекс Плюс",
+  "Image": null,
+  "image": [
+    "articles/428/1x1/photo",
+    "articles/428/4x3/photo",
+    "articles/428/16x9/photo"
+  ],
+  "datePublished": "2023-11-27T00:00:00Z",
+  "author": {
+    "@type": "Organisation",
+    "name": "Аптека Апрель",
+    "url": "https://apteka-april.ru/"
+  }
+}

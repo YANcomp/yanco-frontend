@@ -5,6 +5,7 @@ export const useQuestionsStore = defineStore('questions', {
         help: <any>[],
         distanceSale: <any>[],
         subscription: <any>[],
+        delivery: <any>[],
         mpPage: <any>[],
     }),
     actions: {
@@ -68,7 +69,7 @@ export const useQuestionsStore = defineStore('questions', {
             this.subscription = val
         },
         async COMMIT_GET_DELIVERY(val: any) {
-            this.subscription = val
+            this.delivery = val
         },
         async COMMIT_GET_MP_PAGE(val: any) {
             this.mpPage = val

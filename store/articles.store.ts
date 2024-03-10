@@ -3,8 +3,11 @@ import {defineStore} from "pinia";
 export const useArticlesStore = defineStore('articles', {
     state: () => ({
         products: <any>[],
+        article: <any>[],
         categories: <any>[],
+        list: <any>[],
         markup: <any>[],
+        lastArticles: <any>[],
     }),
     //CHECK GETTERS
     actions: {
@@ -22,16 +25,20 @@ export const useArticlesStore = defineStore('articles', {
             })
         },
         async ARTICLES_GET(props?: any) {
-            // return new Promise((resolve, reject) => {
-            //     useNuxtApp().$api.articles.getMarkup(n).then((res: any) => {
-            //         if (null !== res) {
-            //             this.COMMIT_ARTICLES_GET(res)
-            //         }
-            //         resolve(res)
-            //     }).catch((err: any) => {
-            //         reject(err)
-            //     })
-            // })
+            let filter = props.ID ? "ID=".concat(props.ID, '&slug="').concat(props.slug, '"') : props.filter,
+                n = props.ID ? ["ID", "categoryID", "slug", "title", "content", "image", "metaDescription", "metaTitle", "creationTime", "views", "readingTime", "commentsCount", "products"] : ["ID", "categoryID", "slug", "title", "description", "image", "creationTime", "views", "readingTime", "commentsCount"];
+            return new Promise((resolve, reject) => {
+                useNuxtApp().$api.articles.get(filter, n).then((a: any) => {
+                    this.COMMIT_ARTICLES_GET({
+                        list: props.ID ? a[0] : null != a ? a : [],
+                        needToLoad: props.needToLoad,
+                        listName: props.listName
+                    })
+                    resolve(props.ID ? a[0] : null != a ? a : [])
+                }).catch((err: any) => {
+                    reject(err)
+                })
+            })
         },
         async ARTICLES_GET_CATEGORIES(props?: any) {
             return new Promise((resolve, reject) => {
@@ -66,7 +73,9 @@ export const useArticlesStore = defineStore('articles', {
             this.markup = val
         },
         async COMMIT_ARTICLES_GET(val: any) {
-            //TODO  this.categories = val
+            this.$patch((state: any) => {
+                state[val.listName] = val.needToLoad ? [].concat(state[val.listName] ? state[val.listName] : [], val.list) : val.list
+            })
         },
         async COMMIT_ARTICLES_GET_CATEGORIES(val: any) {
             this.categories = val
@@ -80,27 +89,28 @@ export const useArticlesStore = defineStore('articles', {
             return state.markup
         },
         getCategoriesTree: function (state) {
-            return uToTree(state.categories) //TODO uToTree
+            return uToTree(state.categories)
         },
         preparedLastArticles: function (state) {
-            //TODO
-            // return null === (t = state.lastArticles) || void 0 === t ? void 0 : t.map((function (a) {
-            //     var t, e, n = (null !== (t = s.categories) && void 0 !== t ? t : []).find((function (t) {
-            //             return t.ID === a.categoryID
-            //         })),
-            //         o = y(y({}, a), {}, {
-            //             image: "url(".concat(a.image, ")"),
-            //             route: {
-            //                 name: "Article",
-            //                 params: {
-            //                     ID: "".concat(a.ID),
-            //                     slug: a.slug,
-            //                     sectionName: "blog"
-            //                 }
-            //             }
-            //         });
-            //     return void 0 !== n && void 0 !== n.parentID && ((null === (e = o.route) || void 0 === e ? void 0 : e.params).categoryName = n.slug), o
-            // }))
+            let t
+            return null === (t = state.lastArticles) || void 0 === t ? void 0 : t.map((a: any) => {
+                let t, e, n = (null !== (t = state.categories) && void 0 !== t ? t : []).find((t: any) => {
+                        return t.ID === a.categoryID
+                    }),
+                    o = {
+                        ...a,
+                        image: "url(".concat(a.image, ")"),
+                        route: {
+                            name: "Article",
+                            params: {
+                                ID: "".concat(a.ID),
+                                slug: a.slug,
+                                sectionName: "blog"
+                            }
+                        }
+                    }
+                return void 0 !== n && void 0 !== n.parentID && ((null === (e = o.route) || void 0 === e ? void 0 : e.params).categoryName = n.slug), o
+            })
         },
     }
 })

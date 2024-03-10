@@ -94,7 +94,7 @@ export default <RouterConfig>{
         },
         {
             path: "/bloggers",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vBloggers.vue').then(r => r.default || r),
             name: "bloggers"
         },
         {
@@ -114,12 +114,12 @@ export default <RouterConfig>{
         },
         {
             path: "/cross-action",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vCrossAction.vue').then(r => r.default || r),
             name: "cross-action"
         },
         {
             path: "/delivery",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vDelivery.vue').then(r => r.default || r),
             name: "delivery"
         },
         {
@@ -139,7 +139,7 @@ export default <RouterConfig>{
         },
         {
             path: "/help",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
+            component: () => import('~/components/vPages/vHelp.vue').then(r => r.default || r),
             name: "help"
         },
         {
@@ -450,32 +450,35 @@ export default <RouterConfig>{
                 }]
             }]
         },
+        // {
+        //     path: "/:sectionName(blog|news)",
+        //     component: () => import('~/components/vPages/vArticles.vue').then(r => r.default || r),
+        //     props: !0,
+        //     name: "Articles",
+        // },
         {
-            path: "/:sectionName(blog|news)",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            props: !0,
-            name: "Articles",
-            children: [{
-                path: ":categoryName(mom-and-child|intresting-and-useful)?/:ID()-:slug",
-                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-                props: function (t: any) {
-                    return Object.assign(Object.assign({}, t.params), {}, {
-                        ID: Number(t.params.ID),
-                        slug: t.params.slug
-                    })
-                },
-                name: "Article"
-            }, {
-                path: "/:sectionName(blog|news)/:categoryName(mom-and-child|intresting-and-useful)?",
-                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-                props: function (t: any) {
-                    return Object.assign(Object.assign({}, t.params), {}, {
-                        sectionName: t.params.sectionName,
-                        categoryName: t.params.categoryName
-                    })
-                },
-                name: "ArticleList"
-            }]
+            path: "/:sectionName(blog|news)/:categoryName(mom-and-child|intresting-and-useful)?/:ID()-:slug",
+            component: () => import('~/components/vPages/vArticles.vue').then(r => r.default || r),
+            props: function (t: any) {
+                return Object.assign({
+                    ...t.params,
+                    ID: Number(t.params.ID),
+                    slug: t.params.slug
+                })
+            },
+            name: "Article"
+        },
+        {
+            path: "/:sectionName(blog|news)/:categoryName(mom-and-child|intresting-and-useful)?",
+            component: () => import('~/components/vPages/vArticles.vue').then(r => r.default || r),
+            props: function (t: any) {
+                return Object.assign({
+                    ...t.params,
+                    sectionName: t.params.sectionName,
+                    categoryName: t.params.categoryName
+                })
+            },
+            name: "ArticleList"
         },
         {
             path: "/vacancies/faces",

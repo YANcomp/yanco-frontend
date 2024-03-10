@@ -55,19 +55,19 @@ const props = defineProps({
                 <NuxtLink :to="{name:'about'}">О компании</NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/">Сотрудничество</NuxtLink>
+                <NuxtLink :to='{ name: "Pages", params: { slug: "cooperation" } }'>Сотрудничество</NuxtLink>
               </li>
               <li>
                 <NuxtLink :to="{name: 'vacancies'}">Работа у нас</NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/">СМИ о нас</NuxtLink>
+                <NuxtLink :to='{ name: "Pages", params: { slug: "mass-media-about-us" } }'>СМИ о нас</NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/">Блогерам</NuxtLink>
+                <NuxtLink :to='{ name: "bloggers" }'>Блогерам</NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/">Сотрудничество по кросс-акциям</NuxtLink>
+                <NuxtLink :to='{ name: "cross-action" }'>Сотрудничество по кросс-акциям</NuxtLink>
               </li>
             </ul>
           </li>
@@ -75,13 +75,16 @@ const props = defineProps({
             <p>Покупателям</p>
             <ul>
               <li>
-                <NuxtLink to="/">Программа лояльности</NuxtLink>
+                <NuxtLink :to='{name:"loyal"}'>Программа лояльности</NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/">Доставка</NuxtLink>
+                <NuxtLink :to='{name: "delivery"}'>Доставка</NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/">Как сделать заказ</NuxtLink>
+                <NuxtLink :to='{name: "help"}'>Как сделать заказ</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to='{ name: "ArticleList", params: { sectionName: "blog" } }'>Наш блог</NuxtLink>
               </li>
             </ul>
           </li>
