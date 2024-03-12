@@ -490,8 +490,11 @@ export default <RouterConfig>{
 }
 
 function withMeta(originalRoutes: Readonly<RouteRecordRaw[]>, route: RouteRecordRaw) {
-    const originalRoute = originalRoutes.find(originalRoute => originalRoute.path === route.path)
-    // console.log(route)
+    let originalRoute = originalRoutes.find(originalRoute => originalRoute.path === route.path)
+    if (!originalRoute) {
+        originalRoute = originalRoutes.find(originalRoute => originalRoute.name === route.name)
+    }
     // console.log(originalRoutes)
+    // console.log(route)
     return merge(originalRoute, route)
 }

@@ -17,18 +17,18 @@ const categories = ref(articlesStore.categories)
 const isLoading = ref(true)
 const isFailedGettingCategories = ref(false)
 
-await articlesStore.ARTICLES_GET_CATEGORIES().then((t: any) => {
-  categories.value = t
-}).catch((t: any) => {
-  isFailedGettingCategories.value = !0
-  useNotificationsStore().NOTIFICATIONS_UPD({
-    title: "Произошла ошибка",
-    desc: t,
-    status: "error"
-  })
-}).finally(() => {
-  isLoading.value = false
-})
+// await articlesStore.ARTICLES_GET_CATEGORIES().then((t: any) => {
+//   categories.value = t
+// }).catch((t: any) => {
+//   isFailedGettingCategories.value = !0
+//   useNotificationsStore().NOTIFICATIONS_UPD({
+//     title: "Произошла ошибка",
+//     desc: t,
+//     status: "error"
+//   })
+// }).finally(() => {
+//   isLoading.value = false
+// })
 // end fetch data
 
 const activeCategoryID = ref(void 0)
@@ -164,7 +164,7 @@ function setCategory() {
 </script>
 
 <template>
-  <main :class='["v-articles", "container", "flex-horizontal-nowrap", { mobile: isMobile }]'>
+  <main :class='["v-articles", "container",  { mobile: isMobile }]'>
     <h1>Наш блог</h1>
     <div v-if="isMobile" class="selected-category" @click="openClose">
       {{ categoryTitle }}
@@ -221,7 +221,7 @@ function setCategory() {
   min-height: -moz-fit-content;
   min-height: fit-content;
   width: 100%;
-  padding: 0;
+  padding: 0 !important;
   flex-flow: column
 }
 
