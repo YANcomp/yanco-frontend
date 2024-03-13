@@ -19,8 +19,8 @@ const appStore = useAppStore()
 const route = useRoute()
 
 const isFailedGettingArticle = ref(!1)
-const isLocalLoading = ref(!0)
-const markup = ref(void 0)
+const isLocalLoading = ref(false)
+const markup = ref(articlesStore.markup)
 const articleData = ref(<any>undefined)
 const A = ref(articlesStore.categories)
 const notFound = ref(!1)
@@ -31,45 +31,45 @@ if (A.value.length < 1) {
   })
 }
 
-await articlesStore.ARTICLES_GET_MARKUP({
-  ID: props.ID
-}).then(() => {
-  markup.value = articlesStore.markup
-})
-
-await articlesStore.ARTICLES_GET({
-  ID: route.params.ID,
-  slug: route.params.slug,
-  listName: "article"
-}).then((a: any) => {
-  // var t, e, n;
-  // notFound.value = void 0 === route.params.categoryName ? route.params.sectionName !== (null === (t = null == A.value ? void 0 : A.value.find((t: any) => {
-  //   return t.ID === a.categoryID
-  // })) || void 0 === t ? void 0 : t.slug) : route.params.sectionName !== (null === (e = null == A.value ? void 0 : A.value.find((t: any) => {
-  //   var e;
-  //   return t.ID === (null === (e = null == A.value ? void 0 : A.value.find((t: any) => {
-  //     return t.ID === a.categoryID
-  //   })) || void 0 === e ? void 0 : e.parentID)
-  // })) || void 0 === e ? void 0 : e.slug) || route.params.categoryName !== (null === (n = null == A.value ? void 0 : A.value.find((t: any) => {
-  //   return t.ID === a.categoryID
-  // })) || void 0 === n ? void 0 : n.slug)
-  articleData.value = a
-}).catch((t) => {
-  notFound.value = "string" != typeof t && 404 === t.code, isFailedGettingArticle.value = !0, notFound.value || useNotificationsStore().NOTIFICATIONS_UPD({
-    title: "Произошла ошибка",
-    desc: t,
-    status: "error"
-  })
-}).finally(() => {
-  isLocalLoading.value = !1
-})
-
-if (notFound.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Page Not Found'
-  })
-}
+// await articlesStore.ARTICLES_GET_MARKUP({
+//   ID: props.ID
+// }).then(() => {
+//   markup.value = articlesStore.markup
+// })
+//
+// await articlesStore.ARTICLES_GET({
+//   ID: route.params.ID,
+//   slug: route.params.slug,
+//   listName: "article"
+// }).then((a: any) => {
+//   // var t, e, n;
+//   // notFound.value = void 0 === route.params.categoryName ? route.params.sectionName !== (null === (t = null == A.value ? void 0 : A.value.find((t: any) => {
+//   //   return t.ID === a.categoryID
+//   // })) || void 0 === t ? void 0 : t.slug) : route.params.sectionName !== (null === (e = null == A.value ? void 0 : A.value.find((t: any) => {
+//   //   var e;
+//   //   return t.ID === (null === (e = null == A.value ? void 0 : A.value.find((t: any) => {
+//   //     return t.ID === a.categoryID
+//   //   })) || void 0 === e ? void 0 : e.parentID)
+//   // })) || void 0 === e ? void 0 : e.slug) || route.params.categoryName !== (null === (n = null == A.value ? void 0 : A.value.find((t: any) => {
+//   //   return t.ID === a.categoryID
+//   // })) || void 0 === n ? void 0 : n.slug)
+//   articleData.value = a
+// }).catch((t) => {
+//   notFound.value = "string" != typeof t && 404 === t.code, isFailedGettingArticle.value = !0, notFound.value || useNotificationsStore().NOTIFICATIONS_UPD({
+//     title: "Произошла ошибка",
+//     desc: t,
+//     status: "error"
+//   })
+// }).finally(() => {
+//   isLocalLoading.value = !1
+// })
+//
+// if (notFound.value) {
+//   throw createError({
+//     statusCode: 404,
+//     statusMessage: 'Page Not Found'
+//   })
+// }
 // const markup = ref(P)
 // const isFailedGettingArticle = ref(I)
 // const isLocalLoading = ref(k)

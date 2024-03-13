@@ -450,12 +450,6 @@ export default <RouterConfig>{
                 }]
             }]
         },
-        // {
-        //     path: "/:sectionName(blog|news)",
-        //     component: () => import('~/components/vPages/vArticles.vue').then(r => r.default || r),
-        //     props: !0,
-        //     name: "Articles",
-        // },
         {
             path: "/:sectionName(blog|news)/:categoryName(mom-and-child|intresting-and-useful)?/:ID()-:slug",
             component: () => import('~/components/vPages/vArticles.vue').then(r => r.default || r),
