@@ -58,6 +58,9 @@ const props = defineProps({
                 <NuxtLink :to='{ name: "Pages", params: { slug: "cooperation" } }'>Сотрудничество</NuxtLink>
               </li>
               <li>
+                <NuxtLink :to='{ name: "ArticleList", params: { sectionName: "news" } }'>Новости</NuxtLink>
+              </li>
+              <li>
                 <NuxtLink :to="{name: 'vacancies'}">Работа у нас</NuxtLink>
               </li>
               <li>

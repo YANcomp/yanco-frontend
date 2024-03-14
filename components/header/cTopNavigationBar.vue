@@ -39,11 +39,6 @@ const isChanged = computed(() => {
               Работа у нас
             </NuxtLink>
           </li>
-          <li>
-            <NuxtLink class="hover-bottom-line" to="/">
-              Редкие товары
-            </NuxtLink>
-          </li>
         </div>
 
 
@@ -53,7 +48,7 @@ const isChanged = computed(() => {
           </NuxtLink>
         </li>
         <li class="exceptional">
-          <NuxtLink class="hover-bottom-line" to="/">
+          <NuxtLink class="hover-bottom-line" :to="{name:'mobile'}">
             Мобильное приложение
           </NuxtLink>
         </li>

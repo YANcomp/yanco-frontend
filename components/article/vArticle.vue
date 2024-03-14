@@ -78,8 +78,8 @@ const articleRef = ref(<any>undefined)
 const comment = ref("")
 const isSendingComment = ref(!1)
 const isErrorComment = ref(!1)
-const comments = ref([])
-const mapTimes = ref({})
+const comments = ref(<any>[])
+const mapTimes = ref(<any>{})
 const loadingBasketProductIDs = ref([])
 const loadingFavoritesProductIDs = ref([])
 const updatingBasketProductIDs = ref([])
@@ -175,12 +175,287 @@ const lastArticles = computed(() => {
 onMounted(() => {
   isMounted.value = !0
   // getComments()
-  // articleRef.value.addEventListener("copy", copyText)
+  articleRef.value.addEventListener("copy", copyText)
 })
 
-function closeDeletingComment() {
 
+//METHODS
+function openPopup(t: any) {
+  var e = screen.width / 2 - 300,
+      n = screen.height / 2 - 200;
+  window.open(t, "", "width=" + 600 + ", height=" + 400 + ", top=" + n + ", left=" + (e))
 }
+
+function updateBasketItem(t: any) {
+  addToBasket(t, !0)
+}
+
+function updateBasketStore(t: any) {
+  useBasketStore().COMMIT_BASKET_UPD(t)
+}
+
+function updateFavoritesStore(t: any) {
+  useFavoritesStore().COMMIT_FAVORITES_UPD(t)
+}
+
+function addToFavorites(t: any, e?: any) {
+  // var e, n = this;
+  // void 0 !== (null === (e = this.city) || void 0 === e ? void 0 : e.ID) && (this.loadingFavoritesProductIDs.push(t), this.$store.dispatch("favorites/".concat(l.FAVORITES.ADD), {
+  //   itemID: t,
+  //   cityID: this.city.ID
+  // }).catch((function (t) {
+  //   n.error(t)
+  // })).finally((function () {
+  //   n.loadingFavoritesProductIDs = []
+  // })))
+}
+
+function addToBasket(t: any, e: any) {
+  // var n, o = this;
+  // void 0 !== (null === (n = this.city) || void 0 === n ? void 0 : n.ID) && (e ? this.updatingBasketProductIDs.push(t.productID) : this.loadingBasketProductIDs.push(t.productID), this.$store.dispatch("basket/".concat(l.BASKET.ADD), {
+  //   item: t,
+  //   cityID: this.city.ID,
+  //   isUpdate: e
+  // }).catch((function (t) {
+  //   o.error(t)
+  // })).finally((function () {
+  //   o.loadingBasketProductIDs = [], e && (o.updatingBasketProductIDs = [])
+  // })))
+}
+
+const preparedProducts = uPrepared
+
+function getProduct() {
+  var t, e, n, o,
+      c = {
+        filter: 'isNotFound="false"&ID={'.concat((null !== (e = null === (t = article.value) || void 0 === t ? void 0 : t.products) && void 0 !== e ? e : []).join(), "}&cityID=").concat(null !== (o = null === (n = city.value) || void 0 === n ? void 0 : n.ID) && void 0 !== o ? o : 41),
+        fields: uAllowFiltersProduct
+      },
+      m = articlesStore.ARTICLES_GET_PRODUCTS(c);
+  return m.catch((t) => {
+    useNotificationsStore().NOTIFICATIONS_UPD({
+      title: "Произошла ошибка",
+      desc: t,
+      status: "error"
+    })
+  }), m
+}
+
+function closeEdit(t: any) {
+  // c.default.set(t, "isEditing", !1)
+}
+
+function editComment(t: any) {
+  // c.default.set(t, "isEditing", !0), c.default.set(t, "updBody", t.body)
+}
+
+function showDeletingComment(t: any) {
+  // this.isDeletion = !0, this.deletingCommentID = t.ID
+}
+
+function closeDeletingComment() {
+  // this.isDeletion = !1
+}
+
+function formattedCreationTime(s: any) {
+  var t = uToDate(s);
+  return void 0 !== t ? uFormat(t, "d.m.Y") : "Не известно"
+}
+
+function formattedDateComment(s: any) {
+  var t, e = uToDate(s),
+      n = void 0 !== e ? uFormat(e, "d.m.Y") : "Не известно";
+  return null !== (t = mapTimes.value[n]) && void 0 !== t ? t : n
+}
+
+function prepareInitial(s: any) {
+  var t, e = (null != s ? s : "").split(" ");
+  return (e[0].charAt(0) + (null !== (t = e[1]) && void 0 !== t ? t : "").charAt(0)).toLocaleUpperCase()
+}
+
+function error(t: any) {
+  useNotificationsStore().NOTIFICATIONS_UPD({
+    title: "Произошла ошибка",
+    desc: t,
+    status: "error"
+  })
+}
+
+function openLoginModal() {
+  // var t;
+  // new RegExp(d.m.join("|"), "i").test(null !== (t = this.$route.name) && void 0 !== t ? t : "") || this.$nuxt.$emit("open-login-or-registration")
+}
+
+function sendComment() {
+  // var t = this;
+  // this.comment.length < 10 ? this.isErrorComment = !0 : (this.isErrorComment = !1, this.isSendingComment = !0, v.a.articlesComment.new({
+  //   body: this.comment,
+  //   articleID: this.article.ID
+  // }).then((function () {
+  //   t.comment = "", t.getComments().finally((function () {
+  //     t.isSendingComment = !1
+  //   }))
+  // })).catch((function (e) {
+  //   t.isSendingComment = !1, t.error(e)
+  // })))
+}
+
+function updComment(t: any) {
+  // var e = this;
+  // t.isLoading = !0, v.a.articlesComment.update({
+  //   body: t.updBody,
+  //   ID: t.ID
+  // }).then((function () {
+  //   e.getComments().finally((function () {
+  //     e.isSendingComment = !1
+  //   }))
+  // })).catch((function (n) {
+  //   t.isLoading = !1, e.error(n)
+  // }))
+}
+
+function delComment() {
+  // var t = this;
+  // this.closeDeletingComment(), this.$store.commit("app/".concat(l.APP.LOADING_UPD), !0), v.a.articlesComment.del(this.deletingCommentID).then((function () {
+  //   t.getComments()
+  // })).catch((function (e) {
+  //   t.error(e)
+  // })).finally((function () {
+  //   t.$store.commit("app/".concat(l.APP.LOADING_UPD), !1)
+  // }))
+}
+
+function getComments() {
+  // var t = this,
+  //     e = "articleID=".concat(this.article.ID),
+  //     n = v.a.articlesComment.get(e);
+  // return n.then((function (e) {
+  //   t.comments = (null != e ? e : []).map((function (t) {
+  //     var e;
+  //     return P(P({}, t), {}, {
+  //       isEditing: !1,
+  //       updBody: "",
+  //       isLoading: !1,
+  //       userName: null !== (e = t.userName) && void 0 !== e ? e : "Аноним"
+  //     })
+  //   }))
+  // })).catch((function (e) {
+  //   t.error(e)
+  // })), n
+}
+
+function copyText() {
+  var t, text = window.getSelection(),
+      e = text + "<br /><br />Источник: ".concat(params.value.siteURL).concat(route.path),
+      div = document.createElement("div");
+  div.style.position = "absolute", div.style.left = "-99999px", div.innerHTML = "".concat(e).replace(/\n/g, "<br />"), null === (t = document.getElementById("app")) || void 0 === t || t.appendChild(div), null == text || text.selectAllChildren(div), setTimeout(() => {
+    var t;
+    null === (t = document.getElementById("app")) || void 0 === t || t.removeChild(div)
+  }, 100)
+}
+
+function repeatGettingArticle() {
+  // var t = this;
+  // this.$data.isLocalLoading = !0, this.$store.dispatch("articles/".concat(l.ARTICLES.GET), {
+  //   ID: this.ID,
+  //   slug: this.slug,
+  //   listName: "article"
+  // }).then((function (a) {
+  //   t.$data.article = a, t.$data.isFailedGettingArticle = !1
+  // })).catch((function (e) {
+  //   t.$data.isFailedGettingArticle = !0, t.$store.dispatch("notifications/".concat(l.NOTIFICATIONS.UPD), {
+  //     title: "Произошла ошибка",
+  //     desc: e,
+  //     status: "error"
+  //   })
+  // })).finally((function () {
+  //   t.$data.isLocalLoading = !1
+  // }))
+}
+
+function updateRouteBreadcrumbs() {
+  // var t, e, n = this;
+  // if (void 0 !== this.$data.article) {
+  //   var o = void 0,
+  //       r = (null !== (t = this.categories) && void 0 !== t ? t : []).find((function (t) {
+  //         var e;
+  //         return t.ID === (null === (e = n.$data.article) || void 0 === e ? void 0 : e.categoryID)
+  //       }));
+  //   if (void 0 !== (null == r ? void 0 : r.parentID)) {
+  //     var c = (null !== (e = this.categories) && void 0 !== e ? e : []).find((function (t) {
+  //       return t.ID === r.parentID
+  //     }));
+  //     o = [{
+  //       name: "Главная страница",
+  //       routeName: "index"
+  //     }, {
+  //       name: c.title,
+  //       routeName: "ArticleList",
+  //       params: {
+  //         sectionName: c.slug
+  //       }
+  //     }, {
+  //       name: r.title,
+  //       routeName: "ArticleList",
+  //       params: {
+  //         sectionName: c.slug,
+  //         categoryName: r.slug
+  //       }
+  //     }, {
+  //       name: this.article.title
+  //     }]
+  //   } else o = [{
+  //     name: "Главная страница",
+  //     routeName: "index"
+  //   }, {
+  //     name: null == r ? void 0 : r.title,
+  //     routeName: "ArticleList",
+  //     params: {
+  //       sectionName: this.$route.params.sectionName
+  //     }
+  //   }, {
+  //     name: this.article.title
+  //   }];
+  //   this.$store.commit("app/".concat(l.APP.BREADCRUMBS_UPD), o)
+  // }
+}
+
+//SEO
+let t, e, n, o, r, c
+let y = void 0 !== (null === (t = article.value) || void 0 === t ? void 0 : t.categoryID) && void 0 !== (null !== (e = props.categories.find((i: any) => {
+  return i.ID === article.value.categoryID
+})) && void 0 !== e ? e : <any>{}).parentID
+let descHead = "".concat((null === (n = article.value) || void 0 === n ? void 0 : n.metaDescription) ? null === (o = article.value) || void 0 === o ? void 0 : o.metaDescription : "Аптеки «Апрель» - быстрое онлайн-бронирование лекарств и покупка в ближайшей аптеке.")
+let urlHead = "".concat(params.value.siteURL, "/") + route.params.sectionName + "/" + (y ? (null !== (r = props.categories.find((i: any) => {
+  return i.ID === article.value.categoryID
+})) && void 0 !== r ? r : <any>{}).slug + "/" : "") + article.value.ID + "-".concat(article.value.slug)
+
+if (markup.value) {
+  useHead(() => ({
+    script: [{
+      type: "application/ld+json",
+      innerHTML: JSON.stringify(markup.value)
+    }],
+    __dangerouslyDisableSanitizers: ['script'],
+  }))
+}
+useHead(() => ({
+  link: [
+    {
+      rel: 'canonical',
+      href: urlHead,
+    },
+  ],
+}))
+useSeoMeta({
+  title: article.value.metaTitle ? article.value.metaTitle : article.value.title,
+  description: descHead,
+  ogType: 'website',
+  ogUrl: urlHead,
+  ogImage: 'https://pictures.apteka-april.ru/generic/pharmacy_logo.png',
+  ogTitle: article.value.metaTitle ? article.value.metaTitle : article.value.title,
+  ogDescription: descHead
+})
 </script>
 
 <template>
@@ -202,7 +477,7 @@ function closeDeletingComment() {
         <div>
           <span>
             <span class="icon calendar2"/>
-            <!--            {{ formattedCreationTime(article.creationTime)}}-->
+            {{ formattedCreationTime(article.creationTime) }}
           </span>
           <span>
             <span class="icon clock2"/>
@@ -222,7 +497,43 @@ function closeDeletingComment() {
       </div>
 
       <section class="content" v-html="$mdRenderer.render(article.content || '')"/>
+
+      <ProductCProductsSlider v-if="hasProducts" class="products" title="Товары из этой статьи"
+                              :basket-items="basketItems" :city="city" :favorites-items="favoritesItems"
+                              :has-loyal-card="hasLoyalCard" :is-authorized="isAuthorized" :is-mobile="isMobile"
+                              :loading-basket-product-i-ds="loadingBasketProductIDs"
+                              :loading-favorites-product-i-ds="loadingFavoritesProductIDs"
+                              :updating-basket-product-i-ds="updatingBasketProductIDs"
+                              :product-categories="productCategories" :product-subtypes="productSubtypes"
+                              :product-types="productTypes"
+                              :products="preparedProducts(products, PREPARED_PRODUCTS_FIELDS)"
+                              :total-count-products="products.length"
+                              v-on:add-to-basket="addToBasket"
+                              v-on:add-to-favorites="(i:any)=>{addToFavorites(i, !1)}"
+                              v-on:basket-item-update="updateBasketItem"
+                              v-on:basket-store-update="updateBasketStore"
+                              v-on:favorites-store-update="updateFavoritesStore"/>
+
+      <div v-if="isMobile" class="share-links">
+        <span>Поделиться:</span>
+        <ul>
+          <li v-for="(e,i) in shareLinks" :key="i" @click="openPopup(e.link)">
+            <span :class='["icon", e.icon]'/>
+          </li>
+        </ul>
+      </div>
     </section>
+
+    <aside v-if="!isMobile">
+      <div>
+        <span>Поделиться:</span>
+        <ul ref="menuRef" class="share-links">
+          <li v-for="(e,i) in shareLinks" :key="i">
+            <span :class='["icon", e.icon]' :data-tooltip="e.name" @click="openPopup(e.link)"/>
+          </li>
+        </ul>
+      </div>
+    </aside>
   </section>
 </template>
 

@@ -180,7 +180,7 @@ function setCategory() {
             <ArticleCTreeView :items="preparedItems">
               <NuxtLink v-for="(e) in preparedItems" :key="e.ID"
                         :class='[e.isActive ? "tree-item-active" : "tree-item", { "active-parent": e.isActiveParent }]'
-                        :style='{ paddingLeft: 10 * e.level + "px" }' :to="e.route">
+                        :style='{ "padding-left": 10 + "px" }' :to="e.route">
                 {{ e.title }}
               </NuxtLink>
             </ArticleCTreeView>

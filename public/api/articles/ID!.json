@@ -1,0 +1,26 @@
+[
+  {
+    "ID": 427,
+    "categoryID": 4,
+    "commentsCount": 1,
+    "creationTime": "2023-10-17T00:00:00Z",
+    "description": "Осенью температура воздуха резко снижается, а вот шансы простудиться и подхватить вирус гриппа – резко взлетают вверх. Для организма холодная погода, которая приходит на смену летнему теплу, это большой стресс, который ослабляет иммунную систему.",
+    "image": "https://pictures.apteka-april.ru/articles/427/ststya.webp",
+    "readingTime": 5,
+    "slug": "kompleksnoe_lechenie_v_sezon_prostud_i_virusov_grippa",
+    "title": "Комплексное лечение в сезон простуд и вирусов гриппа",
+    "views": 4025
+  },
+  {
+    "ID": 400,
+    "categoryID": 2,
+    "commentsCount": 0,
+    "creationTime": "2023-06-29T00:00:00Z",
+    "description": "Линейка Allvit – это современные комплексы витаминов, минералов, макро- и микроэлементов в 7 направлениях действия.",
+    "image": "https://pictures.apteka-april.ru/articles/400/allvit_v_blog.webp",
+    "readingTime": 1,
+    "slug": "allvit__vitaminy_dlya_zhizni",
+    "title": "Allvit – витамины для жизни!",
+    "views": 48612
+  }
+]

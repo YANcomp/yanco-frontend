@@ -12,6 +12,7 @@ const regionsStore = useRegionsStore()
 const storiesStore = useStoriesStore()
 const route = useRoute()
 const notificationsStore = useNotificationsStore()
+const router = useRouter()
 
 //TODO END STORE
 
@@ -426,7 +427,18 @@ function error(error: any) {
   })
 }
 
-const router = useRouter()
+function goToLandlords() {
+  router.push({
+    name: "landlords"
+  })
+}
+
+function goToVacancies() {
+  router.push({
+    name: "vacancies"
+  })
+}
+
 //TODO END METHODS
 </script>
 
@@ -463,12 +475,12 @@ const router = useRouter()
                    v-on:search="search"/>
 
     <div v-if="isMobile && isHome" class="gradient-buttons">
-      <UiCButton dont-upper-case mode="gradient" @click="">
+      <UiCButton dont-upper-case mode="gradient" @click="goToLandlords">
         <span class="icon search-home"/>
         Арендодателям <br>
         Продавцам бизнеса
       </UiCButton>
-      <UiCButton dont-upper-case mode="gradient" @click="">
+      <UiCButton dont-upper-case mode="gradient" @click="goToVacancies">
         <span class="icon form-checked"/>
         Работа у нас
       </UiCButton>

@@ -177,6 +177,11 @@ function openLoginOrRegistration(val: string) {
               </NuxtLink>
             </li>
             <li>
+              <NuxtLink :to='{ name: "ArticleList", params: { sectionName: "blog" } }'>
+                Полезные статьи
+              </NuxtLink>
+            </li>
+            <li>
               <NuxtLink class="favorites" :to='{name:"favorites"}'>
                 Избранное
                 <span v-if="hasFavoritesItems" class="count">{{ "(" + favoritesCount + ")" }}</span>
@@ -190,7 +195,22 @@ function openLoginOrRegistration(val: string) {
             </li>
             <li>
               <NuxtLink :to='{ name: "ArticleList", params: { sectionName: "news" } }'>
+                Новости
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink :to="{name:'about'}">
+                О Компании
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink :to='{ name: "Pages", params: { slug: "cooperation" } }'>
                 Сотрудничество
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink :to='{ name: "bloggers" }'>
+                Блогерам
               </NuxtLink>
             </li>
           </ul>

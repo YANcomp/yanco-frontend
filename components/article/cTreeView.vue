@@ -31,7 +31,7 @@ const render = () => {
       items: r.children,
       level: props.level + 1,
       scopedSlots: {
-        default: function (props:any) {
+        default: function (props: any) {
           return h('span', props.text)
         }
       }
@@ -43,7 +43,7 @@ const render = () => {
               return h(NuxtLink, {
                 key: item.ID,
                 class: [item.isActive ? "tree-item-active" : "tree-item", {"active-parent": item.isActiveParent}],
-                style: { paddingLeft: 10 * item.level + "px" },
+                style: {"padding-left": 10 * (props.level + 1) + "px"},
                 to: item.route
               }, () => item.title)
             })

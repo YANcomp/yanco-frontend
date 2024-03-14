@@ -7,6 +7,14 @@ class ApiArticlesModule {
 
     async getMarkup(params: any) {
         // TODO "articles/markup?".concat(t)
+
+        if (params.includes("ID=461")) {
+            return await $fetch(`articles/markup/articleID=461.json`, {
+                ...this.$opts,
+                method: 'GET',
+            })
+        }
+
         return await $fetch(`articles/markup/markup.json`, {
             ...this.$opts,
             method: 'GET',
@@ -24,6 +32,12 @@ class ApiArticlesModule {
         // console.log(e)
         if (e.includes("articles?ID=428")) {
             return await $fetch(`articles/articlesID=428.json`, {
+                ...this.$opts,
+                method: 'GET',
+            })
+        }
+        if (e.includes("articles?ID=461")) {
+            return await $fetch(`articles/articlesID=461.json`, {
                 ...this.$opts,
                 method: 'GET',
             })

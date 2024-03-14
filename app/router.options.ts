@@ -123,16 +123,6 @@ export default <RouterConfig>{
             name: "delivery"
         },
         {
-            path: "/distance-sale",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            name: "distance-sale"
-        },
-        {
-            path: "/error",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            name: "error"
-        },
-        {
             path: "/favorites",
             component: () => import('~/components/vPages/vFavorites.vue').then(r => r.default || r),
             name: "favorites"
@@ -163,19 +153,9 @@ export default <RouterConfig>{
             name: "mobile"
         },
         {
-            path: "/partners",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            name: "partners"
-        },
-        {
             path: "/pharmacies",
             component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             name: "pharmacies"
-        },
-        {
-            path: "/survey",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            name: "survey"
         },
         {
             path: "/vacancies",
@@ -213,12 +193,6 @@ export default <RouterConfig>{
             component: () => import('~/components/vPages/vPages.vue').then(r => r.default || r),
             props: !0,
             name: "Pages"
-        },
-        {
-            path: "/distance-sale/:slug",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            props: !0,
-            name: "Company"
         },
         {
             path: "/product/:productID()-:productSlug()",
@@ -268,16 +242,6 @@ export default <RouterConfig>{
             name: "CatalogCategory"
         },
         {
-            path: "/catalog/select-in-category/:productID()",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            props: function (t: any) {
-                return Object.assign(Object.assign({}, t.params), {}, {
-                    productID: Number(t.params.productID)
-                })
-            },
-            name: "SelectInCategory"
-        },
-        {
             path: "/catalog/:typeID()-:typeSlug()/:subtypeID()-:subtypeSlug()",
             component: () => import('~/components/vPages/vProductList.vue').then(r => r.default || r),
             props: function (t: any) {
@@ -305,52 +269,10 @@ export default <RouterConfig>{
             name: "Search"
         },
         {
-            path: "/poll/:ID()",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            props: function (t: any) {
-                return Object.assign(Object.assign({}, t.params), {}, {
-                    ID: Number(t.params.ID)
-                })
-            },
-            name: "Poll"
-        },
-        {
             path: "/catalog/categories/:popularCategory()",
             component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
             props: !0,
             name: "PopularCategories"
-        },
-        {
-            path: "/deystvuyushchee_veshchestvo",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            name: "ActiveSubstances"
-        },
-        {
-            path: "/deystvuyushchee_veshchestvo/:propertyID()-:propertySlug",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            props: function (t: any) {
-                return Object.assign(Object.assign({}, t.params), {}, {
-                    propertyTypeID: 6,
-                    propertyID: Number(t.params.propertyID)
-                })
-            },
-            name: "ActiveSubstance"
-        },
-        {
-            path: "/proizvoditel",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            name: "Manufacturers"
-        },
-        {
-            path: "/proizvoditel/:propertyID()-:propertySlug",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            props: function (t: any) {
-                return Object.assign(Object.assign({}, t.params), {}, {
-                    propertyTypeID: 13,
-                    propertyID: Number(t.params.propertyID)
-                })
-            },
-            name: "Manufacturer"
         },
         {
             path: "/brand",
@@ -368,22 +290,6 @@ export default <RouterConfig>{
                 }
             },
             name: "Brand"
-        },
-        {
-            path: "/analogi",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            name: "Analogi"
-        },
-        {
-            path: "/analogi/:propertyID()-:propertySlug",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            props: function (t: any) {
-                return Object.assign(Object.assign({}, t.params), {}, {
-                    propertyTypeID: 10,
-                    propertyID: Number(t.params.propertyID)
-                })
-            },
-            name: "BrandAnalogs"
         },
         {
             path: "/redkie-preparaty",
@@ -421,43 +327,15 @@ export default <RouterConfig>{
             name: "Confirmation"
         },
         {
-            path: "/blog/400-:slug",
-            component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-            props: function (t: any) {
-                return Object.assign(Object.assign({}, t.params), {}, {
-                    slug: t.params.slug
-                })
-            },
-            name: "Allvit",
-            children: [{
-                path: ":setName",
-                component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-                props: function (t: any) {
-                    return Object.assign(Object.assign({}, t.params), {}, {
-                        setName: t.params.setName
-                    })
-                },
-                name: "AllvitSections",
-                children: [{
-                    path: ":productID",
-                    component: () => import('~/components/vPages/vHome.vue').then(r => r.default || r),
-                    props: function (t: any) {
-                        return Object.assign(Object.assign({}, t.params), {}, {
-                            productID: t.params.productID
-                        })
-                    },
-                    name: "AllvitProduct"
-                }]
-            }]
-        },
-        {
             path: "/:sectionName(blog|news)/:categoryName(mom-and-child|intresting-and-useful)?/:ID()-:slug",
             component: () => import('~/components/vPages/vArticles.vue').then(r => r.default || r),
             props: function (t: any) {
                 return Object.assign({
                     ...t.params,
                     ID: Number(t.params.ID),
-                    slug: t.params.slug
+                    slug: t.params.slug,
+                    sectionName: t.params.sectionName,
+                    categoryName: t.params.categoryName
                 })
             },
             name: "Article"

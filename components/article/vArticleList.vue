@@ -53,18 +53,18 @@ const params = computed(() => {
 })
 const preparedArticles = computed(() => {
   return void 0 === props.categories ? [] : articles.value.map((a: any) => {
-    let e, r, n = (null !== (e = props.categories) && void 0 !== e ? e : []).find((t: any) => {
+    let e, t, r, n = (null !== (e = props.categories) && void 0 !== e ? e : []).find((t: any) => {
           return t.ID === a.categoryID
         }),
         o = {
           ...a,
           route: {
-            name: 400 === a.ID ? "Allvit" : "Article",
-            params: 400 === a.ID ? {
-              slug: a.slug
-            } : {
+            name: "Article",
+            params: {
               ID: "".concat(a.ID),
-              slug: a.slug
+              slug: a.slug,
+              sectionName: null !== (t = getRootParentSlug(n?.parentID)) && void 0 !== t ? t : n?.slug,
+              categoryName: void 0 !== n?.parentID ? n?.slug : void 0
             }
           }
         };
@@ -78,7 +78,6 @@ watch(() => articles.value, (value) => {
   offset.value = value.length
 })
 watch(() => props.category, (value) => {
-  console.log("111")
   void 0 !== value && articles.value.length < 1 && (getArticles(), getTotalCount())
 })
 watch(() => route.path, () => {
@@ -106,6 +105,17 @@ onBeforeUnmount(() => {
   // })
 })
 
+
+function getRootParentSlug(t: any) {
+  var e, r = (null !== (e = props.categories) && void 0 !== e ? e : []).find((e: any) => {
+    return e.ID === t
+  });
+  if (void 0 !== r) {
+    if (void 0 === r?.parentID) return r?.slug;
+    let n: any = getRootParentSlug(r?.parentID);
+    return n === t ? void 0 : n
+  }
+}
 
 function formattedCreationTime(s: any) {
   let t = uToDate(s);
