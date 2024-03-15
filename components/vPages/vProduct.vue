@@ -137,11 +137,11 @@ const pharmacyStock = ref([])
 const routeCatalogParams = ref({})
 const routeProperties = ref(<any>{
   10: "Brand",
-  13: "Manufacturer",
-  6: "ActiveSubstance",
-  "Производитель": "Manufacturers",
+  // 13: "Manufacturer",
+  // 6: "ActiveSubstance",
+  // "Производитель": "Manufacturers",
   "Бренд": "Brands",
-  "Действующее вещество": "ActiveSubstances"
+  // "Действующее вещество": "ActiveSubstances"
 })
 const routePropertyIDs = ref([10, 13, 6])
 const routePropertyKey = ref(<any>["Производитель", "Бренд", "Действующее вещество"])
