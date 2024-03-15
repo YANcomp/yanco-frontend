@@ -36,7 +36,7 @@ jobs:
         run: |
           TAG_NAME=$(echo $GITHUB_SHA | head -c7)
           docker buildx create --use
-          docker buildx build --no-cache --push -t $REGISTRY/$IMAGE_NAME_NGINX:latest -t $REGISTRY/$IMAGE_NAME_NGINX:$TAG_NAME -f nginx/Dockerfile /
+          docker buildx build --no-cache --push -t $REGISTRY/$IMAGE_NAME_NGINX:latest -t $REGISTRY/$IMAGE_NAME_NGINX:$TAG_NAME -f nginx/Dockerfile nginx/
 
 #  deploy-image:
 #    runs-on: ubuntu-latest
