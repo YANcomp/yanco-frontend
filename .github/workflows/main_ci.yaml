@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+env:
+  REGISTRY: "cr.selcloud.ru/cosmeticfrontend"
+  IMAGE_NAME_NUXT: "nuxt_container"
+  IMAGE_NAME_NGINX: "nginx_container"
+  CONTAINER_NAME: "cosmeticfrontend"
+
+jobs:
+  image-build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Registry
+        run: docker login -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }} $REGISTRY
+
+      - name: Build and Push NUXT container
+        run: |
+          TAG_NAME=$(echo $GITHUB_SHA | head -c7)
+          docker buildx create --use
+          docker buildx build --no-cache --push -t $REGISTRY/$IMAGE_NAME_NUXT:latest -t $REGISTRY/$IMAGE_NAME_NUXT:$TAG_NAME -f docker/Dockerfile / 
+
+      - name: Build and Push Banners-service Docker Image
+        run: |
+          TAG_NAME=$(echo $GITHUB_SHA | head -c7)
+          docker buildx create --use
+          docker buildx build --no-cache --push -t $REGISTRY/$IMAGE_NAME_NGINX:latest -t $REGISTRY/$IMAGE_NAME_NGINX:$TAG_NAME -f nginx/Dockerfile / 
+
+#  deploy-image:
+#    runs-on: ubuntu-latest
+#    needs: image-build-and-push
+#
+#    steps:
+#      - name: Checkout master
+#        uses: actions/checkout@v3
+#
+#      - name: Copy docker-compose file via ssh key
+#        uses: appleboy/scp-action@v0.1.7
+#        with:
+#          host: ${{ secrets.SERVER_HOST }}
+#          username: ${{ secrets.SSH_USERNAME }}
+#          key: ${{ secrets.SSHKEY }}
+#          rm: true
+#          source: docker-compose.yml
+#          target: /root/yancobackend/
+#
+#      - name: Deploy to Selectel Cloud via SSH action
+#        uses: appleboy/ssh-action@v1.0.0
+#        with:
+#          host: ${{ secrets.SERVER_HOST }}
+#          username: ${{ secrets.SSH_USERNAME }}
+#          key: ${{ secrets.SSHKEY }}
+#          envs: IMAGE_NAME,REGISTRY,GITHUB_SHA,CONTAINER_NAME
+#          script: |
+#            # Set up variables
+#            TAG_NAME=$(echo $GITHUB_SHA | head -c7)
+#
+#            # Login into Selectel Registry
+#            docker login -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }} $REGISTRY
+#
+#            # Stop all containers and delete
+#            docker stop $(docker ps -a -q)
+#            docker rm $(docker ps -a -q)
+#
+#            # Remove all old images
+#            docker rmi $(docker images -a -q)
+#
+#            # Run a new container from a new image
+#            docker-compose --project-name $CONTAINER_NAME -f /root/yancobackend/docker-compose.yml up -d --build
