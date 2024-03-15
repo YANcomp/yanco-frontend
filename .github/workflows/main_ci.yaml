@@ -30,7 +30,7 @@ jobs:
         run: |
           TAG_NAME=$(echo $GITHUB_SHA | head -c7)
           docker buildx create --use
-          docker buildx build --no-cache --push -t $REGISTRY/$IMAGE_NAME_NUXT:latest -t $REGISTRY/$IMAGE_NAME_NUXT:$TAG_NAME -f docker/Dockerfile /
+          docker buildx build --no-cache --push -t $REGISTRY/$IMAGE_NAME_NUXT:latest -t $REGISTRY/$IMAGE_NAME_NUXT:$TAG_NAME -f Dockerfile .
 
       - name: Build and Push Banners-service Docker Image
         run: |

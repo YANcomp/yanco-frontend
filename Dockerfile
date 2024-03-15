@@ -1,4 +1,4 @@
-FROM node:18-alpine3.17 AS builder
+FROM node:lts-alpine3.19 as builder
 
 # update and install the latest dependencies for the alpine version
 RUN apk update && apk upgrade
@@ -15,7 +15,7 @@ COPY . ./
 RUN npx nuxt build
 
 # we are using multi stage build process to keep the image size as small as possible
-FROM node:18-alpine3.17
+FROM node:lts-alpine3.19
 # update and install latest dependencies, add dumb-init package
 # add a non root user
 RUN apk update && apk upgrade && apk add dumb-init && adduser -D nuxtuser
