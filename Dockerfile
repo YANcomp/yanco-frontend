@@ -16,7 +16,7 @@ COPY . ./
 EXPOSE 3000
 
 ENV HOST=0.0.0.0 PORT=3000 NODE_ENV=production
-CMD ["dumb-init","npx","nuxt dev"]
+CMD ["dumb-init","npx nuxt dev"]
 
 ## we are using multi stage build process to keep the image size as small as possible
 #FROM node:lts-alpine3.19
