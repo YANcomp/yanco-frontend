@@ -9,6 +9,17 @@ export default defineNuxtConfig({
             sameSite: 'strict'
         }
     },
+    routeRules: {
+        '/**': { headers: { 'Access-Control-Allow-Origin': '*' } },
+    },
+    // Only valid on serve
+    webpack: {
+        devMiddleware: {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
+        },
+    },
     app: {
         head: {
             title: "Yanco Beauty",
