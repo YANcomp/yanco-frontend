@@ -14,7 +14,7 @@ COPY . ./
 # build the nuxt project to generate the artifacts in .output directory
 #RUN npx nuxt build
 ENV HOST=0.0.0.0 PORT=3000 NODE_ENV=production
-CMD ["dumb-init","npx","nuxt dev"]
+CMD ["npx","nuxt dev"]
 
 ## we are using multi stage build process to keep the image size as small as possible
 #FROM node:lts-alpine3.19
