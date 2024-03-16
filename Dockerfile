@@ -28,11 +28,11 @@ WORKDIR /app
 # build stage with proper permissions for user nuxt user
 COPY --chown=nuxtuser:nuxtuser --from=builder /app/.output ./
 # expose 8080 on container
-EXPOSE 8080
+EXPOSE 3000
 
 # set app host and port . In nuxt 3 this is based on nitro and you can read
 #more on this https://nitro.unjs.io/deploy/node#environment-variables
-ENV HOST=0.0.0.0 PORT=8080 NODE_ENV=production
+ENV HOST=0.0.0.0 PORT=3000 NODE_ENV=production
 # start the app with dumb init to spawn the Node.js runtime process
 # with signal support
 CMD ["dumb-init","node","/app/server/index.mjs"]
