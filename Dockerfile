@@ -1,7 +1,7 @@
 FROM node:lts-alpine3.19 as builder
 
 # update and install the latest dependencies for the alpine version
-RUN apk update && apk upgrade
+RUN apk update && apk upgrade && apk add dumb-init
 
 # set work dir as app
 WORKDIR /app
@@ -13,8 +13,10 @@ RUN  npm install
 COPY . ./
 # build the nuxt project to generate the artifacts in .output directory
 #RUN npx nuxt build
+EXPOSE 3000
+
 ENV HOST=0.0.0.0 PORT=3000 NODE_ENV=production
-CMD ["npx","nuxt dev"]
+CMD ["dumb-init","npx","nuxt dev"]
 
 ## we are using multi stage build process to keep the image size as small as possible
 #FROM node:lts-alpine3.19
