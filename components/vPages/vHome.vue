@@ -784,7 +784,7 @@ useSeoMeta({
   margin-bottom: 10px
 }
 
-.v-home.mobile > .brands > .c-slider > .carousel > .list > .brand {
+.v-home.mobile > .brands > .c-slider > .carousel > .list > .brand, .v-home.mobile > .brands > .c-slider > .carousel > .list > .brand > img {
   height: 36px;
   width: 98px
 }
