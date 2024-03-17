@@ -22,12 +22,12 @@ export default defineNuxtConfig({
     },
     app: {
         head: {
-            title: "Yanco Beauty",
+            title: "Cosmetic | Yanco",
             meta: [
                 {charset: "utf-8"},
                 {name: "viewport", content: "width=device-width, initial-scale=1, user-scalable=no"},
                 {"http-equiv": "Content-Type", content: "text/html; charset=UTF-8"},
-                {name: "msapplication-TileColor", content: "#ffc40d"},
+                {name: "msapplication-TileColor", content: "#2b5797"},
                 {name: "msapplication-config", content: "/img/favicon/browserconfig.xml"},
                 {name: "theme-color", content: "#ffffff"},
             ],
@@ -38,7 +38,6 @@ export default defineNuxtConfig({
                 {rel: "manifest", href: "/img/favicon/site.webmanifest"},
                 {rel: "mask-icon", href: "/img/favicon/safari-pinned-tab.svg", color: "#5bbad5"},
                 {rel: "shortcut icon", href: "/img/favicon/favicon.ico"},
-                // {rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700"}
             ],
             style: [],
             script: [],

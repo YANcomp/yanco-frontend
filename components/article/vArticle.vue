@@ -452,7 +452,7 @@ useSeoMeta({
   description: descHead,
   ogType: 'website',
   ogUrl: urlHead,
-  ogImage: 'https://pictures.apteka-april.ru/generic/pharmacy_logo.png',
+  ogImage: 'https://cosmetic.yanco.ru/img/cosmetic_logo.png',
   ogTitle: article.value.metaTitle ? article.value.metaTitle : article.value.title,
   ogDescription: descHead
 })

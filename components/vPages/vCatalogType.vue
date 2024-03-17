@@ -131,7 +131,7 @@ useSeoMeta({
   description: desc,
   ogType: 'website',
   ogUrl: urlHead,
-  ogImage: 'https://pictures.apteka-april.ru/generic/pharmacy_logo.png',
+  ogImage: 'https://cosmetic.yanco.ru/img/cosmetic_logo.png',
   ogTitle: activeCatalogType.value.name + ' — Cosmetic | Yanco',
   ogDescription: desc
 })

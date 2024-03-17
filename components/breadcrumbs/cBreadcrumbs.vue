@@ -67,6 +67,7 @@ function routeTo(item: any) {
   padding: 0;
   flex-wrap: nowrap;
   overflow-x: auto;
+  overflow-y: hidden;
   /*display: flex;
   margin-bottom: 10px;
   flex-wrap: wrap;

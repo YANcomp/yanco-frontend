@@ -491,7 +491,7 @@ useSeoMeta({
   description: 'На этой странице представлены товары, добавленные в корзину.',
   ogType: 'website',
   ogUrl: params.value.siteURL + route.path,
-  ogImage: 'https://pictures.apteka-april.ru/generic/pharmacy_logo.png',
+  ogImage: 'https://cosmetic.yanco.ru/img/cosmetic_logo.png',
   ogTitle: 'Корзина — Cosmetic | Yanco',
   ogDescription: 'На этой странице представлены товары, добавленные в корзину.'
 })

@@ -283,13 +283,13 @@ useHead(() => ({
 }))
 useSeoMeta({
   title: 'Cosmetic | Yanco. Поиск, наличие косметики и цены в магазинах YCosmetic.',
-  description: 'Удобный поиск, низкие цены и широкий ассортимент косметики в магазинах YBeauty. ' +
+  description: 'Удобный поиск, низкие цены и широкий ассортимент косметики в магазинах YCosmetic. ' +
       'Оформляйте интернет заказ на сайте с доставкой на дом, бронируйте и покупайте в ближайшем магазине. Телефон справочной: ' + params.value.hotlinePhone + ".",
   ogType: 'website',
   ogUrl: params.value.siteURL,
-  ogImage: 'https://pictures.apteka-april.ru/generic/pharmacy_logo.png',
+  ogImage: 'https://cosmetic.yanco.ru/img/cosmetic_logo.png',
   ogTitle: 'Cosmetic | Yanco. Поиск, наличие косметики и цены в магазинах YCosmetic.',
-  ogDescription: 'Удобный поиск, низкие цены и широкий ассортимент косметики в магазинах YBeauty. ' +
+  ogDescription: 'Удобный поиск, низкие цены и широкий ассортимент косметики в магазинах YCosmetic. ' +
       'Оформляйте интернет заказ на сайте с доставкой на дом, бронируйте и покупайте в ближайшем магазине. Телефон справочной: ' + params.value.hotlinePhone + "."
 })
 </script>
@@ -301,7 +301,7 @@ useSeoMeta({
                      :is-mobile="isMobile" :item-margin=38 :items-count="homeBrands.length">
         <NuxtLink v-for="(item) in homeBrands" :key="item.ID" class="brand" :data-tooltip="item.name"
                   :to='{ name: "Brand", params: { propertyID: item.ID, propertySlug: item.slug } }'>
-          <img :src='item.image' :alt='item.name'/>
+          <img :src='item.image' :alt='item.name' width="100%" height="100%"/>
         </NuxtLink>
       </LazyUiCSlider>
     </div>
